@@ -1,4 +1,4 @@
-﻿angular.module('tellme', ['ionic', 'ngIOS9UIWebViewPatch'])
+﻿angular.module('tellme', ['ionic'])
     .run(['$ionicPlatform', '$rootScope', function ($ionicPlatform, $rootScope) {
         $ionicPlatform.ready(function () {
 
