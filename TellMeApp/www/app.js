@@ -7,7 +7,7 @@
 
 
     }])
-    .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'appConfig', function ($stateProvider, $urlRouterProvider, $httpProvider, appConfig) {
+    .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
 
         /*修改put 和 post 的数据传递方式*/

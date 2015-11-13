@@ -5,7 +5,7 @@ app 配置信息
 后台服务器地址
 */
 angular.module('tellme')
-    .constant('app-config',
+    .constant('appConfig',
     {
         /*
         后台服务配置
