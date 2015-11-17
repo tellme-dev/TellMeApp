@@ -2,13 +2,21 @@
     .run(['$ionicPlatform', '$rootScope', function ($ionicPlatform, $rootScope) {
         $ionicPlatform.ready(function () {
 
+
+
         })
-
-
-
     }])
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
+        $stateProvider
+        /*登录*/
+        .state('map', {
+            url: '/map',
+            templateUrl: 'app/map/map.html',
+            controller: 'mapCtrl'
+        });
+
+        $urlRouterProvider.otherwise('/map');
 
         /*修改put 和 post 的数据传递方式*/
         $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
