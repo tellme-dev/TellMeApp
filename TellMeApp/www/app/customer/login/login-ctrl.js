@@ -1,5 +1,5 @@
 ﻿angular.module('tellme')
-    .controller('login-ctrl', ['$scope', '$ionicNavBarDelegate', 'customerService', function ($scope, $ionicNavBarDelegate, customerService) {
+    .controller('loginControll', ['$scope', '$ionicNavBarDelegate', 'customerSer', function ($scope, $ionicNavBarDelegate, customerSer) {
         /*保存登录的输入信息*/
         $scope.loginData = {};
         /*返回前一个界面*/
@@ -10,7 +10,7 @@
         $scope.login = function () {
             //验证
             //登录情况：1、成功；2、用户名不存在；3、密码错误；4、未知错误；5、服务连接不上
-            var promise = customerService.login($scope.loginData);
+            var promise = customerSer.login($scope.loginData);
             promise.then(
                 function (data) {
                     switch (data.data) {

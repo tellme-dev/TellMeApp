@@ -1,6 +1,7 @@
 ﻿/*消息推送服务*/
 angular.module('tellme')
-    .service('commonSer', '$http', 'appconfig'[function ($http,appConfig) {
+    .service('commonSer',['$http', '$q', 'appConfig',function ($http, $q,appConfig) {
+        var baseUrl = appConfig.server.getUrl();
         /**
         *ngdoc:
         *name:
@@ -41,7 +42,25 @@ angular.module('tellme')
         this.saveGrade = function (targetType, targetId,score) {
 
         };
+        /**
+        *ngdoc:
+        *name:
+        *description                 获取短信验证服务
+        *param      {String} mobile  电话号码
+        *return     {bool}           是否成功
+        */
+        this.sendSMS = function (mobile) {
+            var url = baseUrl + 'app/customer/sendSMSVerificationCode.do?mobile=' + mobile;
+            var deferred = $q.defer();
+            $http.post(url)
+                .success(function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(function (data, status, headers, config) {
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        };
 
         
 
-    }])
+    }]);

@@ -1,5 +1,5 @@
 ﻿angular.module('tellme')
-    .service('customerService', ['$http', '$q', 'appConfig', function ($http, $q, appConfig) {
+    .service('customerSer', ['$http', '$q', 'appConfig', function ($http, $q, appConfig) {
         var baseUrl = appConfig.server.getUrl();
 
         this.login = function (loginData) {
