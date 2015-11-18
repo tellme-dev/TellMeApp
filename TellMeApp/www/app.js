@@ -8,8 +8,9 @@
 
     }])
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $httpProvider) {
-        //$stateProvider.state('customer.login', { url: '/login', templateUrl: 'app/customer/login.html', controller: 'customer-login-Controller' });
-        //$urlRouterProvider.otherwise('/login');
+        //$stateProvider.state('customer.login', { url: '/customer/login', views: { 'login':{templateUrl: 'app/customer/login/login.html', controller: 'login-ctrl' }}});
+        $stateProvider.state('login', { url: '/login', templateUrl: 'app/customer/login/login.html', controller: 'login-ctrl' });
+        $urlRouterProvider.otherwise('/login');
 
         /*修改put 和 post 的数据传递方式*/
         $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
