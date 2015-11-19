@@ -11,8 +11,9 @@
         //$stateProvider.state('customer.login', { url: '/customer/login', views: { 'login':{templateUrl: 'app/customer/login/login.html', controller: 'login-ctrl' }}});
         $stateProvider
             .state('login', { url: '/login', templateUrl: 'app/customer/login/login.html', controller: 'loginControll' })
-            .state('register', { url: '/register', templateUrl: 'app/customer/register/register.html', controller: 'registerControll' });
-        $urlRouterProvider.otherwise('/register');
+            .state('register', { url: '/register', templateUrl: 'app/customer/register/register.html', controller: 'registerControll' })
+            .state('home', { cache: false, url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' });
+        $urlRouterProvider.otherwise('/home');
 
         /*修改put 和 post 的数据传递方式*/
         $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';

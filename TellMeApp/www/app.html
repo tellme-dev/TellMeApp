@@ -6,13 +6,14 @@
     <meta charset="utf-8" />
 
    
-   <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; ; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
     
     <title>挑米</title>
 
     <!-- tellme 引用 ionic -->
     <link href="lib/ionic/css/ionic.min.css" rel="stylesheet" />
     <link href="css/tellme.css"  rel="stylesheet" />
+    <link href="css/style.min.css" rel="stylesheet" />
 
     <!-- Cordova 引用，它在生成应用程序时添加到其中。 -->
     <script src="cordova.js"></script>
@@ -31,6 +32,7 @@
     <script src="app/customer/login/login-ctrl.js"></script>
     <script src="app/customer/register/register-ctrl.js"></script>
     <script src="app/customer/customer-ser.js"></script>
+    <script src="app/home/home-ctrl.js"></script>
     <script src="app/map/map-ctrl.js"></script>
 
     <!--百度地图API-->
