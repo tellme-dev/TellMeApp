@@ -1,6 +1,13 @@
 ﻿angular.module('tellme')
     .controller('homeControll', ['$scope', '$state', function ($scope, $state) {
         /*首页初始化*/
+        var mySwiper = new Swiper('.swiper-container', {
+            pagination: '.pagination',
+            paginationClickable: true,
+            centeredSlides: true,
+            slidesPerView: 1.3,
+            watchActiveIndex: false
+        })
         // 获取当前位置
         $scope.getCity = function () {
             //加载城市查询插件
