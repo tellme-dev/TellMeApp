@@ -1,30 +1,34 @@
 ﻿<ion-view>
+    <!--头部begin-->
     <ion-header-bar class="bar bar-header bar-dark">
 
-        <button class="button icon ion-ios-location" style="border:none">成都</button>
+        <button class="button icon ion-ios-location" ng-click="goToLocation()" style="border:none">成都<!--{{currentCity}}--></button>
 
-        <label class="item item-input" style="margin:0 auto; width:60%; background:#ffffff">
+        <label ng-click="goToLocation()" class="item item-input" style="margin:0 auto; width:60%; background:#ffffff">
             <i class="icon ion-search placeholder-icon"></i>
-            <input type="text" placeholder="Search" class="pad-top">
+            <input type="text" placeholder="Search" disabled class="pad-top">
         </label>
 
-        <button class="button icon ion-android-person" style="border:none"></button>
+        <button ng-click="goToCustomer()" class="button icon ion-android-person" style="border:none"></button>
     </ion-header-bar>
-
+    <!--头部begin-->
+    <!--body begin-->
     <ion-content>
-
-        <ion-slide-box on-slide-changed="slideHasChanged($index)" does-continue="true" auto-play="true">
+        <!--广告begin-->
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" does-continue="true" auto-play="true" >
+            <ion-slide ng-repeat="ad in adData">
+                <img ng-src="{{baseUrl}}app/images/pic_home_slider_1.jpg" alt="" style="width:100%; height:100%" />
+            </ion-slide>
+            <!--
             <ion-slide>
-                <div class="box blue"><img src="images/pic_home_slider_1.jpg" alt="" style="width:100%; height:100%" /></div>
+                <div class="box yellow"><img ng-src="{{baseUrl}}app/images/pic_home_slider_1.jpg" alt="" style="width:100%;height:100%" /></div>
             </ion-slide>
             <ion-slide>
-                <div class="box yellow"><img src="images/pic_home_slider_1.jpg" alt="" style="width:100%;height:100%" /></div>
-            </ion-slide>
-            <ion-slide>
-                <div class="box pink"><img src="images/pic_home_slider_1.jpg" alt="" style="width:100%;height:100%" /></div>
-            </ion-slide>
+                <div class="box pink"><img ng-src="{{baseUrl}}app/images/pic_home_slider_1.jpg" alt="" style="width:100%;height:100%" /></div>
+            </ion-slide>-->
         </ion-slide-box>
-
+        <!--广告end-->
+        <!--酒店分类begin-->
         <div class="device">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
@@ -139,110 +143,21 @@
             </div>
             <div class="pagination"></div>
         </div>
-
-        <div class="mar-top">
-            <div style="background:#fff">
-                <div class="item itemer">
-                    <h2 class="h2-er">标签推荐</h2>
-                </div>
-                <div class="content no-header ionic-pseudo ">
-
-                    <div class="list card carder" style="background-image:url(images/beijin.jpg);">
-
-                        <div class="item itemerd">
-                            <h2>Pretty Hate Machine</h2>
-                            <p>Nine Inch Nails</p>
-                        </div>
-                        <div class="item item-image item-imageer">
-                            <div class="row row-er">
-                                <div class="col col-er"><a href="#"><img src="images/c.png" style="width:100%;" /></a></div>
-                                <div class="col col-er"><a href="#"><img src="images/d.png" style="width:100%;" /></a></div>
-                                <div class="col col-er"><a href="#"><img src="images/c.png" style="width:100%;" /></a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="content no-header ionic-pseudo ">
-
-                    <div class="list card" style="background-image:url(images/beijin.jpg); margin-bottom:0px;">
-
-                        <div class="item itemerd">
-                            <h2>Pretty Hate Machine</h2>
-                            <p>Nine Inch Nails</p>
-                        </div>
-                        <div class="item item-image item-imageer">
-                            <div class="row row-er">
-                                <div class="col col-er"><a href="#"><img src="images/c.png" style="width:100%;" /></a></div>
-                                <div class="col col-er"><a href="#"><img src="images/d.png" style="width:100%;" /></a></div>
-                                <div class="col col-er"><a href="#"><img src="images/c.png" style="width:100%;" /></a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item energized bit">
-                    <a class="button button-block button-positive button-calm ">更多好玩的标签</a>
-                </div>
-            </div>
+        <!--酒店分类end-->
+      
+       <div>
+           <a href="#"><img src="../../images/pic_home_slider_1.jpg" style="width:100%"/></a>
+       </div>
+        <div>
+            <a href="#"><img src="../../images/pic_home_slider_1.jpg" style="width:100%" /></a>
         </div>
-        <div class="mar-top">
-            <div class="row ba-row">
-                <div class="col"><h4 style="color:#9b9b9b; font-family:'微软雅黑';">达人推荐</h4></div>
-            </div>
-
-            <div class="row ba-row">
-                <div class="col col-33 col-text">
-                    <a href="#">
-                        <img src="images/c.png" style="width:90%; border-radius:50%;" />
-                        <h4 style="margin:5px 0px;">Pretty</h4>
-                        <p>Inch Nails</p>
-                    </a>
-                </div>
-                <div class="col col-33 col-text">
-                    <a href="#">
-                        <img src="images/c.png" style="width:90%; border-radius:50%;" />
-                        <h4 style="margin:5px 0px;">Pretty</h4>
-                        <p>Nine Inch </p>
-                    </a>
-                </div>
-                <div class="col col-33 col-text">
-                    <a href="#">
-                        <img src="images/c.png" style="width:90%; border-radius:50%;" />
-                        <h4 style="margin:5px 0px;">Pretty</h4>
-                        <p>Nine Nails</p>
-                    </a>
-                </div>
-            </div>
-
-            <div class="row ba-row">
-                <div class="col col-33 col-text">
-                    <a href="#">
-                        <img src="images/c.png" style="width:90%; border-radius:50%;" />
-                        <h4 style="margin:5px 0px;">Pretty</h4>
-                        <p>Inch Nails</p>
-                    </a>
-                </div>
-                <div class="col col-33 col-text">
-                    <a href="#">
-                        <img src="images/c.png" style="width:90%; border-radius:50%;" />
-                        <h4 style="margin:5px 0px;">Pretty</h4>
-                        <p>Nine Inch </p>
-                    </a>
-                </div>
-                <div class="col col-33 col-text">
-                    <a href="#">
-                        <img src="images/c.png" style="width:90%; border-radius:50%;" />
-                        <h4 style="margin:5px 0px;">Pretty</h4>
-                        <p>Nine Nails</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="item energized bit">
-            <a class="button button-block button-positive button-calm ">查看更多达人</a>
+        <div>
+            <a href="#"><img src="../../images/pic_home_slider_1.jpg" style="width:100%" /></a>
         </div>
 
     </ion-content>
-
+    <!--body end-->
+    <!--底部begin-->
     <ion-footer-bar align-title="left" class="bar-dark">
 
         <a class="tab-item" href="#">
@@ -262,4 +177,5 @@
         </a>
 
     </ion-footer-bar>
+    <!--底部end-->
 </ion-view>
