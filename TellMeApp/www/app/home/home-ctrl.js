@@ -7,7 +7,7 @@
             centeredSlides: true,
             slidesPerView: 1.3,
             watchActiveIndex: false
-        })
+        });
         // 获取当前位置
         $scope.getCity = function () {
             //加载城市查询插件
@@ -27,7 +27,9 @@
         }
 
         //广告（头部广告、底部专栏）动态加载
+
         //菜单先查询本地是否有保存，没有，动态加载；有，在家本地数据；
+
         //加载用户头像
 
 
