@@ -76,5 +76,8 @@
         $scope.goToTheme = function (param) {
 
         }
-        $ionicSlideBoxDelegate.update();
+        $scope.repeatDone = function () {
+            $ionicSlideBoxDelegate.update();
+        }
+        
     }]);

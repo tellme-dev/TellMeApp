@@ -10,7 +10,7 @@
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $httpProvider) {
         $stateProvider
             //首页
-            .state('home', { url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
+            .state('home', {  url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
             //个人中心
             .state('customer', { url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
             .state('login', { url: '/login', templateUrl: 'app/customer/login/login.html', controller: 'loginControll' })
