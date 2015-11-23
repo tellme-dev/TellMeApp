@@ -1,4 +1,5 @@
-﻿<ion-view>
+﻿
+<ion-view>
     <!--头部begin-->
     <ion-header-bar class="bar bar-header bar-dark">
 
@@ -14,10 +15,21 @@
     <!--头部begin-->
     <!--body begin-->
     <ion-content>
+        <!-- <ion-refresher> 下拉刷新指令  -->
+        <ion-refresher pulling-text="下拉刷新" on-refresh="vm.doRefresh()"></ion-refresher>
         <!--广告begin-->
-        <ion-slide-box on-slide-changed="slideHasChanged($index)" does-continue="true" auto-play="true" ng-if="adData">
-            <ion-slide ng-repeat="ad in adData" repeat-done="repeatDone()">
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" does-continue="true" auto-play="true" ><!--ng-if="adData"-->
+            <!--<ion-slide ng-repeat="ad in adData" repeat-done="repeatDone()">
                 <img ng-src="{{baseUrl}}{{ad.adDetailList[0].imageUrl}}" alt="" style="width:100%; height:100%" />
+            </ion-slide>-->
+            <ion-slide>
+                <div class="box blue"><img src="images/pic_home_slider_1.jpg" alt="" style="width:100%; height:100%" /></div>
+            </ion-slide>
+            <ion-slide>
+                <div class="box yellow"><img src="images/pic_home_slider_1.jpg" alt="" style="width:100%;height:100%" /></div>
+            </ion-slide>
+            <ion-slide>
+                <div class="box pink"><img src="images/pic_home_slider_1.jpg" alt="" style="width:100%;height:100%" /></div>
             </ion-slide>
         </ion-slide-box>
         <!--广告end-->
@@ -31,7 +43,7 @@
                         </div>
                         <div class="scroll-content has-header mar-top">
                             <div class="row">
-                                <div class="col"><img src="images/a.png" width="100%" height="40%" /></div>
+                                <div class="col" ng-click="hotelType()"><img src="images/a.png" width="100%" height="40%" /></div>
                                 <div class="col"><img src="images/b.png" width="100%" height="40%" /></div>
 
                             </div>
@@ -137,38 +149,40 @@
             <div class="pagination"></div>
         </div>
         <!--酒店分类end-->
-      
-       <div>
-           <a href="#"><img src="../../images/pic_home_slider_1.jpg" style="width:100%"/></a>
-       </div>
+        <!--活动推荐begin-->
         <div>
-            <a href="#"><img src="../../images/pic_home_slider_1.jpg" style="width:100%" /></a>
+            <div class="item">
+                <h2>活动推荐</h2>
+            </div>
+            <!--<a href="#" ng-repeat="fad in footaddata">
+            <img ng-src="{{baseurl}}{{fad.addetaillist[0].imageurl}}" style="margin-bottom:10px; width:100% " />
+            </a>-->
+            <a href="#"><img src="images/u92.jpg" style="margin-bottom:10px; width:100% " /></a>
+            <a href="#"><img src="images/u94.jpg" style="margin-bottom:10px; width:100% " /></a>
+            <a href="#"><img src="images/u96.jpg" style="margin-bottom:10px; width:100% " /></a>
+            <div class="item" style="text-align:center">
+                <a href="#" style="color:#ffd800">更多推荐 ></a>
+            </div>
         </div>
-        <div>
-            <a href="#"><img src="../../images/pic_home_slider_1.jpg" style="width:100%" /></a>
-        </div>
-
+        <!--活动推荐end-->
+        <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
+        <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
     </ion-content>
     <!--body end-->
     <!--底部begin-->
     <ion-footer-bar align-title="left" class="bar-dark">
-
         <a class="tab-item" href="#">
-            <i class="icon ion-ios-undo"></i>
-
+            <i class="icon ion-ios-home-outline"></i>
         </a>
         <a class="tab-item" href="#">
-            <i class="icon ion-star"></i>
-
+            <i class="icon ion-ios-eye-outline"></i>
         </a>
         <a class="tab-item" href="#">
-            <i class="icon ion-ios-world-outline"></i>
-
+            <i class="icon ion-ios-people-outline"></i>
         </a>
         <a class="tab-item" href="#">
-            <i class="icon ion-home"></i>
+            <i class="icon ion-android-checkbox-outline"></i>
         </a>
-
     </ion-footer-bar>
     <!--底部end-->
 </ion-view>

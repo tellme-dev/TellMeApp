@@ -17,7 +17,7 @@
             .state('register', { url: '/register', templateUrl: 'app/customer/register/register.html', controller: 'registerControll' })
 
             //定位
-            .state('location', { url: '/location', templateUrl: 'app/map/location/cities.html', controller: 'mapLocationControll' })
+            .state('location', { url: '/location', templateUrl: 'app/map/location/cities.html', controller: '' })//mapLocationControll
             .state('map', { url: '/map', templateUrl: 'app/map/map/map.html', controller: 'mapControll' })
 
             //论坛

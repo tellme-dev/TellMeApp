@@ -12,7 +12,6 @@
   <plugin name="cordova-plugin-whitelist" version="1" />
   <allow-navigation href="*" />
   <allow-intent href="*" />
- 
   <platform name="android">
     <allow-intent href="market:*" />
   </platform>
@@ -107,4 +106,5 @@
   <vs:plugin name="cordova-plugin-inappbrowser" version="1.0.1" />
   <preference name="android-minSdkVersion" value="17" />
   <preference name="target-device" value="handset" />
+  <vs:plugin name="cordova-plugin-x-socialsharing" version="5.0.7" src="E:\酒店APP资料\SocialSharing-PhoneGap-Plugin-master\SocialSharing-PhoneGap-Plugin-master" />
 </widget>
