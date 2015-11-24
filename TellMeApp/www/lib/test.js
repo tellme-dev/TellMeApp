@@ -1,0 +1,4 @@
+﻿
+function t() {
+    alert("hsgoisdgh");
+}

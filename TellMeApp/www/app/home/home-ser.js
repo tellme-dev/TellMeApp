@@ -26,6 +26,23 @@
                 });
             return deferred.promise;
         }
+        //获取滑动菜单
+        this.getSwiperAd=function(){
+            var url = baseUrl + 'app/menu/loadMenuList.do ';
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
+
         //获取底部广告
         this.getFootAdd = function () {
             var url = baseUrl + 'app/ad/getAdList.do';

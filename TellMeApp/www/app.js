@@ -7,10 +7,11 @@
 
 
     }])
-    .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $httpProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
+        function ($stateProvider, $urlRouterProvider, $httpProvider) {
         $stateProvider
             //首页
-            .state('home', {  url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
+            .state('home', {url: "/home", url: '/home', templateUrl: 'app/home/home.html', controller:'homeControll' })
             //个人中心
             .state('customer', { url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
             .state('login', { url: '/login', templateUrl: 'app/customer/login/login.html', controller: 'loginControll' })
@@ -27,8 +28,23 @@
 
             //酒店
              .state('hotelList', { url: '/hotelList', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
-            .state('hotel', { url: '/hotel', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
-
+            //.state('hotel', {
+            //    url: '/hotel', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll',
+            //    resove: {
+            //        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+            //            return $ocLazyLoad.load([{
+            //                name:'hotel',
+            //                insertBefore:'#ng_load_plugins_before',
+            //                files:[
+            //                    'lib/jquery-1.10.1.min.js',
+            //                    'lib/iscroll.js',
+            //                    'lib/swiper.min.js'
+            //                ]
+            //            }])
+            //        }]
+            //    }
+            //})
+            .state('hotel', {url: '/hotel', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
             //广告
             .state('hotelAd', { url: '/hotelAd', templateUrl: 'app/ad/hotel/hotelAd.html', controller: 'adHotelControll' })
             .state('themeCardAd', { url: '/themeCardAd', templateUrl: 'app/ad/theme/card/themeList.html', controller: 'adThemeListControll' })
@@ -36,6 +52,7 @@
         ;
 
         $urlRouterProvider.otherwise('/home');
+      
         /*修改put 和 post 的数据传递方式*/
         $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';

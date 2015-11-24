@@ -1,4 +1,5 @@
-﻿angular.module('tellme')
+﻿
+angular.module('tellme')
     .controller('homeControll', ['$scope', '$state', '$ionicSlideBoxDelegate', '$timeout', '$ionicLoading', 'homeSer', 'appConfig',
         function ($scope, $state,$ionicSlideBoxDelegate,$timeout,$ionicLoading, homeSer, appConfig) {
         /*首页初始化*/
@@ -115,7 +116,31 @@
         //           function (data) {
         //               console.log('其他');
         //           }
-        //           );
+            //           );
+
+            //获取广告滑动菜单
+                //var promise = homeSer.getSwiperAd ();
+                //promise.then(
+                //       function (data) {
+                //           if (data.isSuccess) {
+                //               if (data.rows.length == 0) {
+                //                   console.log("未获取数据！")
+                //               } else {
+                //                    $scope.swiperAdData = data.rows;
+
+                //               }
+
+                //           } else {
+                //               console.log("获取数据失败！" + data.msg)
+                //           }
+
+                //       },
+                //       function (data) {
+                //           console.log('其他');
+                //       }
+                //     );
+
+
 
         //菜单先查询本地是否有保存，没有，动态加载；有，在家本地数据；
 
@@ -153,4 +178,29 @@
             $ionicSlideBoxDelegate.update();
         }
         
-    }]);
+        }])
+    .directive('admenu', function () {
+        return {
+            restrict: 'E',
+            link: function (scope, element, attrs) {
+                var url = 'http://192.168.1.103:8080/TellMeMgr';
+                var html = '<div class="swiper-slide red-slide red-padding">';
+                angular.forEach(scope[attrs.menuData], function (menuData, index) {
+                    html += ' <div class="title">' + menuData.name + '</div>';
+                    html += ' <div class="scroll-content has-header mar-top">';
+                    angular.forEach(menuData.imageUrls, function (imageUrls, index) {
+                        if ((index + 1) % 2 != 0) {
+                            html += '<div class="row">';
+                            html += ' <div  class="col"><img src="' + url + imageUrls + '" width="100%" height="40%" /></div>';
+                        } else {
+                            html += ' <div  class="col"><img src="' + url + imageUrls + '" width="100%" height="40%" /></div>';
+                            html += '</div>';
+                        }
+                    });
+                    html += '</div>';
+                });
+                html += '</div>';
+                element.replaceWith(html)
+            }
+        }
+    });
