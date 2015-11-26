@@ -161,14 +161,16 @@ angular.module('tellme')
         }
         //跳转到酒店分类二级页面
         $scope.hotelType=function(){
-            $state.go('hotel');
+            $state.go('hotelList');
         }
         /*（点击菜单项）跳转“酒店列表”*/
         $scope.goToHotelList = function (param) {
         }
         /*（点击头部广告）跳转“具体广告”*/
-        $scope.goToAd = function (param) {
-
+        //$scope.goToAd = function (param) {
+        $scope.goToAd = function () {
+            //param 根据target_type等于1（酒店）、2（服务项目）、3（社区）判断，传入参数target_id
+            $state.go('themeCardAd');
         }
         /*（点击专题）跳转“具体专题”*/
         $scope.goToTheme = function (param) {
