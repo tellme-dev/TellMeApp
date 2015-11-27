@@ -3,7 +3,7 @@
         <ion-slide-box on-slide-changed="slideHasChanged($index)" style="height:100%;" does-continue="true" auto-play="true" ng-if="startImages">
             <ion-slide ng-repeat="image in startImages" repeat-done="repeatDone()" style="position:relative">
                 <img ng-src="{{image.imageUrl}}" alt="" style="width:100%; height:100%" />
-                <button style="position:absolute; bottom:40px; left:40%; z-index:999; border:1px solid #e09b9b;border-radius:3px; background:none;padding:5px 10px; color:#e09b9b">进入应用</button>
+                <button ng-show="$index==2" style="position:absolute; bottom:40px; left:40%; z-index:999; border:1px solid #e09b9b;border-radius:3px; background:none;padding:5px 10px; color:#e09b9b">进入应用</button>
             </ion-slide>
         </ion-slide-box>
     </ion-content>
