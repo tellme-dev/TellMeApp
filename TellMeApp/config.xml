@@ -12,6 +12,8 @@
   <plugin name="cordova-plugin-whitelist" version="1" />
   <allow-navigation href="*" />
   <allow-intent href="*" />
+  <!--The following configuration can be used to define single default icon which will be used for all platforms.-->
+  <icon src="res/icons/icon-ihotel.png" />
  
   <platform name="android">
     <allow-intent href="market:*" />
@@ -20,37 +22,37 @@
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
   </platform>
-  <platform name="android">
+  <!--<platform name="android">
     <icon src="res/icons/android/icon-36-ldpi.png" density="ldpi" />
     <icon src="res/icons/android/icon-48-mdpi.png" density="mdpi" />
     <icon src="res/icons/android/icon-72-hdpi.png" density="hdpi" />
     <icon src="res/icons/android/icon-96-xhdpi.png" density="xhdpi" />
   </platform>
   <platform name="ios">
-    <!-- iOS 8.0+ -->
-    <!-- iPhone 6 Plus  -->
+    --><!-- iOS 8.0+ --><!--
+    --><!-- iPhone 6 Plus  --><!--
     <icon src="res/icons/ios/icon-60-3x.png" width="180" height="180" />
-    <!-- iOS 7.0+ -->
-    <!-- iPhone / iPod Touch  -->
+    --><!-- iOS 7.0+ --><!--
+    --><!-- iPhone / iPod Touch  --><!--
     <icon src="res/icons/ios/icon-60.png" width="60" height="60" />
     <icon src="res/icons/ios/icon-60-2x.png" width="120" height="120" />
-    <!-- iPad -->
+    --><!-- iPad --><!--
     <icon src="res/icons/ios/icon-76.png" width="76" height="76" />
     <icon src="res/icons/ios/icon-76-2x.png" width="152" height="152" />
-    <!-- iOS 6.1 -->
-    <!-- Spotlight Icon -->
+    --><!-- iOS 6.1 --><!--
+    --><!-- Spotlight Icon --><!--
     <icon src="res/icons/ios/icon-40.png" width="40" height="40" />
     <icon src="res/icons/ios/icon-40-2x.png" width="80" height="80" />
-    <!-- iPhone / iPod Touch -->
+    --><!-- iPhone / iPod Touch --><!--
     <icon src="res/icons/ios/icon-57.png" width="57" height="57" />
     <icon src="res/icons/ios/icon-57-2x.png" width="114" height="114" />
-    <!-- iPad -->
+    --><!-- iPad --><!--
     <icon src="res/icons/ios/icon-72.png" width="72" height="72" />
     <icon src="res/icons/ios/icon-72-2x.png" width="144" height="144" />
-    <!-- iPhone Spotlight and Settings Icon -->
+    --><!-- iPhone Spotlight and Settings Icon --><!--
     <icon src="res/icons/ios/icon-small.png" width="29" height="29" />
     <icon src="res/icons/ios/icon-small-2x.png" width="58" height="58" />
-    <!-- iPad Spotlight and Settings Icon -->
+    --><!-- iPad Spotlight and Settings Icon --><!--
     <icon src="res/icons/ios/icon-50.png" width="50" height="50" />
     <icon src="res/icons/ios/icon-50-2x.png" width="100" height="100" />
   </platform>
@@ -70,7 +72,7 @@
   <platform name="wp8">
     <icon src="res/icons/wp8/ApplicationIcon.png" width="62" height="62" />
     <icon src="res/icons/wp8/Background.png" width="173" height="173" />
-  </platform>
+  </platform>-->
   <platform name="android">
     <splash src="res/screens/android/screen-hdpi-landscape.png" density="land-hdpi" />
     <splash src="res/screens/android/screen-ldpi-landscape.png" density="land-ldpi" />

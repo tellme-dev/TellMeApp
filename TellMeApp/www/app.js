@@ -46,10 +46,10 @@
         if (window.localStorage['isFirstStart'] == undefined) {
             $urlRouterProvider.otherwise('/start');
         } else {
-            $urlRouterProvider.otherwise('/home');
+            $urlRouterProvider.otherwise('/start');
         }
 
-        $urlRouterProvider.otherwise('/home');
+        //$urlRouterProvider.otherwise('/home');
         /*修改put 和 post 的数据传递方式*/
         $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
