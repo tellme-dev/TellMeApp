@@ -1,16 +1,17 @@
 ﻿angular.module('tellme', ['ionic'])
     .run(['$ionicPlatform', '$rootScope', 'commonSer', function ($ionicPlatform, $rootScope, commonSer) {
         $ionicPlatform.ready(function () {
-            if (commonSer.checkFirstStart() == undefined) {
+            if (window.localStorage['isFirstStart'] == undefined) {
                 navigator.splashscreen.hide();
-                commonSer.setFirstStart();
+                window.localStorage['isFirstStart'] = false;
             }
-        })
+        });
 
 
 
     }])
-    .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $httpProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
+        function ($stateProvider, $urlRouterProvider, $httpProvider ) {
         $stateProvider
             //首次启动页面
             .state('start', { url: '/start', templateUrl: 'app/start/start.html', controller: 'startControll' })
@@ -41,8 +42,8 @@
             .state('discoverList', { url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverControll' })
            // 社区
            .state('communityList', { url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
-        ;
-        if ($window.localStorage['isFirstStart'] == undefined) {
+            ;
+        if (window.localStorage['isFirstStart'] == undefined) {
             $urlRouterProvider.otherwise('/start');
         } else {
             $urlRouterProvider.otherwise('/home');
