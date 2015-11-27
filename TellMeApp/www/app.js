@@ -1,24 +1,29 @@
 ﻿angular.module('tellme', ['ionic'])
     .run(['$ionicPlatform', '$rootScope', 'commonSer', function ($ionicPlatform, $rootScope, commonSer) {
         $ionicPlatform.ready(function () {
+            if (commonSer.checkFirstStart() == undefined) {
+                navigator.splashscreen.hide();
+                commonSer.setFirstStart();
+            }
         })
 
 
 
     }])
-    .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $httpProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
+        function ($stateProvider, $urlRouterProvider, $httpProvider ) {
         $stateProvider
             //首次启动页面
             .state('start', { url: '/start', templateUrl: 'app/start/start.html', controller: 'startControll' })
             //首页
-            .state('home', { url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
+            .state('home', {  url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
             //个人中心
             .state('customer', { url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
             .state('login', { url: '/login', templateUrl: 'app/customer/login/login.html', controller: 'loginControll' })
             .state('register', { url: '/register', templateUrl: 'app/customer/register/register.html', controller: 'registerControll' })
 
             //定位
-            .state('location', { url: '/location', templateUrl: 'app/map/location/cities.html', controller: 'mapLocationControll' })
+            .state('location', { url: '/location', templateUrl: 'app/map/location/cities.html', controller: '' })//mapLocationControll
             .state('map', { url: '/map', templateUrl: 'app/map/map/map.html', controller: 'mapControll' })
 
             //论坛
@@ -28,12 +33,15 @@
 
             //酒店
              .state('hotelList', { url: '/hotelList', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
-            .state('hotel', { url: '/hotel', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
-
+            .state('hotel', {url: '/hotel', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
             //广告
             .state('hotelAd', { url: '/hotelAd', templateUrl: 'app/ad/hotel/hotelAd.html', controller: 'adHotelControll' })
             .state('themeCardAd', { url: '/themeCardAd', templateUrl: 'app/ad/theme/card/themeList.html', controller: 'adThemeListControll' })
             .state('themeAd', { url: '/themeAd', templateUrl: 'app/ad/theme/single/themeAd.html', controller: 'adThemeControll' })
+            //发现 
+            .state('discoverList', { url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverControll' })
+           // 社区
+           .state('communityList', { url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
         ;
         if (window.localStorage['isFirstStart'] == undefined) {
             $urlRouterProvider.otherwise('/start');
@@ -41,6 +49,7 @@
             $urlRouterProvider.otherwise('/home');
         }
 
+        $urlRouterProvider.otherwise('/home');
         /*修改put 和 post 的数据传递方式*/
         $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';

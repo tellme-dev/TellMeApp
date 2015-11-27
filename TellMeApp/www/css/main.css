@@ -1,0 +1,47 @@
+body {
+    background:#3c3c3c none repeat scroll 0 0;
+    color:#77a;
+    font-family:Helvetica;
+    font-size:72%;
+    line-height:1.5em;
+    margin:0;
+    border-top:1px solid #393939;
+  }
+
+#stage.theme{
+    padding:3px;
+  }
+
+#stage.theme > h1{
+    color:#eee;
+    font-size:1.6em;
+    text-align:center;
+    margin-top:15px;
+    padding:0;
+  }
+
+#stage.theme > h2{
+  	clear:both;
+    margin:10 0;
+    font-size:1em;
+    text-align:center;
+  }
+
+#stage.theme a.btn{
+  	border: 2px solid #222;
+  	-webkit-border-radius: 9px;
+  	border-radius: 9px;
+  	text-align:center;
+  	display:block;
+  	background:#eee;
+  	color:#222;
+  	font-size:1.3em;
+  	text-decoration:none;
+  	padding:1.0em 0;
+  	margin:12px;
+  }
+
+#stage.theme a.btn.enc{
+  	background:#555;
+  	color:#eee;
+  }

@@ -61,11 +61,6 @@ angular.module('tellme')
             return deferred.promise;
         };
 
-        this.checkFirstStart = function () {
-            return $window.localStorage['isFirstStart'];
-        };
-        this.setFirstStart = function () {
-            $window.localStorage['isFirstStart'] = false;
-            return;
-        };
+        
+
     }]);

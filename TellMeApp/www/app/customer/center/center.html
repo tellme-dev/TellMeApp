@@ -1,6 +1,21 @@
-﻿<ion-view view-title="个人中心">
+﻿<style type="text/css">
+    .selected {
+        background-color: red;
+    }
+</style>
+
+<ion-view view-title="个人中心">
     
     <ion-content>
         <button ng-click="goBack()">返回</button>
-    个人中心</ion-content>
+      
+                    <ul >
+                        <li  ng-repeat="a in b" ng-click="selectRestaurant({{a.id}})"
+                             ng-class='{selected: a.id==selectedI}'>{{a.name}}</li>
+                    </ul>
+     
+        <div ng-repeat="d in c">
+            {{d.name}}
+        </div>
+   </ion-content>
 </ion-view>

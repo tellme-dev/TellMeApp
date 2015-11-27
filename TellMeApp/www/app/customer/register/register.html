@@ -1,6 +1,27 @@
 ﻿<ion-view>
     <ion-content>
-        <input type="tel" ng-model="registerData.mobile"/>
-        <button class="button" ng-click="sendShortMessageCode()">获取验证码</button>
+        <form ng-submit="" class="ng-pristine ng-valid" style="padding:10px 10px; border:none;">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label align-title-left">手机号</span>
+                    <input type="number"  ng-blur="verifyTel()" ng-maxlength="11" ng-model="registerData.mobile" class="ng-pristine ng-valid ng-touched" style="">
+                     <p>{{msg}}</p>
+                </label>
+                <label class="item item-input" style="margin-top:5px;">
+                    <span class="input-label align-title-left">密码</span>
+                    <input type="password" ng-model="registerData.psd" class="ng-pristine ng-valid ng-touched" style="">
+                </label>
+                <label class="item item-input" style="margin-top:5px;">
+                    <span class="input-label align-title-left">验证码</span>
+                    <input type="password" ng-model="registerData.verifyCode" class="ng-pristine ng-valid ng-touched" style="">
+                    <button class="button" ng-click="sendShortMessageCode()">获取验证码</button>
+                 </label>
+            </div>
+            <div class=" button-bar">
+                <a class="button button-small" ng-click="register()">注册</a>
+            </div>
+        </form>
+
+       
     </ion-content>
 </ion-view>
