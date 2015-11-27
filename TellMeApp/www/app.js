@@ -8,7 +8,9 @@
     }])
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
         function ($stateProvider, $urlRouterProvider, $httpProvider ) {
-        $stateProvider
+            $stateProvider
+               //test
+                .state('test', { url: '/test', templateUrl: 'app/test/test.html', controller: 'testControll' })
             //首次启动页面
             .state('start', { url: '/start', templateUrl: 'app/start/start.html', controller: 'startControll' })
             //首页
@@ -44,7 +46,7 @@
             navigator.splashscreen.hide();
             $urlRouterProvider.otherwise('/start');
         } else {
-            $urlRouterProvider.otherwise('/home');
+            $urlRouterProvider.otherwise('/test');
         }
         /*修改put 和 post 的数据传递方式*/
         $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
