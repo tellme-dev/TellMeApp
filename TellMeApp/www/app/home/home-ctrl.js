@@ -1,7 +1,6 @@
 ﻿
 angular.module('tellme')
-    .controller('homeControll', ['$scope', '$state', '$ionicSlideBoxDelegate', '$timeout', '$ionicLoading', 'homeSer', 'appConfig',
-        function ($scope, $state,$ionicSlideBoxDelegate,$timeout,$ionicLoading, homeSer, appConfig) {
+    .controller('homeControll', ['$scope', '$state', '$ionicSlideBoxDelegate', 'homeSer', 'appConfig', function ($scope, $state,$ionicSlideBoxDelegate, homeSer, appConfig) {
         /*首页初始化*/
         var mySwiper = new Swiper('.swiper-container', {
             pagination: '.pagination',
@@ -133,14 +132,14 @@ angular.module('tellme')
                 //           } else {
                 //               console.log("获取数据失败！" + data.msg)
                 //           }
-
+                       
                 //       },
                 //       function (data) {
                 //           console.log('其他');
                 //       }
                 //     );
-
-
+                         
+                      
 
         //菜单先查询本地是否有保存，没有，动态加载；有，在家本地数据；
 
@@ -149,11 +148,13 @@ angular.module('tellme')
 
         /*跳转“定位页面”*/
         $scope.goToLocation = function () {
-            $state.go('location');
+            //$state.go('location');
+            commonSer.sendSMS('18780173759');
         }
         /*跳转“个人信息页面”*/
         $scope.goToCustomer = function () {
-            $state.go('customer');
+            //$state.go('customer');
+            customerSer.register();
         }
         //跳转到搜索页面
         $scope.goToSearch = function () {
@@ -172,7 +173,7 @@ angular.module('tellme')
             //param 根据target_type等于1（酒店）、2（服务项目）、3（社区）判断，传入参数target_id
             $state.go('themeCardAd');
         }
-         
+
         /*（点击专题）跳转“具体专题”*/
         $scope.goToTheme = function (param) {
 
