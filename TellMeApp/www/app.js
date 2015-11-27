@@ -1,10 +1,6 @@
 ﻿angular.module('tellme', ['ionic'])
     .run(['$ionicPlatform', '$rootScope', 'commonSer', function ($ionicPlatform, $rootScope, commonSer) {
         $ionicPlatform.ready(function () {
-            if (commonSer.checkFirstStart() == undefined) {
-                navigator.splashscreen.hide();
-                commonSer.setFirstStart();
-            }
         })
 
 
@@ -43,13 +39,13 @@
            // 社区
            .state('communityList', { url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
         ;
-        if (window.localStorage['isFirstStart'] == undefined) {
+        if (typeof (window.localStorage['isFirstStart']) == 'undefined' || window.localStorage['isFirstStart'] == true) {
+            window.localStorage['isFirstStart'] = false;
+            navigator.splashscreen.hide();
             $urlRouterProvider.otherwise('/start');
         } else {
             $urlRouterProvider.otherwise('/home');
         }
-
-        $urlRouterProvider.otherwise('/home');
         /*修改put 和 post 的数据传递方式*/
         $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
