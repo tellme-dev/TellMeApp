@@ -190,7 +190,7 @@ angular.module('tellme')
             $state.go('communityList');
         }
         }])
-    .directive('admenu', function () {
+    .directive('admenu', function () {//加载酒店滚动菜单
         return {
             restrict: 'E',
             link: function (scope, element, attrs) {

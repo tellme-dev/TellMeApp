@@ -1,6 +1,6 @@
 ﻿/*消息推送服务*/
 angular.module('tellme')
-    .service('commonSer',['$http', '$q', 'appConfig',function ($http, $q,appConfig) {
+    .service('commonSer', ['$http', '$q', '$window', 'appConfig', function ($http, $q,$window, appConfig) {
         var baseUrl = appConfig.server.getUrl();
         /**
         *ngdoc:
@@ -60,6 +60,7 @@ angular.module('tellme')
                 });
             return deferred.promise;
         };
-      
+
+        
 
     }]);

@@ -12,6 +12,7 @@
   <plugin name="cordova-plugin-whitelist" version="1" />
   <allow-navigation href="*" />
   <allow-intent href="*" />
+ 
   <platform name="android">
     <allow-intent href="market:*" />
   </platform>

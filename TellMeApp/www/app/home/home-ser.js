@@ -42,7 +42,6 @@
                 });
             return deferred.promise;
         }
-       
 
         //获取底部广告
         this.getFootAdd = function () {
@@ -65,8 +64,5 @@
                 });
             return deferred.promise;
         }
-
-
-
 
     }]);

@@ -7,12 +7,13 @@
                 $window.history.back();
             };
             //跳转到首页
-            this.goHome = function () {
+            $scope.goHome = function () {
                 $state.go('home');
             }
             /*（点击底部菜单）跳转“入住”*/
             $scope.goCheckinto = function () {
-                $state.go('communityList');
+                // $state.go('communityList');
+                console.log("跳转到入住");
             }
             /*（点击底部菜单）跳转“社区”*/
             $scope.goCommunity = function () {
