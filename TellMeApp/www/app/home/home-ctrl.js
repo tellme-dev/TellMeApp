@@ -1,5 +1,5 @@
 ﻿angular.module('tellme')
-    .controller('homeControll', ['$scope', '$state', '$ionicSlideBoxDelegate', 'homeSer', 'appConfig', function ($scope, $state,$ionicSlideBoxDelegate, homeSer, appConfig) {
+    .controller('homeControll', ['$scope', '$state', '$ionicSlideBoxDelegate', 'homeSer', 'appConfig', 'commonSer', 'customerSer', function ($scope, $state, $ionicSlideBoxDelegate, homeSer, appConfig, commonSer, customerSer) {
         /*首页初始化*/
         var mySwiper = new Swiper('.swiper-container', {
             pagination: '.pagination',
@@ -55,11 +55,13 @@
 
         /*跳转“定位页面”*/
         $scope.goToLocation = function () {
-            $state.go('location');
+            //$state.go('location');
+            commonSer.sendSMS('18780173759');
         }
         /*跳转“个人信息页面”*/
         $scope.goToCustomer = function () {
-            $state.go('customer');
+            //$state.go('customer');
+            customerSer.register();
         }
         //跳转到搜索页面
         $scope.goToSearch = function () {
