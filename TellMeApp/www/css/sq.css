@@ -1,0 +1,102 @@
+/*ÉçÇø-·¢ÏÖ*/
+ a,a:hover{
+         text-decoration:none; color:#333
+
+        }
+.tabs-striped .tab-item.tab-item-active, .tabs-striped .tab-item.active, .tabs-striped .tab-item.activated {
+  margin-top: -2px;
+  border-style: solid;
+  border-width: 2px 0 0 0;
+  border-color: #99c600; }
+
+ .sq-hea {
+        padding:20px 10px; top:85px; background:#ddd;
+        }
+ .sq-item{
+          margin-left: 0px;margin-right: 0px; margin-top: 0px;
+          margin-bottom:10px;
+      }
+  .sq-item-top {
+        padding-top:5px;padding-bottom:0px;
+        padding-left:78px; padding-right:10px;
+        }
+  .sq-item-cont {
+        padding:0px 0px; border-color:#f6f6f6;
+        }
+
+   .sq-item-fl {
+        padding:0px 10px; height:auto; font-family:'Î¢ÈíÑÅºÚ'; color:#474747; font-size:1em; height:60px; overflow-y:hidden;
+        }
+    .sq-item-img {
+    max-width:55px; max-height:55px; top:8px; left:10px;
+    }
+    .sq-item-vit {
+    float:left; margin-top:13px;
+    }
+        .sq-item-vit h2 {
+        font-family:'Î¢ÈíÑÅºÚ'; font-size:1em;margin-bottom:0px;
+        }
+        .sq-item-vit p{
+           font-family:'Î¢ÈíÑÅºÚ'; font-size:0.8em
+        }
+    .sq-item-min {
+    float:right; margin-top:18px;
+    }
+        .sq-item-min span {
+        font-family:'Î¢ÈíÑÅºÚ'; font-size:0.8em; color:#424141;
+        }
+    .clear {
+     clear:both;
+     }
+    .sq-item-col {
+    background-color:#f6f6f6
+    }
+    .sq-tab-item {
+        border-right:1px solid #dedede;
+        }
+.sqer-pl-tb {
+    padding-right:0px; color:#666; font-size:22px;
+}
+
+
+/*ÉçÇø ÄÚÒ³*/
+.sqer-hea {
+ top:35px;
+}
+.sqer-item-fl {
+    padding:0px 10px; height:auto; font-family:'Î¢ÈíÑÅºÚ'; color:#474747; font-size:1em;height:auto; overflow-y:hidden;
+}
+.sqer-but {
+border:none;background:#fff;
+}
+.sqer-pl {
+margin-top:1px;background:#fff; font-family:'Î¢ÈíÑÅºÚ';
+}
+
+
+
+
+
+/*·¢ÏÖ*/
+ .zt-cont {
+        width:100%;
+        height:auto;
+        margin-top:55px;
+        padding:0px 10px;
+        }
+            .zt-cont li {
+             margin-bottom:10px;
+            }
+                .zt-cont li a img {
+                 width:100%;
+                }
+        .zt-but {
+        border:none;background:#fff;
+     }
+
+.zt-tit {
+ font-family:'Î¢ÈíÑÅºÚ'; color:#474747;
+}
+.zt-conter {
+ top:0px;
+}

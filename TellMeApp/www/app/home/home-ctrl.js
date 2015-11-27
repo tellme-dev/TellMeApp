@@ -172,6 +172,7 @@ angular.module('tellme')
             //param 根据target_type等于1（酒店）、2（服务项目）、3（社区）判断，传入参数target_id
             $state.go('themeCardAd');
         }
+         
         /*（点击专题）跳转“具体专题”*/
         $scope.goToTheme = function (param) {
 
@@ -179,7 +180,14 @@ angular.module('tellme')
         $scope.repeatDone = function () {
             $ionicSlideBoxDelegate.update();
         }
-        
+            /*（点击底部菜单）跳转“发现”*/
+        $scope.goDiscover = function () {
+            $state.go('discoverList');
+        }
+            /*（点击底部菜单）跳转“社区”*/
+        $scope.goCommunity = function () {
+            $state.go('communityList');
+        }
         }])
     .directive('admenu', function () {
         return {

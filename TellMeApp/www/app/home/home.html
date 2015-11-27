@@ -39,12 +39,12 @@
                 <!--酒店滚动菜单数据加载-->
                 <!--<admenu menuData="{{swiperAdData}}" class="swiper-wrapper"></admenu>-->
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide red-slide red-padding">
+                    <div  ng-click="hotelType()" class="swiper-slide red-slide red-padding">
                         <div class="title" style="">
                            KTV
                         </div>
                         <div class="scroll-content has-header mar-top">
-                            <div class="row"  ng-click="hotelType()">
+                            <div class="row" >
                                 <div class="col" ><img src="images/a.png" width="100%" height="40%" /></div>
                                 <div class="col"><img src="images/b.png" width="100%" height="40%" /></div>
 
@@ -156,11 +156,11 @@
             <i class="icon ion-ios-home-outline"></i>
         </a>
         <!--发现-->
-        <a class="tab-item" href="#">
+        <a class="tab-item" ng-click="goDiscover()" href="#">
             <i class="icon ion-ios-eye-outline"></i>
         </a>
         <!--社区-->
-        <a class="tab-item" href="#">
+        <a class="tab-item" href="#" ng-click="goCommunity()">
             <i class="icon ion-ios-people-outline"></i>
         </a>
        <!--入住-->

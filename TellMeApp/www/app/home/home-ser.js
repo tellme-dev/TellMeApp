@@ -26,7 +26,7 @@
                 });
             return deferred.promise;
         }
-        //获取滑动菜单
+        //获取酒店滑动菜单
         this.getSwiperAd=function(){
             var url = baseUrl + 'app/menu/loadMenuList.do ';
             var deferred = $q.defer();
@@ -42,6 +42,7 @@
                 });
             return deferred.promise;
         }
+       
 
         //获取底部广告
         this.getFootAdd = function () {

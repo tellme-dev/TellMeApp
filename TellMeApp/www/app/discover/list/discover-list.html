@@ -1,10 +1,47 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-</head>
-<body>
-    <div>此处显示内容。</div>
-</body>
-</html>
+﻿<ion-view>
+    <ion-side-menus>
+        <ion-side-menu-content style="background-color:#ddd;">
+            <ion-header-bar class="bar bar-header bar-dark">
+                <button class="button icon ion-ios-location" style="border:none">成都</button>
+
+                <label class="item item-input" style="margin:0 auto; width:65%; background:#ffffff">
+                    <i class="icon ion-search placeholder-icon"></i>
+                    <input type="text" placeholder="Search" class="pad-top">
+                </label>
+
+                <button class="button icon ion-android-person" style="border:none"></button>
+            </ion-header-bar>
+
+            <ion-content class="zt-conter">
+                <!--内容块-->
+                <ul class="zt-cont">
+                    <li><a href="#"><img src="images/zt1.jpg" /></a></li>
+                    <li><a href="#"><img src="images/zt2.jpg" /></a></li>
+                    <li><a href="#"><img src="images/zt3.jpg" /></a></li>
+                </ul>
+                <!--内容块-->
+            </ion-content>
+
+            <div class="tabs tabs-icon-left" style=" background-color: #444444;background-image: linear-gradient(0deg, #111, #111 50%, transparent 50%);">
+                <a class="tab-item">
+                    <i class="icon ion-home " style="color:#fff">
+                    </i>
+                </a>
+                <a class="tab-item">
+                    <i class="icon ion-ios-eye-outline" style="color:#fff">
+                    </i>
+                </a>
+                <a class="tab-item">
+                    <i class="icon ion-ios-people-outline" style="color:#fff">
+                    </i>
+                </a>
+                <a class="tab-item">
+                    <i class="icon ion-android-checkbox-outline" style="color:#fff">
+                    </i>
+                </a>
+            </div>
+
+        </ion-side-menu-content>
+    </ion-side-menus>
+
+</ion-view>

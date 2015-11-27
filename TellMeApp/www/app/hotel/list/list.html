@@ -1,5 +1,9 @@
-﻿<ion-view view-title="酒店分类列表">
-  
+﻿<style type="text/css">
+    .li-but {
+        border-bottom: 1px solid #9ac600;
+    }
+</style>
+<ion-view view-title="酒店分类列表">
     <ion-header-bar class="bar bar-header bar-light ion-bor">
         <button ng-click="go_back()" class="button icon ion-chevron-left border-no"></button>
         <h1 class="title">经典推荐</h1>
@@ -8,6 +12,7 @@
                 <div id="scroller">
                     <ul id="list">
                         <!--酒店分类标签-->
+
                         <li class="li-but" onclick="t()">KTV</li>
                         <li>游泳馆</li>
                         <li>健身房</li>

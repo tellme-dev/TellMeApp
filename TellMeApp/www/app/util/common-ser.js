@@ -60,7 +60,6 @@ angular.module('tellme')
                 });
             return deferred.promise;
         };
-
-        
+      
 
     }]);

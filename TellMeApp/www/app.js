@@ -28,27 +28,15 @@
 
             //酒店
              .state('hotelList', { url: '/hotelList', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
-            //.state('hotel', {
-            //    url: '/hotel', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll',
-            //    resove: {
-            //        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-            //            return $ocLazyLoad.load([{
-            //                name:'hotel',
-            //                insertBefore:'#ng_load_plugins_before',
-            //                files:[
-            //                    'lib/jquery-1.10.1.min.js',
-            //                    'lib/iscroll.js',
-            //                    'lib/swiper.min.js'
-            //                ]
-            //            }])
-            //        }]
-            //    }
-            //})
             .state('hotel', {url: '/hotel', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
             //广告
             .state('hotelAd', { url: '/hotelAd', templateUrl: 'app/ad/hotel/hotelAd.html', controller: 'adHotelControll' })
             .state('themeCardAd', { url: '/themeCardAd', templateUrl: 'app/ad/theme/card/themeList.html', controller: 'adThemeListControll' })
             .state('themeAd', { url: '/themeAd', templateUrl: 'app/ad/theme/single/themeAd.html', controller: 'adThemeControll' })
+            //发现 
+            .state('discoverList', { url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverControll' })
+           // 社区
+           .state('communityList', { url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
         ;
 
         $urlRouterProvider.otherwise('/home');
