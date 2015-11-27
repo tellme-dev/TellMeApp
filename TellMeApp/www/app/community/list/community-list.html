@@ -1,0 +1,159 @@
+﻿<style>
+    .col-padding {
+        padding: 0.1em;
+    }
+</style>
+
+<ion-view>
+            <div class="bar bar-header bar-dark sq-top">
+                <h1 class="title">社区</h1>
+            </div>
+            <div class="tabs-striped tabs-top  tabs-color-active ">
+                <div class="tabs sq-tier" style="background-color:#f2f2f2;">
+                    <a class="tab-item active" href="#">
+                        最新活动
+                    </a>
+                    <a class="tab-item" href="#">
+                        热门话题
+                    </a>
+                    <a class="tab-item " href="#">
+                        吐槽专区
+                    </a>
+                    <a class="tab-item" href="#">
+                        达人推荐
+                    </a>
+                </div>
+            </div>
+            <ion-content>
+                <!--内容块-->
+                <div class="content sq-hea">
+
+                    <div class="list card item-mb sq-item">
+                        <a href="#">
+                            <div href="#" class="item-avatar sq-item-top ">
+                                <img src="http://www.runoob.com/try/demo_source/mcfly.jpg" class="sq-item-img" />
+                                <div class="sq-item-vit">
+                                    <h2>陆拾笑笑</h2>
+                                    <p>10-22 13:30</p>
+                                </div>
+                                <div class="sq-item-min">
+                                    <span>假日国际酒店</span>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <div class="item-body sq-item-cont">
+                                <div class="sq-item-fl">
+                                    # 酒店 # @ 大家 大府大道万达新开了一家电影
+                                    主题酒店，也就是说开房就可感受影院级的电影
+                                    节奏，大家快快收藏起来。有时间去体验一下。。。
+                                </div>
+                                <div class="row">
+                                    <div class="col col-padding"><img href="#" src="images/xq-4.jpg" style="width:100%" /></div>
+                                    <div class="col col-padding"><img href="#" src="images/xq-2.jpg" style="width:100%" /></div>
+                                    <div class="col col-padding"><img href="#" src="images/xq-3.jpg" style="width:100%" /></div>
+                                    <div class="col col-padding"><img href="#" src="images/xq-4.jpg" style="width:100%" /></div>
+                                    <div class="col col-padding"><img href="#" src="images/xq-2.jpg" style="width:100%" /></div>
+                                    <div class="col col-padding"><img href="#" src="images/xq-3.jpg" style="width:100%" /></div>
+                                    <div class="col col-padding"><img href="#" src="images/xq-4.jpg" style="width:100%" /></div>
+                                    <div class="col col-padding"><img href="#" src="images/xq-2.jpg" style="width:100%" /></div>
+                                    <div class="col col-padding"><img href="#" src="images/xq-3.jpg" style="width:100%" /></div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="item tabs tabs-secondary tabs-icon-left sq-item-col">
+                            <a class="tab-item sq-tab-item" href="#" ng-click="goHome()">
+                                <i class="icon ion-chatbox"></i>
+                                1
+                            </a>
+                            <a class="tab-item sq-tab-item" href="#" ng-click="goDiscover()">
+                                <i class="icon ion-share"></i>
+                                2
+                            </a>
+                            <a class="tab-item sq-tab-item" href="# ">
+                                <i class="icon ion-thumbsup"></i>
+                                3
+                            </a>
+                            <a class="tab-item sq-tab-item" href="#" ng-click="goCheckinto()">
+                                <i class="icon ion-android-favorite"></i>
+                                4
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="list card item-mb sq-item">
+                        <a href="#">
+                            <div href="#" class="item-avatar sq-item-top ">
+                                <img src="http://www.runoob.com/try/demo_source/mcfly.jpg" class="sq-item-img" />
+                                <div class="sq-item-vit">
+                                    <h2>陆拾笑笑</h2>
+                                    <p>10-22 13:30</p>
+                                </div>
+                                <div class="sq-item-min">
+                                    <span>假日国际酒店</span>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <div class="item-body sq-item-cont">
+                                <div class="sq-item-fl">
+                                    # 酒店 # @ 大家 大府大道万达新开了一家电影
+                                    主题酒店，也就是说开房就可感受影院级的电影
+                                    节奏，大家快快收藏起来。有时间去体验一下
+                                    # 酒店 # @ 大家 大府大道万达新开了一家电影
+                                    主题酒店，也就是说开房就可感受影院级的电影
+                                    节奏，大家快快收藏起来。有时间去体验一下
+                                </div>
+                                <div class="row">
+                                    <div class="col"><img href="#" src="images/xq-4.jpg" style="width:100%" /></div>
+                                    <div class="col"><img href="#" src="images/xq-2.jpg" style="width:100%" /></div>
+                                    <div class="col"><img href="#" src="images/xq-3.jpg" style="width:100%" /></div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="item tabs tabs-secondary tabs-icon-left sq-item-col">
+                            <a class="tab-item sq-tab-item" ng-click="goHome()">
+                                <i class="icon ion-chatbox"></i>
+                                1
+                            </a>
+                            <a class="tab-item sq-tab-item" href="#">
+                                <i class="icon ion-share"></i>
+                                2
+                            </a>
+                            <a class="tab-item sq-tab-item" href="# ">
+                                <i class="icon ion-thumbsup"></i>
+                                3
+                            </a>
+                            <a class="tab-item sq-tab-item" href="#">
+                                <i class="icon ion-android-favorite"></i>
+                                4
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <!--内容块-->
+
+
+            </ion-content>
+            <div class="tabs tabs-icon-left" style=" background-color: #444444;background-image: linear-gradient(0deg, #111, #111 50%, transparent 50%);">
+                <a class="tab-item">
+                    <i class="icon ion-home " style="color:#fff">
+                    </i>
+                </a>
+                <a class="tab-item">
+                    <i class="icon ion-ios-eye-outline" style="color:#fff">
+                    </i>
+                </a>
+                <a class="tab-item">
+                    <i class="icon ion-ios-people-outline" style="color:#fff">
+                    </i>
+                </a>
+                <a class="tab-item">
+                    <i class="icon ion-android-checkbox-outline" style="color:#fff">
+                    </i>
+                </a>
+            </div>
+
+</ion-view>
