@@ -44,7 +44,7 @@
             navigator.splashscreen.hide();
             $urlRouterProvider.otherwise('/start');
         } else {
-            $urlRouterProvider.otherwise('/home');
+            $urlRouterProvider.otherwise('/start');
         }
         /*修改put 和 post 的数据传递方式*/
         $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
