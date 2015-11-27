@@ -12,7 +12,10 @@
   <plugin name="cordova-plugin-whitelist" version="1" />
   <allow-navigation href="*" />
   <allow-intent href="*" />
- 
+  
+  <!--The following configuration can be used to define single default icon which will be used for all platforms.-->
+  <icon src="res/icons/icon-ihotel.png" />
+  
   <platform name="android">
     <allow-intent href="market:*" />
   </platform>

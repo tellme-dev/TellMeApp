@@ -1,16 +1,21 @@
 ﻿angular.module('tellme', ['ionic'])
-    .run(['$ionicPlatform', '$rootScope', function ($ionicPlatform, $rootScope) {
+    .run(['$ionicPlatform', '$rootScope', 'commonSer', function ($ionicPlatform, $rootScope, commonSer) {
         $ionicPlatform.ready(function () {
-
+            if (commonSer.checkFirstStart() == undefined) {
+                navigator.splashscreen.hide();
+                commonSer.setFirstStart();
+            }
         })
 
 
 
     }])
-    .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $httpProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'commonSer', function ($stateProvider, $urlRouterProvider, $httpProvider) {
         $stateProvider
+            //首次启动页面
+            .state('start', { url: '/start', templateUrl: 'app/start/start.html', controller: 'startControll' })
             //首页
-            .state('home', {  url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
+            .state('home', { url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
             //个人中心
             .state('customer', { url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
             .state('login', { url: '/login', templateUrl: 'app/customer/login/login.html', controller: 'loginControll' })
@@ -34,8 +39,12 @@
             .state('themeCardAd', { url: '/themeCardAd', templateUrl: 'app/ad/theme/card/themeList.html', controller: 'adThemeListControll' })
             .state('themeAd', { url: '/themeAd', templateUrl: 'app/ad/theme/single/themeAd.html', controller: 'adThemeControll' })
         ;
+        if ($window.localStorage['isFirstStart'] == undefined) {
+            $urlRouterProvider.otherwise('/start');
+        } else {
+            $urlRouterProvider.otherwise('/home');
+        }
 
-        $urlRouterProvider.otherwise('/home');
         /*修改put 和 post 的数据传递方式*/
         $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
@@ -77,4 +86,4 @@
 
             return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
         }];
-    }])
+    }]);
