@@ -1,16 +1,12 @@
 ﻿angular.module('tellme', ['ionic'])
     .run(['$ionicPlatform', '$rootScope', 'commonSer', function ($ionicPlatform, $rootScope, commonSer) {
         $ionicPlatform.ready(function () {
-            if (commonSer.checkFirstStart() == undefined) {
-                navigator.splashscreen.hide();
-                commonSer.setFirstStart();
-            }
         })
 
 
 
     }])
-    .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'commonSer', function ($stateProvider, $urlRouterProvider, $httpProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $httpProvider) {
         $stateProvider
             //首次启动页面
             .state('start', { url: '/start', templateUrl: 'app/start/start.html', controller: 'startControll' })
@@ -39,7 +35,7 @@
             .state('themeCardAd', { url: '/themeCardAd', templateUrl: 'app/ad/theme/card/themeList.html', controller: 'adThemeListControll' })
             .state('themeAd', { url: '/themeAd', templateUrl: 'app/ad/theme/single/themeAd.html', controller: 'adThemeControll' })
         ;
-        if ($window.localStorage['isFirstStart'] == undefined) {
+        if (window.localStorage['isFirstStart'] == undefined) {
             $urlRouterProvider.otherwise('/start');
         } else {
             $urlRouterProvider.otherwise('/home');
