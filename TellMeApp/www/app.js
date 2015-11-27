@@ -1,11 +1,11 @@
 ﻿angular.module('tellme', ['ionic'])
     .run(['$ionicPlatform', '$rootScope', 'commonSer', function ($ionicPlatform, $rootScope, commonSer) {
         $ionicPlatform.ready(function () {
-            if (window.localStorage['isFirstStart'] == undefined) {
+            if (commonSer.checkFirstStart() == undefined) {
                 navigator.splashscreen.hide();
-                window.localStorage['isFirstStart'] = false;
+                commonSer.setFirstStart();
             }
-        });
+        })
 
 
 
@@ -42,7 +42,7 @@
             .state('discoverList', { url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverControll' })
            // 社区
            .state('communityList', { url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
-            ;
+        ;
         if (window.localStorage['isFirstStart'] == undefined) {
             $urlRouterProvider.otherwise('/start');
         } else {
