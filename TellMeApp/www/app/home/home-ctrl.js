@@ -153,8 +153,8 @@ angular.module('tellme')
         }
         /*跳转“个人信息页面”*/
         $scope.goToCustomer = function () {
-            //$state.go('customer');
-            customerSer.register();
+            $state.go('customer');
+           // customerSer.register();
         }
         //跳转到搜索页面
         $scope.goToSearch = function () {

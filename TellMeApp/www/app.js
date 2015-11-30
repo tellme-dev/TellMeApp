@@ -27,7 +27,7 @@
             //论坛
             .state('bbsHome', { url: '/bbsHome', templateUrl: 'app/bbs/main/main.html', controller: 'bbsMainControll' })
             .state('bbsList', { url: '/bbsList', templateUrl: 'app/bbs/list/bbs-list.html', controller: 'bbsListControll' })
-            .state('bbs', { url: '/bbs', templateUrl: 'app/bbs/single/bbs.html', controller: 'bbsControll' })
+            .state('bbs', { url: '/bbs/?bbsId', templateUrl: 'app/bbs/single/bbs.html', controller: 'bbsControll' })
 
             //酒店
              .state('hotelList', { url: '/hotelList', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
@@ -39,14 +39,14 @@
             //发现 
             .state('discoverList', { url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverControll' })
            // 社区
-           .state('communityList', { url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
+           .state('communityList', { url: '/communityList/?categoryId&pageNo', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
         ;
         if (typeof (window.localStorage['isFirstStart']) == 'undefined' || window.localStorage['isFirstStart'] == true) {
             window.localStorage['isFirstStart'] = false;
             navigator.splashscreen.hide();
             $urlRouterProvider.otherwise('/start');
         } else {
-            $urlRouterProvider.otherwise('/test');
+            $urlRouterProvider.otherwise('/home');
         }
         //$urlRouterProvider.otherwise('/home');
         /*修改put 和 post 的数据传递方式*/
