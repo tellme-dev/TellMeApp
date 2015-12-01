@@ -10,6 +10,11 @@
             </div>
             <div class="tabs-striped tabs-top  tabs-color-active ">
                 <div class="tabs sq-tier" style="background-color:#f2f2f2;">
+
+                    <a ng-repeat="t in typs"   class="tab-item" ng-class="active:$index==selectedTag" href="#">
+                       {{t.name}}
+                    </a>
+
                     <a class="tab-item active" href="#">
                         最新活动
                     </a>
@@ -42,13 +47,13 @@
                                 <div class="clear"></div>
                             </div>
 
-                            <div class="item-body sq-item-cont">
+                            <div ng-click="toBbsDeail()" class="item-body sq-item-cont">
                                 <div class="sq-item-fl">
                                     # 酒店 # @ 大家 大府大道万达新开了一家电影
                                     主题酒店，也就是说开房就可感受影院级的电影
                                     节奏，大家快快收藏起来。有时间去体验一下。。。
                                 </div>
-                                <div class="row">
+                                <div class="row" >
                                     <div class="col col-padding"><img href="#" src="images/xq-4.jpg" style="width:100%" /></div>
                                     <div class="col col-padding"><img href="#" src="images/xq-2.jpg" style="width:100%" /></div>
                                     <div class="col col-padding"><img href="#" src="images/xq-3.jpg" style="width:100%" /></div>
@@ -96,7 +101,7 @@
                                 <div class="clear"></div>
                             </div>
 
-                            <div class="item-body sq-item-cont">
+                            <div  ng-click="toBbsDeail()" class="item-body sq-item-cont">
                                 <div class="sq-item-fl">
                                     # 酒店 # @ 大家 大府大道万达新开了一家电影
                                     主题酒店，也就是说开房就可感受影院级的电影

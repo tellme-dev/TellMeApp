@@ -1,4 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('bbsControll', ['$scope', function ($scope) {
-        console.log('hello world');
+    .controller('bbsControll', ['$scope', '$ionicHistory', function ($scope, $ionicHistory) {
+        $scope.goBack = function () {
+            $ionicHistory.goback();
+        };
     }]);
