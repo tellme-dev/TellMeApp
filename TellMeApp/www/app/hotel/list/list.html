@@ -59,10 +59,59 @@
 
             </button>
 
-            <div id="hotel_list_view">
+            <div id="hotel_list_view" ng-if="list">
+                
+                <div class="list card item-mb">
+                    <div ng-repeat="item in list">
+                        <div class="item item-avatar item-mb">
+                            <img src="http://www.runoob.com/try/demo_source/mcfly.jpg" />
+                            <h2 style="">{{item.name}}</h2>
+                            <button class="bu-er" ng-click="saveCollection({{item.id}})">
+                                关 注
+                            </button>
+                        </div>
 
+                        <div class="item item-body item-body-top">
+                            <img class="full-image" ng-src="{{host}}{{item.imgUrl}}">
+                            <div class="pad-cont">
+                                <ul class="ul-float-li">
+                                    <li><i class="ion ion-ios-pricetag"></i></li>
+                                    <li><a href="#" class="back">{{item.city}}</a></li>
+                                    
+                                    <li ng-repeat="liitem in item.projects"><a href="#">{{liitem.name}}</a></li>
+
+                                </ul>
+                                <div class="clear"></div>
+                                <p class="p-te">
+                                    <span>{{item.name}}</span>
+
+                                </p>
+                                <p>入住舒适度：{{item.score}}分</p>
+
+                                <p>{{item.address}}</p>
+
+                                <p>房间数：[暂无相关数据]</p>
+                            </div>
+                        </div>
+
+                        <div class="item tabs tabs-secondary tabs-icon-left">
+                            <a class="tab-item" href="#">
+                                <i class="icon ion-chatbox"></i>
+                            </a>
+                            <a class="tab-item" href="#">
+                                <i class="icon ion-share"></i>
+                            </a>
+                            <a class="tab-item" href="#">
+                                <i class="icon ion-thumbsup"></i>
+                            </a>
+                            <a class="tab-item" href="#" ng-click="saveCollection({{item.id}})">
+                                <i class="icon ion-android-favorite"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-
         </div>
         <!--内容块-->
     </ion-content>
