@@ -39,14 +39,14 @@
             //发现 
             .state('discoverList', { url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverControll' })
            // 社区
-           .state('communityList', { url: '/communityList/?categoryId&pageNo', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
+           .state('communityList', { url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
         ;
         if (typeof (window.localStorage['isFirstStart']) == 'undefined' || window.localStorage['isFirstStart'] == true) {
             window.localStorage['isFirstStart'] = false;
             navigator.splashscreen.hide();
             $urlRouterProvider.otherwise('/start');
         } else {
-            $urlRouterProvider.otherwise('/home');
+            $urlRouterProvider.otherwise('/communityList');
         }
         //$urlRouterProvider.otherwise('/home');
         /*修改put 和 post 的数据传递方式*/

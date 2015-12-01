@@ -14,11 +14,11 @@
             <div class="tabs-striped tabs-top  tabs-color-active ">
                 <div class="tabs sq-tier" style="background-color:#f2f2f2;">
 
-                    <!--<a ng-repeat="t in typs"  ng-click="typeDetail($index,t.id)"  class="tab-item" ng-class="active:$index==selectedTag" href="#">
+                    <a ng-repeat="t in typs"  ng-click="typeDetail($index,t.id)"  class="tab-item" ng-class="active:$index==selectedTag" href="#">
                        {{t.name}}
-                    </a>-->
+                    </a>
 
-                    <a class="tab-item active" href="#">
+                    <!--<a class="tab-item active" href="#">
                         最新活动
                     </a>
                     <a class="tab-item" href="#">
@@ -29,14 +29,14 @@
                     </a>
                     <a class="tab-item" href="#">
                         达人推荐
-                    </a>
+                    </a>-->
                 </div>
             </div>
             <ion-content>
                 <!--内容块-->
                 <div class="content sq-hea" >
 
-                    <!--<div ng-repeat="detail in vm.typeDetail" class="list card item-mb sq-item" >
+                    <div ng-repeat="detail in vm.typeDetail" class="list card item-mb sq-item" >
                         <a href="#" ng-click="toBbsDetail(detail.id)">
                             <div href="#" class="item-avatar sq-item-top ">
                                 <img ng-src="{{baseUrl}}{{detail.customer.photo_url}}" class="sq-item-img" />
@@ -82,9 +82,9 @@
                                {{detail.collectionCount}}
                             </a>
                         </div>
-                    </div>-->
+                    </div>
 
-                    <div class="list card item-mb sq-item">
+                    <!--<div class="list card item-mb sq-item">
                         <a href="#">
                             <div href="#" class="item-avatar sq-item-top ">
                                 <img src="http://www.runoob.com/try/demo_source/mcfly.jpg" class="sq-item-img" />
@@ -133,7 +133,7 @@
                             </a>
                         </div>
 
-                    </div>
+                    </div>-->
                 </div>
                 <!--内容块-->
                 <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
