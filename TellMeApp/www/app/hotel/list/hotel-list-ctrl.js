@@ -15,6 +15,7 @@
             obj.className = "li-but";
             _MENU_SELECTED_ITEM = obj;
             $scope.getChildMenu(id);
+            $scope.getHotelList(1,id);
         }
 
         //获取1级标题
@@ -65,6 +66,97 @@
                             }
                         }
                         view.innerHTML = views;
+                    }
+                },
+                function (data) {
+                    console.log('其他');
+                }
+                );
+        }
+
+        //获取酒店列表
+        $scope.getHotelList = function (page, itemTagId) {
+            var promise = hotelSer.getHotelList(page, itemTagId);
+            promise.then(
+                function (data) {
+                    if (data.isSuccess) {
+                        var view = document.getElementById("hotel_list_view");
+                        var hotels = data.rows;
+                        var views = "";
+                        if (hotels != null && hotels.length > 0) {
+                            for (var i = 0; i < hotels.length; i++) {
+                                var obj = hotels[i];
+                                var projects = "";
+                                var pros = obj.projects;
+                                if (pros != null && pros.length > 0) {
+                                    for (var j = 0; j < pros.length; j++) {
+                                        projects += "<li><a href=\"#\">" + pros[j].name + "</a></li>";
+                                    }
+                                }
+                                views += "<div class=\"list card item-mb\">"
+                                + "<div class=\"item item-avatar\">"
+                                + "<img src=\"http://www.runoob.com/try/demo_source/mcfly.jpg\" />"
+                                + "<h2 style=\"\">" + obj.name + "</h2>"
+                                + "<button class=\"bu-er\" ng-click=\"saveCollection(" + obj.id + ");\">"
+                                + "关 注"
+                                + "</button>"
+                                + "</div>"
+                                + "<div class=\"item item-body item-body-top\">"
+                                + "<img class=\"full-image\" src=\"" + hotelSer.hostUrl + obj.imgUrl + "\">"
+                                + "<div class=\"pad-cont\">"
+                                + "<ul class=\"ul-float-li\">"
+                                + "<li><i class=\"ion ion-ios-pricetag\"></i></li>"
+                                + "<li><a href=\"#\" class=\"back\">" + obj.city + "</a></li>"
+                                + projects
+                                + "</ul>"
+                                + "<div class=\"clear\"></div>"
+                                + "<p class=\"p-te\">"
+                                + "<span>" + obj.name + "</span>"
+                                + "</p>"
+                                + "<p>入住舒适度：" + obj.score + "分</p>"
+                                + "<p>" + obj.address + "</p>"
+                                + "<p>房间数：[暂无相关数据]</p>"
+                                + "</div>"
+                                + "</div>"
+                                + "<div class=\"item tabs tabs-secondary tabs-icon-left\">"
+                                + "<a class=\"tab-item\" href=\"#\">"
+                                + "<i class=\"icon ion-chatbox\"></i>"
+                                + "</a>"
+                                + "<a class=\"tab-item\" href=\"#\">"
+                                + "<i class=\"icon ion-share\"></i>"
+                                + "</a>"
+                                + "<a class=\"tab-item\" href=\"#\">"
+                                + "<i class=\"icon ion-thumbsup\"></i>"
+                                + "</a>"
+                                + "<a class=\"tab-item\" href=\"#\" ng-click=\"saveCollection(" + obj.id + ");\">"
+                                + "<i class=\"icon ion-android-favorite\"></i>"
+                                + "</a>"
+                                + "</div>"
+                                + "</div>";
+                            }
+                        } else {
+                            views += "<div align=\"center\"><p>暂无相关数据</p></div>";
+                        }
+                        view.innerHTML = views;
+                    }
+                },
+                function (data) {
+                    console.log('其他');
+                }
+                );
+        }
+
+        //用户收藏酒店
+        $scope.saveCollection = function (targetId) {
+            alert(targetId);
+            var customerId = 1;
+            var promise = hotelSer.saveCollection(customerId, targetId);
+            promise.then(
+                function (data) {
+                    if (data.isSuccess) {
+                        alert("收藏/关注成功");
+                    } else {
+                        alert(data.msg);
                     }
                 },
                 function (data) {
