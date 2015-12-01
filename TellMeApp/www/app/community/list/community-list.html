@@ -2,6 +2,9 @@
     .col-padding {
         padding: 0.1em;
     }
+    .active {
+      border-color: #99c600;
+    } 
 </style>
 
 <ion-view>
@@ -11,143 +14,76 @@
             <div class="tabs-striped tabs-top  tabs-color-active ">
                 <div class="tabs sq-tier" style="background-color:#f2f2f2;">
 
-                    <a ng-repeat="t in typs"   class="tab-item" ng-class="active:$index==selectedTag" href="#">
+                    <a ng-repeat="t in typs"  ng-click="gettypedetail($index,t.id)"  class="tab-item" ng-class="{active:$index==selectedTag}" href="#">
                        {{t.name}}
-                    </a>
-
-                    <a class="tab-item active" href="#">
-                        最新活动
-                    </a>
-                    <a class="tab-item" href="#">
-                        热门话题
-                    </a>
-                    <a class="tab-item " href="#">
-                        吐槽专区
-                    </a>
-                    <a class="tab-item" href="#">
-                        达人推荐
                     </a>
                 </div>
             </div>
             <ion-content>
                 <!--内容块-->
-                <div class="content sq-hea">
+                <div class="content sq-hea" >
 
-                    <div class="list card item-mb sq-item">
-                        <a href="#">
+                    <div ng-repeat="detail in vm.typeDetail" class="list card item-mb sq-item" >
+                        <a href="#" ng-click="toBbsDetail(detail.id)">
                             <div href="#" class="item-avatar sq-item-top ">
-                                <img src="http://www.runoob.com/try/demo_source/mcfly.jpg" class="sq-item-img" />
+                                <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" class="sq-item-img" />
                                 <div class="sq-item-vit">
-                                    <h2>陆拾笑笑</h2>
-                                    <p>10-22 13:30</p>
+                                    <h2>{{detail.customer.name}}</h2>
+                                    <p>{{detail.createTime}}</p>
                                 </div>
                                 <div class="sq-item-min">
-                                    <span>假日国际酒店</span>
+                                    <span>{{detail.title}}</span>
                                 </div>
                                 <div class="clear"></div>
                             </div>
 
-                            <div ng-click="toBbsDeail()" class="item-body sq-item-cont">
+                            <div class="item-body sq-item-cont">
                                 <div class="sq-item-fl">
-                                    # 酒店 # @ 大家 大府大道万达新开了一家电影
-                                    主题酒店，也就是说开房就可感受影院级的电影
-                                    节奏，大家快快收藏起来。有时间去体验一下。。。
+                                {{detail.text}}
                                 </div>
                                 <div class="row" >
-                                    <div class="col col-padding"><img href="#" src="images/xq-4.jpg" style="width:100%" /></div>
-                                    <div class="col col-padding"><img href="#" src="images/xq-2.jpg" style="width:100%" /></div>
-                                    <div class="col col-padding"><img href="#" src="images/xq-3.jpg" style="width:100%" /></div>
-                                    <div class="col col-padding"><img href="#" src="images/xq-4.jpg" style="width:100%" /></div>
-                                    <div class="col col-padding"><img href="#" src="images/xq-2.jpg" style="width:100%" /></div>
-                                    <div class="col col-padding"><img href="#" src="images/xq-3.jpg" style="width:100%" /></div>
-                                    <div class="col col-padding"><img href="#" src="images/xq-4.jpg" style="width:100%" /></div>
-                                    <div class="col col-padding"><img href="#" src="images/xq-2.jpg" style="width:100%" /></div>
-                                    <div class="col col-padding"><img href="#" src="images/xq-3.jpg" style="width:100%" /></div>
+                                    <div class="col col-padding" ng-repeat="image in detail.bbsAttachUrls">
+                                     <img href="#" ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" />
+                                    </div>
+                                  
                                 </div>
                             </div>
                         </a>
                         <div class="item tabs tabs-secondary tabs-icon-left sq-item-col">
-                            <a class="tab-item sq-tab-item" href="#" ng-click="goHome()">
+                          <!--回帖-->
+                           <a ng-click="answerbbs(detail.id,detail.title)" class="tab-item sq-tab-item" href="#">
                                 <i class="icon ion-chatbox"></i>
-                                1
+                                {{detail.answerCount}}
                             </a>
-                            <a class="tab-item sq-tab-item" href="#" ng-click="goDiscover()">
+                            <a class="tab-item sq-tab-item" href="#" >
                                 <i class="icon ion-share"></i>
-                                2
                             </a>
-                            <a class="tab-item sq-tab-item" href="# ">
+                           <!--点赞-->
+                            <a ng-click="agree(detail.id)" class="tab-item sq-tab-item" href="# ">
                                 <i class="icon ion-thumbsup"></i>
-                                3
+                                {{detail.agreeCount}}
                             </a>
-                            <a class="tab-item sq-tab-item" href="#" ng-click="goCheckinto()">
+                        <!--收藏-->
+                            <a ng-click="collectBbs(detail.id)" class="tab-item sq-tab-item" href="#" >
                                 <i class="icon ion-android-favorite"></i>
-                                4
+                               {{detail.collectionCount}}
                             </a>
                         </div>
-
                     </div>
 
-                    <div class="list card item-mb sq-item">
-                        <a href="#">
-                            <div href="#" class="item-avatar sq-item-top ">
-                                <img src="http://www.runoob.com/try/demo_source/mcfly.jpg" class="sq-item-img" />
-                                <div class="sq-item-vit">
-                                    <h2>陆拾笑笑</h2>
-                                    <p>10-22 13:30</p>
-                                </div>
-                                <div class="sq-item-min">
-                                    <span>假日国际酒店</span>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-
-                            <div  ng-click="toBbsDeail()" class="item-body sq-item-cont">
-                                <div class="sq-item-fl">
-                                    # 酒店 # @ 大家 大府大道万达新开了一家电影
-                                    主题酒店，也就是说开房就可感受影院级的电影
-                                    节奏，大家快快收藏起来。有时间去体验一下
-                                    # 酒店 # @ 大家 大府大道万达新开了一家电影
-                                    主题酒店，也就是说开房就可感受影院级的电影
-                                    节奏，大家快快收藏起来。有时间去体验一下
-                                </div>
-                                <div class="row">
-                                    <div class="col"><img href="#" src="images/xq-4.jpg" style="width:100%" /></div>
-                                    <div class="col"><img href="#" src="images/xq-2.jpg" style="width:100%" /></div>
-                                    <div class="col"><img href="#" src="images/xq-3.jpg" style="width:100%" /></div>
-                                </div>
-                            </div>
-                        </a>
-                        <div class="item tabs tabs-secondary tabs-icon-left sq-item-col">
-                            <a class="tab-item sq-tab-item" ng-click="goHome()">
-                                <i class="icon ion-chatbox"></i>
-                                1
-                            </a>
-                            <a class="tab-item sq-tab-item" href="#">
-                                <i class="icon ion-share"></i>
-                                2
-                            </a>
-                            <a class="tab-item sq-tab-item" href="# ">
-                                <i class="icon ion-thumbsup"></i>
-                                3
-                            </a>
-                            <a class="tab-item sq-tab-item" href="#">
-                                <i class="icon ion-android-favorite"></i>
-                                4
-                            </a>
-                        </div>
-
-                    </div>
+                
                 </div>
                 <!--内容块-->
-
-
+                <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
+                <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
             </ion-content>
+    <!--底部导航-->
             <div class="tabs tabs-icon-left" style=" background-color: #444444;background-image: linear-gradient(0deg, #111, #111 50%, transparent 50%);">
-                <a class="tab-item">
+                <a class="tab-item"  ng-click="goHome()">
                     <i class="icon ion-home " style="color:#fff">
                     </i>
                 </a>
-                <a class="tab-item">
+                <a class="tab-item" ng-click="goDiscover()">
                     <i class="icon ion-ios-eye-outline" style="color:#fff">
                     </i>
                 </a>
@@ -155,7 +91,7 @@
                     <i class="icon ion-ios-people-outline" style="color:#fff">
                     </i>
                 </a>
-                <a class="tab-item">
+                <a class="tab-item" ng-click="goCheckinto()">
                     <i class="icon ion-android-checkbox-outline" style="color:#fff">
                     </i>
                 </a>
