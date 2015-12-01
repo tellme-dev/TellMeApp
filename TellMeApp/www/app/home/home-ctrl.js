@@ -1,6 +1,6 @@
 ﻿
 angular.module('tellme')
-    .controller('homeControll', ['$scope', '$state', '$ionicSlideBoxDelegate', 'homeSer', 'appConfig', function ($scope, $state,$ionicSlideBoxDelegate, homeSer, appConfig) {
+    .controller('homeControll', ['$scope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', function ($scope, $state, $ionicSlideBoxDelegate,$timeout, homeSer, appConfig) {
         /*首页初始化*/
         var mySwiper = new Swiper('.swiper-container', {
             pagination: '.pagination',
@@ -76,68 +76,67 @@ angular.module('tellme')
 
         //广告（头部广告、底部专栏）动态加载
         ////获取头部广告信息
-        //    var promise = homeSer.getAdd();
-        //    promise.then(
-        //           function (data) {
-                       
-        //               if (data.isSuccess) {
-        //                   if (data.rows.length == 0) {
-        //                       console.log("未获取数据！")
-        //                   } else {
-        //                       $scope.adData = data.rows;
-        //                   }
+            var promise = homeSer.getAdd();
+            promise.then(
+                   function (data) {
+                       if (data.isSuccess) {
+                           if (data.rows.length == 0) {
+                               console.log("未获取数据！")
+                           } else {
+                               $scope.adData = data.rows;
+                           }
                          
-        //               } else {
-        //                   console.log("获取数据失败！" + data.msg)
-        //               }
+                       } else {
+                           console.log("获取数据失败！" + data.msg)
+                       }
                       
-        //           },
-        //           function (data) {
-        //               console.log('其他');
-        //           }
-        //           );
+                   },
+                   function (data) {
+                       console.log('其他');
+                   }
+                   );
         ////获取底部广告
-        //    var promise = homeSer.getFootAdd();
-        //    promise.then(
-        //           function (data) {
-        //               if (data.isSuccess) {
-        //                   if (data.rows.length == 0) {
-        //                       console.log("未获取数据！")
-        //                   } else {
-        //                       $scope.footAdData = data.rows;
-        //                   }
+            var promise = homeSer.getFootAdd();
+            promise.then(
+                   function (data) {
+                       if (data.isSuccess) {
+                           if (data.rows.length == 0) {
+                               console.log("未获取数据！")
+                           } else {
+                               $scope.footAdData = data.rows;
+                           }
 
-        //               } else {
-        //                   console.log("获取数据失败！" + data.msg)
-        //               }
+                       } else {
+                           console.log("获取数据失败！" + data.msg)
+                       }
 
-        //           },
-        //           function (data) {
-        //               console.log('其他');
-        //           }
-            //           );
+                   },
+                   function (data) {
+                       console.log('其他');
+                   }
+                       );
 
             //获取广告滑动菜单
-                //var promise = homeSer.getSwiperAd ();
-                //promise.then(
-                //       function (data) {
-                //           if (data.isSuccess) {
-                //               if (data.rows.length == 0) {
-                //                   console.log("未获取数据！")
-                //               } else {
-                //                    $scope.swiperAdData = data.rows;
+                var promise = homeSer.getSwiperAd ();
+                promise.then(
+                       function (data) {
+                           if (data.isSuccess) {
+                               if (data.rows.length == 0) {
+                                   console.log("未获取数据！")
+                               } else {
+                                    $scope.swiperAdData = data.rows;
 
-                //               }
+                               }
 
-                //           } else {
-                //               console.log("获取数据失败！" + data.msg)
-                //           }
+                           } else {
+                               console.log("获取数据失败！" + data.msg)
+                           }
                        
-                //       },
-                //       function (data) {
-                //           console.log('其他');
-                //       }
-                //     );
+                       },
+                       function (data) {
+                           console.log('其他');
+                       }
+                     );
                          
                       
 
@@ -158,7 +157,7 @@ angular.module('tellme')
         }
         //跳转到搜索页面
         $scope.goToSearch = function () {
-            $state.go('');
+            $state.go('willSearch');
         }
         //跳转到酒店分类二级页面
         $scope.hotelType=function(){
@@ -194,9 +193,11 @@ angular.module('tellme')
         return {
             restrict: 'E',
             link: function (scope, element, attrs) {
-                var url = 'http://192.168.1.103:8080/TellMeMgr';
-                var html = '<div class="swiper-slide red-slide red-padding">';
+                //var url = 'http://192.168.1.100:8080/TellMeMgr';
+                //var menuData = scope.swiperAdData;
+                  var html="";
                 angular.forEach(scope[attrs.menuData], function (menuData, index) {
+                    html = '<div class="swiper-slide red-slide red-padding"  ng-click="hotelType(' + menuData .itemTagId+ ')" >'
                     html += ' <div class="title">' + menuData.name + '</div>';
                     html += ' <div class="scroll-content has-header mar-top">';
                     angular.forEach(menuData.imageUrls, function (imageUrls, index) {
@@ -210,7 +211,6 @@ angular.module('tellme')
                     });
                     html += '</div>';
                 });
-                html += '</div>';
                 element.replaceWith(html)
             }
         }
