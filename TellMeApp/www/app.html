@@ -8,9 +8,11 @@
    
     <title>挑米</title><!--Access-Control-Allow-Origin="*"--> 
     <!--<meta http-equiv="Content-Security-Policy"  content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">-->
-
+    
     <!-- tellme 引用 ionic -->
     <link href="lib/ionic/css/ionic.min.css" rel="stylesheet" />
+    <script src="lib/ionic/js/ionic.bundle.js"></script>   
+    <link href="css/sq.css" rel="stylesheet">
     <link href="css/tellme.css"  rel="stylesheet" />
   
     <!--<script src="lib/angular-require.js"></script>
@@ -19,7 +21,7 @@
     <script src="cordova.js"></script>
     <script src="scripts/platformOverrides.js"></script>
 
-    <script src="lib/ionic/js/ionic.bundle.js"></script>          
+           
     <script src="lib/md5-min.js"></script>
    
 
@@ -31,6 +33,7 @@
     <script src="app/util/app-config.js"></script>
     <script src="app/util/common-ser.js"></script>
     <script src="app/util/push-notification.js"></script>
+    <script src="app/util/loadSvr.js"></script>
 
     <script src="app/test/test-ctrl.js"></script>
     <script src="app/start/start-ctrl.js"></script>
@@ -81,7 +84,10 @@
     <!--社区community-->
     <script src="app/community/list/community-list-ctrl.js"></script>
     <script src="app/community/community-list-ser.js"></script>
-    <script src="lib/ng-infinite-scroll.min.js"></script>
+    <!--搜索-->
+    <script src="app/search/search-ser.js"></script>
+    <script src="app/search/will/willsearch-ctrl.js"></script>
+    <script src="app/search/done/doneSearch-ctrl.js"></script>
 </head>
 
 <body  ng-csp ng-app="tellme">

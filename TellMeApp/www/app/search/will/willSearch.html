@@ -1,0 +1,63 @@
+﻿<ion-view viewtitle="搜索界面">
+    <div class="bar bar-header item-input-inset" style="border-style:none">
+        <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" ng-model="searchText" placeholder="搜索">
+        </label>
+        <button class="button  button-qx-col" ng-click="cancelOrsearch()">
+           {{cancelBtnText}}
+        </button>
+    </div>
+    <ion-content class="zt-conter" style="background-color:#f5f5f5;top:44px;">
+        <!--内容块-->
+
+        <div class="content has-header ionic-pseudo content-top" >
+            <div class="list" ng-if="!hasSearch">
+                <div class="item item-divider a-border">
+                    推荐酒店
+                </div>
+                <div class="list" style="padding:0px 10px;">
+                    <a class="item item-avatar a-border " href="#">
+                        <img src="http://www.runoob.com/try/demo_source/venkman.jpg" style="left:0px;max-width:50px; max-height:50px; border-radius:0px; top:12px;">
+                        <h2>洲际酒店</h2>
+                        <p>16694参与</p>
+                    </a>
+                </div>
+            </div>
+            <div class="list" ng-if="hasSearch">
+                <div class="item item-divider a-border">
+                    相关酒店
+                </div>
+                <div class="list" style="padding:0px 10px;">
+                    <a class="item item-avatar a-border " href="#">
+                        <img src="http://www.runoob.com/try/demo_source/venkman.jpg" style="left:0px;max-width:50px; max-height:50px; border-radius:0px; top:12px;">
+                        <h2>洲际酒店</h2>
+                        <p>16694参与</p>
+                    </a>
+                </div>
+                <div class="item item-divider a-border">
+                    相关帖子
+                </div>
+                <div class="list" style="padding:0px 10px;">
+                    <a class="item item-avatar a-border " href="#">
+                        <img src="http://www.runoob.com/try/demo_source/venkman.jpg" style="left:0px;max-width:50px; max-height:50px; border-radius:0px; top:12px;">
+                        <h2>洲际酒店</h2>
+                        <p>16694参与</p>
+                    </a>
+                </div>
+                <div class="item item-divider a-border">
+                    其他
+                </div>
+                <div class="list" style="padding:0px 10px;">
+                    <a class="item item-avatar a-border " href="#">
+                        <img src="http://www.runoob.com/try/demo_source/venkman.jpg" style="left:0px;max-width:50px; max-height:50px; border-radius:0px; top:12px;">
+                        <h2>洲际酒店</h2>
+                        <p>16694参与</p>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <!--内容块-->
+    </ion-content>
+</ion-view>
