@@ -20,7 +20,7 @@
                 function (data) {
                     switch (data.data) {
                         case 1:
-                            $window.localStorage['userTel'] = $scope.loginData.username
+                            $window.localStorage['userTel'] = $scope.loginData.username;
                             $window.localStorage['psd'] = $scope.loginData.password;
                             console.log('登录成功');
                             break;
