@@ -6,7 +6,7 @@
             var url = baseUrl + 'app/search/fullTextSearch.do';
             var searchDate = JSON.stringify({
                 customerId:window.localStorage['userTel'],
-                searchText:searchText
+                text: searchText
             });
             var deferred = $q.defer();
             $http({
@@ -18,7 +18,23 @@
                     deferred.resolve(data);
                 }).error(
                 function (data, status, headers, config) {
-                    deferred.reject(5);
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        }
+        //获取推荐酒店
+        this.getRecommandHotels = function () {
+            var url = baseUrl + 'app/hotel/getRecommandHotels.do';
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(data);
                 });
             return deferred.promise;
         }

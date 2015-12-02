@@ -1,5 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('willSearchControll', ['$scope', '$ionicHistory', 'LoadingSvr', 'searchSer', function ($scope, $ionicHistory, LoadingSvr, searchSer) {
+    .controller('willSearchControll', ['$scope', '$ionicHistory', 'LoadingSvr', 'searchSer', 'appConfig', function ($scope, $ionicHistory, LoadingSvr, searchSer, appConfig) {
+        $scope.baseUrl = appConfig.server.getUrl();
         $scope.cancelBtnText = '取消';
         //是否进行搜索，进行页面的转换
         $scope.hasSearch = false;
@@ -11,6 +12,20 @@
                 $scope.cancelBtnText = '搜索';
             }
         });
+        LoadingSvr.show();
+        var promise = searchSer.getRecommandHotels();
+        promise.then(
+            function (data) {
+                if (data.isSuccess == true) {
+                    LoadingSvr.hide();
+                    $scope.recommandHotels = data.rows;
+                } else {
+                    console.log(data.msg);
+                }
+            },
+            function (data) {
+                console.log('异常');
+            });
         //点击"取消"或者"搜索"按钮
         $scope.cancelOrsearch = function () {
             if (angular.equals($scope.cancelBtnText, '取消')) {

@@ -17,10 +17,10 @@
                     推荐酒店
                 </div>
                 <div class="list" style="padding:0px 10px;">
-                    <a class="item item-avatar a-border " href="#">
-                        <img src="http://www.runoob.com/try/demo_source/venkman.jpg" style="left:0px;max-width:50px; max-height:50px; border-radius:0px; top:12px;">
-                        <h2>洲际酒店</h2>
-                        <p>16694参与</p>
+                    <a class="item item-avatar a-border " href="#" ng-repeat="recommandHotel in recommandHotels">
+                        <img ng-src="{{baseUrl}}{{recommandHotel.imageUrl}}" style="left:0px;max-width:50px; max-height:50px; border-radius:0px; top:12px;">
+                        <h2>{{recommandHotel.name}}</h2>
+                        <p>入住舒适度{{recommandHotel.score}}分</p>
                     </a>
                 </div>
             </div>
