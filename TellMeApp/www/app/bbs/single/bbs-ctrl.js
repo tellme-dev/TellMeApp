@@ -1,12 +1,14 @@
 ﻿angular.module('tellme')
-    .controller('bbsControll', ['$scope', '$ionicHistory', '$stateParams','$ionicHistory', 'bbsSer', 'communitySer', 'appConfig',
-        function ($scope, $ionicHistory, $stateParams,$ionicHistory, bbsSer,communitySer, appConfig) {
+    .controller('bbsControll', ['$scope', '$ionicHistory', '$stateParams', '$ionicHistory', '$window', 'bbsSer', 'communitySer', 'appConfig',
+        function ($scope, $ionicHistory, $stateParams,$ionicHistory,$window ,bbsSer,communitySer, appConfig) {
         $scope.baseUrl = appConfig.server.getUrl();
+        $scope.$window = $window;
         $scope.goBack = function () {
-            $ionicHistory.goBack();
+            // $ionicHistory.goBack();
+            $window.history.back();
         };
         $scope.globalVar = {};
-        $scope.globalVar.answerText = "测试";//回帖内容
+        $scope.globalVar.answerText = "";//回帖内容
         $scope.showAnswer = false;
         var bbsId = $stateParams.bbsId;
        // vm.bbsId = $stateParams.bbsId;
@@ -29,7 +31,6 @@
             var isLogin = $scope.userIsLogin();
             var answerText = $scope.globalVar.answerText;
             if (isLogin) {//如果用户已经登录
-                //bbsParam={"id":0,"customerId":3,"bbsType":1,"postType":1,"targetType":0,"parentId":1,"title":"主贴标题","text":"内容"}
                 var jsonData = JSON.stringify({
                     id: 0, customerId: window.localStorage['userId'], bbsType: 1,postType:1,
                     targetType: 0, parentId: bbsId, title: bbsTitle, text: answerText
@@ -74,12 +75,20 @@
            //点赞
           $scope.agreeBbs = function (bbsId) {
             var jsonData = JSON.stringify({
-                id: 0, bbsType: 1, postType: 2
+                id: bbsId, bbsType: 1, postType: 2
             });
             var promise = communitySer.agreeBbs(jsonData).then(
               function (data) {
                   if (data.isSuccess) {
-                      //  $scope.typeDetail = data.rows;
+                      bbsSer.getBBs(bbsId).then(
+                      function (data) {
+                          if (data.isSuccess) {
+                              $scope.bbs = data.data;
+                          } else {
+                              console.log(data.msg);
+                          }
+                      }
+                     );
                       console.log("点赞成功");
                   } else {
                       console.log(data.msg);
@@ -100,6 +109,15 @@
                 var promise = communitySer.collectionBbs(jsonData).then(
                function (data) {
                    if (data.isSuccess) {
+                       bbsSer.getBBs(bbsId).then(
+                         function (data) {
+                             if (data.isSuccess) {
+                                 $scope.bbs = data.data;
+                             } else {
+                                 console.log(data.msg);
+                             }
+                         }
+                    );
                        console.log('收藏成功');
                    } else {
                        console.log(data.msg);
@@ -114,8 +132,8 @@
             }
         }
          //回复某人
-         $scope.answerChildren = function (bbsId) {
-             bbsId = bbsId;
+         $scope.answerChildren = function (id) {
+             bbsId = id;
              bbsSer.getBBs(bbsId).then(
                        function (data) {
                            if (data.isSuccess) {
@@ -126,6 +144,7 @@
                        }
                 );
              vm.pageNo = 0;
+             vm.moredata = true;
              vm.loadMore();
          }
       

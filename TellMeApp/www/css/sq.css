@@ -72,7 +72,12 @@ border:none;background:#fff;
 .sqer-pl {
 margin-top:1px;background:#fff; font-family:'Œ¢»Ì—≈∫⁄';
 }
-
+.sq-show {
+width:100%; background:#fff;
+}
+.cont-pl {
+width:100%; position:fixed;bottom:50px; padding:10px 10px;
+}
 
 
 
@@ -200,4 +205,79 @@ padding:0px 10px; top:55px;
 }
 .cont-style {
 background:#fff; padding:0px 10px;
+}
+
+.gr-cont {
+padding:0px 10px; margin-top:65px;padding-bottom:40px;
+}
+
+
+.ion-shouc-col {
+color:#ff0000
+}
+
+
+
+/*…Ë÷√*/
+.sz-ion-ios-arrow-back {
+color:#444;
+}
+.sz-top {
+ border-style:none; box-shadow: rgba(0, 0, 0, 0.13) 0px 2px 5px;
+}
+.sz-ion-col {
+color:#444;
+top:55px;
+}
+.sz-item {
+border-left:none; border-right:none; background:#fff;
+}
+.sz-ion-colriges {
+color:#a1cd06;
+}
+.sz-cont-background{
+    background-color:#f8f8f8;
+}
+.sz-top-text {
+    font-family:'Œ¢»Ì—≈∫⁄'; font-size:1.2em
+}
+.sz-button {
+    width:100%; height:50px; border-radius:5px; background:#fff; border:1px solid #ddd
+}
+.sz-padding {
+padding:10px 10px;
+}
+.sz-background {
+ background:#fff;
+}
+
+/*Õ∑œÒ—°‘Ò*/
+
+.tx-row-height {
+    height:109px;margin-bottom:10px;
+}
+.tx-span-style {
+font-family:'Œ¢»Ì—≈∫⁄';color:#646464; font-size:1.2em
+}
+.tx-padding {
+    padding:10px 10px;
+}
+.tx-background {
+    background:#fff;
+}
+.tx-cont-background {
+background-color:#f8f8f8;top:45px
+}
+
+
+/*“‚º˚∑¥¿°*/
+
+.yj-textarea {
+width:100%; height:235px; padding:10px 10px;
+}
+.yj-button {
+float:right; border-radius:3px; border:none; font-size:1.2em; padding:3px 10px; background:#93ce53; color:#fff;
+}
+.yj-cont {
+padding:10px 10px;
 }
