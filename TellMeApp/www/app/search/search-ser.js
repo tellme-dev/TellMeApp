@@ -5,6 +5,7 @@
         this.fullTextSearch = function (searchText) {
             var url = baseUrl + 'app/search/fullTextSearch.do';
             var searchDate = JSON.stringify({
+                customerId:window.localStorage['userTel'],
                 searchText:searchText
             });
             var deferred = $q.defer();

@@ -8,6 +8,9 @@
         $scope.go_back = function () {
             $window.history.back();
         };
+        $scope.goLogin = function () {
+            $state.go('login');
+        };
         var isSumit = true;//是否允许提交
         ////判断账号是否存在
         //$scope.verifyTel = function () {

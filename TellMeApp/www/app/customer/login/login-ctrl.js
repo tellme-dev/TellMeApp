@@ -21,27 +21,28 @@
                     if (data.isSuccess) {
                         window.localStorage['userTel'] = $scope.loginData.username;
                         window.localStorage['userPsd'] = $scope.loginData.password;
-                        window.localStorage['userId'] = data.id;
+                        window.localStorage['userId'] = data.data.id;
+                        $state.go('go');
                     } else {
                         switch (data.msg) {
                             case '2':
                             case '3':
-                                console.log('用户名不存在或者密码错误');
-                                break;
+                            console.log('用户名不存在或者密码错误');
+                            break;
                             case '4':
-                                console.log('未知错误');
-                                break;
+                            console.log('未知错误');
+                            break;
                             case '5':
-                                console.log('服务连接不上');
-                                break;
-                            default:
-                                console.log('其他');
-                        }
+                            console.log('服务连接不上');
+                            break;
+                        default:
+                            console.log('其他');
+                    }
                     }
                 },
                 function (data) {
                     console.log('其他');
-                 }
+                }
                 );
         }
             //跳转到注册页面
