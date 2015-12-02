@@ -1,4 +1,4 @@
-/*ÉçÇø-·¢ÏÖ*/
+/*ÉçÇø*/
  a,a:hover{
          text-decoration:none; color:#333
 
@@ -99,4 +99,105 @@ margin-top:1px;background:#fff; font-family:'Î¢ÈíÑÅºÚ';
 }
 .zt-conter {
  top:0px;
+}
+
+
+/*µÇÂ¼×¢²á*/
+  .butt-a {
+        border:1px solid #8e8e8e; border-radius:3px; background:none;padding:2px 8px; float:right;  color:#8e8e8e; font-family:'Î¢ÈíÑÅºÚ';
+        }
+        .list-padding {
+         padding:0px 10px;
+        }
+        .list-top {
+        top:60px;
+        }
+        .item-border {
+        border-top:0px; border-right:0px; border-left:0px; border-bottom-color:#54525f; padding-left:0px;
+        }
+        .input-color {
+        color:#8e8e8e;
+        }
+        .item-cont {
+        border-top:0px; border-right:0px; border-left:0px;border-bottom-color:#54525f;padding-left:0px;
+        }
+        .paddinger {
+        padding:0px 10px;
+        }
+        .denglu-style {
+        background-color:#54525f;border:none; color:#fff; font-family:'Î¢ÈíÑÅºÚ';
+        padding:15px 0px; border-radius:3px; margin-bottom:10px;
+        }
+        .a-style {
+        display:block;text-align:center; color:#8e8e8e; font-family:'Î¢ÈíÑÅºÚ';
+        }
+.button-style {
+border:1px solid #9cc700; background:#9cc700;color:#fff;
+}
+.butt-atop {
+margin-top:20px;
+}
+
+/*ËÑË÷*/
+.max-width {
+color:#000000; max-width:50%
+}
+.content-top {
+top:43px; background:#f5f5f5;
+}
+.a-border {
+border-right:none; border-left:none;
+color:#939393;padding-top:15px; padding-bottom:15px; font-size:1em
+}
+.button-qx-col {
+color:#777777;
+border:none;
+background:none;
+}
+.tab-background {
+background:#fff;
+}
+
+/*¸öÈËÖÐÐÄ*/
+.border-top-bott {
+ border:none;
+}
+.fl {
+float:left;
+}
+.fr {
+float:right;
+}
+
+.button-col {
+font-size:0.75em;text-align:center; border:1px solid #ddd; border-left:1px solid #fff; background:#fff;
+border-bottom:2px solid #fff;
+}
+.button-col-clock {
+border-bottom:2px solid #99c600
+}
+.border-r {
+ border-right:1px solid #fff;
+}
+
+.tupiao-style {
+font-size:35px; color:#999999;margin-top:15px;
+}
+.row-style-background {
+background:#fff; padding:0px;
+}
+.p-style {
+font-size:1.125em; color:#a3a3a3;margin-top:10px;
+}
+.style-h2 {
+font-size:2em; font-family:'ºÚÌå';
+}
+.min-style {
+min-height:90px; padding-left:80px;
+}
+.list-style-padding {
+padding:0px 10px; top:55px;
+}
+.cont-style {
+background:#fff; padding:0px 10px;
 }

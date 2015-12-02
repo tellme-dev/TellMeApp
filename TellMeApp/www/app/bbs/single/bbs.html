@@ -13,10 +13,10 @@
                     <div class="list card item-mb sq-item">
                         <!--bbs内容-->
                         <div href="#" class="item-avatar sq-item-top ">
-                            <img ng-src="{{baseUrl}}{{bbs.customer.photo_url}}" class="sq-item-img" />
+                            <img ng-src="{{baseUrl}}{{bbs.customer.photoUrl}}" class="sq-item-img" />
                             <div class="sq-item-vit">
                                 <h2 style="font-family:微软雅黑;">{{bbs.customer.name}}</h2>
-                                <p>{{bbs.create_time}}</p>
+                                <p>{{bbs.createTime}}</p>
                             </div>
                             <div class="sq-item-min">
                                 <span style="font-family:微软雅黑;">{{detail.title}}</span>
@@ -27,123 +27,62 @@
                         <div class="item-body sq-item-cont">
                             <div class="sqer-item-fl" style="font-family:微软雅黑;">{{detail.text}}</div>
                             <div class="col col-padding" ng-repeat="image in bbs.bbsAttachUrls">
-                                <img href="#" ng-src="{{baseUrl}}{{image.attach_url}}" style="width:100%" />
+                                <img href="#" ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" />
                             </div>
                         </div>
                         <!--bbs图片-->
                         <!--bbs操作-->
-                        <div class="item tabs tabs-secondary tabs-icon-left sq-item-col">
-                            <a ng-click="answerbbs(bbs.id,bbs.title)" class="tab-item sq-tab-item" href="#" style="border-bottom:2px solid #95c300">
+                        <div ng-click="showInput()" class="item tabs tabs-secondary tabs-icon-left sq-item-col">
+                            <a  class="tab-item sq-tab-item clock-i"  style="border-bottom:2px solid #95c300">
                                 <i class="icon ion-chatbox"></i>
-                                {{bbs.answer_count}}
+                                {{bbs.answerCount}}
                             </a>
                             <a class="tab-item sq-tab-item" href="#">
                                 <i class="icon ion-share"></i>
                              
                             </a>
-                            <a  ng-click="agree(bbs.id)" class="tab-item sq-tab-item" href="# ">
+                            <a  ng-click="agreeBbs(bbs.id)" class="tab-item sq-tab-item" href="# ">
                                 <i class="icon ion-thumbsup"></i>
-                                {{bbs.agree_count}}
+                                {{bbs.agreeCount}}
                             </a>
                             <a ng-click="collectBbs(bbs.id)" class="tab-item sq-tab-item" href="#">
                                 <i class="icon ion-android-favorite"></i>
                                 {{bbs.collectionCount}}
                             </a>
                         </div>
+
                         <!--bbs操作-->
                         <!--bbs内容-->
                         <!--bbs回帖内容-->
                         <div class="list">
+                            <!--评论框-->
+                            <div ng-show="showAnswer" class="sq-show">
+                                <div class="item-input-inset ">
+                                    <label class="item-input-wrapper">
+                                        <input type="text" ng-model="globalVar.answerText" placeholder="写点什么..." style="width:100%">
+                                    </label>
+                                    <button ng-click="answerbbs(bbs.id,bbs.title)" class="button button-small butt-op">
+                                        发送
+                                    </button>
+                                </div>
+                            </div>
+                            <!--评论框-->
                             <div class="item item-divider sqer-pl" style="font-family:微软雅黑;">
-                                评论（{{bbs.answer_count}}）
+                                评论（{{bbs.answerCount}}）
                             </div>
 
-                            <a ng-repeat="detail in vm.bbsDetail" class="item item-icon-left item-icon-right item-avatar" href="#">
-                                <img ng-src="{{baseUrl}}{{detail.customer.photo_url}}">
+                            <a ng-click="answerChildren(detail.id)" ng-repeat="detail in vm.bbsDetail" class="item item-icon-left item-icon-right item-avatar" href="#">
+                                <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}">
                                 <h2>{{detail.customer.name}}</h2>
                                 <p>{{detail.text}}</p>
                                 <!--点赞-->
-                                <i  ng-click="agree(detail.id)"   class="icon ion-thumbsup item-icon-right sqer-pl-tb" style="font-size:22px;"></i>
+                                <!--<i  ng-click="agreeBbs(detail.id)"   class="icon ion-thumbsup item-icon-right sqer-pl-tb" style="font-size:22px;"></i>-->
                             </a>
                         </div>
                         <!--bbs回帖内容-->
                     </div>
-
-                    <!--<div class="list card item-mb sq-item">
-                        <div href="#" class="item-avatar sq-item-top ">
-                            <img src="http://www.runoob.com/try/demo_source/mcfly.jpg" class="sq-item-img" />
-                            <div class="sq-item-vit">
-                                <h2 style="font-family:微软雅黑;">陆拾笑笑</h2>
-                                <p>10-22 13:30</p>
-                            </div>
-                            <div class="sq-item-min">
-                                <span style="font-family:微软雅黑;">假日国际酒店</span>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-
-                        <div class="item-body sq-item-cont">
-                            <div class="sqer-item-fl" style="font-family:微软雅黑;">
-                                # 酒店 # @ 大家 大府大道万达新开了一家电影
-                                主题酒店，也就是说开房就可感受影院级的电影
-                                节奏，大家快快收藏起来。有时间去体验一下。。。
-                            </div>
-
-                            <div class="row">
-                                <div class="col"><img href="#" src="images/xq-4.jpg" style="width:100%" /></div>
-                                <div class="col"><img href="#" src="images/xq-2.jpg" style="width:100%" /></div>
-                                <div class="col"><img href="#" src="images/xq-3.jpg" style="width:100%" /></div>
-                            </div>
-                        </div>
-
-                        <div class="item tabs tabs-secondary tabs-icon-left sq-item-col">
-                            <a class="tab-item sq-tab-item" href="#" style="border-bottom:2px solid #95c300">
-                                <i class="icon ion-chatbox"></i>
-                                1
-                            </a>
-                            <a class="tab-item sq-tab-item" href="#">
-                                <i class="icon ion-share"></i>
-
-                            </a>
-                            <a class="tab-item sq-tab-item" href="# ">
-                                <i class="icon ion-thumbsup"></i>
-
-                            </a>
-                            <a class="tab-item sq-tab-item" href="#">
-                                <i class="icon ion-android-favorite"></i>
-
-                            </a>
-                        </div>
-
-                        <div class="list">
-                            <div class="item item-divider sqer-pl" style="font-family:微软雅黑;">
-                                评论（9）
-                            </div>
-                            <a class="item item-icon-left item-icon-right item-avatar" href="#">
-                                <img src="http://www.runoob.com/try/demo_source/venkman.jpg">
-                                <h2>Venkman</h2>
-                                <p>Back off, man. I'm a scienti.</p>
-                                <i class="icon ion-thumbsup item-icon-right sqer-pl-tb" style="font-size:22px;"></i>
-                            </a>
-
-                            <a class="item item-icon-left item-icon-right item-avatar" href="#">
-                                <img src="http://www.runoob.com/try/demo_source/venkman.jpg">
-                                <h2>Venkman</h2>
-                                <p>Back off, man. I'm a scienti.</p>
-                                <i class="icon ion-thumbsup item-icon-right sqer-pl-tb" style="font-size:22px;"></i>
-                            </a>
-
-                            <a class="item item-icon-left item-icon-right item-avatar" href="#">
-                                <img src="http://www.runoob.com/try/demo_source/venkman.jpg">
-                                <h2>Venkman</h2>
-                                <p>Back off, man. I'm a scienti.</p>
-                                <i class="icon ion-thumbsup item-icon-right sqer-pl-tb" style="font-size:22px;"></i>
-                            </a>
-
-                        </div>
-                    </div>-->
                 </div>
-                <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
+                <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite --> 
                 <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
             </ion-content>
 

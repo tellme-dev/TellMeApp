@@ -2,7 +2,7 @@
     .col-padding {
         padding: 0.1em;
     }
-    .active {
+    .current {
       border-color: #99c600;
     } 
 </style>
@@ -14,7 +14,7 @@
             <div class="tabs-striped tabs-top  tabs-color-active ">
                 <div class="tabs sq-tier" style="background-color:#f2f2f2;">
 
-                    <a ng-repeat="t in typs"  ng-click="gettypedetail($index,t.id)"  class="tab-item" ng-class="{active:$index==selectedTag}" href="#">
+                    <a ng-repeat="t in typs"  ng-click="gettypedetail($index,t.id)"  class="tab-item" ng-class="{current:$index==selectedTag}" href="#">
                        {{t.name}}
                     </a>
                 </div>
@@ -22,14 +22,13 @@
             <ion-content>
                 <!--内容块-->
                 <div class="content sq-hea" >
-
                     <div ng-repeat="detail in vm.typeDetail" class="list card item-mb sq-item" >
-                        <a href="#" ng-click="toBbsDetail(detail.id)">
-                            <div href="#" class="item-avatar sq-item-top ">
+                        <a href="javascript:void(0)" >
+                            <div ng-click="toBbsDetail(detail.id)" class="item-avatar sq-item-top ">
                                 <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" class="sq-item-img" />
                                 <div class="sq-item-vit">
                                     <h2>{{detail.customer.name}}</h2>
-                                    <p>{{detail.createTime}}</p>
+                                    <p>{{detail.createTime|date:'yyyy-MM-dd'}}</p>
                                 </div>
                                 <div class="sq-item-min">
                                     <span>{{detail.title}}</span>
@@ -59,12 +58,12 @@
                                 <i class="icon ion-share"></i>
                             </a>
                            <!--点赞-->
-                            <a ng-click="agree(detail.id)" class="tab-item sq-tab-item" href="# ">
+                            <a ng-click="agreeBbs(detail.id,detail.agreeCount)" class="tab-item sq-tab-item" href="# ">
                                 <i class="icon ion-thumbsup"></i>
                                 {{detail.agreeCount}}
                             </a>
                         <!--收藏-->
-                            <a ng-click="collectBbs(detail.id)" class="tab-item sq-tab-item" href="#" >
+                            <a ng-click="collectBbs(detail.id,detail.collectionCount)" class="tab-item sq-tab-item" href="#" >
                                 <i class="icon ion-android-favorite"></i>
                                {{detail.collectionCount}}
                             </a>

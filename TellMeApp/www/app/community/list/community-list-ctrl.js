@@ -9,7 +9,7 @@
             };
             $scope.baseUrl = appConfig.server.getUrl();
             //跳转到单个论坛详情
-            $scope.toBbsDeail = function (bbsId) {
+            $scope.toBbsDetail = function (bbsId) {
                 $state.go('bbs', { bbsId: bbsId });
             }
             $scope.SelectedTag = 0;//选中分类标签索引
@@ -22,7 +22,7 @@
                         $scope.typs = data.rows;
                         vm.categoryId = data.rows[0].id;
                         vm.pageNo = 1;
-                      //  vm.loadMore();
+                        vm.loadMore();
                     } else {
                         console.log(data.msg);
                     }
@@ -65,70 +65,71 @@
         //            $state.go('login');
         //        }
         //    }
-        //    //点赞
-        //     $scope.agreeBbs = function (bbsId) {
-        //         var jsonData = JSON.stringify({
-        //             id: 0, bbsType: 1, postType:2
-        //         });
-        //         var promise = communitySer.agreeBbs(categoryId, pageNo).then(
-        //           function (data) {
-        //               if (data.isSuccess) {
-        //                   $scope.typeDetail = data.rows;
-        //               } else {
-        //                   console.log(data.msg);
-        //               }
-        //           },
-        //           function (data) {
-        //               console.log('其他');
-        //           }
-        //           );
-        //    }
-        //    //收藏
-        //     $scope.collectBbs = function (bbsId) {
-        //         var isLogin = $scope.userIsLogin();
-        //         if (isLogin) {//如果用户已经登录
-        //             var jsonData = JSON.stringify({
-        //                 customerId: window.localStorage['userId'], collectionType: 3, targetId: bbsId
-        //             });
-        //            var promise = communitySer.collectionBbs(jsonData).then(
-        //           function (data) {
-        //               if (data.isSuccess) {
-        //                   console.log('收藏成功');
-        //               } else {
-        //                   console.log(data.msg);
-        //               }
-        //           },
-        //           function (data) {
-        //               console.log('其他');
-        //           }
-        //           );
-        //         } else {
-        //             $state.go('login');
-        //         }
-        //     }
+            //点赞
+             $scope.agreeBbs = function (bbsId,count) {
+                 var jsonData = JSON.stringify({
+                     id: bbsId, bbsType: 1, postType: 2
+                 });
+                 var promise = communitySer.agreeBbs(jsonData).then(
+                   function (data) {
+                       if (data.isSuccess) {
+                          // $scope.detail.agreeCount = count + 1;
+                           console.log("点赞成功");
+                       } else {
+                           console.log(data.msg);
+                       }
+                   },
+                   function (data) {
+                       console.log('其他');
+                   }
+                   );
+            }
+            //收藏
+             $scope.collectBbs = function (bbsId,count) {
+                 var isLogin = $scope.userIsLogin();
+                 if (isLogin) {//如果用户已经登录
+                     var jsonData = JSON.stringify({
+                         customerId: window.localStorage['userId'], collectionType: 3, targetId: bbsId
+                     });
+                    var promise = communitySer.collectionBbs(jsonData).then(
+                   function (data) {
+                       if (data.isSuccess) {
+                           console.log('收藏成功');
+                       } else {
+                           console.log(data.msg);
+                       }
+                   },
+                   function (data) {
+                       console.log('其他');
+                   }
+                   );
+                 } else {
+                     $state.go('login');
+                 }
+             }
 
-        //    //跳转到首页
-        //    $scope.goHome = function () {
-        //        $state.go('home');
-        //    }
-        //    /*（点击底部菜单）跳转“发现”*/
-        //    $scope.goDiscover = function () {
-        //        $state.go('discoverList');
-        //    }
-        //    /*（点击底部菜单）跳转“入住”*/
-        //    $scope.goCheckinto = function () {
-        //        // $state.go('communityList');
-        //        console.log("跳转到入住");
-        //    }
-        //    //判断用户是否登录
-        //    $scope.userIsLogin = function () {
-        //        var mobile = window.localStorage['userTel'];
-            //         if (mobile == undefined || mobile == "")  {//如果用户未登录跳转到登录页面
-        //            return false;
-        //        } else {
-        //            return true;
-        //        }
-        //    }
+            //跳转到首页
+            $scope.goHome = function () {
+                $state.go('home');
+            }
+            /*（点击底部菜单）跳转“发现”*/
+            $scope.goDiscover = function () {
+                $state.go('discoverList');
+            }
+            /*（点击底部菜单）跳转“入住”*/
+            $scope.goCheckinto = function () {
+                // $state.go('communityList');
+                console.log("跳转到入住");
+            }
+            //判断用户是否登录
+            $scope.userIsLogin = function () {
+                var mobile = window.localStorage['userTel'];
+               if (mobile == undefined || mobile == "")  {//如果用户未登录跳转到登录页面
+                    return false;
+                } else {
+                    return true;
+                }
+            }
         //    //下拉加载更多
             var vm = $scope.vm = {
                 //加载
@@ -140,7 +141,7 @@
                 hide: function () {
                     $ionicLoading.hide();
                 },
-                categoryId:-1,
+                categoryId:1,
                 moredata: false,
                 typeDetail: [],
                 pageNo:0,
@@ -148,8 +149,9 @@
                 loadMore: function () {
                     vm.show();
                     vm.pageNo += 1;
-                    var promise = communitySer.getTypeDetail(vm.categoryId, 1, vm.pageSize).then(
+                    var promise = communitySer.getTypeDetail(vm.categoryId, vm.pageNo, vm.pageSize).then(
                   function (data) {
+                      vm.hide();
                       if (data.isSuccess) {
                           vm.typeDetail = data.rows;
                           var total = data.total;
@@ -160,12 +162,14 @@
                           //if (data.rows.length == 0) {
                           //    vm.moredata = true;
                           //};
-                          vm.hide();
+                        
                           $scope.$broadcast('scroll.infiniteScrollComplete');
                       }
-                    }
+                  }
+                    
                   );
-                } 
+                }
+
             }
 
         }
