@@ -4,6 +4,9 @@
         $scope.cancelBtnText = '取消';
         //是否进行搜索，进行页面的转换
         $scope.hasSearch = false;
+        $scope.hasResult = false;
+        $scope.hasResultOfHotel = false;
+        $scope.hasResultOfBbs = false;
         //对搜索输入内容进行监视，用于切换按钮的显示内容
         $scope.$watch('searchText', function (newValue, oldValue) {
             if (typeof (newValue) =='undefined' || angular.equals(newValue, '')) {
@@ -28,20 +31,32 @@
             });
         //点击"取消"或者"搜索"按钮
         $scope.cancelOrsearch = function () {
+
             if (angular.equals($scope.cancelBtnText, '取消')) {
                 $ionicHistory.goBack();
             } else {
                 $scope.hasSearch = true;
                 LoadingSvr.show();
                 //调用接口进行查询
-                var promise = searchSer.fullTextSearch($scope.searchText);
-                promise.then(
+                var promise1 = searchSer.fullTextSearchOfHotel($scope.searchText);
+                promise1.then(
                     function (data) {
-                        
+                        $scope.hasResultOfHotel = true;
+                        $scope.searchHotels = data.rows;
                         LoadingSvr.hide();
                     },
                     function (data) {
-                        $scope.hasSearch = false;
+                        $scope.hasResultOfHotel = false;
+                    });
+                var promise2 = searchSer.fullTextSearchOfBbs($scope.searchText);
+                promise2.then(
+                    function (data) {
+                        $scope.hasResultOfBbs = true;
+                        $scope.searchBbss = data.rows;
+                        LoadingSvr.hide();
+                    },
+                    function (data) {
+                        $scope.hasResultOfBbs = false;
                     });
                 
             }

@@ -1,5 +1,5 @@
 ﻿<ion-view>
-            <div class="bar bar-header">
+            <div class="bar bar-header"style="border-bottom:1px solid #ddd;">
                 <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
                 <h1 class="title">登录</h1>
             </div>
@@ -15,13 +15,13 @@
                             <span class="input-label input-color">用户名：</span>
                             <input ng-model="loginData.username" type="text" class="input-color">
                         </label>
-                        <label class="item item-input item-cont">
+                        <label class="item item-input item-cont" style="margin-top:2px">
                             <span class="input-label input-color">密码：</span>
                             <input type="password" ng-model="loginData.password" class="input-color">
                         </label>
                     </div>
                     <div class="paddinger">
-                        <button class=" button-block denglu-style" ng-click="login()" style="">登录</button>
+                        <button class=" button button-block denglu-style" ng-click="login()" style="">登录</button>
                     </div>
                     <a class="a-style" style="">忘记密码</a>
                 </div>
