@@ -74,7 +74,7 @@
                   }
                   );
                 } else {
-                    $state.go('login');
+                    $state.go('login', { pageName: 'communityList' });
                 }
             }
             //点赞
@@ -117,7 +117,7 @@
                    }
                    );
                  } else {
-                     $state.go('login');
+                     $state.go('login', { pageName: 'communityList' });
                  }
              }
 

@@ -59,7 +59,7 @@
               }
               );
             } else {
-                $state.go('login');
+                $state.go('login', { pageName: 'communityList' });
             }
           
         }
@@ -128,7 +128,7 @@
                }
                );
             } else {
-                $state.go('login');
+                $state.go('login', { pageName: 'communityList' });
             }
         }
          //回复某人

@@ -17,7 +17,7 @@
             .state('home', {  url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
             //个人中心
             .state('customer', { url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
-            .state('login', { url: '/login', templateUrl: 'app/customer/login/login.html', controller: 'loginControll' })
+            .state('login', { url: '/login/?pageName', templateUrl: 'app/customer/login/login.html', controller: 'loginControll' })
             .state('register', { url: '/register', templateUrl: 'app/customer/register/register.html', controller: 'registerControll' })
 
             //定位
@@ -49,7 +49,7 @@
             navigator.splashscreen.hide();
             $urlRouterProvider.otherwise('/start');
         } else {
-            $urlRouterProvider.otherwise('/willSearch');
+            $urlRouterProvider.otherwise('/home');
         }
         //$urlRouterProvider.otherwise('/home');
         /*修改put 和 post 的数据传递方式*/

@@ -1,13 +1,15 @@
 ﻿angular.module('tellme')
-    .controller('loginControll', ['$scope', '$ionicNavBarDelegate', '$window','$state', 'customerSer',
-        function ($scope, $ionicNavBarDelegate,$window,$state, customerSer) {
+    .controller('loginControll', ['$scope', '$ionicNavBarDelegate', '$window', '$state', '$stateParams', '$ionicHistory', 'customerSer',
+        function ($scope, $ionicNavBarDelegate,$window,$state,$stateParams,$ionicHistory, customerSer) {
         /*保存登录的输入信息*/
         $scope.loginData = {};
         /*返回前一个界面*/
         $scope.$window = $window;
         $scope.goBack = function () {
-            $window.history.back();
+            $ionicHistory.goBack();
         };
+            //跳转页面的名字
+        var pageName = $stateParams.pageName;
        //如果用户已登录表单自动填充
         $scope.loginData.username = window.localStorage['userTel'];
         $scope.loginData.password = window.localStorage['userPsd'];
@@ -22,7 +24,7 @@
                         window.localStorage['userTel'] = $scope.loginData.username;
                         window.localStorage['userPsd'] = $scope.loginData.password;
                         window.localStorage['userId'] = data.data.id;
-                        $state.go('go');
+                        $state.go(pageName);
                     } else {
                         switch (data.msg) {
                             case '2':
