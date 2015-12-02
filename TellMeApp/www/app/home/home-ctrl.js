@@ -1,6 +1,6 @@
 ﻿
 angular.module('tellme')
-    .controller('homeControll', ['$scope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', function ($scope, $state, $ionicSlideBoxDelegate,$timeout, homeSer, appConfig) {
+    .controller('homeControll', ['$scope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', function ($scope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer) {
         /*首页初始化*/
         var mySwiper = new Swiper('.swiper-container', {
             pagination: '.pagination',

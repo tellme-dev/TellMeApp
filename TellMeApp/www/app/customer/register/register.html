@@ -1,5 +1,5 @@
 ﻿<ion-view>
-            <div class="bar bar-header">
+            <div class="bar bar-header" style="border-bottom:1px solid #ddd">
                 <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
                 <h1 class="title">注册</h1>
                 <button class="button button-style" ng-click="goLogin()" style="">登录</button>
@@ -11,7 +11,7 @@
                     <div class="list list-padding">
                         <label class="item item-input item-border">
                             <span class="input-label input-color">手机号码：</span>
-                            <input type="number"  ng-blur="verifyTel()" ng-maxlength="11" ng-model="registerData.mobile" class="input-color">
+                            <input type="tel" ng-blur="verifyTel()" ng-maxlength="11" ng-model="registerData.mobile" class="input-color">
                             <p>{{msg}}</p>
                         </label>
                         <label class="item item-input item-cont">
@@ -23,11 +23,11 @@
                             <span class="input-label input-color">验&nbsp;&nbsp;证&nbsp;&nbsp;码：</span>
                             <input type="password"  ng-model="registerData.verifyCode" class="input-color">
                         </label>
-                        <button class="butt-a butt-atop" ng-click="sendShortMessageCode()">发送验证码</button>
+                        <button class="butt-a butt-atop denglu-stylewe" ng-click="sendShortMessageCode()">发送验证码</button>
                         <div class="clear"></div>
                     </div>
                     <div class="paddinger">
-                        <button class=" button-block denglu-style" ng-click="register()">立即注册</button>
+                        <button class="button button-block denglu-style" ng-click="register()">立即注册</button>
                     </div>
                 </div>
                 <!--内容块-->
