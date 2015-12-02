@@ -24,22 +24,22 @@
                     </a>
                 </div>
             </div>
-            <div class="list" ng-if="hasSearch">
+            <div class="list" ng-if="hasResult">
                 <div class="item item-divider a-border">
                     相关酒店
                 </div>
-                <div class="list" style="padding:0px 10px;">
-                    <a class="item item-avatar a-border " href="#">
-                        <img src="http://www.runoob.com/try/demo_source/venkman.jpg" style="left:0px;max-width:50px; max-height:50px; border-radius:0px; top:12px;">
-                        <h2>洲际酒店</h2>
-                        <p>16694参与</p>
+                <div class="list" style="padding:0px 10px;" ng-if="hasResultOfHotel">
+                    <a class="item item-avatar a-border " href="#" ng-repeat="searchHotel in searchHotels">
+                        <img ng-src="{{baseUrl}}{{searchHotel.imageUrl}}" style="left:0px;max-width:50px; max-height:50px; border-radius:0px; top:12px;">
+                        <h2>{{searchHotel.name}}</h2>
+                        <p>入住舒适度{{searchHotel.score}}分</p>
                     </a>
                 </div>
                 <div class="item item-divider a-border">
                     相关帖子
                 </div>
-                <div class="list" style="padding:0px 10px;">
-                    <a class="item item-avatar a-border " href="#">
+                <div class="list" style="padding:0px 10px;" ng-if="hasResultOfBbs">
+                    <a class="item item-avatar a-border " href="#" ng-repeat="searchBbs in searchBbss">
                         <img src="http://www.runoob.com/try/demo_source/venkman.jpg" style="left:0px;max-width:50px; max-height:50px; border-radius:0px; top:12px;">
                         <h2>洲际酒店</h2>
                         <p>16694参与</p>
