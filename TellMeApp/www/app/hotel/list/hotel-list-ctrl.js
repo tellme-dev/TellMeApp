@@ -4,6 +4,8 @@
 
         //酒店列表数据
         $scope.list = null;
+        //二级菜单图片数据
+        $scope.menus = null;
         //服务器地址
         $scope.host = hotelSer.hostUrl;
         //后退
@@ -58,18 +60,7 @@
             promise.then(
                 function (data) {
                     if (data.isSuccess) {
-                        var view = document.getElementById("child_menu_item_view");
-                        var menus = data.rows;
-                        var views = "";
-                        if (menus != null && menus.length > 0) {
-                            for (var i = 0; i < menus.length; i++) {
-                                var obj = menus[i];
-                                //加入样式后无法正常显示图片
-                                //views += "<div class=\"swiper-slide\"><a href=\"#\"><img src=\"" + hotelSer.hostUrl + obj.name + "\" /></a></div>";
-                                views += "<div><a href=\"#\"><img src=\"" + hotelSer.hostUrl + obj.name + "\" /></a></div>";
-                            }
-                        }
-                        view.innerHTML = views;
+                        $scope.menus = data.rows;
                     }
                 },
                 function (data) {
@@ -95,7 +86,6 @@
 
         //用户收藏酒店
         $scope.saveCollection = function (targetId) {
-            alert(targetId);
             var customerId = 0;
             if (typeof(window.localStorage['userId']) != 'undefined') {
                 customerId = window.localStorage['userId'];
