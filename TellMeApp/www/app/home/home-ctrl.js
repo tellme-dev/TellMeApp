@@ -147,8 +147,8 @@ angular.module('tellme')
 
         /*跳转“定位页面”*/
         $scope.goToLocation = function () {
-            //$state.go('location');
-            commonSer.sendSMS('18780173759');
+            $state.go('location');
+           // commonSer.sendSMS('18780173759');
         }
         /*跳转“个人信息页面”*/
         $scope.goToCustomer = function () {

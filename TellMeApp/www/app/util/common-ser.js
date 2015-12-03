@@ -60,7 +60,7 @@ angular.module('tellme')
                 });
             return deferred.promise;
         };
-
+    //保存收藏
         
 
     }]);

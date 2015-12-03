@@ -1,8 +1,6 @@
-   /*¾ÆµêÁÐ±í*/
- .has-header {
+    .jd-has-header {
      top:0px;
     }
-
         body, ul, li {
             padding: 0;
             margin: 0;
@@ -13,27 +11,25 @@
         body {
             font-size: 12px;
             font-family: ubuntu, helvetica, arial;
-            background:#ddd;
            
         }
-            .ion-bor {
-                border-bottom:1px solid #dedede
-            }
-.border-no {
+
+.jd-border-no {
 border:none
 }
 
-.cont-col {
+.jd-cont-col {
 float:right; background:#fff;
 }
-    .cont-col i {
+    .jd-cont-col i {
     color:#000;
     }
-.has-head {
-padding:10px; margin-top:80px;
+.jd-has-head {
+padding:10px; top:35px;
+  background:#ddd;
 }
-.button.button-positive {
-     text-align:left; background:#fff; color:#666; border:none
+.in-cont {
+     text-align:left;  color:#666; border:none
 }
 .span-ti {
 color:#828282; font-family:'Î¢ÈíÑÅºÚ';
@@ -56,9 +52,7 @@ position:relative;float:right; margin-top:5px; margin-right:7px;
      .img3 {
     left:-70px;
     }
-    .item-mb {
-
-    }
+   
 
 .item-avatar {
     padding-right:10px; padding-top:2px;padding-bottom:2px; border-bottom:none;
@@ -73,7 +67,7 @@ float:right; height:25px; background:none; border:1px solid #9ac600; padding:0 5
 border-top:none; padding:0px;
 }
 .pad-cont {
-padding:10px 5px; height:auto;
+padding:10px 10px; height:auto;
 }
         #wrapper {
             position: absolute;
@@ -83,7 +77,7 @@ padding:10px 5px; height:auto;
             left: 0;
             width: 90%;
             overflow: hidden;
-            height:39px;
+            height:37px;
             background:#fff;
         }
 
@@ -122,7 +116,7 @@ padding:10px 5px; height:auto;
                 display: block;
                 float: left;
                 width: 80px;
-                height: 39px;
+                height: 37px;
                 line-height:30px;
                 font-size: 1.45em;
                 font-family:'Î¢ÈíÑÅºÚ';
@@ -137,12 +131,7 @@ padding:10px 5px; height:auto;
             .button-kp {
                 max-height:25px;
             }
-            .item-avatar > img:first-child, .item-avatar .item-image, .item-avatar .item-content > img:first-child, .item-avatar .item-content .item-image, .item-avatar-left > img:first-child, .item-avatar-left .item-image, .item-avatar-left .item-content > img:first-child, .item-avatar-left .item-content .item-image {
-           left:5px;
-                 }
-            .item-avatar, .item-avatar .item-content, .item-avatar-left, .item-avatar-left .item-content {
-                padding-left:55px;
-            }
+           
             .ul-float-li{
             float:left; width:100%;
             }
@@ -172,39 +161,31 @@ padding:10px 5px; height:auto;
         color:#3f3f3f;
         font-size:1.2em;
         }
-    .card, .list-inset {
-    margin-left:0px;
-    margin-right:0px;
-    margin-top:0px;
-    margin-bottom:10px;
-    }  
    
       .pane, .view {
      background:none;
     }
 
-    .tab-item {
+    .jd-tab-itemer {
      border-right:1px solid #dedede;
     }
-    .item2 {
-     border-color:#dedede;
-    }
+.item-mb {
+margin:0px 0px;
+}
+.jd-item-mb {
+    margin-bottom:10px;
+}
+ /*Í¼Æ¬ÇÐ»»*/
 
-    .list:last-child.card {
-     margin-bottom:10px;
-    }  
-
-
- /*Í¼Æ¬ÇÐ»»*/    
-    
-    #header {
-	left: 0;
-	top: 0;
-	z-index: 999;
-	width: 100%;
-	height: 80px;
-	overflow: hidden;
-    margin-top:10px;
+#header {
+    left: 0;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-bottom:10px;
 }
 #header .swiper-slide {
     width:80px;
