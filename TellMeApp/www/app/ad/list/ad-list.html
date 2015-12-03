@@ -1,0 +1,20 @@
+﻿<ion-view>
+    <ion-side-menus>
+        <ion-side-menu-content style="background-color:#ddd;">
+            <div class="bar bar-header" style="border-bottom:1px solid #ddd;">
+                <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
+                <h1 class="title">{{ad.name}}</h1>
+            </div>
+
+            <ion-content class="zt-conter">
+                <!--内容块-->
+                <ul class="zt-cont" ng-repeat="adDetail in adInfo.adDetailList">
+                    <li><a href="#"><img src="{{baseUrl}}{{adDetail.imageUrl}}" /></a></li>
+                    <li><a href="#">{{adDetail.text}}</a></li>
+                </ul>
+                <!--内容块-->
+            </ion-content>
+        </ion-side-menu-content>
+    </ion-side-menus>
+
+</ion-view>

@@ -31,12 +31,10 @@
             .state('addbbs', { url: '/addbbs', templateUrl: 'app/bbs/addbbs/addbbs.html', controller: 'addbbsControll' })
 
             //酒店
-            .state('hotelList', { url: '/hotelList', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
+             .state('hotelList', { url: '/hotelList', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
             .state('hotel', {url: '/hotel', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
             //广告
-            .state('hotelAd', { url: '/hotelAd', templateUrl: 'app/ad/hotel/hotelAd.html', controller: 'adHotelControll' })
-            .state('themeCardAd', { url: '/themeCardAd', templateUrl: 'app/ad/theme/card/themeList.html', controller: 'adThemeListControll' })
-            .state('themeAd', { url: '/themeAd', templateUrl: 'app/ad/theme/single/themeAd.html', controller: 'adThemeControll' })
+            .state('adList', { url: '/adList?adInfo', templateUrl: 'app/ad/list/ad-list.html', controller: 'adListControll' })
             //发现 
             .state('discoverList', { url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverControll' })
            // 社区
@@ -50,7 +48,7 @@
             navigator.splashscreen.hide();
             $urlRouterProvider.otherwise('/start');
         } else {
-            $urlRouterProvider.otherwise('/communityList');
+            $urlRouterProvider.otherwise('/home');
         }
         //$urlRouterProvider.otherwise('/home');
         /*修改put 和 post 的数据传递方式*/
