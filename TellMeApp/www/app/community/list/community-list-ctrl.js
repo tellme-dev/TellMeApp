@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('communityControll', ['$scope', '$window', '$state', '$ionicHistory', '$ionicLoading', 'communitySer', 'appConfig', 'LoadingSvr',
-        function ($scope, $window, $state, $ionicHistory, $ionicLoading, communitySer, appConfig, LoadingSvr) {
+    .controller('communityControll', ['$scope', '$window', '$state', '$ionicHistory', '$ionicLoading', 'communitySer', 'commonSer', 'appConfig', 'LoadingSvr',
+        function ($scope, $window, $state, $ionicHistory, $ionicLoading, communitySer,commonSer, appConfig, LoadingSvr) {
             /*返回前一个界面*/
             $scope.$window = $window;
             $scope.goBack = function () {
@@ -11,6 +11,10 @@
             //跳转到单个论坛详情
             $scope.toBbsDetail = function (bbsId) {
                 $state.go('bbs', { bbsId: bbsId },{ reload:true});
+            }
+            //跳转到发帖页面
+            $scope.toAddBbs = function () {
+                $state.go('addbbs')
             }
             $scope.globalVar = {};
             $scope.globalVar.SelectedTag = 1;//选中分类标签索引
@@ -32,9 +36,17 @@
             $scope.showAnswerbbs = function (id, title) {
                 bbsId = id;
                 bbsTitle = title;
-                $scope.showAnswer = true;
+                if ($scope.showAnswer) {
+                    $scope.showAnswer = false;
+                } else {
+                    $scope.showAnswer = true;
+                }
+              
             }
-        //    //回帖
+            $scope.hideDiv = function () {
+                $scope.showAnswer = false;
+            }
+           //回帖
             $scope.answerbbs = function () {
                   $scope.showAnswer = false;
                 var isLogin = $scope.userIsLogin();
@@ -62,13 +74,14 @@
                 }
             }
             //点赞
-            $scope.agreeBbs = function (bbsId, count) {
+            $scope.agreeBbs = function (id, count) {
                 var isLogin = $scope.userIsLogin();
                 if (isLogin) {//如果用户已经登录
                     var jsonData = JSON.stringify({
-                        id: bbsId, bbsType: 1, postType: 2
+                        targetId: id,praiseType: 0,customerId:window.localStorage['userId']
                     });
-                    var promise = communitySer.agreeBbs(jsonData).then(
+                    //   var promise = communitySer.agreeBbs(jsonData).then
+                    var promise = commonSer.saveAgree(jsonData).then(
                       function (data) {
                           if (data.isSuccess) {
                               vm.loadMore();
@@ -86,18 +99,20 @@
                 }
             }
             //收藏
-             $scope.collectBbs = function (bbsId,count) {
+             $scope.collectBbs = function (id,count) {
                  var isLogin = $scope.userIsLogin();
                  if (isLogin) {//如果用户已经登录
                      var jsonData = JSON.stringify({
-                         customerId: window.localStorage['userId'], collectionType: 3, targetId: bbsId
+                         customerId: window.localStorage['userId'], collectionType: 3, targetId: id
                      });
-                    var promise = communitySer.collectionBbs(jsonData).then(
+                     // var promise = commonSer.collectionBbs(jsonData).then(
+                     var promise = commonSer.saveCollectionHistory(jsonData).then(
                    function (data) {
                        if (data.isSuccess) {
                            vm.loadMore();
                            console.log('收藏成功');
                        } else {
+                           alert(data.msg);
                            console.log(data.msg);
                        }
                    },
