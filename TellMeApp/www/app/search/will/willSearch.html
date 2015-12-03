@@ -5,19 +5,19 @@
             <input type="search" ng-model="searchText" placeholder="搜索">
         </label>
         <button class="button  button-qx-col" ng-click="cancelOrsearch()">
-           {{cancelBtnText}}
+            {{cancelBtnText}}
         </button>
     </div>
     <ion-content class="zt-conter" style="background-color:#f5f5f5;">
         <!--内容块-->
 
-        <div class="content has-header ionic-pseudo content-top" >
+        <div class="content has-header ionic-pseudo content-top">
             <div class="list" ng-if="!hasSearch">
                 <div class="item item-divider a-border">
                     推荐酒店
                 </div>
                 <div class="list" style="padding:0px 10px;">
-                    <a class="item item-avatar a-border " href="#" ng-repeat="recommandHotel in recommandHotels">
+                    <a class="item item-avatar a-border " href="#" ng-repeat="recommandHotel in recommandHotels" ng-click="goToHotelInfo(recommandHotel.hotelId)">
                         <img ng-src="{{baseUrl}}{{recommandHotel.imageUrl}}" style="left:0px;max-width:50px; max-height:50px; border-radius:0px; top:12px;">
                         <h2>{{recommandHotel.name}}</h2>
                         <p>入住舒适度{{recommandHotel.score}}分</p>
@@ -29,7 +29,7 @@
                     相关酒店
                 </div>
                 <div class="list" style="padding:0px 10px;" ng-if="hasResultOfHotel">
-                    <a class="item item-avatar a-border " href="#" ng-repeat="searchHotel in searchHotels">
+                    <a class="item item-avatar a-border " href="#" ng-repeat="searchHotel in searchHotels" ng-click="goToHotelInfo(searchHotel.hotelId)">
                         <img ng-src="{{baseUrl}}{{searchHotel.imageUrl}}" style="left:0px;max-width:50px; max-height:50px; border-radius:0px; top:12px;">
                         <h2>{{searchHotel.name}}</h2>
                         <p>入住舒适度{{searchHotel.score}}分</p>
@@ -38,53 +38,21 @@
                 <div class="item item-divider a-border" ng-if="hasSearch">
                     相关帖子
                 </div>
-                    <div ng-repeat="detail in searchBbss" class="list card item-mb sq-item" ng-if="hasResultOfBbs" style="padding:0px 10px;">
-                        <a href="javascript:void(0)">
-                            <div ng-click="toBbsDetail(detail.id)" class="item-avatar sq-item-top ">
-                                <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" class="sq-item-img" />
-                                <div class="sq-item-vit">
-                                    <h2>{{detail.customer.name}}</h2>
-                                    <p>{{detail.createTime|date:'yyyy-MM-dd'}}</p>
-                                </div>
-                                <div class="sq-item-min">
-                                    <span>{{detail.title}}</span>
-                                </div>
-                                <div class="clear"></div>
+                <div class="list" style="padding:0px 10px;" ng-if="hasResultOfBbs">
+                    <a class="item item-avatar a-border " href="#" ng-repeat="detail in searchBbss" ng-click="goToBbsInfo(detail.id)">
+                        <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" style="left:0px;max-width:50px; max-height:50px; border-radius:0px; top:12px;" />
+                        <div class="item-body sq-item-cont">
+                            <div class="sq-item-fl">
+                                {{detail.text}}
+                                <span>{{detail.title}}</span>
                             </div>
-
-                            <div class="item-body sq-item-cont">
-                                <div class="sq-item-fl">
-                                    {{detail.text}}
-                                </div>
-                                <div class="row">
-                                    <div class="col col-padding" ng-repeat="image in detail.bbsAttachUrls">
-                                        <img href="#" ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" />
-                                    </div>
-
-                                </div>
+                            <div class="row">
+                                {{detail.customer.name}}&nbsp;&nbsp;&nbsp;<i class="icon ion-chatbox"></i>{{detail.answerCount}}&nbsp;&nbsp;&nbsp;<i class="icon ion-share"></i>{{detail.agreeCount}}&nbsp;&nbsp;&nbsp;<i class="icon ion-android-favorite"></i>{{detail.collectionCount}}
                             </div>
-                        </a>
-                        <div class="item tabs tabs-secondary tabs-icon-left sq-item-col">
-                            <!--回帖-->
-                            <a ng-click="answerbbs(detail.id,detail.title)" class="tab-item sq-tab-item" href="#">
-                                <i class="icon ion-chatbox"></i>
-                                {{detail.answerCount}}
-                            </a>
-                            <a class="tab-item sq-tab-item" href="#">
-                                <i class="icon ion-share"></i>
-                            </a>
-                            <!--点赞-->
-                            <a ng-click="agreeBbs(detail.id,detail.agreeCount)" class="tab-item sq-tab-item" href="# ">
-                                <i class="icon ion-thumbsup"></i>
-                                {{detail.agreeCount}}
-                            </a>
-                            <!--收藏-->
-                            <a ng-click="collectBbs(detail.id,detail.collectionCount)" class="tab-item sq-tab-item" href="#">
-                                <i class="icon ion-android-favorite"></i>
-                                {{detail.collectionCount}}
-                            </a>
                         </div>
-                    </div>
+                    </a>
+                </div>
+
                 <div class="item item-divider a-border" ng-if="hasSearch">
                     其他
                 </div>

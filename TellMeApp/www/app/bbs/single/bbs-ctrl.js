@@ -4,7 +4,7 @@
         $scope.baseUrl = appConfig.server.getUrl();
         $scope.$window = $window;
         $scope.goBack = function () {
-            // $ionicHistory.goBack();
+            //$ionicHistory.goBack();
             $window.history.back();
         };
         $scope.globalVar = {};
