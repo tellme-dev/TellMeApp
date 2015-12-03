@@ -25,10 +25,22 @@ angular.module('tellme')
         *param {number} targetId    目标id
         *return {bool}  是否成功
         */
-        this.saveAgree = function (targetType, targetId) {
-
-        };
-
+        this.saveAgree = function (saveData) {
+            var url = baseUrl + 'app/customer/savePraiseHistory.do';
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: saveData }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
         /**
         *ngdoc:
         *name:
@@ -60,7 +72,22 @@ angular.module('tellme')
                 });
             return deferred.promise;
         };
-
-        
+    //保存收藏
+        this.saveCollectionHistory = function (saveData) {
+            var url = baseUrl + 'app/customer/saveCollectionHistory.do';
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: saveData }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
 
     }]);

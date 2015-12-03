@@ -40,14 +40,13 @@
             .state('bbsHome', { url: '/bbsHome', templateUrl: 'app/bbs/main/main.html', controller: 'bbsMainControll' })
             .state('bbsList', { url: '/bbsList', templateUrl: 'app/bbs/list/bbs-list.html', controller: 'bbsListControll' })
             .state('bbs', { cache: false, url: '/bbs/?bbsId', templateUrl: 'app/bbs/single/bbs.html', controller: 'bbsControll' })
+            .state('addbbs', { url: '/addbbs', templateUrl: 'app/bbs/addbbs/addbbs.html', controller: 'addbbsControll' })
 
             //酒店
              .state('hotelList', { url: '/hotelList', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
             .state('hotel', { url: '/hotel?hotelId', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
             //广告
-            .state('hotelAd', { url: '/hotelAd', templateUrl: 'app/ad/hotel/hotelAd.html', controller: 'adHotelControll' })
-            .state('themeCardAd', { url: '/themeCardAd', templateUrl: 'app/ad/theme/card/themeList.html', controller: 'adThemeListControll' })
-            .state('themeAd', { url: '/themeAd', templateUrl: 'app/ad/theme/single/themeAd.html', controller: 'adThemeControll' })
+            .state('adList', { url: '/adList?adInfo', templateUrl: 'app/ad/list/ad-list.html', controller: 'adListControll' })
             //发现 
             .state('discoverList', { url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverControll' })
            // 社区

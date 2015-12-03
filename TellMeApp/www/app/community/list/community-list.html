@@ -10,13 +10,14 @@
 <ion-view>
             <div class="bar bar-header bar-dark sq-top">
                 <h1 class="title">社区</h1>
+                <!--<button ng-click="toAddBbs()">添加</button>-->
             </div>
             <div class="tabs-striped tabs-top  tabs-color-active ">
                 <div class="tabs sq-tier" style="background-color:#f2f2f2;">
-
-                    <a ng-repeat="t in typs"  ng-click="gettypedetail($index,t.id)"  class="tab-item" ng-class="{current:$index==selectedTag}" href="#">
-                       {{t.name}}
-                    </a>
+                    <a ng-click="gettypedetail(1,1)"  class="tab-item" ng-class="{active:1==globalVar.SelectedTag}" href="#">最新活动</a>
+                    <a ng-click="gettypedetail(2,2)" class="tab-item" ng-class="{active:2==globalVar.SelectedTag}" href="#">热门话题</a>
+                    <a ng-click="gettypedetail(3,3)" class="tab-item" ng-class="{active:3==globalVar.SelectedTag}" href="#">吐槽专区</a>
+                    <a ng-click="gettypedetail(4,4)" class="tab-item" ng-class="{active:4==globalVar.SelectedTag}" href="#">达人推荐</a>
                 </div>
             </div>
             <ion-content>
@@ -96,7 +97,7 @@
                 </a>
             </div>
     <!--评论-->
-    <div ng-show="showAnswer" class="cont-pl">
+    <div ng-show="showAnswer" class="cont-pl" style="height:300px;bottom:0px;z-index:9;">
         <div class="sq-show">
             <div class="item-input-inset pl-guanbi">
                 <label class="item-input-wrapper">
@@ -107,6 +108,9 @@
                 </button>
             </div>
         </div>
+    </div>
+    <div ng-click="hideDiv()" ng-show="showAnswer" style="width:100%;height:300px;bottom:0px;display:inline-block; opacity: 0.8;
+background:#444444;position:fixed;z-index:6;">
     </div>
     <!--评论-->
 </ion-view>

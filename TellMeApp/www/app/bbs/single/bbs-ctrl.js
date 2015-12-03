@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('bbsControll', ['$scope', '$ionicHistory', '$stateParams', '$ionicHistory', '$window', 'bbsSer', 'communitySer', 'appConfig',
-        function ($scope, $ionicHistory, $stateParams,$ionicHistory,$window ,bbsSer,communitySer, appConfig) {
+    .controller('bbsControll', ['$scope', '$ionicHistory', '$stateParams', '$ionicHistory', '$window', 'bbsSer', 'communitySer', 'appConfig', 'LoadingSvr',
+        function ($scope, $ionicHistory, $stateParams, $ionicHistory, $window, bbsSer, communitySer, appConfig, LoadingSvr) {
         $scope.baseUrl = appConfig.server.getUrl();
         $scope.$window = $window;
         $scope.goBack = function () {
@@ -11,7 +11,6 @@
         $scope.globalVar.answerText = "";//回帖内容
         $scope.showAnswer = false;
         var bbsId = $stateParams.bbsId;
-       // vm.bbsId = $stateParams.bbsId;
             bbsSer.getBBs(bbsId).then(
                 function (data) {
                     if (data.isSuccess) {
@@ -26,20 +25,20 @@
                 $scope.showAnswer = true;
             }
             //回主贴帖
-            $scope.answerbbs = function (bbsId, bbsTitle) {
+            $scope.answerbbs = function (id,title) {
                 $scope.showAnswer = false;
             var isLogin = $scope.userIsLogin();
             var answerText = $scope.globalVar.answerText;
             if (isLogin) {//如果用户已经登录
                 var jsonData = JSON.stringify({
                     id: 0, customerId: window.localStorage['userId'], bbsType: 1,postType:1,
-                    targetType: 0, parentId: bbsId, title: bbsTitle, text: answerText
+                    targetType: 0, parentId: id, title: title, text: answerText
                 });
                 var promise = communitySer.answerBbs(jsonData).then(
               function (data) {
                   if (data.isSuccess) {
                       console.log('回帖成功');
-                      bbsSer.getBBs(bbsId).then(
+                      bbsSer.getBBs(id).then(
                           function (data) {
                               if (data.isSuccess) {
                                   $scope.bbs = data.data;
@@ -134,7 +133,7 @@
          //回复某人
          $scope.answerChildren = function (id) {
              bbsId = id;
-             bbsSer.getBBs(bbsId).then(
+             bbsSer.getBBs(id).then(
                        function (data) {
                            if (data.isSuccess) {
                                $scope.bbs = data.data;
@@ -155,6 +154,7 @@
             pageNo: 0,
             pageSize:5,
             loadMore: function () {//加载BBS回复内容详情
+                LoadingSvr.show();
                 vm.pageNo+= 1;
                 var promise = bbsSer.bbsDeatil(bbsId, vm.pageNo, vm.pageSize).then(
               function (data) {
@@ -165,6 +165,7 @@
                           vm.moredata = true;
                           vm.pageNo = 0;
                       }
+                      LoadingSvr.hide();
                       $scope.$broadcast('scroll.infiniteScrollComplete');
                   }
               }
