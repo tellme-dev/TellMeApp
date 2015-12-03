@@ -31,6 +31,7 @@
             });
         //点击"取消"或者"搜索"按钮
         $scope.cancelOrsearch = function () {
+
             if (angular.equals($scope.cancelBtnText, '取消')) {
                 $ionicHistory.goBack();
             } else {
@@ -48,7 +49,7 @@
                         $scope.hasResultOfHotel = false;
                     });
                 var promise2 = searchSer.fullTextSearchOfBbs($scope.searchText);
-                promise1.then(
+                promise2.then(
                     function (data) {
                         $scope.hasResultOfBbs = true;
                         $scope.searchBbss = data.rows;

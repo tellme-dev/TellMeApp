@@ -10,7 +10,7 @@
             $scope.baseUrl = appConfig.server.getUrl();
             //跳转到单个论坛详情
             $scope.toBbsDetail = function (bbsId) {
-                $state.go('bbs', { bbsId: bbsId });
+                $state.go('bbs', { bbsId: bbsId },{ reload:true});
             }
             $scope.SelectedTag = 0;//选中分类标签索引
             var initCategoryId = 0;
@@ -21,7 +21,7 @@
                     if (data.isSuccess) {
                         $scope.typs = data.rows;
                         vm.categoryId = data.rows[0].id;
-                        vm.pageNo = 1;
+                        vm.pageNo = 0;
                         vm.loadMore();
                     } else {
                         console.log(data.msg);
@@ -40,31 +40,43 @@
                 vm.moredata = false;
                 vm.loadMore();
             }
-          
+            $scope.showAnswer = false;
+            $scope.globalVar = {};
+            $scope.globalVar.answerText = "";//回帖内容
+            var bbsId = 0;
+            var bbsTitle = "";
+            $scope.showAnswerbbs = function (id, title) {
+                bbsId = id;
+                bbsTitle = title;
+                $scope.showAnswer = true;
+            }
         //    //回帖
-        //    $scope.answerbbs = function (bbsId,bbsTitle) {
-        //        var isLogin = $scope.userIsLogin();
-        //        if (isLogin) {//如果用户已经登录
-        //            var jsonData = JSON.stringify({
-        //                id: 0, customerId: window.localStorage['userId'], bbsType: 1, 
-        //                targetType: 0, parentId: bbsId, title: bbsTitle,text:""
-        //            });
-        //            var promise = communitySer.answerBbs(jsonData).then(
-        //          function (data) {
-        //              if (data.isSuccess) {
-        //                  console.log('回帖成功');
-        //              } else {
-        //                  console.log(data.msg);
-        //              }
-        //          },
-        //          function (data) {
-        //              console.log('其他');
-        //          }
-        //          );
-        //        } else {
-        //            $state.go('login');
-        //        }
-        //    }
+            $scope.answerbbs = function () {
+                  $scope.showAnswer = false;
+                var isLogin = $scope.userIsLogin();
+                var answerText = $scope.globalVar.answerText;
+                if (isLogin) {//如果用户已经登录
+                    var jsonData = JSON.stringify({
+                        id: 0, customerId: window.localStorage['userId'], bbsType: 1, postType: 1,
+                        targetType: 0, parentId: bbsId, title: bbsTitle, text: answerText
+                    });
+                    var promise = communitySer.answerBbs(jsonData).then(
+                  function (data) {
+                      if (data.issuccess) {
+                          vm.loadMore();
+                          console.log('回帖成功');
+                      } else {
+                          console.log(data.msg);
+                      }
+                  },
+                  function (data) {
+                      console.log('其他');
+                  }
+                  );
+                } else {
+                    $state.go('login', { pageName: 'communityList' });
+                }
+            }
             //点赞
              $scope.agreeBbs = function (bbsId,count) {
                  var jsonData = JSON.stringify({
@@ -73,7 +85,7 @@
                  var promise = communitySer.agreeBbs(jsonData).then(
                    function (data) {
                        if (data.isSuccess) {
-                          // $scope.detail.agreeCount = count + 1;
+                           vm.loadMore();
                            console.log("点赞成功");
                        } else {
                            console.log(data.msg);
@@ -94,6 +106,7 @@
                     var promise = communitySer.collectionBbs(jsonData).then(
                    function (data) {
                        if (data.isSuccess) {
+                           vm.loadMore();
                            console.log('收藏成功');
                        } else {
                            console.log(data.msg);
@@ -104,7 +117,7 @@
                    }
                    );
                  } else {
-                     $state.go('login');
+                     $state.go('login', { pageName: 'communityList' });
                  }
              }
 
@@ -147,11 +160,11 @@
                 pageNo:0,
                 pageSize:5,
                 loadMore: function () {
-                    vm.show();
+                   // vm.show();
                     vm.pageNo += 1;
                     var promise = communitySer.getTypeDetail(vm.categoryId, vm.pageNo, vm.pageSize).then(
                   function (data) {
-                      vm.hide();
+                     
                       if (data.isSuccess) {
                           vm.typeDetail = data.rows;
                           var total = data.total;
@@ -162,12 +175,13 @@
                           //if (data.rows.length == 0) {
                           //    vm.moredata = true;
                           //};
-                        
+                        //  vm.hide();
                           $scope.$broadcast('scroll.infiniteScrollComplete');
                       }
-                  }
+                    }
                     
                   );
+                  
                 }
 
             }
