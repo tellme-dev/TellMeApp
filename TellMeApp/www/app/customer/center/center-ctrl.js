@@ -1,18 +1,16 @@
 ﻿angular.module('tellme')
     .controller('customerCenterControll', ['$scope', '$window', '$state', '$ionicHistory',
         function ($scope, $window, $state, $ionicHistory) {
+        //判断用户是否登录
+        if (typeof (window.localStorage['userTel']) == 'undefined') {//如果用户未登录跳转到登录页面
+            $state.go('login', { pageName: 'home' });
+        }
         /*返回前一个界面*/
         $scope.$window = $window;
         $scope.goBack = function () {
             $ionicHistory.goBack();
         };
-        //    //判断用户是否登录
-        //if (window.localStorage['usertel'] == undefined || window.localStorage['usertel'] == "") {//如果用户未登录跳转到登录页面
-        //    console.log("该用户未登录");
-        //    $state.go('login');
-        //} else {
-        //    console.log("该用户已登录");
-        //}
+        
       //  $scope.selectedI = 0;
       //  $scope.b = [
       //{ name: "KTV",id:0},

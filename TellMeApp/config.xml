@@ -77,31 +77,31 @@
     <splash src="res/screens/android/screen-hdpi-landscape.png" density="land-hdpi" />
     <splash src="res/screens/android/screen-ldpi-landscape.png" density="land-ldpi" />
     <splash src="res/screens/android/screen-mdpi-landscape.png" density="land-mdpi" />
-    <splash src="res/screens/android/screen-xhdpi-landscape.png" density="land-xhdpi" />
+    <splash src="res/screens/android/tellme-screen-xhdpi-landscape.png" density="land-xhdpi" />
     <splash src="res/screens/android/screen-hdpi-portrait.png" density="port-hdpi" />
     <splash src="res/screens/android/screen-ldpi-portrait.png" density="port-ldpi" />
     <splash src="res/screens/android/screen-mdpi-portrait.png" density="port-mdpi" />
-    <splash src="res/screens/android/screen-xhdpi-portrait.png" density="port-xhdpi" />
+    <splash src="res/screens/android/tellme-screen-xhdpi-portrait.png" density="port-xhdpi" />
   </platform>
   <platform name="ios">
     <splash src="res/screens/ios/screen-iphone-portrait.png" width="320" height="480" />
-    <splash src="res/screens/ios/screen-iphone-portrait-2x.png" width="640" height="960" />
+    <splash src="res/screens/ios/tellme-screen-iphone-portrait-2x.png" width="640" height="960" />
     <splash src="res/screens/ios/screen-ipad-portrait.png" width="768" height="1024" />
-    <splash src="res/screens/ios/screen-ipad-portrait-2x.png" width="1536" height="2048" />
+    <splash src="res/screens/ios/tellme-screen-ipad-portrait-2x.png" width="1536" height="2048" />
     <splash src="res/screens/ios/screen-ipad-landscape.png" width="1024" height="768" />
-    <splash src="res/screens/ios/screen-ipad-landscape-2x.png" width="2048" height="1536" />
-    <splash src="res/screens/ios/screen-iphone-568h-2x.png" width="640" height="1136" />
-    <splash src="res/screens/ios/screen-iphone-portrait-667h.png" width="750" height="1334" />
-    <splash src="res/screens/ios/screen-iphone-portrait-736h.png" width="1242" height="2208" />
-    <splash src="res/screens/ios/screen-iphone-landscape-736h.png" width="2208" height="1242" />
+    <splash src="res/screens/ios/tellme-screen-ipad-landscape-2x.png" width="2048" height="1536" />
+    <splash src="res/screens/ios/tellme-screen-iphone-568h-2x.png" width="640" height="1136" />
+    <splash src="res/screens/ios/tellme-screen-iphone-portrait-667h.png" width="750" height="1334" />
+    <splash src="res/screens/ios/tellme-screen-iphone-portrait-736h.png" width="1242" height="2208" />
+    <splash src="res/screens/ios/tellme-screen-iphone-landscape-736h.png" width="2208" height="1242" />
   </platform>
   <platform name="windows">
-    <splash src="res/screens/windows/SplashScreen.scale-100.png" width="620" height="300" />
-    <splash src="res/screens/windows/SplashScreen.scale-240.png" width="1152" height="1920" />
-    <splash src="res/screens/windows/SplashScreenPhone.scale-240.png" width="1152" height="1920" />
+    <splash src="res/screens/windows/tellme-SplashScreen.scale-100.png" width="620" height="300" />
+    <splash src="res/screens/windows/tellme-SplashScreen.scale-240.png" width="1152" height="1920" />
+    <splash src="res/screens/windows/tellme-SplashScreenPhone.scale-240.png" width="1152" height="1920" />
   </platform>
   <platform name="wp8">
-    <splash src="res/screens/wp8/SplashScreenImage.jpg" width="480" height="800" />
+    <splash src="res/screens/wp8/tellme-SplashScreenImage.jpg" width="480" height="800" />
   </platform>
   <vs:plugin name="cordova-plugin-camera" version="1.2.0" />
   <vs:plugin name="cordova-plugin-whitelist" version="1.0.0" />
