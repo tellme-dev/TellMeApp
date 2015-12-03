@@ -54,7 +54,7 @@
             $http({
                 method: 'post',
                 url: url,
-                data: { mobile: registerDataJSON }
+                data: { registerData: registerDataJSON }
             }).success(
                 function (data, status, headers, config) {
                     deferred.resolve(data);
