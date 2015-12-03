@@ -28,9 +28,10 @@
             .state('bbsHome', { url: '/bbsHome', templateUrl: 'app/bbs/main/main.html', controller: 'bbsMainControll' })
             .state('bbsList', { url: '/bbsList', templateUrl: 'app/bbs/list/bbs-list.html', controller: 'bbsListControll' })
             .state('bbs', { cache: false, url: '/bbs/?bbsId', templateUrl: 'app/bbs/single/bbs.html', controller: 'bbsControll' })
+            .state('addbbs', { url: '/addbbs', templateUrl: 'app/bbs/addbbs/addbbs.html', controller: 'addbbsControll' })
 
             //酒店
-             .state('hotelList', { url: '/hotelList', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
+            .state('hotelList', { url: '/hotelList', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
             .state('hotel', {url: '/hotel', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
             //广告
             .state('hotelAd', { url: '/hotelAd', templateUrl: 'app/ad/hotel/hotelAd.html', controller: 'adHotelControll' })
@@ -49,7 +50,7 @@
             navigator.splashscreen.hide();
             $urlRouterProvider.otherwise('/start');
         } else {
-            $urlRouterProvider.otherwise('/home');
+            $urlRouterProvider.otherwise('/communityList');
         }
         //$urlRouterProvider.otherwise('/home');
         /*修改put 和 post 的数据传递方式*/
