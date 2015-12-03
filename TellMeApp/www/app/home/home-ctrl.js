@@ -171,11 +171,11 @@ angular.module('tellme')
         /*（点击菜单项）跳转“酒店列表”*/
         $scope.goToHotelList = function (param) {
         }
-        /*（点击头部广告）跳转“具体广告”*/
+        /*（点击头部广告）跳转“具体广告”图片展示*/
         //$scope.goToAd = function (param) {
-        $scope.goToAd = function () {
+        $scope.goToAd = function (adInfo) {
             //param 根据target_type等于1（酒店）、2（服务项目）、3（社区）判断，传入参数target_id
-            $state.go('themeCardAd');
+            $state.go('adList', { 'adInfo': angular.toJson(adInfo) });
         }
 
         /*（点击专题）跳转“具体专题”*/
