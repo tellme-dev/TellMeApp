@@ -41,15 +41,17 @@
                 customerSer.register($scope.registerData).then(
                 function (data) {
                   if (data.isSuccess) {
-                      console.log('注册成功');
-                      $state.go('login');
+                      console.log('注册：注册成功');
+                      $ionicHistory.goBack();
                   } else {
-                      console.log('注册失败');
+                      console.log('注册：注册失败');
                       //提示
+
                   }
               },
               function (data) {
-                  console.log("未知错误");
+                  console.log("注册：未知错误");
+                  //提示
               }
               )
             }

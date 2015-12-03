@@ -147,18 +147,19 @@ angular.module('tellme')
 
         /*跳转“定位页面”*/
         $scope.goToLocation = function () {
-            //$state.go('location');
-            commonSer.sendSMS('18780173759');
+            $state.go('location');
+           // commonSer.sendSMS('18780173759');
         }
         /*跳转“个人信息页面”*/
         $scope.goToCustomer = function () {
-            if (typeof (window.localStorage['userTel']) == 'undefined') {//如果用户未登录跳转到登录页面
-                $state.go('login', { pageName: 'home' });
-            } else {
-                $state.go('customer');
-        }
+        //    if (typeof (window.localStorage['userTel']) == 'undefined') {//如果用户未登录跳转到登录页面
+        //        $state.go('login', { pageName: 'home' });
+        //    } else {
+        //        $state.go('customer');
+        //}
             
-           // customerSer.register();
+            // customerSer.register();
+            $state.go('customer');
         }
         //跳转到搜索页面
         $scope.goToSearch = function () {

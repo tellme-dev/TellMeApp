@@ -1,47 +1,31 @@
 ﻿angular.module('tellme')
-    .controller('communityControll', ['$scope', '$window', '$state', '$ionicHistory', '$ionicLoading', 'communitySer', 'appConfig',
-        function ($scope, $window, $state, $ionicHistory,$ionicLoading, communitySer, appConfig) {
+    .controller('communityControll', ['$scope', '$window', '$state', '$ionicHistory', '$ionicLoading', 'communitySer', 'appConfig', 'LoadingSvr',
+        function ($scope, $window, $state, $ionicHistory, $ionicLoading, communitySer, appConfig, LoadingSvr) {
             /*返回前一个界面*/
             $scope.$window = $window;
             $scope.goBack = function () {
-                // $ionicHistory.goBack();
-                $window.history.back();
+                 $ionicHistory.goBack();
+                //$window.history.back();
             };
             $scope.baseUrl = appConfig.server.getUrl();
             //跳转到单个论坛详情
             $scope.toBbsDetail = function (bbsId) {
                 $state.go('bbs', { bbsId: bbsId },{ reload:true});
             }
-            $scope.SelectedTag = 0;//选中分类标签索引
+            $scope.globalVar = {};
+            $scope.globalVar.SelectedTag = 1;//选中分类标签索引
             var initCategoryId = 0;
-            //获取社区分类
-            var promise = communitySer.getCommunityType();
-            promise.then(
-                function (data) {
-                    if (data.isSuccess) {
-                        $scope.typs = data.rows;
-                        vm.categoryId = data.rows[0].id;
-                        vm.pageNo = 0;
-                        vm.loadMore();
-                    } else {
-                        console.log(data.msg);
-                    }
-                },
-                function (data) {
-                    console.log('其他');
-                 }
-                );
-           // $scope.getTypeDetail(initSelectedTag, initCategoryId);
+         
             //根据获取社区分类标签内容 categoryId分类标签ID
             $scope.gettypedetail = function (index, categoryid) {
-                $scope.selectedtag = index;
+                $scope.globalVar.SelectedTag = index;
                 vm.categoryId = categoryid;
                 vm.pageNo =0;
                 vm.moredata = false;
                 vm.loadMore();
             }
             $scope.showAnswer = false;
-            $scope.globalVar = {};
+        
             $scope.globalVar.answerText = "";//回帖内容
             var bbsId = 0;
             var bbsTitle = "";
@@ -78,23 +62,28 @@
                 }
             }
             //点赞
-             $scope.agreeBbs = function (bbsId,count) {
-                 var jsonData = JSON.stringify({
-                     id: bbsId, bbsType: 1, postType: 2
-                 });
-                 var promise = communitySer.agreeBbs(jsonData).then(
-                   function (data) {
-                       if (data.isSuccess) {
-                           vm.loadMore();
-                           console.log("点赞成功");
-                       } else {
-                           console.log(data.msg);
-                       }
-                   },
-                   function (data) {
-                       console.log('其他');
-                   }
-                   );
+            $scope.agreeBbs = function (bbsId, count) {
+                var isLogin = $scope.userIsLogin();
+                if (isLogin) {//如果用户已经登录
+                    var jsonData = JSON.stringify({
+                        id: bbsId, bbsType: 1, postType: 2
+                    });
+                    var promise = communitySer.agreeBbs(jsonData).then(
+                      function (data) {
+                          if (data.isSuccess) {
+                              vm.loadMore();
+                              console.log("点赞成功");
+                          } else {
+                              console.log(data.msg);
+                          }
+                      },
+                      function (data) {
+                          console.log('其他');
+                      }
+                      );
+                } else {
+                    $state.go('login', { pageName: 'communityList' });
+                }
             }
             //收藏
              $scope.collectBbs = function (bbsId,count) {
@@ -145,22 +134,13 @@
             }
         //    //下拉加载更多
             var vm = $scope.vm = {
-                //加载
-                show: function () {
-                    $ionicLoading.show({
-                        template: 'Loading...'
-                    });
-                },
-                hide: function () {
-                    $ionicLoading.hide();
-                },
                 categoryId:1,
                 moredata: false,
                 typeDetail: [],
                 pageNo:0,
-                pageSize:5,
+                pageSize:3,
                 loadMore: function () {
-                   // vm.show();
+                    LoadingSvr.show();
                     vm.pageNo += 1;
                     var promise = communitySer.getTypeDetail(vm.categoryId, vm.pageNo, vm.pageSize).then(
                   function (data) {
@@ -172,10 +152,7 @@
                               vm.moredata = true;
                               vm.pageNo = 0;
                           }
-                          //if (data.rows.length == 0) {
-                          //    vm.moredata = true;
-                          //};
-                        //  vm.hide();
+                          LoadingSvr.hide();
                           $scope.$broadcast('scroll.infiniteScrollComplete');
                       }
                     }
@@ -187,5 +164,23 @@
             }
 
         }
+           //获取社区分类
+            //var promise = communitySer.getCommunityType();
+            //promise.then(
+            //    function (data) {
+            //        if (data.isSuccess) {
+            //            $scope.typs = data.rows;
+            //            vm.categoryId = data.rows[0].id;
+            //            vm.pageNo = 0;
+            //            vm.loadMore();
+            //        } else {
+            //            console.log(data.msg);
+            //        }
+            //    },
+            //    function (data) {
+            //        console.log('其他');
+            //     }
+            //    );
+           // $scope.getTypeDetail(initSelectedTag, initCategoryId);
     ]);
    

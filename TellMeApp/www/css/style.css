@@ -1,5 +1,4 @@
-   /*æ∆µÍ¡–±Ì*/
- .has-header {
+    .has-header {
      top:0px;
     }
 
@@ -32,8 +31,8 @@ float:right; background:#fff;
 .has-head {
 padding:10px; margin-top:80px;
 }
-.button.button-positive {
-     text-align:left; background:#fff; color:#666; border:none
+.in-cont {
+     text-align:left;  color:#666; border:none
 }
 .span-ti {
 color:#828282; font-family:'Œ¢»Ì—≈∫⁄';
@@ -56,9 +55,7 @@ position:relative;float:right; margin-top:5px; margin-right:7px;
      .img3 {
     left:-70px;
     }
-    .item-mb {
-
-    }
+   
 
 .item-avatar {
     padding-right:10px; padding-top:2px;padding-bottom:2px; border-bottom:none;
@@ -183,7 +180,7 @@ padding:10px 5px; height:auto;
      background:none;
     }
 
-    .tab-item {
+    .tab-itemer {
      border-right:1px solid #dedede;
     }
     .item2 {
