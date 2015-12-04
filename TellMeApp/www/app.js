@@ -40,17 +40,17 @@
             .state('bbsHome', { url: '/bbsHome', templateUrl: 'app/bbs/main/main.html', controller: 'bbsMainControll' })
             .state('bbsList', { url: '/bbsList', templateUrl: 'app/bbs/list/bbs-list.html', controller: 'bbsListControll' })
             .state('bbs', { cache: false, url: '/bbs/?bbsId', templateUrl: 'app/bbs/single/bbs.html', controller: 'bbsControll' })
-            .state('addBbs', { url: '/addBbs', templateUrl: 'app/bbs/single/bbs.html', controller: 'addBbsControll' })
+            .state('addBbs', { url: '/addBbs', templateUrl: 'app/bbs/addbbs/addbbs.html', controller: 'addBbsControll' })
 
             //酒店
              .state('hotelList', { url: '/hotelList', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
-            .state('hotel', { url: '/hotel?hotelId', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
+             .state('hotel', { url: '/hotel?hotelId', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
+             .state('hotelItem', { url: '/hotelItem?itemId', templateUrl: 'app/hotel/hotel-item/hotel-item.html', controller: 'hotelItemControll' })
             //广告
             .state('adList', { url: '/adList?adInfo', templateUrl: 'app/ad/list/ad-list.html', controller: 'adListControll' })
             //发现 
-            .state('discoverList', { url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverListControll' })
-            .state('discover', { url: '/discover', templateUrl: 'app/discover/single/discover.html', controller: 'discoverControll' })
-          // 社区
+            .state('discoverList', { url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverControll' })
+           // 社区
            .state('communityList', { url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
             //搜索
             .state('willSearch', { url: '/willSearch', templateUrl: 'app/search/will/willSearch.html', controller: 'willSearchControll' })
@@ -60,7 +60,7 @@
             if (appLaunchCount) {
                 $urlRouterProvider.otherwise('/willSearch');
             } else {
-                $urlRouterProvider.otherwise('/start');
+                $urlRouterProvider.otherwise('/communityList');
             }
         //}
         /*修改put 和 post 的数据传递方式*/
