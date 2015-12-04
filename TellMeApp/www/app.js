@@ -48,8 +48,9 @@
             //广告
             .state('adList', { url: '/adList?adInfo', templateUrl: 'app/ad/list/ad-list.html', controller: 'adListControll' })
             //发现 
-            .state('discoverList', { url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverControll' })
-           // 社区
+            .state('discoverList', { url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverListControll' })
+            .state('discover', { url: '/discover', templateUrl: 'app/discover/single/discover.html', controller: 'discoverControll' })
+          // 社区
            .state('communityList', { url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
             //搜索
             .state('willSearch', { url: '/willSearch', templateUrl: 'app/search/will/willSearch.html', controller: 'willSearchControll' })

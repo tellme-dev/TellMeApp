@@ -1,8 +1,7 @@
 ﻿angular.module('tellme')
-    .controller('discoverControll', ['$scope', '$window', '$state', '$ionicHistory', 'doscoverSer', 'commonSer', 'LoadingSvr', 'appConfig',
-        function ($scope, $window, $state, $ionicHistory, doscoverSer, commonSer, LoadingSvr, appConfig) {
+    .controller('discoverListControll', ['$scope', '$window', '$state', '$ionicHistory', 'discoverSer', 'commonSer', 'LoadingSvr', 'appConfig',
+        function ($scope, $window, $state, $ionicHistory, discoverSer, commonSer, LoadingSvr, appConfig) {
             // 获取当前位置
-            //获取城市定位
             AMap.service(["AMap.CitySearch"], function () {
                 //实例化城市查询类
                 var citysearch = new AMap.CitySearch();
@@ -21,6 +20,10 @@
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };
+            //跳转到发现详情
+            $scope.goDetail = function () {
+                $state.go('discover');
+             }
             /*跳转“个人信息页面”*/
             $scope.goToCustomer = function () {
                 $state.go('customer');
@@ -53,7 +56,7 @@
                 loadMore: function () {
                     LoadingSvr.show();
                     vm.pageNo += 1;
-                    var promise = doscoverSer.getList(vm.pageNo, vm.pageSize).then(
+                    var promise = discoverSer.getList(vm.pageNo, vm.pageSize).then(
                   function (data) {
                       if (data.isSuccess) {
                           vm.list = data.rows;
