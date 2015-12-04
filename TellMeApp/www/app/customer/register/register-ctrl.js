@@ -1,8 +1,69 @@
 ﻿angular.module('tellme')
     .controller('registerControll',
-     ['$scope', '$ionicNavBarDelegate', '$ionicHistory', '$window', '$state', 'customerSer', 'commonSer',
-         function ($scope, $ionicNavBarDelegate, $ionicHistory, $window, $state,customerSer, commonSer) {
-        $scope.registerData = {};
+     ['$scope', '$interval', '$ionicNavBarDelegate', '$ionicHistory', '$window', '$state', 'customerSer', 'commonSer',
+         function ($scope,$interval, $ionicNavBarDelegate, $ionicHistory, $window, $state,customerSer, commonSer) {
+             $scope.registerData = {};
+             $scope.verifyDisabled = false;
+             $scope.verifyTips = '获取验证码';
+             /*倒计时*/
+             var count;
+             $scope.countInterval = 120;
+             $scope.verifyDisabled = false;
+             /*倒计时*/
+             $scope.countDown = function () {
+                 // Don't start a new countDown if we are already countDowning
+                 if (angular.isDefined(count)) {
+                     return;
+                 }
+                 $scope.verifyDisabled = true;
+                 count = $interval(function () {
+                     if ($scope.countInterval > 0) {
+                         $scope.countInterval -= 1;
+                         $scope.tips = '还剩:  ' + $scope.countInterval + 's';
+                     } else {
+                         $scope.stopCountDown();
+                     }
+                 }, 1000);
+             }
+             /*停止倒计时*/
+             $scope.stopCountDown = function () {
+                 if (angular.isDefined(count)) {
+                     $interval.cancel(count);
+                     $scope.resetCount();
+                 }
+             }
+             /*重置*/
+             $scope.resetCount = function () {
+                 $scope.countInterval = 120;
+                 $scope.verifyDisabled = false;
+                 $scope.verifyTips = '获取验证码';
+                 count = undefined;
+             }
+             $scope.$on('$destroy', function () {
+                 /*make sure that the interval is destroyed too*/
+                 $scope.stopCountDown();
+             })
+
+             /*校验输入是否是合法的电话号码*/
+             var checkMobile = function (mobile) {
+                 /*测试账号*/
+                 if (mobile == "8888") {
+                     return true;
+                 }
+                 var re = /^1\d{10}$/;
+                 if (re.test(mobile)) {
+                     return true;
+                 } else {
+                     return false;
+                 }
+             }
+             $scope.$watch('registerData.mobile', function (newValue, oldValue) {
+                 if (checkMobile(newValue)) {
+                     $scope.verifyDisabled = true;
+                 } else {
+                     $scope.verifyDisabled = false;
+                 }
+             });
         /*返回前一个界面*/
         $scope.$window = $window;
         $scope.goBack = function () {
@@ -66,6 +127,7 @@
                function (data) {
                    if (data.isSuccess) {
                        console.log('验证码发送成功');
+                       $scope.verifyTips = '';
                    } else {
                        console.log(data.msg);
                        //提示
