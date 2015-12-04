@@ -1,20 +1,20 @@
 ﻿angular.module('tellme')
     .controller('communityControll', ['$scope', '$window', '$state', '$ionicHistory', '$ionicLoading', 'communitySer', 'commonSer', 'appConfig', 'LoadingSvr',
         function ($scope, $window, $state, $ionicHistory, $ionicLoading, communitySer,commonSer, appConfig, LoadingSvr) {
+            $scope.baseUrl = appConfig.server.getUrl();
             /*返回前一个界面*/
             $scope.$window = $window;
             $scope.goBack = function () {
                  $ionicHistory.goBack();
                 //$window.history.back();
             };
-            $scope.baseUrl = appConfig.server.getUrl();
             //跳转到单个论坛详情
             $scope.toBbsDetail = function (bbsId) {
                 $state.go('bbs', { bbsId: bbsId },{ reload:true});
             }
             //跳转到发帖页面
             $scope.toAddBbs = function () {
-                $state.go('addbbs')
+                $state.go('addBbs');
             }
             $scope.globalVar = {};
             $scope.globalVar.SelectedTag = 1;//选中分类标签索引
