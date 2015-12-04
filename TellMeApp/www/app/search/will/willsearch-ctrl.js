@@ -7,6 +7,15 @@
         $scope.hasResult = false;
         $scope.hasResultOfHotel = false;
         $scope.hasResultOfBbs = false;
+        $scope.textMaxLength = 10;
+        $scope.func = {};
+        $scope.func.filterBbsText = function (textStr) {
+            if (textStr.length > $scope.textMaxLength) {
+                return true;
+            } else {
+                return false;
+            }
+        }
         //对搜索输入内容进行监视，用于切换按钮的显示内容
         $scope.$watch('searchText', function (newValue, oldValue) {
             if (typeof (newValue) =='undefined' || angular.equals(newValue, '')) {
