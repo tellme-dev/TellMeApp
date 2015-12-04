@@ -1,6 +1,6 @@
 ﻿<ion-view>
-            <div class="bar bar-header" style="border-bottom:1px solid #ddd">
-                <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
+            <div class="bar bar-header" style="border-bottom:1px solid #ddd;background-color:#ddd;">
+                <button class="button icon ion-chevron-left sqer-but" style="background-color:#ddd;" ng-click="goBack()"></button>
                 <h1 class="title">注册</h1>
                 <button class="button button-style" ng-click="goLogin()" style="">登录</button>
             </div>
@@ -23,7 +23,7 @@
                             <span class="input-label input-color">验&nbsp;&nbsp;证&nbsp;&nbsp;码：</span>
                             <input type="password"  ng-model="registerData.verifyCode" class="input-color">
                         </label>
-                        <button class="butt-a butt-atop denglu-stylewe" ng-click="sendShortMessageCode()">发送验证码</button>
+                        <button class="butt-a butt-atop denglu-stylewe" ng-disabled="verifyDisabled" ng-click="sendShortMessageCode()">{{verifyTips}}</button>
                         <div class="clear"></div>
                     </div>
                     <div class="paddinger">

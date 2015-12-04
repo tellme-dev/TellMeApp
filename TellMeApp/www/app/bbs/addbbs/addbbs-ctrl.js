@@ -16,7 +16,7 @@
                 var customerId = window.localStorage['userId'];
                 var now = new Date();
                 var year = now.getFullYear();
-                var year = (now.getMonth() + 1).toString();
+                var mouth = (now.getMonth() + 1).toString();
                 var day = (now.getDate()).toString();
                 //var html = "";
                 //html = "<img href='#' ng-src='images/zt1.jpg' style='width:100%' />";

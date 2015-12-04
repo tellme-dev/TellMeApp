@@ -1,64 +1,63 @@
 ﻿<ion-view>
-            <div class="bar bar-header"style="border-bottom:1px solid #ddd;">
-                <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
-                <h1 class="title">登录</h1>
-            </div>
-            <ion-content class="zt-conter">
-                <!--内容块-->
-                <div class="list list-padding list-top">
-                    <a class="butt-a" style="" ng-click="toRegister()">注册</a>
-                    <div class="clear"></div>
-                </div>
-                <div class="content has-header">
-                    <div class="list list-padding">
-                        <label class="item item-input item-border">
-                            <span class="input-label input-color">用户名：</span>
-                            <input ng-model="loginData.username" type="text" class="input-color">
-                        </label>
-                        <label class="item item-input item-cont" style="margin-top:2px">
-                            <span class="input-label input-color">密码：</span>
-                            <input type="password" ng-model="loginData.password" class="input-color">
-                        </label>
-                    </div>
-                    <div class="paddinger">
-                        <button class=" button button-block denglu-style" ng-click="login()" style="">登录</button>
-                    </div>
-                    <a class="a-style" style="">忘记密码</a>
-                </div>
-                <!--内容块-->
-            </ion-content>
+    <div class="bar bar-header" style="border-bottom:1px solid #000;background-color:#ddd;">
+        <button class="button icon ion-chevron-left sqer-but" style="background-color:#ddd;" ng-click="goBack()"></button>
+        <h1 class="title">登录</h1>
+    </div>
+    <ion-content class="list-top">
+        <!--内容块-->
+        <div class="list list-padding ">
+            <button class="butt-a" style="" ng-click="toRegister()">注册</button>
+            <div class="clear"></div>
+        </div>
+
+        <div class="list list-padding">
+            <label class="item item-input item-border">
+                <span class="input-label input-color">用户名：</span>
+                <input ng-model="loginData.username" type="tel" class="input-color">
+            </label>
+            <label class="item item-input item-cont" style="margin-top:2px">
+                <span class="input-label input-color">密码：</span>
+                <input type="password" ng-model="loginData.password" class="input-color">
+            </label>
+        </div>
+        <div class="paddinger">
+            <button class=" button button-block denglu-style" ng-click="login()" style="">登录</button>
+        </div>
+        <a class="a-style" style="">忘记密码</a>
+        <!--内容块-->
+    </ion-content>
 </ion-view>
 
 
-    <!--<ion-view>
-        <ion-header-bar class="bar bar-header bar-dark">
-            <button class="button back-button buttons  button-clear header-item" ng-click="goBack()">
-                <i class="icon ion-ios-arrow-back"></i>
-            </button>
-            <h1 class="title" style="left: 50px; right: 50px;">登录</h1>
-        </ion-header-bar>
-        <ion-content class="scroll-content ionic-scroll  has-header">
-            <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
-                <div class="item item-image">
-                    <img src="images/beijingtupian6.jpg">
-                </div>
-                <form ng-submit="dologin(logindata)" class="ng-pristine ng-valid" style="padding:10px 10px; border:none;">
-                    <div class="list">
-                        <label class="item item-input">
-                            <span class="input-label align-title-left">用户名</span>
-                            <input type="text" ng-model="loginData.username" class="ng-pristine ng-valid ng-touched" style="">
-                        </label>
-                        <label class="item item-input" style="margin-top:5px;">
-                            <span class="input-label align-title-left">密码</span>
-                            <input type="password" ng-model="loginData.password" class="ng-pristine ng-valid ng-touched" style="">
-                        </label>
-
-                    </div>
-                    <div class=" button-bar">
-                        <a class="button button-small button-dark" ng-click="login()">登录</a>
-                        <a class="button button-small" ng-click="toRegister()">注册</a>
-                    </div>
-                </form>
+<!--<ion-view>
+    <ion-header-bar class="bar bar-header bar-dark">
+        <button class="button back-button buttons  button-clear header-item" ng-click="goBack()">
+            <i class="icon ion-ios-arrow-back"></i>
+        </button>
+        <h1 class="title" style="left: 50px; right: 50px;">登录</h1>
+    </ion-header-bar>
+    <ion-content class="scroll-content ionic-scroll  has-header">
+        <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
+            <div class="item item-image">
+                <img src="images/beijingtupian6.jpg">
             </div>
-        </ion-content>
-    </ion-view>-->
+            <form ng-submit="dologin(logindata)" class="ng-pristine ng-valid" style="padding:10px 10px; border:none;">
+                <div class="list">
+                    <label class="item item-input">
+                        <span class="input-label align-title-left">用户名</span>
+                        <input type="text" ng-model="loginData.username" class="ng-pristine ng-valid ng-touched" style="">
+                    </label>
+                    <label class="item item-input" style="margin-top:5px;">
+                        <span class="input-label align-title-left">密码</span>
+                        <input type="password" ng-model="loginData.password" class="ng-pristine ng-valid ng-touched" style="">
+                    </label>
+
+                </div>
+                <div class=" button-bar">
+                    <a class="button button-small button-dark" ng-click="login()">登录</a>
+                    <a class="button button-small" ng-click="toRegister()">注册</a>
+                </div>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>-->

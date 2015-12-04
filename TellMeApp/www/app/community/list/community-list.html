@@ -51,7 +51,7 @@
                         </a>
                         <div class="item tabs tabs-secondary tabs-icon-left sq-item-col">
                           <!--回帖-->
-                           <a ng-click="showAnswerbbs(detail.id,detail.title)" class="tab-item sq-tab-item" href="#">
+                           <a  class="tab-item sq-tab-item" href="#">
                                 <i class="icon ion-chatbox"></i>
                                 {{detail.answerCount}}
                             </a>
@@ -69,6 +69,20 @@
                                {{detail.collectionCount}}
                             </a>
                         </div>
+
+                     <div class="sq-show">
+                        <div class="item-input-inset ">
+                            <label class="item-input-wrapper">
+                                <input type="text" id="bbs-{{detail.id}}" placeholder="写点什么..." style="width:100%">
+                            </label>
+                            <button ng-click="answerbbs(detail.id,detail.title)" class="button button-small butt-op">
+                                发送
+                            </button>
+                        </div>
+                    </div>
+
+
+
                     </div>
 
                 
@@ -97,7 +111,7 @@
                 </a>
             </div>
     <!--评论-->
-    <div ng-show="showAnswer" class="cont-pl" style="height:300px;bottom:0px;z-index:9;">
+    <!--<div ng-show="showAnswer" class="cont-pl">
         <div class="sq-show">
             <div class="item-input-inset pl-guanbi">
                 <label class="item-input-wrapper">
@@ -108,9 +122,6 @@
                 </button>
             </div>
         </div>
-    </div>
-    <div ng-click="hideDiv()" ng-show="showAnswer" style="width:100%;height:300px;bottom:0px;display:inline-block; opacity: 0.8;
-background:#444444;position:fixed;z-index:6;">
-    </div>
+    </div>-->
     <!--评论-->
 </ion-view>

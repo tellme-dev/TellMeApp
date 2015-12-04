@@ -43,23 +43,28 @@
                 }
               
             }
-            $scope.hideDiv = function () {
-                $scope.showAnswer = false;
-            }
+          
            //回帖
-            $scope.answerbbs = function () {
-                  $scope.showAnswer = false;
+            $scope.answerbbs = function (id, title) {
+                //$scope.showAnswer = false;
+                var el = document.getElementById('bbs-' + id);
+                var answerText = el.value;
+                if (answerText == "") {
+                    alert("请输入内容");
+                    return;
+                }
                 var isLogin = $scope.userIsLogin();
-                var answerText = $scope.globalVar.answerText;
+                //var answerText = $scope.globalVar.answerText+'-'+id;
                 if (isLogin) {//如果用户已经登录
                     var jsonData = JSON.stringify({
                         id: 0, customerId: window.localStorage['userId'], bbsType: 1, postType: 1,
-                        targetType: 0, parentId: bbsId, title: bbsTitle, text: answerText
+                        targetType: 0, parentId: id, title: title, text: answerText
                     });
                     var promise = communitySer.answerBbs(jsonData).then(
                   function (data) {
-                      if (data.issuccess) {
+                      if (data.isSuccess) {
                           vm.loadMore();
+                          el.value = "";
                           console.log('回帖成功');
                       } else {
                           console.log(data.msg);

@@ -2,24 +2,27 @@
     <ion-side-menus>
         <ion-side-menu-content style="background-color:#ddd;">
             <ion-header-bar class="bar bar-header bar-dark">
-                <button class="button icon ion-ios-location" style="border:none">成都</button>
+                <button class="button icon ion-ios-location" style="border:none"> {{currentCity}}</button>
 
-                <label class="item item-input" style="margin:0 auto; width:65%; background:#ffffff">
+                <label  ng-click="goToSearch()" class="item item-input" style="margin:0 auto; width:65%; background:#ffffff">
                     <i class="icon ion-search placeholder-icon"></i>
-                    <input type="text" placeholder="Search" class="pad-top">
+                    <input type="text" placeholder="Search" disabled class="pad-top">
                 </label>
 
-                <button class="button icon ion-android-person" style="border:none"></button>
+                <button ng-click="goToCustomer()" class="button icon ion-android-person" style="border:none"></button>
             </ion-header-bar>
 
             <ion-content class="zt-conter">
                 <!--内容块-->
                 <ul class="zt-cont">
-                    <li><a href="#"><img src="images/zt1.jpg" /></a></li>
-                    <li><a href="#"><img src="images/zt2.jpg" /></a></li>
-                    <li><a href="#"><img src="images/zt3.jpg" /></a></li>
+                    <li ng-repeat="data in vm.list" ng-click="goDetail()">
+                    <a ng-repeat="image in data.adDetailList" href="#"><img ng-src="{{baseUrl}}{{image.imageUrl}}" />
+                     </a>
+                    </li>
                 </ul>
                 <!--内容块-->
+                <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
+                <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
             </ion-content>
 
             <div class="tabs tabs-icon-left" style=" background-color: #444444;background-image: linear-gradient(0deg, #111, #111 50%, transparent 50%);">

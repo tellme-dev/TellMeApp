@@ -1,10 +1,7 @@
-﻿
-<ion-view>
+﻿<ion-view style="color:#fff; font-family:'微软雅黑';">
     <!--头部begin-->
     <ion-header-bar class="bar bar-header bar-dark">
-
-        <button class="button icon ion-ios-location" ng-click="goToLocation()" style="border:none">成都<!--{{currentCity}}--></button>
-
+        <button class="button icon ion-ios-location" ng-click="goToLocation()" style="border:none">{{currentCity}}</button>
         <label ng-click="goToSearch()" class="item item-input" style="margin:0 auto; width:60%; background:#ffffff">
             <i class="icon ion-search placeholder-icon"></i>
             <input type="text" placeholder="Search" disabled class="pad-top">
@@ -22,23 +19,40 @@
             <ion-slide ng-repeat="ad in adData" repeat-done="repeatDone()">
                 <img ng-src="{{baseUrl}}{{ad.adDetailList[0].imageUrl}}" ng-click="goToAd(ad)" alt="" style="width:100%; height:100%" />
             </ion-slide>
-            <!--<ion-slide ng-click="goToAd()">
-                <div class="box blue"><img src="images/pic_home_slider_1.jpg" alt="" style="width:100%; height:100%" /></div>
-            </ion-slide>
-            <ion-slide>
-                <div class="box yellow"><img src="images/pic_home_slider_1.jpg" alt="" style="width:100%;height:100%" /></div>
-            </ion-slide>
-            <ion-slide>
-                <div class="box pink"><img src="images/pic_home_slider_1.jpg" alt="" style="width:100%;height:100%" /></div>
-            </ion-slide>-->
         </ion-slide-box>
         <!--广告推广end-->
         <!--酒店分类begin-->
-        <div class="device" >
-            <div class="swiper-container" ng-if="swiperAdData">
+        <div class="device">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide white-slide">
+                        <div>
+                            <p>酒店</p>
+                            <div><img src="images/a.png" width="100%" height="100%" /></div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide white-slide">
+                        <div>
+                            <p>睡客</p>
+                            <div><img src="images/b.png" width="100%" height="100%" /></div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide white-slide">
+                        <div>
+                            <p>亲子</p>
+                            <div><img src="images/b.png" width="100%" height="100%" /></div>
+                        </div>
+                        /d
+                    </div>
+                </div>
+            </div>
+            <div class="pagination"></div>
+        </div>
+        <!--<div class="device" >
+            <div class="swiper-container" ng-if="swiperAdData">-->
                 <!--酒店滚动菜单数据加载-->
                 <!--<admenu menuData="{{swiperAdData}}" class="swiper-wrapper"></admenu>-->
-                <div class="swiper-wrapper" >
+                <!--<div class="swiper-wrapper" >
                     <div ng-click="hotelType()" class="swiper-slide red-slide red-padding" ng-repeat="menu in swiperAdData">
                         <div class="title" style="">
                             {{menu.name}}
@@ -46,19 +60,19 @@
                         <div class="scroll-content has-header mar-top">
                             <div class="row">
                                 <div class="col"><img ng-src="{{baseUrl}}{{menu.imageUrls[0]}}" width="100%" height="40%" /></div>
-                                <div class="col"><img ng-src="{{baseUrl}}{{menu.imageUrls[1]}}" width="100%" height="40%" /></div>
+                                <div class="col"><img ng-src="{{baseUrl}}{{menu.imageUrls[1]}}" width="100%" height="40%" /></div>-->
                                 <!--<div class="col "><img src="images/a.png" width="100%" height="40%" /></div>
                                 <div class="col "><img src="images/b.png" width="100%" height="40%" /></div>-->
-                            </div>
+                            <!--</div>
                             <div class="row">
                                 <div class="col"><img ng-src="{{baseurl}}{{menu.imageurls[2]}}" width="100%" height="40%" /></div>
-                                <div class="col"><img ng-src="{{baseurl}}{{menu.imageurls[3]}}" width="100%" height="40%" /></div>
+                                <div class="col"><img ng-src="{{baseurl}}{{menu.imageurls[3]}}" width="100%" height="40%" /></div>-->
                                 <!--<div class="col "><img src="images/a.png" width="100%" height="40%" /></div>
                                 <div class="col "><img src="images/b.png" width="100%" height="40%" /></div>-->
-                            </div>
+                            <!--</div>
                         </div>
                     </div>
-                </div>
+                </div>-->
                     <!--
                     <div class="swiper-slide red-slide red-padding">
                         <div class="title" style="">
@@ -129,13 +143,13 @@
                         </div>
                     </div>
                 </div>-->
-            </div>
-            <div class="pagination"></div>
-        </div>
+            <!--</div>
+            <div class="pagination"></div>-->
+        <!--</div>-->
         <!--酒店分类end-->
         <!--活动推荐begin-->
-        <div>
-            <div class="item">
+        <div style="background-color:#f2ecec;">
+            <div class="item" >
                 <h2>活动推荐</h2>
             </div>
             <a href="#" ng-repeat="fad in footAdData">
