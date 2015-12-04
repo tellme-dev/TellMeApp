@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('bbsControll', ['$scope', '$ionicHistory', '$stateParams', '$ionicHistory', '$window', 'bbsSer', 'communitySer', 'appConfig', 'LoadingSvr',
-        function ($scope, $ionicHistory, $stateParams, $ionicHistory, $window, bbsSer, communitySer, appConfig, LoadingSvr) {
+    .controller('bbsControll', ['$scope', '$ionicHistory', '$stateParams', '$ionicHistory', '$window', 'bbsSer', 'communitySer', 'commonSer', 'appConfig', 'LoadingSvr',
+        function ($scope, $ionicHistory, $stateParams, $ionicHistory, $window, bbsSer, communitySer,commonSer, appConfig, LoadingSvr) {
         $scope.baseUrl = appConfig.server.getUrl();
         $scope.$window = $window;
         $scope.goBack = function () {
@@ -72,43 +72,49 @@
             }
         }
            //点赞
-          $scope.agreeBbs = function (bbsId) {
-            var jsonData = JSON.stringify({
-                id: bbsId, bbsType: 1, postType: 2
-            });
-            var promise = communitySer.agreeBbs(jsonData).then(
-              function (data) {
-                  if (data.isSuccess) {
-                      bbsSer.getBBs(bbsId).then(
-                      function (data) {
-                          if (data.isSuccess) {
-                              $scope.bbs = data.data;
-                          } else {
-                              console.log(data.msg);
+           $scope.agreeBbs = function (id) {
+            var isLogin = $scope.userIsLogin();
+            if (isLogin) {
+                var jsonData = JSON.stringify({
+                    targetId: id, praiseType: 0, customerId: window.localStorage['userId']
+                });
+                var promise = commonSer.saveAgree(jsonData).then(
+                  function (data) {
+                      if (data.isSuccess) {
+                          bbsSer.getBBs(id).then(
+                          function (data) {
+                              if (data.isSuccess) {
+                                  $scope.bbs = data.data;
+                              } else {
+                                  console.log(data.msg);
+                              }
                           }
+                         );
+                          console.log("点赞成功");
+                      } else {
+                          console.log(data.msg);
                       }
-                     );
-                      console.log("点赞成功");
-                  } else {
-                      console.log(data.msg);
+                  },
+                  function (data) {
+                      console.log('其他');
                   }
-              },
-              function (data) {
-                  console.log('其他');
-              }
-              );
+                  );
+            } else {
+                $state.go('login', { pageName: 'communityList' });
+            }
+         
         }
          //收藏
-         $scope.collectBbs = function (bbsId) {
+         $scope.collectBbs = function (id) {
             var isLogin = $scope.userIsLogin();
             if (isLogin) {//如果用户已经登录
                 var jsonData = JSON.stringify({
-                    customerId: window.localStorage['userId'], collectionType: 3, targetId: bbsId
+                    customerId: window.localStorage['userId'], collectionType: 3, targetId: id
                 });
-                var promise = communitySer.collectionBbs(jsonData).then(
+                var promise = commonSer.saveCollectionHistory(jsonData).then(
                function (data) {
                    if (data.isSuccess) {
-                       bbsSer.getBBs(bbsId).then(
+                       bbsSer.getBBs(id).then(
                          function (data) {
                              if (data.isSuccess) {
                                  $scope.bbs = data.data;

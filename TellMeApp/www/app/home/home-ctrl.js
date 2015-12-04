@@ -42,12 +42,6 @@ angular.module('tellme')
             },
             //加载更多
             loadMore: function () {
-                //vm.pagination.currentPage += 1;
-                //services.getMessages({perPage: vm.pagination.perPage, page: vm.pagination.currentPage}, function (data) {
-                //    vm.messages = vm.messages.concat(data);
-                //    if (data.length == 0) {
-                  //     vm.moredata = true;
-                //    };
                    vm.show();
                    console.log("上拉加载数据。")
                    vm.moredata = true;
@@ -59,21 +53,20 @@ angular.module('tellme')
       
         //获取URL
         $scope.baseUrl = appConfig.server.getUrl();
-            // 获取当前位置
-            //AMap.service(["AMap.CitySearch"], function () {
-            //    //实例化城市查询类
-            //    var citysearch = new AMap.CitySearch();
-            //    citysearch.getLocalCity(function (status, result) {
-            //        if (status === 'complete' && result.info === 'OK') {
-            //            if (result && result.city && result.bounds) {
-            //                var cityinfo = result.city;
-            //                $scope.currentCity = cityinfo;
-            //               // console.log('当前城市：' + cityinfo);
-            //            }
-            //        }
-            //    });
-            //});
-
+       //获取城市定位
+        AMap.service(["AMap.CitySearch"], function () {
+            //实例化城市查询类
+            var citysearch = new AMap.CitySearch();
+            citysearch.getLocalCity(function (status, result) {
+                if (status === 'complete' && result.info === 'OK') {
+                    if (result && result.city && result.bounds) {
+                        cityinfo = result.city;
+                         $scope.currentCity = cityinfo;
+                        console.log('当前城市：' + cityinfo);
+                    }
+                }
+            });
+        });
         //广告（头部广告、底部专栏）动态加载
         ////获取头部广告信息
             var promise = homeSer.getAdd();

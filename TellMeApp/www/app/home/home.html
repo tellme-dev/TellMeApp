@@ -1,9 +1,7 @@
 ﻿<ion-view style="color:#fff; font-family:'微软雅黑';">
     <!--头部begin-->
     <ion-header-bar class="bar bar-header bar-dark">
-
-        <button class="button icon ion-ios-location" ng-click="goToLocation()" style="border:none">成都<!--{{currentCity}}--></button>
-
+        <button class="button icon ion-ios-location" ng-click="goToLocation()" style="border:none">{{currentCity}}</button>
         <label ng-click="goToSearch()" class="item item-input" style="margin:0 auto; width:60%; background:#ffffff">
             <i class="icon ion-search placeholder-icon"></i>
             <input type="text" placeholder="Search" disabled class="pad-top">
