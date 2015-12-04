@@ -1,121 +1,112 @@
-﻿<style type="text/css">
-    .li-but {
-        border-bottom: 1px solid #9ac600;
-    }
-</style>
+﻿<ion-view>
 
-<ion-side-menus>
-    <ion-side-menu-content>
-
-        <ion-header-bar class="bar bar-header bar-light ">
-            <button class="button icon ion-chevron-left jd-border-no"></button>
-            <h1 class="title">娱乐设施</h1>
-        </ion-header-bar>
-        <!--导航-->
-        <div class="bar bar-subheader">
-            <div id="wrapper">
-                <div id="scroller">
-                    <ul id="list">
-                        <li class="li-but">KTV</li>
-                        <li>游泳馆</li>
-                        <li>健身房</li>
-                        <li>SPA</li>
-                        <li>温泉</li>
-                        <li>各类球场</li>
-                    </ul>
-                </div>
+    <ion-header-bar class="bar bar-header bar-light ">
+        <button class="button icon ion-chevron-left jd-border-no"></button>
+        <h1 class="title">娱乐设施</h1>
+    </ion-header-bar>
+    <!--导航-->
+    <div class="bar bar-subheader">
+        <div id="wrapper">
+            <div id="scroller">
+                <ul id="list">
+                    <li class="li-but">KTV</li>
+                    <li>游泳馆</li>
+                    <li>健身房</li>
+                    <li>SPA</li>
+                    <li>温泉</li>
+                    <li>各类球场</li>
+                </ul>
             </div>
-            <div class="content padding has-header  jd-cont-col jd-has-header">
-                <i class="icon ion-chevron-down"></i>
-            </div>
-            <div class="clear"></div>
         </div>
-        <!--导航-->
-        <ion-content>
+        <div class="content padding has-header  jd-cont-col jd-has-header">
+            <i class="icon ion-chevron-down"></i>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <!--导航-->
+    <ion-content>
 
-            <!--内容块-->
-            <div class="content has-header jd-has-header jd-has-head">
+        <!--内容块-->
+        <div class="content has-header jd-has-header jd-has-head">
 
-                <div id="header">
-                    <div ng-if="menus">
-                        <div class="swiper-wrapper">
-                            <div ng-repeat="menu in menus">
-                                <!--<div class="swiper-slide"><a href="#"><img src="images/p1.jpg" /></a></div>-->
-                                <div class="swiper-slide"><a href="#"><img ng-src="{{host}}{{menu.name}}" /></a></div>
-                            </div>
+            <div id="header">
+                <div ng-if="menus">
+                    <div class="swiper-wrapper">
+                        <div ng-repeat="menu in menus">
+                            <!--<div class="swiper-slide"><a href="#"><img src="images/p1.jpg" /></a></div>-->
+                            <div class="swiper-slide"><a href="#"><img ng-src="{{host}}{{menu.name}}" /></a></div>
                         </div>
                     </div>
                 </div>
-                <!--<button class="button button-block boter-text in-cont" >
-                    <span style="">吃货达人</span>
-                    <i class="icon ion-ios-arrow-forward i-fl"></i>
-                    <span class="erw">
-                        <img src="images/a.png" style="right:0px;" />
-                        <img src="images/b.png" style="left:-50px;" />
-                        <img src="images/a.png" style="left:-70px" />
-                    </span>
-
-                </button>-->
-                <div ng-if="list">
-                    <div ng-repeat="item in list">
-                        <div class="list card item-mb jd-item-mb">
-
-                            <div class="item item-avatar">
-                                <img src="http://www.runoob.com/try/demo_source/mcfly.jpg" />
-                                <h2 style="">{{item.name}}</h2>
-                                <button class="bu-er" ng-click="saveCollection({{item.id}})">
-                                    关 注
-                                </button>
-                            </div>
-
-                            <div class="item item-body item-body-top">
-                                <img class="full-image" ng-src="{{host}}{{item.imgUrl}}">
-                                <div class="pad-cont">
-                                    <ul class="ul-float-li">
-                                        <li><i class="ion ion-ios-pricetag"></i></li>
-                                        <li><a href="#" class="back">{{item.city}}</a></li>
-                                        <li ng-repeat="liitem in item.projects"><a href="#">{{liitem.name}}</a></li>
-
-                                    </ul>
-                                    <div class="clear"></div>
-                                    <p class="p-te">
-                                        <span>{{item.name}}</span>
-
-                                    </p>
-                                    <p>入住舒适度：{{item.score}}分</p>
-
-                                    <p>{{item.address}}</p>
-
-                                    <p>房间数：[暂无相关数据]</p>
-                                </div>
-                            </div>
-
-                            <div class="item tabs tabs-secondary tabs-icon-left">
-                                <a class="tab-item jd-tab-itemer" href="#">
-                                    <i class="icon ion-chatbox"></i>
-                                </a>
-                                <a class="tab-item jd-tab-itemer" href="#">
-                                    <i class="icon ion-share"></i>
-                                </a>
-                                <a class="tab-item jd-tab-itemer" href="#">
-                                    <i class="icon ion-thumbsup"></i>
-                                </a>
-                                <a class="tab-item jd-tab-itemer" href="#" ng-click="saveCollection({{item.id}})" >
-                                    <i class="icon ion-android-favorite"></i>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                
-                
             </div>
-            <!--内容块-->
+            <!--<button class="button button-block boter-text in-cont" >
+                <span style="">吃货达人</span>
+                <i class="icon ion-ios-arrow-forward i-fl"></i>
+                <span class="erw">
+                    <img src="images/a.png" style="right:0px;" />
+                    <img src="images/b.png" style="left:-50px;" />
+                    <img src="images/a.png" style="left:-70px" />
+                </span>
+
+            </button>-->
+            <div ng-if="list">
+                <div ng-repeat="item in list">
+                    <div class="list card item-mb jd-item-mb">
+
+                        <div class="item item-avatar">
+                            <img src="http://www.runoob.com/try/demo_source/mcfly.jpg" />
+                            <h2 class="h2-hotel">{{item.name}}</h2>
+                            <button class="bu-er" ng-click="saveCollection({{item.id}})">
+                                关 注
+                            </button>
+                        </div>
+
+                        <div class="item item-body item-body-top">
+                            <img class="full-image" ng-src="{{host}}{{item.imgUrl}}">
+                            <div class="pad-cont">
+                                <ul class="ul-float-li">
+                                    <li><i class="ion ion-ios-pricetag"></i></li>
+                                    <li><a href="#" class="back">{{item.city}}</a></li>
+                                    <li ng-repeat="liitem in item.projects"><a href="#">{{liitem.name}}</a></li>
+
+                                </ul>
+                                <div class="clear"></div>
+                                <p class="p-te">
+                                    <span>{{item.name}}</span>
+
+                                </p>
+                                <p>入住舒适度：{{item.score}}分</p>
+
+                                <p>{{item.address}}</p>
+
+                                <p>房间数：[暂无相关数据]</p>
+                            </div>
+                        </div>
+
+                        <div class="item tabs tabs-secondary tabs-icon-left">
+                            <a class="tab-item jd-tab-itemer" href="#">
+                                <i class="icon ion-chatbox"></i>
+                            </a>
+                            <a class="tab-item jd-tab-itemer" href="#">
+                                <i class="icon ion-share"></i>
+                            </a>
+                            <a class="tab-item jd-tab-itemer" href="#">
+                                <i class="icon ion-thumbsup"></i>
+                            </a>
+                            <a class="tab-item jd-tab-itemer" href="#" ng-click="saveCollection({{item.id}})">
+                                <i class="icon ion-android-favorite"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
 
-        </ion-content>
+        </div>
+        <!--内容块-->
 
 
-    </ion-side-menu-content>
-</ion-side-menus>
+    </ion-content>
+
+</ion-view>
