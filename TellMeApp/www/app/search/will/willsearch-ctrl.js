@@ -1,5 +1,5 @@
 ﻿angular.module('tellme')
-    .controller('willSearchControll', ['$scope', '$ionicHistory', 'LoadingSvr', 'searchSer', 'appConfig', function ($scope, $ionicHistory, LoadingSvr, searchSer, appConfig) {
+    .controller('willSearchControll', ['$scope', '$ionicHistory', '$state', 'LoadingSvr', 'searchSer', 'appConfig', function ($scope, $ionicHistory,$state, LoadingSvr, searchSer, appConfig) {
         $scope.baseUrl = appConfig.server.getUrl();
         $scope.cancelBtnText = '取消';
         //是否进行搜索，进行页面的转换
@@ -62,4 +62,10 @@
             }
         }
 
+        $scope.goToHotelInfo = function (hotelId) {
+            $state.go('hotel', { hotelId: hotelId });
+        }
+        $scope.goToBbsInfo = function (bbsId) {
+            $state.go('bbs', { bbsId: bbsId });
+        }
     }]);
