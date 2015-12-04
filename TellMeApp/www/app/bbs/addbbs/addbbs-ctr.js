@@ -1,5 +1,5 @@
 ﻿angular.module('tellme')
-    .controller('addbbsListControll', ['$scope', function ($scope) {
+    .controller('addBbsControll', ['$scope', 'cameraSvr', 'fileTransferSvr', function ($scope, cameraSvr, fileTransferSvr) {
         /*拍照上传*/
         $scope.takePhoto = function (No) {
 
