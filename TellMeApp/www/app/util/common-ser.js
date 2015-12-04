@@ -89,5 +89,23 @@ angular.module('tellme')
                 });
             return deferred.promise;
         }
-
+        //地图定位
+        this.getLocation = function () {
+            // 获取当前位置
+            var cityinfo = "";
+            AMap.service(["AMap.CitySearch"], function () {
+                //实例化城市查询类
+                var citysearch = new AMap.CitySearch();
+                citysearch.getLocalCity(function (status, result) {
+                    if (status === 'complete' && result.info === 'OK') {
+                        if (result && result.city && result.bounds) {
+                          cityinfo = result.city;
+                          //  $scope.currentCity = cityinfo;
+                            console.log('当前城市：' + cityinfo);
+                        }
+                    }
+                });
+            });
+            return cityinfo;
+        }
     }]);
