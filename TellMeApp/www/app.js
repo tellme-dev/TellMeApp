@@ -1,8 +1,20 @@
 ﻿angular.module('tellme', ['ionic'])
     .run(['$ionicPlatform', '$rootScope', 'commonSer', function ($ionicPlatform, $rootScope, commonSer) {
         $ionicPlatform.ready(function () {
-        })
 
+        })
+        var onDeviceReady = function () {
+            var appLaunchCount = window.localStorage.getItem('launchCount');
+            if (appLaunchCount) {
+                
+            } else {
+                window.localStorage.setItem('launchCount', 1);
+            }
+            setTimeout(function () {
+                navigator.splashscreen.hide();
+            }, 4000);
+        }
+        document.addEventListener("deviceready", onDeviceReady, false);
 
 
     }])
@@ -28,11 +40,11 @@
             .state('bbsHome', { url: '/bbsHome', templateUrl: 'app/bbs/main/main.html', controller: 'bbsMainControll' })
             .state('bbsList', { url: '/bbsList', templateUrl: 'app/bbs/list/bbs-list.html', controller: 'bbsListControll' })
             .state('bbs', { cache: false, url: '/bbs/?bbsId', templateUrl: 'app/bbs/single/bbs.html', controller: 'bbsControll' })
-            .state('addbbs', { url: '/addbbs', templateUrl: 'app/bbs/addbbs/addbbs.html', controller: 'addbbsControll' })
+            .state('addBbs', { url: '/addBbs', templateUrl: 'app/bbs/single/bbs.html', controller: 'addBbsControll' })
 
             //酒店
              .state('hotelList', { url: '/hotelList', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
-            .state('hotel', {url: '/hotel', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
+            .state('hotel', { url: '/hotel?hotelId', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
             //广告
             .state('adList', { url: '/adList?adInfo', templateUrl: 'app/ad/list/ad-list.html', controller: 'adListControll' })
             //发现 
@@ -42,15 +54,14 @@
             //搜索
             .state('willSearch', { url: '/willSearch', templateUrl: 'app/search/will/willSearch.html', controller: 'willSearchControll' })
             .state('doneSearch', { url: '/doneSearch', templateUrl: 'app/search/done/doneSearch.html', controller: 'doneSearchControll' })
-        ;
-        if (typeof (window.localStorage['isFirstStart']) == 'undefined' || window.localStorage['isFirstStart'] == true) {
-            window.localStorage['isFirstStart'] = false;
-            navigator.splashscreen.hide();
-            $urlRouterProvider.otherwise('/start');
-        } else {
-            $urlRouterProvider.otherwise('/home');
-        }
-        //$urlRouterProvider.otherwise('/home');
+            ;
+            var appLaunchCount = window.localStorage.getItem('launchCount');
+            if (appLaunchCount) {
+                $urlRouterProvider.otherwise('/home');
+            } else {
+                $urlRouterProvider.otherwise('/start');
+            }
+        //}
         /*修改put 和 post 的数据传递方式*/
         $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';

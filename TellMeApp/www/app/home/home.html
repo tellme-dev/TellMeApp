@@ -20,23 +20,40 @@
             <ion-slide ng-repeat="ad in adData" repeat-done="repeatDone()">
                 <img ng-src="{{baseUrl}}{{ad.adDetailList[0].imageUrl}}" ng-click="goToAd(ad)" alt="" style="width:100%; height:100%" />
             </ion-slide>
-            <!--<ion-slide ng-click="goToAd()">
-                <div class="box blue"><img src="images/pic_home_slider_1.jpg" alt="" style="width:100%; height:100%" /></div>
-            </ion-slide>
-            <ion-slide>
-                <div class="box yellow"><img src="images/pic_home_slider_1.jpg" alt="" style="width:100%;height:100%" /></div>
-            </ion-slide>
-            <ion-slide>
-                <div class="box pink"><img src="images/pic_home_slider_1.jpg" alt="" style="width:100%;height:100%" /></div>
-            </ion-slide>-->
         </ion-slide-box>
         <!--广告推广end-->
         <!--酒店分类begin-->
-        <div class="device" >
-            <div class="swiper-container" ng-if="swiperAdData">
+        <div class="device">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide red-slide">
+                        <div class="title">Slide 1</div>
+                    </div>
+                    <div class="swiper-slide blue-slide">
+                        <div class="title">Slide 2</div>
+                    </div>
+                    <div class="swiper-slide orange-slide">
+                        <div class="title">Slide 3</div>
+                    </div>
+                    <div class="swiper-slide blue-slide">
+                        <div class="title">Slide 4</div>
+                    </div>
+                    <div class="swiper-slide red-slide">
+                        <div class="title">Slide 5</div>
+                    </div>
+                    <div class="swiper-slide blue-slide">
+                        <div class="title">Slide 6</div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="pagination"></div>
+        </div>
+        <!--<div class="device" >
+            <div class="swiper-container" ng-if="swiperAdData">-->
                 <!--酒店滚动菜单数据加载-->
                 <!--<admenu menuData="{{swiperAdData}}" class="swiper-wrapper"></admenu>-->
-                <div class="swiper-wrapper" >
+                <!--<div class="swiper-wrapper" >
                     <div ng-click="hotelType()" class="swiper-slide red-slide red-padding" ng-repeat="menu in swiperAdData">
                         <div class="title" style="">
                             {{menu.name}}
@@ -44,19 +61,19 @@
                         <div class="scroll-content has-header mar-top">
                             <div class="row">
                                 <div class="col"><img ng-src="{{baseUrl}}{{menu.imageUrls[0]}}" width="100%" height="40%" /></div>
-                                <div class="col"><img ng-src="{{baseUrl}}{{menu.imageUrls[1]}}" width="100%" height="40%" /></div>
+                                <div class="col"><img ng-src="{{baseUrl}}{{menu.imageUrls[1]}}" width="100%" height="40%" /></div>-->
                                 <!--<div class="col "><img src="images/a.png" width="100%" height="40%" /></div>
                                 <div class="col "><img src="images/b.png" width="100%" height="40%" /></div>-->
-                            </div>
+                            <!--</div>
                             <div class="row">
                                 <div class="col"><img ng-src="{{baseurl}}{{menu.imageurls[2]}}" width="100%" height="40%" /></div>
-                                <div class="col"><img ng-src="{{baseurl}}{{menu.imageurls[3]}}" width="100%" height="40%" /></div>
+                                <div class="col"><img ng-src="{{baseurl}}{{menu.imageurls[3]}}" width="100%" height="40%" /></div>-->
                                 <!--<div class="col "><img src="images/a.png" width="100%" height="40%" /></div>
                                 <div class="col "><img src="images/b.png" width="100%" height="40%" /></div>-->
-                            </div>
+                            <!--</div>
                         </div>
                     </div>
-                </div>
+                </div>-->
                     <!--
                     <div class="swiper-slide red-slide red-padding">
                         <div class="title" style="">
@@ -127,9 +144,9 @@
                         </div>
                     </div>
                 </div>-->
-            </div>
-            <div class="pagination"></div>
-        </div>
+            <!--</div>
+            <div class="pagination"></div>-->
+        <!--</div>-->
         <!--酒店分类end-->
         <!--活动推荐begin-->
         <div>
