@@ -4,18 +4,99 @@
     }
 </style>
 
-<ion-view view-title="个人中心">
-    
-    <ion-content>
-        <button ng-click="goBack()">返回</button>
-      
-                    <ul >
-                        <li  ng-repeat="a in b" ng-click="selectRestaurant({{a.id}})"
-                             ng-class='{selected: a.id==selectedI}'>{{a.name}}</li>
-                    </ul>
-     
-        <div ng-repeat="d in c">
-            {{d.name}}
+<ion-side-menus>
+
+
+    <ion-side-menu-content style="background-color:#ddd;">
+        <div class="bar bar-header bar-dark sq-top">
+            <h1 class="title">个人中心</h1>
         </div>
-   </ion-content>
-</ion-view>
+
+        <ion-content>
+            <!--内容块-->
+            <div class="list list-style-padding">
+                <div class="cont-style">
+                    <a class="item item-avatar a-border border-top-bott min-style" href="#">
+                        <img ng-src="{{host}}{{customer.photoUrl}}" style="left:0px;max-width:70px; max-height:70px; border-radius:0px; top:12px;">
+                        <div class="fl">
+                            <h2 class="style-h2" style="font-size:2em; font-family:'黑体';">{{customer.mobile}}</h2>
+                            <p class="p-style" style="font-size:1.125em; color:#a3a3a3;margin-top:10px;">昵称：{{customer.name}}</p>
+                        </div>
+                        <i class="ion-ios-gear fr tupiao-style"></i>
+                        <div class="clear"></div>
+                    </a>
+                </div>
+                <div class="row row-style-background">
+                    <button class="col button-col button-col-clock ">
+                        长住酒店
+                        <p>{{customer.countAlways}}</p>
+                    </button>
+                    <button class="col button-col">
+                        最近浏览
+                        <p>{{customer.countBrowse}}</p>
+                    </button>
+                    <button class="col button-col">
+                        关注
+                        <p>{{customer.countCollection}}</p>
+                    </button>
+                    <button class="col button-col">
+                        话题
+                        <p>{{customer.countTopic}}</p>
+                    </button>
+                    <button class="col button-col border-r">
+                        动态
+                        <p>{{customer.countDynamic}}</p>
+                    </button>
+                </div>
+            </div>
+
+            <div style="padding:0px 10px; margin-top:65px;" ng-if="hotels">
+                <div ng-repeat="hotel in hotels">
+                    <div class="list card item-mb xq-item">
+                        <div class="item item-body xq-item-cont">
+                            <a href=""><img class="full-image" ng-src="{{host}}{{hotel.imgUrl}}"></a>
+                            <div class="xq-item-fl">
+                                <ul class="xq-ul">
+                                    <li><i class="ion ion-ios-pricetag"></i></li>
+                                    <li><a href="#" class="xq-back">{{hotel.city}}</a></li>
+                                    <li ng-repeat="liitem in item.projects"><a href="#">{{liitem.name}}</a></li>
+                                </ul>
+                                <div class="clear"></div>
+                                <p>
+                                    <a href="#" class="xq-p-span">{{item.name}}</a>
+                                </p>
+                                <p class="xq-p">入住舒适度：{{item.score}}分</p>
+
+                                <p class="xq-p">{{item.address}}</p>
+
+                                <p class="xq-p">房间数：[暂无相关数据]</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!--内容块-->
+
+
+        </ion-content>
+        <div class="tabs tabs-icon-left" style=" background-color: #444444;background-image: linear-gradient(0deg, #111, #111 50%, transparent 50%);">
+            <a class="tab-item" ng-click="goHome()">
+                <i class="icon ion-home " style="color:#fff">
+                </i>
+            </a>
+            <a class="tab-item" ng-click="goDiscover()">
+                <i class="icon ion-ios-eye-outline" style="color:#fff">
+                </i>
+            </a>
+            <a class="tab-item" ng-click="goCommunity()">
+                <i class="icon ion-ios-people-outline" style="color:#fff">
+                </i>
+            </a>
+            <a class="tab-item">
+                <i class="icon ion-android-checkbox-outline" style="color:#fff">
+                </i>
+            </a>
+        </div>
+    </ion-side-menu-content>
+</ion-side-menus>

@@ -61,8 +61,7 @@
             ;
             var appLaunchCount = window.localStorage.getItem('launchCount');
             if (appLaunchCount) {
-                //如果需要设置开始页面为想要的页面，请修改下面；
-                $urlRouterProvider.otherwise('/system');
+                $urlRouterProvider.otherwise('/willSearch');
             } else {
                 $urlRouterProvider.otherwise('/start');
             }
