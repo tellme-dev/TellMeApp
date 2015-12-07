@@ -2,13 +2,14 @@
     .controller('addBbsControll', ['$scope', '$window', 'cameraSvr', 'fileTransferSvr', function ($scope,$window, cameraSvr, fileTransferSvr) {
         $scope.bbsInfo = {};
         var bbsPhotos;
+        /*发帖*/
         $scope.addBbs = function () {
             adSer.addBbs(bbsInfo).then(
                 function (data) {
                     if (data.isSuccess) {
                         console.log(data.msg);
                     } else {
-                        //alert('该账号已注册');
+                        //alert('');
                         console.log(data.msg);
                     }
                 },
