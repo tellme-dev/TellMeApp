@@ -13,11 +13,13 @@
         <div class="list list-padding">
             <label class="item item-input item-border">
                 <span class="input-label input-color">用户名：</span>
-                <input ng-model="loginData.username" type="tel" class="input-color">
+
+
+                <input ng-model="loginData.username" type="tel" class="input-color" required ng-maxlength="11">
             </label>
             <label class="item item-input item-cont" style="margin-top:2px">
                 <span class="input-label input-color">密码：</span>
-                <input type="password" ng-model="loginData.password" class="input-color">
+                <input type="password" ng-model="loginData.password" class="input-color" required>
             </label>
         </div>
         <div class="paddinger">
