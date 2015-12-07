@@ -12,7 +12,7 @@ angular.module('tellme')
         imgURI,文件路径 来自于getPicture返回的imgURI
 
         */
-        this.uploadPhoto = function (imgURI,customerId, successCallBack, failCallBack, progressCallBack) {
+        this.uploadPhoto = function (imgURI,fileName, successCallBack, failCallBack, progressCallBack) {
 
             var svrURI = encodeURI(appConfig.server.getUrl() + "app/bbs/uploadPhoto.do");
 
@@ -20,7 +20,7 @@ angular.module('tellme')
 
             opts.fileKey = "bbsPhoto";
             //opts.fileName = imgURI.substr(imgURI.lastIndexOf('/') + 1);
-            opts.fileName = customerId + '_' + mill + Math.floor(Math.random() * 9999 + 1000);
+            opts.fileName = fileName;
             opts.mimeType = "image/jpeg";   
             var ft = new FileTransfer();
 

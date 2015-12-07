@@ -49,7 +49,7 @@
             //广告
             .state('adList', { url: '/adList?adInfo', templateUrl: 'app/ad/list/ad-list.html', controller: 'adListControll' })
             //发现 
-            .state('discoverList', { url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverControll' })
+            .state('discoverList', { url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverListControll' })
            // 社区
            .state('communityList', { url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
             //搜索
@@ -58,9 +58,9 @@
             ;
             var appLaunchCount = window.localStorage.getItem('launchCount');
             if (appLaunchCount) {
-                $urlRouterProvider.otherwise('/hotelList');
+                $urlRouterProvider.otherwise('/home');
             } else {
-                $urlRouterProvider.otherwise('/communityList');
+                $urlRouterProvider.otherwise('/home');
             }
         //}
         /*修改put 和 post 的数据传递方式*/
