@@ -15,7 +15,7 @@
             <ion-content class="zt-conter">
                 <!--内容块-->
                 <ul class="zt-cont">
-                    <li ng-repeat="data in vm.list" ng-click="goDetail()">
+                    <li ng-repeat="data in vm.list" ng-click="goDetail(data.targetType,data.targetId)">
                     <a ng-repeat="image in data.adDetailList" href="#"><img ng-src="{{baseUrl}}{{image.imageUrl}}" />
                      </a>
                     </li>
