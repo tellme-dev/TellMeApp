@@ -53,14 +53,17 @@
            // 社区
            .state('communityList', { url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
             //搜索
-            .state('willSearch', { url: '/willSearch', templateUrl: 'app/search/will/willSearch.html', controller: 'willSearchControll' })
-            .state('doneSearch', { url: '/doneSearch', templateUrl: 'app/search/done/doneSearch.html', controller: 'doneSearchControll' })
+            .state('willSearch', { url: '/willSearch', templateUrl: 'app/search/will/willSearch.html', controller: 'willSearchControll'})
+            .state('doneSearch', { url: '/doneSearch', templateUrl: 'app/search/done/doneSearch.html', controller: 'doneSearchControll'})
+             //系统设置
+            .state('system', { url: '/system', templateUrl: 'app/system/system/system.html', controller: 'systemControll'})
+            .state('feedback', { url: '/feedback', templateUrl: 'app/system/feedback/feedback.html', controller: 'feedbackControll'})
             ;
             var appLaunchCount = window.localStorage.getItem('launchCount');
             if (appLaunchCount) {
                 $urlRouterProvider.otherwise('/home');
             } else {
-                $urlRouterProvider.otherwise('/home');
+                $urlRouterProvider.otherwise('/start');
             }
         //}
         /*修改put 和 post 的数据传递方式*/
