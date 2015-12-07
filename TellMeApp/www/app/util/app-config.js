@@ -12,8 +12,8 @@ angular.module('tellme')
         */
         server: {
             //address: 'http://www.udianqu.com',
-            address: 'http://192.168.1.107',
-            name: 'hotel',
+            address: 'http://192.168.1.113',
+            name: 'TellMeMgr',
             port: '8080',
             getUrl: function () {
                 return this.address + ':' + this.port + '/' + this.name + '/';
