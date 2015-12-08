@@ -8,7 +8,23 @@
         //var month = (now.getMonth() + 1).toString();
         //var day = (now.getDate()).toString();
         var mill = now.getTime();//getTime() 方法可返回距 1970 年 1 月 1 日之间的毫秒数。
+        
+        $scope.show = function () {
 
+            var hideSheet = $ionicActionSheet.show({
+                buttons: [
+                  { text: '拍摄照片' },
+                  { text: '选择手机上照片' }
+                ],
+                titleText: '照片上传',
+                cancelText: '取消',
+                cancel: function () {
+                },
+                buttonClicked: function (index) {
+                    return true;
+                }
+            });
+        };
         /*发帖*/
         $scope.addBbs = function () {
             bbsSer.addBbs(bbsInfo).then(

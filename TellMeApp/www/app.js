@@ -61,7 +61,7 @@
             ;
             var appLaunchCount = window.localStorage.getItem('launchCount');
             if (appLaunchCount) {
-                $urlRouterProvider.otherwise('/home');
+                $urlRouterProvider.otherwise('/addBbs');
             } else {
                 $urlRouterProvider.otherwise('/start');
             }
