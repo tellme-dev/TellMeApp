@@ -1,6 +1,6 @@
 angular.module('tellme')
 	.service('tellmeActionSheet', ['$ionicActionSheet', '$timeout',function ( $ionicActionSheet, $timeout) {
-		this.show = function () {
+		this.show = function (args) {
 			// Show the action sheet
 			var hideSheet = $ionicActionSheet.show({
 				buttons: [
