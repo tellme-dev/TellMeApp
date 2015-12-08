@@ -96,8 +96,13 @@ angular.module('tellme')
 			    args.url = "";
 			    args.title = detail.name;
 			    args.description = detail.text;
-			    args.imageUrl =$scope.baseUrl+detail.imgUrl;
+			    var imgs = [];
+			    angular.forEach(detail.bbsAttachUrls, function (de, index) {
+			        imgs[index] = $scope.baseUrl+de.attachUrl;
+			    });
+                args.imageUrl = imgs;
 			    args.appName = "";
+                args.defaultText = "";
 			    tellmeActionSheet.show(args);
 			}
 

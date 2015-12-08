@@ -21,7 +21,7 @@ angular.module('tellme')
             "add-card": "添加单张卡券至卡包";
             "add-cards": "添加多张卡券至卡包";
             */
-	    this.weChatShare = function (scene, id) {
+	    this.weChatShare = function (scene, id,args) {
 	        if (typeof Wechat === 'undefined') {
 	            alert('Wechat plugin is not installed.');
 	            return false;
@@ -47,13 +47,18 @@ angular.module('tellme')
 	        switch (id) {
 	            case 'check-installed':
 	                Wechat.isInstalled(function (installed) {
-	                    alert("Wechat installed: " + (installed ? "Yes" : "No"));
+	                    //alert("Wechat installed: " + (installed ? "Yes" : "No"));
+	                    if (installed) {
+	                        return true;
+	                    } else {
+	                        return false;
+	                    }
 	                });
-	                return true;
+	                break;
 
 	            case 'send-photo-local':
 	                params.message.media.type = Wechat.Type.IMAGE;
-	                params.message.media.image = "www/img/res1.jpg";
+	                params.message.media.image = args.imageUrl;
 	                break;
 
 	            case 'send-photo-remote':
