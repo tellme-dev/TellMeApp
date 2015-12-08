@@ -28,7 +28,7 @@ angular.module('tellme')
 				}
 
 				var params = {
-					scene: scene;
+					scene: scene
 				};
 
 				if (id == 'send-text') {
