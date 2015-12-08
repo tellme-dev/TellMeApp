@@ -6,7 +6,7 @@
         var onDeviceReady = function () {
             var appLaunchCount = window.localStorage.getItem('launchCount');
             if (appLaunchCount) {
-                
+
             } else {
                 window.localStorage.setItem('launchCount', 1);
             }
@@ -48,7 +48,7 @@
              .state('hotelItem', { url: '/hotelItem?itemId', templateUrl: 'app/hotel/hotel-item/hotel-item.html', controller: 'hotelItemControll' })
             //广告
             .state('adList', { url: '/adList?adInfo', templateUrl: 'app/ad/list/ad-list.html', controller: 'adListControll' })
-            //发现 
+            //发现
             .state('discoverList', { url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverListControll' })
            // 社区
            .state('communityList', { url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
@@ -60,6 +60,7 @@
             .state('feedback', { url: '/feedback', templateUrl: 'app/system/feedback/feedback.html', controller: 'feedbackControll'})
             ;
             var appLaunchCount = window.localStorage.getItem('launchCount');
+            //需要进行页面测试，则修改下面的路由即可
             if (appLaunchCount) {
                 $urlRouterProvider.otherwise('/home');
             } else {
