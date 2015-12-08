@@ -1,17 +1,45 @@
 ﻿angular.module('tellme')
-    .controller('addBbsControll', ['$scope', '$window', 'appConfig', 'cameraSvr', 'fileTransferSvr', 'LoadingSvr', 'bbsSer',
-        function ($scope, $window, appConfig, cameraSvr, fileTransferSvr, LoadingSvr, bbsSer) {
+    .controller('addBbsControll', ['$scope', '$window','$ionicHistory', 'appConfig', '$ionicActionSheet','$timeout', 'cameraSvr', 'fileTransferSvr', 'LoadingSvr', 'bbsSer',
+        function ($scope, $window,$ionicHistory, appConfig,$ionicActionSheet,$timeout, cameraSvr, fileTransferSvr, LoadingSvr, bbsSer) {
         var baseUrl = appConfig.server.getUrl();
         $scope.bbsInfo = {};
         var now = new Date();
+        $scope.bbsImages = [];
         //var year = now.getFullYear();
         //var month = (now.getMonth() + 1).toString();
         //var day = (now.getDate()).toString();
         var mill = now.getTime();//getTime() 方法可返回距 1970 年 1 月 1 日之间的毫秒数。
+        
+        //$('.sh-cont li').find('input').click(function () {
+        //    $(this).parent().hide();
+            //})
+        $scope.goBack = function () {
+            $ionicHistory.goBack();
+        };
+        $scope.show = function () {
 
+            var hideSheet = $ionicActionSheet.show({
+                buttons: [
+                  { text: '拍摄照片' },
+                  { text: '选择手机上照片' }
+                ],
+                titleText: '照片上传',
+                cancelText: '取消',
+                cancel: function () {
+                },
+                buttonClicked: function (index) {
+                    switch (index) {
+                        case 0:
+                            $scope.takePhoto(); break;
+                        case 1:
+                            $scope.getPhoto(); break;
+                    }
+                }
+            });
+        };
         /*发帖*/
-        $scope.addBbs = function () {
-            bbsSer.addBbs(bbsInfo).then(
+        $scope.saveBbs = function () {
+            bbsSer.saveBbs(bbsInfo).then(
                 function (data) {
                     if (data.isSuccess) {
                         console.log(data.msg);
@@ -30,17 +58,28 @@
             cameraSvr.takePhoto(30, cSuccess, cFail);
 
             function cSuccess(imgURI) {
-                LoadingSvr.show();
-                /*上传图片*/
-                var fileName = customerId + '_' + mill + Math.floor(Math.random() * 9999 + 1000)+'.jpg';
-                uploadPhoto(imgURI, fileName);
-                
+                //LoadingSvr.show();
                 var customerId = window.localStorage['userId'];
-                var doc = document.getElementById("image");//父节点
-                var node = document.getElementById("addNode");
-                var ele = document.createElement("img");
-                ele.src = baseUrl+"app/bbs/temp/"+fileName;//ele.src = imgURI;
-                doc.insertBefore(ele,addNode);
+                /*上传图片*/
+                var fileName = customerId + '_' + mill + Math.floor(Math.random() * 9999 + 1000) + '.jpg';
+                //$scope.uploadPhoto(imgURI, fileName);
+
+                $scope.bbsImages.push("app/bbs/temp/" + fileName);
+
+                
+                //var doc = document.getElementById("image");//父标签
+                //var node = document.getElementById("add");//在此标签之前添加
+                
+                //var ele = document.createElement("li");//新增的标签
+                //var ele_node_1 = document.createElement("img");//新增的标签的子标签
+                //ele_node_1.className = "fl fab-li";
+                //ele_node_1.src = baseUrl + "app/bbs/temp/" + fileName;//ele.src = imgURI;
+                //var ele_node_2 = document.createElement("input");//新增的标签的子标签
+                //ele_node_2.type = "button";
+                //ele_node_2.value = "x";
+                //ele.appendChild(ele_node_1);
+                //ele.appendChild(ele_node_2);
+                //doc.insertBefore(ele,node);
             }
             function cFail(message) {
                 console.log(message);
@@ -56,7 +95,7 @@
                 ele.src = imgURI;
                 doc.appendChild(ele);
                 /*上传图片*/
-                uploadPhoto(imgURI, fileName);
+                $scope.uploadPhoto(imgURI, fileName);
             }
             function cFail(message) {
                 console.log(message);
