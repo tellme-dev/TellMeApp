@@ -29,7 +29,7 @@
             <div class="fab-botton-cont" >
                 <ul class="sh-cont" >
                     <li class="fl fab-li" ng-repeat="bbsImage in bbsImages">
-                        <img src="{{bbsImage.imageUrl}}" />
+                        <img src="{{baseUrl}}{{bbsImage.imageUrl}}" />
                         <button ng-click="deletePhoto(bbsImage.imageUrl)">×</button>
                     </li>
                     <li ng-click="show()" class="fl fab-li-ac">
