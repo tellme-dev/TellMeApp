@@ -22,13 +22,13 @@ angular.module('tellme')
 		}
 
 		//QQ Share
-		this.share = function () {
-			var args = {};
-			args.url = "";
-			args.title = "";
-			args.description = "";
-			args.imageUrl = "";
-			args.appName = "";
+		this.share = function (v) {
+			//var args = {};
+			//args.url = "";
+			//args.title = "";
+			//args.description = "";
+			//args.imageUrl = "";
+			//args.appName = "";
 
 			YCQQ.shareToQQ(function () {
 				console.log("share success");
@@ -38,15 +38,15 @@ angular.module('tellme')
 		}
 
 		//QZone Share
-		this.shareToQZone = function () {
-			var args = {};
-			args.url = "http://www.baidu.com";
-			args.title = "This is cordova QZone share ";
-			args.description = "This is cordova QZone share ";
-			var imgs = ['https://www.baidu.com/img/bdlogo.png',
- 'https://www.baidu.com/img/bdlogo.png',
- 'https://www.baidu.com/img/bdlogo.png'];
-			args.imageUrl = imgs;
+		this.shareToQZone = function (args) {
+ //   		var args = {};
+ //   		args.url = "http://www.baidu.com";
+ //   		args.title = "This is cordova QZone share ";
+ //   		args.description = "This is cordova QZone share ";
+ //   		var imgs = ['https://www.baidu.com/img/bdlogo.png',
+ //'https://www.baidu.com/img/bdlogo.png',
+ //'https://www.baidu.com/img/bdlogo.png'];
+ //   		args.imageUrl = imgs;
 			YCQQ.shareToQzone(function () {
 				alert("share success");
 			}, function (failReason) {

@@ -44,7 +44,7 @@
             return deferred.promise;
         }
         //发帖
-        this.addBbs = function (bbsInfo) {
+        this.saveBbs = function (bbsInfo) {
             var url = baseUrl + 'app/bbs/saveBbs.do';
             var jsonData = JSON.stringify({
                 id: 0,
