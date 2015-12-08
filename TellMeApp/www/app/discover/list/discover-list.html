@@ -12,14 +12,15 @@
                 <button ng-click="goToCustomer()" class="button icon ion-android-person" style="border:none"></button>
             </ion-header-bar>
 
-            <ion-content class="zt-conter">
+            <ion-content class="zt-conter" style="margin-top:45px;">
                 <!--内容块-->
-                <ul class="zt-cont">
+                <ul  ng-show="dataShow"  class="zt-cont">
                     <li ng-repeat="data in vm.list" ng-click="goDetail(data.targetType,data.targetId)">
                     <a ng-repeat="image in data.adDetailList" href="#"><img ng-src="{{baseUrl}}{{image.imageUrl}}" />
                      </a>
                     </li>
                 </ul>
+                <div ng-show="msgShow" style="text-align:center;margin-top:10px;"><h3>暂无数据,请稍后重试！</h3></div>
                 <!--内容块-->
                 <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
                 <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>

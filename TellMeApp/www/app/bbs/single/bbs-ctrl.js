@@ -22,7 +22,12 @@
                 );
             //显示评论输入框
             $scope.showInput = function () {
-                $scope.showAnswer = true;
+                if ($scope.showAnswer) {
+                    $scope.showAnswer = false;
+                } else {
+                    $scope.showAnswer = true;
+                }
+               
             }
             //回主贴帖
             $scope.answerbbs = function (id,title) {

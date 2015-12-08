@@ -22,10 +22,10 @@
             </div>
             <ion-content>
                 <!--内容块-->
-                <div class="content sq-hea" >
+                <div ng-show="dataShow" class="content sq-hea" >
                     <div ng-repeat="detail in vm.typeDetail" class="list card item-mb sq-item" >
-                        <a href="javascript:void(0)" >
-                            <div ng-click="toBbsDetail(detail.id)" class="item-avatar sq-item-top ">
+                        <a href="javascript:void(0)"  ng-click="toBbsDetail(detail.id)">
+                            <div class="item-avatar sq-item-top ">
                                 <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" class="sq-item-img" />
                                 <div class="sq-item-vit">
                                     <h2 class="">{{detail.customer.name}}</h2>
@@ -87,6 +87,7 @@
 
                 
                 </div>
+                <div ng-show="msgShow" style="text-align:center;margin-top:10px;"><h3>暂无数据,请稍后重试！</h3></div>
                 <!--内容块-->
                 <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
                 <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>

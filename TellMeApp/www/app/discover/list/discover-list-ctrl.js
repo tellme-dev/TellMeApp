@@ -15,7 +15,8 @@
                     }
                 });
             });
-
+            $scope.dataShow = false;
+            $scope.msgShow = false;
             /*返回前一个界面*/
             $scope.goBack = function () {
                 $ionicHistory.goBack();
@@ -66,6 +67,13 @@
                     var promise = discoverSer.getList(vm.pageNo, vm.pageSize).then(
                   function (data) {
                       if (data.isSuccess) {
+                          if (data.total != 0) {
+                              $scope.dataShow = true;
+                              $scope.msgShow = false;
+                          } else {
+                              $scope.dataShow = false;
+                              $scope.msgShow = true;
+                          }
                           vm.list = data.rows;
                           var total = data.total;
                           if (vm.pageNo * vm.pageSize > total || vm.pageNo * vm.pageSize == total) {
@@ -74,8 +82,11 @@
                           }
                           LoadingSvr.hide();
                           $scope.$broadcast('scroll.infiniteScrollComplete');
+                      } else {
+                          $scope.dataShow = false;
+                          $scope.msgShow = true;
                       }
-                  }
+                    }
                   );
                 }
             }
