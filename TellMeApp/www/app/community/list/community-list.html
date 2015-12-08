@@ -55,7 +55,7 @@
                                 <i class="icon ion-chatbox"></i>
                                 {{detail.answerCount}}
                             </a>
-                            <a class="tab-item sq-tab-item" href="#" >
+                            <a class="tab-item sq-tab-item" ng-click="share(detail)" >
                                 <i class="icon ion-share"></i>
                             </a>
                            <!--点赞-->
@@ -111,18 +111,5 @@
                     </i>
                 </a>
             </div>
-    <!--评论-->
-    <!--<div ng-show="showAnswer" class="cont-pl">
-        <div class="sq-show">
-            <div class="item-input-inset pl-guanbi">
-                <label class="item-input-wrapper">
-                    <input type="text" placeholder="写点什么..." ng-model="globalVar.answerText">
-                </label>
-                <button ng-click="answerbbs()" class="button button-small butt-op">
-                    发送
-                </button>
-            </div>
-        </div>
-    </div>-->
-    <!--评论-->
+
 </ion-view>

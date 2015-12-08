@@ -6,7 +6,7 @@
     </ion-header-bar>
     <ion-content>
         <!--内容块-->
-        <div class="content has-header xq-hea" style="margin-top:45px;">
+        <div ng-show="dataShow"  class="content has-header xq-hea" style="margin-top:45px;">
 
             <div style="width:100%; text-align:center;">
                 <img src="images/fa-1.png" style="width:30%;" />
@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div ng-repeat="data in vm.listData" ng-show="dataShow" class="list card item-mb xq-item">
+            <div ng-repeat="data in vm.listData" class="list card item-mb xq-item">
                 <div class="item item-avatar xq-item-top">
                     <img src="http://www.runoob.com/try/demo_source/mcfly.jpg" />
                     <h2 class="xq-item-h2">{{data.name}}</h2>
@@ -31,16 +31,13 @@
                             <li><i class="ion ion-ios-pricetag"></i></li>
                             <li><a href="#" class="xq-back">{{data.city}}</a></li>
                             <li ng-repeat="item in data.Item"><a href="#">{{item.name}}</a></li>
-
                         </ul>
                         <div class="clear"></div>
                         <p>
                             <span class="xq-p-span">{{data.name}}</span>
                         </p>
                         <p class="xq-p">{{data.text}}</p><!--酒店描述-->
-
                         <p class="xq-p">{{data.address}}</p>
-
                         <p class="xq-p">联系电话：{{data.tel}}</p>
                     </div>
                 </div>
@@ -150,6 +147,7 @@
                 </div>
             </div>
         </div>
+        <div ng-show="msgShow" style="text-align:center;margin-top:10px;"><h3>暂无数据,请稍后重试！</h3></div>
         <!--内容块-->
         <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
 
