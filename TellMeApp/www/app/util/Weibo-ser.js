@@ -20,13 +20,13 @@ angular.module('tellme')
 		}
 
 		//Weibo Webpage Share
-		this.shareToWeibo = function () {
-			var args = {};
-			args.url = "http://www.baidu.com";
-			args.title = "Baidu";
-			args.description = "This is Baidu";
-			args.imageUrl = "https://www.baidu.com/img/bdlogo.png"; //if you don't have imageUrl,for android http://www.sinaimg.cn/blog/developer/wiki/LOGO_64x64.png will be the defualt one
-			args.defaultText = "";
+		this.shareToWeibo = function (args) {
+			//var args = {};
+			//args.url = _args.url;
+			//args.title = "Baidu";
+			//args.description = "This is Baidu";
+			//args.imageUrl = "https://www.baidu.com/img/bdlogo.png"; //if you don't have imageUrl,for android http://www.sinaimg.cn/blog/developer/wiki/LOGO_64x64.png will be the defualt one
+			//args.defaultText = "";
 			YCWeibo.shareToWeibo(function () {
 				alert("share success");
 			}, function (failReason) {
@@ -37,9 +37,11 @@ angular.module('tellme')
 		//CheckClientInstalled
 		this.checkClientInstalled = function () {
 			YCWeibo.checkClientInstalled(function () {
-				console.log('client is installed');
+			    console.log('client is installed');
+			    return true;
 			}, function () {
-				console.log('client is not installed');
+			    console.log('client is not installed');
+			    return false;
 			});
 		}
   }])
