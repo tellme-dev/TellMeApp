@@ -66,15 +66,15 @@
             cameraSvr.takePhoto(30, cSuccess, cFail);
 
             function cSuccess(imgURI) {
-                //LoadingSvr.show();
+                LoadingSvr.show();
                 var customerId = window.localStorage['userId'];
                 var fileName = customerId + '_' + mill + Math.floor(Math.random() * 9999 + 1000) + '.jpg';
                 /*上传图片*/
-                //$scope.uploadPhoto(imgURI, fileName);
+                $scope.uploadPhoto(imgURI, fileName);
                 //上传成功 将图片url放到对象中再放到数组中
-                var image = {};
-                image.imageUrl = "app/bbs/temp/" + fileName;
-                $scope.bbsImages.push(image);
+                //var image = {};
+                //image.imageUrl = "app/bbs/temp/" + fileName;
+                //$scope.bbsImages.push(image);
             }
             function cFail(message) {
                 console.log(message);
