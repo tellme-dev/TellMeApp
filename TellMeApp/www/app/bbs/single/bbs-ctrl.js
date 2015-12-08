@@ -1,16 +1,15 @@
 ﻿angular.module('tellme')
-    .controller('bbsControll', ['$scope', '$ionicHistory', '$stateParams', '$ionicHistory', '$window', 'bbsSer', 'communitySer', 'commonSer', 'QQSer', 'appConfig', 'LoadingSvr',
-        function ($scope, $ionicHistory, $stateParams, $ionicHistory, $window, bbsSer, communitySer,commonSer,QQSer, appConfig, LoadingSvr) {
-        $scope.baseUrl = appConfig.server.getUrl();
-        $scope.$window = $window;
+    .controller('bbsControll', ['$scope', '$ionicHistory','$state', '$stateParams', '$ionicHistory', '$window', 'bbsSer', 'communitySer', 'commonSer', 'tellmeActionSheet', 'appConfig', 'LoadingSvr',
+        function ($scope, $ionicHistory, $stateParams,$state, $ionicHistory, $window, bbsSer, communitySer,commonSer,tellmeActionSheet, appConfig, LoadingSvr) {
+            $scope.baseUrl = appConfig.server.getUrl();
+            var bbsId = $stateParams.bbsId;
         $scope.goBack = function () {
-            //$ionicHistory.goBack();
-            $window.history.back();
+            $ionicHistory.goBack();
         };
         $scope.globalVar = {};
         $scope.globalVar.answerText = "";//回帖内容
         $scope.showAnswer = false;
-        var bbsId = $stateParams.bbsId;
+       
             bbsSer.getBBs(bbsId).then(
                 function (data) {
                     if (data.isSuccess) {
@@ -141,12 +140,27 @@
                 $state.go('login', { pageName: 'communityList' });
             }
          }
-            //分享到qq
-          $scope.toShareQQ = function (id) {
-              QQSer.shareToQZone();
-          }
+           // 分享
+          $scope.share = function (bbsDetail) {
+              var isLogin = $scope.userIsLogin();
+              if (isLogin) {//如果用户已经登录
+                  var args = {};
+                  args.url = "";
+                  args.title = bbsDetail.title;
+                  args.description = bbsDetail.text;
+                  var imgs = [];
+                  angular.forEach(bbsDetail.bbsAttachUrls, function (de, index) {
+                      imgs[index] = $scope.baseUrl + de.attachUrl;
+                  });
+                  args.imageUrl = imgs;
+                  args.appName = "";
+                  tellmeActionSheet.show(args);
 
-              //回复某人
+              } else {
+                  $state.go('login', { pageName: 'communityList' });
+              }
+          }
+         //回复某人
          $scope.answerChildren = function (id) {
              bbsId = id;
              bbsSer.getBBs(id).then(
@@ -162,8 +176,7 @@
              vm.moredata = true;
              vm.loadMore();
           }
-
-              //    //下拉加载更多  //获取单个BBS回帖详情
+         //下拉加载更多  //获取单个BBS回帖详情
         var vm = $scope.vm = {
                 moredata: false,
                 bbsDetail: [],

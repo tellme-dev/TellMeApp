@@ -29,7 +29,7 @@
             .state('home', {  url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
             //个人中心
             .state('customer', { url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
-            .state('login', { url: '/login/?pageName', templateUrl: 'app/customer/login/login.html', controller: 'loginControll' })
+            .state('login', { url: '/login?pageName', templateUrl: 'app/customer/login/login.html', controller: 'loginControll' })
             .state('register', { url: '/register', templateUrl: 'app/customer/register/register.html', controller: 'registerControll' })
 
             //定位
@@ -39,7 +39,7 @@
             //论坛
             .state('bbsHome', { url: '/bbsHome', templateUrl: 'app/bbs/main/main.html', controller: 'bbsMainControll' })
             .state('bbsList', { url: '/bbsList', templateUrl: 'app/bbs/list/bbs-list.html', controller: 'bbsListControll' })
-            .state('bbs', { cache: false, url: '/bbs/?bbsId', templateUrl: 'app/bbs/single/bbs.html', controller: 'bbsControll' })
+            .state('bbs', { cache: false, url: '/bbs?bbsId', templateUrl: 'app/bbs/single/bbs.html', controller: 'bbsControll' })
             .state('addBbs', { url: '/addBbs', templateUrl: 'app/bbs/addbbs/addbbs.html', controller: 'addBbsControll' })
 
             //酒店
@@ -64,7 +64,7 @@
             if (appLaunchCount) {
                 $urlRouterProvider.otherwise('/communityList');
             } else {
-                $urlRouterProvider.otherwise('/start');
+                $urlRouterProvider.otherwise('/communityList');
             }
         //}
         /*修改put 和 post 的数据传递方式*/
