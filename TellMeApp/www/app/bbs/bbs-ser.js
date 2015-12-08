@@ -70,4 +70,24 @@
                 });
             return deferred.promise;
         }
+        //删除图片
+        this.deletePhoto = function (imageUrl) {
+            var url = baseUrl + 'app/bbs/deletePhoto.do';
+            var jsonData = JSON.stringify({
+                fileUrl: imageUrl
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { param: jsonData }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
     }]);
