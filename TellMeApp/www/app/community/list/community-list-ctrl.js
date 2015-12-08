@@ -94,11 +94,15 @@ angular.module('tellme')
             // 分享
 			$scope.share = function (detail) {
 			    var args = {};
-			    //args.url = "";
-			    args.title = "";
-			    args.description = "";
-			    args.imageUrl = "";
-			    //args.appName = "";
+			    args.url = "";
+			    args.title = detail.title;
+			    args.description = detail.text;
+			    var imgs = [];
+			    angular.forEach(detail.bbsAttachUrls, function (de, index) {
+			        imgs[index] = $scope.baseUrl+de.attachUrl;
+			    });
+                args.imageUrl = imgs;
+			    args.appName = "";
 			    tellmeActionSheet.show(args);
 			}
 
