@@ -6,11 +6,12 @@
             $scope.$window = $window;
             $scope.goBack = function () {
                  $ionicHistory.goBack();
-                //$window.history.back();
             };
+            $scope.dataShow = false;
+            $scope.msgShow = false;
             //跳转到单个论坛详情
             $scope.toBbsDetail = function (bbsId) {
-                $state.go('bbs', { bbsId: bbsId },{ reload:true});
+                $state.go('bbs', { bbsId: bbsId });
             }
             //跳转到发帖页面
             $scope.toAddBbs = function () {
@@ -46,7 +47,6 @@
           
            //回帖
             $scope.answerbbs = function (id, title) {
-                //$scope.showAnswer = false;
                 var el = document.getElementById('bbs-' + id);
                 var answerText = el.value;
                 if (answerText == "") {
@@ -164,8 +164,15 @@
                     vm.pageNo += 1;
                     var promise = communitySer.getTypeDetail(vm.categoryId, vm.pageNo, vm.pageSize).then(
                   function (data) {
-                     
                       if (data.isSuccess) {
+                          if (data.total != 0) {
+                              $scope.dataShow = true;
+                              $scope.msgShow = false;
+                          } else {
+                              $scope.dataShow = false;
+                              $scope.msgShow = true;
+                          }
+
                           vm.typeDetail = data.rows;
                           var total = data.total;
                           if (vm.pageNo * vm.pageSize > total || vm.pageNo * vm.pageSize == total) {
@@ -174,6 +181,9 @@
                           }
                           LoadingSvr.hide();
                           $scope.$broadcast('scroll.infiniteScrollComplete');
+                      } else {
+                          $scope.dataShow = false;
+                          $scope.msgShow = true;
                       }
                     }
                     

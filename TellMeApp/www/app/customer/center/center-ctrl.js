@@ -8,7 +8,7 @@
 
             //判断用户是否登录
             if (typeof (window.localStorage['userTel']) == 'undefined') {//如果用户未登录跳转到登录页面
-                //$state.go('login', { pageName: 'home' });
+                $state.go('login', { pageName: 'customer' });
             }
             /*返回前一个界面*/
             $scope.$window = $window;
