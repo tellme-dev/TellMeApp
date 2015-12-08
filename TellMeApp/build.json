@@ -1,9 +1,9 @@
 {
      "android": {
          "release": {
-             "keystore": "F:/TellMeApp/TellMeApp/res/native/android/udqApp.keystore",
+             "keystore": "C:/Users/Administrator/Documents/GitHubVisualStudio/TellMeApp/TellMeApp/res/native/android/udqApp.keystore",
              "storePassword": "111111",
-             "alias": "udqApp.keystore",
+             "alias": "TellMeApp.keystore",
              "password" : "111111",
              "keystoreType": ""
          }

@@ -60,6 +60,7 @@
             .state('feedback', { url: '/feedback', templateUrl: 'app/system/feedback/feedback.html', controller: 'feedbackControll'})
             ;
             var appLaunchCount = window.localStorage.getItem('launchCount');
+            //需要进行页面测试，则修改下面的路由即可
             if (appLaunchCount) {
                 $urlRouterProvider.otherwise('/home');
             } else {

@@ -15,7 +15,8 @@ angular.module('tellme')
 
             navigator.camera.getPicture(successCallBack, failCallBack, {
                 quality: imgQuality,
-                destinationType: navigator.camera.DestinationType.FILE_URI
+                destinationType: navigator.camera.DestinationType.FILE_URI,
+                saveToPhotoAlbum:true
             });
         }
         //从手机相册选取

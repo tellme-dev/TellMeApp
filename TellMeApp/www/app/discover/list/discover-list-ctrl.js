@@ -58,7 +58,7 @@
             var vm = $scope.vm = {
                 categoryId:1,
                 moredata: false,
-                typeDetail: [],
+                list: [],
                 pageNo:0,
                 pageSize:10,
                 loadMore: function () {

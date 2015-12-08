@@ -89,4 +89,25 @@
                 });
             return deferred.promise;
         }
+        //根据标签获取酒店列表
+        this.getHotelListByItem = function (itemTagId, pageNumber) {
+            var url = baseUrl + 'app/hotel/hotelListByItem.do';
+            var getDataJSON = JSON.stringify({
+                pageNumber:pageNumber,
+                itemTagId: itemTagId
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: getDataJSON }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
     }]);
