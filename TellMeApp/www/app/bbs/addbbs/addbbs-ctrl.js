@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('addBbsControll', ['$scope', '$window','$ionicHistory', 'appConfig', '$ionicActionSheet','$timeout', 'cameraSvr', 'fileTransferSvr', 'LoadingSvr', 'bbsSer',
-        function ($scope, $window,$ionicHistory, appConfig,$ionicActionSheet,$timeout, cameraSvr, fileTransferSvr, LoadingSvr, bbsSer) {
+    .controller('addBbsControll', ['$scope','$state', '$window','$ionicHistory', 'appConfig', '$ionicActionSheet','$timeout', 'cameraSvr', 'fileTransferSvr', 'LoadingSvr', 'bbsSer',
+        function ($scope,$state, $window,$ionicHistory, appConfig,$ionicActionSheet,$timeout, cameraSvr, fileTransferSvr, LoadingSvr, bbsSer) {
         var baseUrl = appConfig.server.getUrl();
         $scope.bbsInfo = {};
         var now = new Date();
@@ -39,9 +39,10 @@
         };
         /*发帖*/
         $scope.saveBbs = function () {
-            bbsSer.saveBbs(bbsInfo).then(
+            bbsSer.saveBbs($scope.bbsInfo).then(
                 function (data) {
                     if (data.isSuccess) {
+                        $state.go('communityList');
                         console.log(data.msg);
                     } else {
                         //alert('');

@@ -8,10 +8,12 @@
             <h1 class="title">发帖</h1>
         </div>
         <ion-content style="top:55px;">
-            <div style="width:100%; background:#808080 ">
-                标题
-            </div>
+            
             <div class="list fab-text">
+                <div style="background:#fff;margin-bottom:10px;padding:5px 10px;border-radius:5px;">
+                    <input ng-model="bbsInfo.title" placeholder="标题" style="width:100%;border:none;" />
+                </div>
+
                 <textarea type="text" ng-model="bbsInfo.text" placeholder="分享你的吐槽..." class="fab-textarea"></textarea>
             </div>
             <div class="fab-cont">
