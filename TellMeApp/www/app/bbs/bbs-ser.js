@@ -44,7 +44,7 @@
             return deferred.promise;
         }
         //发帖
-        this.addBbs = function (bbsInfo) {
+        this.saveBbs = function (bbsInfo) {
             var url = baseUrl + 'app/bbs/saveBbs.do';
             var jsonData = JSON.stringify({
                 id: 0,
@@ -53,7 +53,7 @@
                 postType: 0,
                 targetType: 0,
                 parentId: 0,
-                title: "标题",//bbsInfo.title,
+                title: bbsInfo.title,
                 text: bbsInfo.text
             });
             var deferred = $q.defer();
