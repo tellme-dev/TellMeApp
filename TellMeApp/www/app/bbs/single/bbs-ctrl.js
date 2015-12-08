@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('bbsControll', ['$scope', '$ionicHistory', '$stateParams', '$ionicHistory', '$window', 'bbsSer', 'communitySer', 'commonSer', 'appConfig', 'LoadingSvr',
-        function ($scope, $ionicHistory, $stateParams, $ionicHistory, $window, bbsSer, communitySer,commonSer, appConfig, LoadingSvr) {
+    .controller('bbsControll', ['$scope', '$ionicHistory', '$stateParams', '$ionicHistory', '$window', 'bbsSer', 'communitySer', 'commonSer', 'QQSer', 'appConfig', 'LoadingSvr',
+        function ($scope, $ionicHistory, $stateParams, $ionicHistory, $window, bbsSer, communitySer,commonSer,QQSer, appConfig, LoadingSvr) {
         $scope.baseUrl = appConfig.server.getUrl();
         $scope.$window = $window;
         $scope.goBack = function () {
@@ -109,8 +109,8 @@
             }
          
         }
-         //收藏
-         $scope.collectBbs = function (id) {
+          //收藏
+          $scope.collectBbs = function (id) {
             var isLogin = $scope.userIsLogin();
             if (isLogin) {//如果用户已经登录
                 var jsonData = JSON.stringify({
@@ -140,8 +140,13 @@
             } else {
                 $state.go('login', { pageName: 'communityList' });
             }
-        }
-         //回复某人
+         }
+            //分享到qq
+          $scope.toShareQQ = function (id) {
+              QQSer.shareToQZone();
+          }
+
+              //回复某人
          $scope.answerChildren = function (id) {
              bbsId = id;
              bbsSer.getBBs(id).then(
@@ -150,23 +155,23 @@
                                $scope.bbs = data.data;
                            } else {
                                console.log(data.msg);
-                           }
                        }
+                     }
                 );
              vm.pageNo = 0;
              vm.moredata = true;
              vm.loadMore();
-         }
-      
-        //    //下拉加载更多  //获取单个BBS回帖详情
+          }
+
+              //    //下拉加载更多  //获取单个BBS回帖详情
         var vm = $scope.vm = {
-            moredata: false,
-            bbsDetail: [],
-            pageNo: 0,
-            pageSize:5,
-            loadMore: function () {//加载BBS回复内容详情
+                moredata: false,
+                bbsDetail: [],
+                pageNo: 0,
+                pageSize: 15,
+                loadMore: function () {//加载BBS回复内容详情
                 LoadingSvr.show();
-                vm.pageNo+= 1;
+                vm.pageNo += 1;
                 var promise = bbsSer.bbsDeatil(bbsId, vm.pageNo, vm.pageSize).then(
               function (data) {
                   if (data.isSuccess) {
@@ -175,13 +180,13 @@
                       if (vm.pageNo * vm.pageSize > total || vm.pageNo * vm.pageSize == total) {
                           vm.moredata = true;
                           vm.pageNo = 0;
-                      }
+                  }
                       LoadingSvr.hide();
                       $scope.$broadcast('scroll.infiniteScrollComplete');
-                  }
               }
-              );
-            }
+                }
+                  );
         }
-  
+          }
+
     }]);

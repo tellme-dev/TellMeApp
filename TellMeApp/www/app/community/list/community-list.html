@@ -4,7 +4,7 @@
     }
     .current {
       border-color: #99c600;
-    }
+    } 
 </style>
 
 <ion-view>
@@ -45,7 +45,7 @@
                                     <div class="col col-padding" ng-repeat="image in detail.bbsAttachUrls">
                                      <img href="#" ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" />
                                     </div>
-
+                                  
                                 </div>
                             </div>
                         </a>
@@ -55,8 +55,7 @@
                                 <i class="icon ion-chatbox"></i>
                                 {{detail.answerCount}}
                             </a>
-                            <!-- 分享 -->
-                            <a class="tab-item sq-tab-item" ng-click="share(detail)" >
+                            <a class="tab-item sq-tab-item" href="#" >
                                 <i class="icon ion-share"></i>
                             </a>
                            <!--点赞-->
@@ -86,7 +85,7 @@
 
                     </div>
 
-
+                
                 </div>
                 <div ng-show="msgShow" style="text-align:center;margin-top:10px;"><h3>暂无数据,请稍后重试！</h3></div>
                 <!--内容块-->
@@ -112,18 +111,5 @@
                     </i>
                 </a>
             </div>
-    <!--评论-->
-    <!--<div ng-show="showAnswer" class="cont-pl">
-        <div class="sq-show">
-            <div class="item-input-inset pl-guanbi">
-                <label class="item-input-wrapper">
-                    <input type="text" placeholder="写点什么..." ng-model="globalVar.answerText">
-                </label>
-                <button ng-click="answerbbs()" class="button button-small butt-op">
-                    发送
-                </button>
-            </div>
-        </div>
-    </div>-->
-    <!--评论-->
+
 </ion-view>
