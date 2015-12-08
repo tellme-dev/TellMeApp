@@ -22,7 +22,7 @@ angular.module('tellme')
 		}
 
 		//QQ Share
-		this.share = function (v) {
+		this.share = function (args) {
 			//var args = {};
 			//args.url = "";
 			//args.title = "";
