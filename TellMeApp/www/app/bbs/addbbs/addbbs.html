@@ -4,63 +4,36 @@
     <ion-side-menu-content style="background-color:#ddd;">
 
         <div class="bar bar-header">
-            <button class="button icon ion-chevron-left sqer-but"></button>
-            <h1 class="title">编辑</h1>
+            <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
+            <h1 class="title">发帖</h1>
         </div>
         <ion-content style="top:55px;">
-
+            <div style="width:100%; background:#808080 ">
+                标题
+            </div>
             <div class="list fab-text">
-                <textarea type="text" placeholder="分享你的吐槽..." class="fab-textarea"></textarea>
+                <textarea type="text" ng-model="bbsInfo.text" placeholder="分享你的吐槽..." class="fab-textarea"></textarea>
             </div>
             <div class="fab-cont">
                 <span class="fl fab-sc-tie">上传图片</span>
 
-                <button class="fr fab-fabu">发布</button>
+                <button class="fr fab-fabu" ng-click="saveBbs()">发布</button>
                 <div class="fr fab-but-cont">
                     <button class="ion-ios-location fr"></button>
                     <input class="fl" placeholder="四川省成都市武侯区锦里" />
                 </div>
                 <div class="clear"></div>
             </div>
-            <div class="fab-botton-cont">
+            <div class="fab-botton-cont" >
+                <ul class="sh-cont" ng-if="bbsImages"  ng-repeat="bbsImage in bbsImages">
+                    <li class="f1 fab-li">
+                        <img ng-src="{{baseUrl}}{{bbsImage.imageUrl}}" />
+                        <button>×</button>
+                    </li>
+                    <div class="clear"></div>
+                </ul>
                 <ul class="sh-cont">
-                    <li class="fl fab-li">
-                        <img src="" />
-                        <button>×</button>
-                    </li>
-                    <li class="fl fab-li">
-                        <img src="" />
-                        <button>×</button>
-                    </li>
-                    <li class="fl fab-li">
-                        <img src="" />
-                        <button>×</button>
-                    </li>
-                    <li class="fl fab-li">
-                        <img src="" />
-                        <button>×</button>
-                    </li>
-                    <li class="fl fab-li">
-                        <img src="" />
-                        <button>×</button>
-                    </li>
-                    <li class="fl fab-li">
-                        <img src="" />
-                        <button>×</button>
-                    </li>
-                    <li class="fl fab-li">
-                        <img src="" />
-                        <button>×</button>
-                    </li>
-                    <li class="fl fab-li">
-                        <img src="" />
-                        <button>×</button>
-                    </li>
-                    <li class="fl fab-li">
-                        <img src="" />
-                        <button>×</button>
-                    </li>
-                    <li ng-click="show()" class="fl fab-li-ac">
+                    <li id="add" ng-click="show()" class="fl fab-li-ac">
                         +
                     </li>
                     <div class="clear"></div>

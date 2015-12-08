@@ -61,7 +61,7 @@
             ;
             var appLaunchCount = window.localStorage.getItem('launchCount');
             if (appLaunchCount) {
-                $urlRouterProvider.otherwise('/addBbs');
+                $urlRouterProvider.otherwise('/communityList');
             } else {
                 $urlRouterProvider.otherwise('/start');
             }

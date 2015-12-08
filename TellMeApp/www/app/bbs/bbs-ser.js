@@ -53,7 +53,7 @@
                 postType: 0,
                 targetType: 0,
                 parentId: 0,
-                title: bbsInfo.title,
+                title: "标题",//bbsInfo.title,
                 text: bbsInfo.text
             });
             var deferred = $q.defer();
