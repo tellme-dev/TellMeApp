@@ -27,15 +27,12 @@
                 <div class="clear"></div>
             </div>
             <div class="fab-botton-cont" >
-                <ul class="sh-cont" ng-if="bbsImages"  ng-repeat="bbsImage in bbsImages">
-                    <li class="f1 fab-li">
-                        <img ng-src="{{baseUrl}}{{bbsImage.imageUrl}}" />
-                        <button>×</button>
+                <ul class="sh-cont" >
+                    <li class="fl fab-li" ng-repeat="bbsImage in bbsImages">
+                        <img src="{{bbsImage.imageUrl}}" />
+                        <button ng-click="deletePhoto(bbsImage.imageUrl)">×</button>
                     </li>
-                    <div class="clear"></div>
-                </ul>
-                <ul class="sh-cont">
-                    <li id="add" ng-click="show()" class="fl fab-li-ac">
+                    <li ng-click="show()" class="fl fab-li-ac">
                         +
                     </li>
                     <div class="clear"></div>

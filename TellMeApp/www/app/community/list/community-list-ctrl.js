@@ -21,7 +21,7 @@
             $scope.globalVar.SelectedTag = 1;//选中分类标签索引
             var initCategoryId = 0;
          
-            //根据获取社区分类标签内容 categoryId分类标签ID
+            //根据社区分类标签获取内容 categoryId分类标签ID
             $scope.gettypedetail = function (index, categoryid) {
                 $scope.globalVar.SelectedTag = index;
                 vm.categoryId = categoryid;
