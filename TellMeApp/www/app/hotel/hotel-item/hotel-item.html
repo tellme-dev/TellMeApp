@@ -6,7 +6,7 @@
     </ion-header-bar>
     <ion-content>
         <!--内容块-->
-        <div class="content has-header xq-hea">
+        <div class="content has-header xq-hea" style="margin-top:45px;">
 
             <div style="width:100%; text-align:center;">
                 <img src="images/fa-1.png" style="width:30%;" />
@@ -15,7 +15,54 @@
                 </div>
             </div>
 
-            <div class="list card item-mb xq-item">
+            <div ng-repeat="data in vm.listData" ng-show="dataShow" class="list card item-mb xq-item">
+                <div class="item item-avatar xq-item-top">
+                    <img src="http://www.runoob.com/try/demo_source/mcfly.jpg" />
+                    <h2 class="xq-item-h2">{{data.name}}</h2>
+                    <button class="xq-item-but">
+                        关 注
+                    </button>
+                    <div class="clear"></div>
+                </div>
+                <div class="item item-body xq-item-cont">
+                    <img class="full-image" ng-src="{{baseUrl}}{{data.imgUrl}}">
+                    <div class="xq-item-fl">
+                        <ul class="xq-ul">
+                            <li><i class="ion ion-ios-pricetag"></i></li>
+                            <li><a href="#" class="xq-back">{{data.city}}</a></li>
+                            <li ng-repeat="item in data.Item"><a href="#">{{item.name}}</a></li>
+
+                        </ul>
+                        <div class="clear"></div>
+                        <p>
+                            <span class="xq-p-span">{{data.name}}</span>
+                        </p>
+                        <p class="xq-p">{{data.text}}</p><!--酒店描述-->
+
+                        <p class="xq-p">{{data.address}}</p>
+
+                        <p class="xq-p">联系电话：{{data.tel}}</p>
+                    </div>
+                </div>
+
+                <div class="item tabs tabs-secondary tabs-icon-left" style="background-color:#f6f6f6">
+                    <a class="tab-item xq-tab-item" href="#"><!--评论-->
+                        <i class="icon ion-chatbox"></i>
+                    </a>
+                    <a class="tab-item xq-tab-item" href="#"><!--分享-->
+                        <i class="icon ion-share"></i>
+                    </a>
+                    <a class="tab-item xq-tab-item" ng-click="toSaveAgree(data.id)" href="# "><!--点赞-->
+                        <i class="icon ion-thumbsup"></i>
+                    </a>
+                    <a class="tab-item xq-tab-item" href="#" ng-click="toSaveCollection(data.id)"><!--收藏-->
+                        <i class="icon ion-android-favorite"></i>
+                    </a>
+                </div>
+
+            </div>
+
+            <!--<div class="list card item-mb xq-item">
 
                 <div class="item item-avatar xq-item-top">
                     <img src="http://www.runoob.com/try/demo_source/mcfly.jpg" />
@@ -65,59 +112,7 @@
                     </a>
                 </div>
 
-            </div>
-
-            <div class="list card item-mb xq-item">
-
-                <div class="item item-avatar xq-item-top">
-                    <img src="http://www.runoob.com/try/demo_source/mcfly.jpg" />
-                    <h2 class="xq-item-h2">皇冠假日酒店</h2>
-                    <button class="xq-item-but">
-                        关 注
-                    </button>
-                    <div class="clear"></div>
-                </div>
-
-                <div class="item item-body xq-item-cont">
-                    <img class="full-image" src="http://www.runoob.com/try/demo_source/delorean.jpg">
-                    <div class="xq-item-fl">
-                        <ul class="xq-ul">
-                            <li><i class="ion ion-ios-pricetag"></i></li>
-                            <li><a href="#" class="xq-back">成都</a></li>
-                            <li><a href="#">旅行</a></li>
-                            <li><a href="#">市区</a></li>
-                            <li><a href="#">美食</a></li>
-                            <li><a href="#">高档餐厅</a></li>
-
-                        </ul>
-                        <div class="clear"></div>
-                        <p>
-                            <span class="xq-p-span">皇冠假日酒店</span>
-                        </p>
-                        <p class="xq-p">入住舒适度：9.0分</p>
-
-                        <p class="xq-p">成都市锦江区总府街31号</p>
-
-                        <p class="xq-p">房间数：330 间</p>
-                    </div>
-                </div>
-
-                <div class="item tabs tabs-secondary tabs-icon-left" style="background-color:#f6f6f6">
-                    <a class="tab-item xq-tab-item" href="#">
-                        <i class="icon ion-chatbox"></i>
-                    </a>
-                    <a class="tab-item xq-tab-item" href="#">
-                        <i class="icon ion-share"></i>
-                    </a>
-                    <a class="tab-item xq-tab-item" href="# ">
-                        <i class="icon ion-thumbsup"></i>
-                    </a>
-                    <a class="tab-item xq-tab-item" href="#">
-                        <i class="icon ion-android-favorite"></i>
-                    </a>
-                </div>
-
-            </div>
+            </div>-->
 
             <div>
                 <div class="xq-foot-top">
@@ -156,6 +151,7 @@
             </div>
         </div>
         <!--内容块-->
+        <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
 
     </ion-content>
 </ion-view>

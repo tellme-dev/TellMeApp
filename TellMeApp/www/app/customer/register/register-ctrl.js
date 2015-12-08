@@ -8,7 +8,6 @@
              /*倒计时*/
              var count;
              $scope.countInterval = 120;
-             $scope.verifyDisabled = false;
              /*倒计时*/
              $scope.countDown = function () {
                  // Don't start a new countDown if we are already countDowning
@@ -19,7 +18,7 @@
                  count = $interval(function () {
                      if ($scope.countInterval > 0) {
                          $scope.countInterval -= 1;
-                         $scope.tips = '还剩:  ' + $scope.countInterval + 's';
+                         $scope.verifyTips = '还剩:  ' + $scope.countInterval + 's';
                      } else {
                          $scope.stopCountDown();
                      }
@@ -70,12 +69,16 @@
             $ionicHistory.goBack();
         };
         $scope.goLogin = function () {
-            $state.go('login');
+            //  $state.go('login');
+            $ionicHistory.goBack();
         };
         var isSumit = true;//是否允许提交
         ////判断账号是否存在
         $scope.verifyTel = function () {
             var mobile = $scope.registerData.mobile;
+            if (!checkMobile(mobile)) {
+                alert("请输入正确的电话号码！"); return;
+            }
             customerSer.verifyTel(mobile).then(
                 function (data) {
                     if (data.isSuccess) {
@@ -98,6 +101,12 @@
          }
         //注册
         $scope.register = function () {
+            if ($scope.registerData.psd == "" || typeof ($scope.registerData.psd) == "undefined") {
+                alert("请输入密码！"); return;
+            }
+            if ($scope.registerData.verifyCode == "" || typeof ($scope.registerData.verifyCode) == "undefined") {
+                alert("请输入验证码！"); return;
+            }
             if (isSumit) {
                 customerSer.register($scope.registerData).then(
                 function (data) {
@@ -121,13 +130,14 @@
         $scope.sendShortMessageCode = function () {
             //判断"手机号码"是否符合规范
             var mobile = $scope.registerData.mobile;
-            if (isSumit && mobile != "") {
+            if (isSumit && mobile != "" && typeof (mobile) != "undefined" && checkMobile(mobile)) {
                 $scope.msg = "";
                 commonSer.sendSMS(mobile).then(
                function (data) {
                    if (data.isSuccess) {
                        console.log('验证码发送成功');
-                       $scope.verifyTips = '';
+                       $scope.countDown();
+                      // $scope.verifyTips = '还剩:  ' + $scope.countInterval + 's';
                    } else {
                        console.log(data.msg);
                        //提示
@@ -138,7 +148,7 @@
                }
                );
             } else {
-                $scope.msg = '请填写正确的电话号码';
+                alert('请填写正确的电话号码');  
             }
         }
     }]);
