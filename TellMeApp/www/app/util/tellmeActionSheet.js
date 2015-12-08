@@ -1,11 +1,11 @@
 angular.module('tellme')
-	.service('tellmeActionSheet', [function ($scope, $ionicActionSheet, $timeout) {
+	.service('tellmeActionSheet', ['$ionicActionSheet', '$timeout',function ( $ionicActionSheet, $timeout) {
 		this.show = function () {
 			// Show the action sheet
 			var hideSheet = $ionicActionSheet.show({
 				buttons: [
 					{
-						text: '<b>Share</b> This'
+						text: '<div><b>Share</b> This<div>'
 					},
 					{
 						text: '<b>Share</b> This'
@@ -24,7 +24,7 @@ angular.module('tellme')
 			// For example's sake, hide the sheet after two seconds
 			$timeout(function () {
 				hideSheet();
-			}, 2000);
+			}, 4000);
 		}
 
   }])
