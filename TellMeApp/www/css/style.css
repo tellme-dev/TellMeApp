@@ -212,3 +212,14 @@ padding:10px 5px; height:auto;
      width:100%;
     
     }
+    .sheetspan {
+	width: 40px;
+	height: 60px;
+	display: inline-block;
+	text-align: center;
+	margin: 0 20px;
+}
+.sheetimg {
+	width: 40px;
+	height: 40px;
+}

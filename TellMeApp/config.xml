@@ -3,7 +3,7 @@
   <name>TellMeApp</name>
   <description>A blank project that uses Apache Cordova to help you build an app that targets multiple mobile platforms: Android, iOS, Windows, and Windows Phone.</description>
   <author href="http://cordova.io" email="dev@cordova.apache.org">tellme dev</author>
-  <content src="index.html" />
+  <content src="app.html" />
   <access origin="*" />
   <vs:features />
   <preference name="SplashScreen" value="screen" />

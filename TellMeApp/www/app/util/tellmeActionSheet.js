@@ -1,56 +1,41 @@
 angular.module('tellme')
-	.service('tellmeActionSheet', ['$ionicActionSheet', '$timeout', 'QQSer', 'WechatShareSer', 'WeiboSer', 'popUpSer', function ($ionicActionSheet, $timeout, QQSer, WechatShareSer, WeiboSer, popUpSer) {
+	.service('tellmeActionSheet', ['$ionicActionSheet', '$timeout', 'QQSer', 'WechatShareSer', 'WeiboSer', 'popUpSer', '$ionicFtActionSheet', function ($ionicActionSheet, $timeout, QQSer, WechatShareSer, WeiboSer, popUpSer, $ionicFtActionSheet) {
 	    var _args = {};
 	    this.show = function (args) {
 	        _args = args;
 	        // Show the action sheet
-	        var hideSheet = $ionicActionSheet.show({
+	        var hideSheet = $ionicFtActionSheet.show({
 	            buttons: [
 					{
-					    text: '<b>QQ好友</b>',
-					    type: 'inline-block button-dark'
+					    text: 'QQ好友',
+					    img: "images/share/qq.png"
 					},
 					{
 					    text: 'QQ空间',
-					    type: 'button button-dark'
+					    img: "images/share/space.png"
 					},
                     {
                         text: '微信好友',
-                        type: 'button button-dark'
+                        img: "images/share/wechat.png"
                     },
                     {
-                        text: '朋友圈',
-                        type: 'button button-dark'
+                        text: '朋友圈子 ',
+                        img: "images/share/circle.png"
                     },
                     {
                         text: '新浪微博',
-                        type: 'button button-dark'
-                    },
-                    {
-                        text: '取消',
-                        type: 'button button-dark'
-                    },
+                        img: "images/share/weibo.png"
+                    }
 	            ],
 	            titleText: '分享至',
+	            cancelText: "取消",
 	            buttonClicked: function (index, args) {
 	                switch (index) {
 	                    case 0://QQ好友
 	                        QQSer.share(_args);
-	                        //if (QQSer.checkClientInstalled()) {
-	                        //    QQSer.share(_args);
-	                        //} else {
-	                        //    popUpSer.showAlert('未安装QQ');
-	                        //    console.log('未安装QQ');
-	                        //}
 	                        break;
 	                    case 1://QQ空间
 	                        QQSer.shareToQZone(_args);
-	                        //if (QQSer.checkClientInstalled()) {
-	                        //    QQSer.shareToQZone(_args);
-	                        //} else {
-	                        //    popUpSer.showAlert('未安装QQ');
-	                        //    console.log('未安装QQ');
-	                        //}
 	                        break;
 	                    case 2://微信好友
 	                        var shareId = typeof (_args.imageUrl) === 'undefined' ? 'send-text' : 'send-photo-local';
@@ -62,13 +47,6 @@ angular.module('tellme')
 	                        break;
 	                    case 4://新浪微博
 	                        WeiboSer.shareToWeibo(_args);
-	                        //if (WeiboSer.checkClientInstalled()) {
-	                        //    popUpSer.showAlert('调用微博');
-	                        //    WeiboSer.shareToWeibo(_args);
-	                        //} else {
-	                        //    popUpSer.showAlert('未安装微博');
-	                        //    console.log('未安装微博');
-	                        //}
 	                        break;
 	                    default://退出
 	                        hideSheet();
