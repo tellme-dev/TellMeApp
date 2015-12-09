@@ -31,7 +31,12 @@
             .state('customer', { url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
             .state('login', { url: '/login?pageName', templateUrl: 'app/customer/login/login.html', controller: 'loginControll' })
             .state('register', { url: '/register', templateUrl: 'app/customer/register/register.html', controller: 'registerControll' })
-
+          //个人中心 设置
+            .state('system', { url: '/system', templateUrl: 'app/customer/system/system.html', controller: 'systemControll' })
+            .state('feedback', { url: '/feedback', templateUrl: 'app/customer/feedback/feedback.html', controller: 'feedbackControll' })
+            .state('data', { url: '/data', templateUrl: 'app/customer/data/data.html', controller: 'dataControll' })
+            .state('discuss', { url: '/discuss', templateUrl: 'app/customer/center/discuss/discuss.html', controller: 'discussControll' })
+            .state('agree', { url: '/agree', templateUrl: 'app/customer/center/agree/agree.html', controller: 'agreeControll' })
             //定位
             .state('location', { url: '/location', templateUrl: 'app/map/location/cities.html', controller: '' })//mapLocationControll
             .state('map', { url: '/map', templateUrl: 'app/map/map/map.html', controller: 'mapControll' })
@@ -55,9 +60,7 @@
             //搜索
             .state('willSearch', { url: '/willSearch', templateUrl: 'app/search/will/willSearch.html', controller: 'willSearchControll'})
             .state('doneSearch', { url: '/doneSearch', templateUrl: 'app/search/done/doneSearch.html', controller: 'doneSearchControll'})
-             //系统设置
-            .state('system', { url: '/system', templateUrl: 'app/system/system/system.html', controller: 'systemControll'})
-            .state('feedback', { url: '/feedback', templateUrl: 'app/system/feedback/feedback.html', controller: 'feedbackControll'})
+           
             ;
             var appLaunchCount = window.localStorage.getItem('launchCount');
             //需要进行页面测试，则修改下面的路由即可
