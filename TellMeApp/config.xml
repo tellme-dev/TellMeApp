@@ -132,10 +132,8 @@
   <vs:plugin name="cordova-plugin-inappbrowser" version="1.0.1" />
   <preference name="android-minSdkVersion" value="17" />
   <preference name="target-device" value="handset" />
-  <vs:plugin name="cordova-plugin-weibosdk" version="0.3.4" src="https://github.com/iVanPan/cordova_weibo.git">
-    <param name="WEIBO_APP_ID" value="3379583054" />
-  </vs:plugin>
-  <vs:plugin name="cordova-plugin-qqsdk" version="0.3.9" src="D:\YouChuangYinLi\tellme\TellMeApp\plugins\cordova-plugin-qqsdk">
-    <param name="QQ_APP_ID" value="1105008574" />
-  </vs:plugin>
+  <preference name="REDIRECTURI" value="https://api.weibo.com/oauth2/default.html" />
+  <vs:plugin name="cordova-plugin-file-transfer" version="1.4.0" />
+  <vs:plugin name="cordova-plugin-file-transfer" version="1.4.0" />
+  <vs:plugin name="cordova-plugin-file" version="3.0.0" />
 </widget>

@@ -7,28 +7,28 @@ angular.module('tellme')
 	        var hideSheet = $ionicActionSheet.show({
 	            buttons: [
 					{
-					    text: 'QQ好友',
-					    type: 'button-dark'
+					    text: '<b>QQ好友</b>',
+					    type: 'inline-block button-dark'
 					},
 					{
 					    text: 'QQ空间',
-					    type: 'button-dark'
+					    type: 'button button-dark'
 					},
                     {
                         text: '微信好友',
-                        type: 'button-dark'
+                        type: 'button button-dark'
                     },
                     {
                         text: '朋友圈',
-                        type: 'button-dark'
+                        type: 'button button-dark'
                     },
                     {
                         text: '新浪微博',
-                        type: 'button-dark'
+                        type: 'button button-dark'
                     },
                     {
                         text: '取消',
-                        type: 'button-dark'
+                        type: 'button button-dark'
                     },
 	            ],
 	            titleText: '分享至',
