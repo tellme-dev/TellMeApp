@@ -47,7 +47,6 @@ angular.module('tellme')
 	        switch (id) {
 	            case 'check-installed':
 	                Wechat.isInstalled(function (installed) {
-	                    //alert("Wechat installed: " + (installed ? "Yes" : "No"));
 	                    if (installed) {
 	                        return true;
 	                    } else {
@@ -58,7 +57,7 @@ angular.module('tellme')
 
 	            case 'send-photo-local':
 	                params.message.media.type = Wechat.Type.IMAGE;
-	                params.message.media.image = args.imageUrl;
+	                params.message.media.image = args.imageUrl[0];
 	                break;
 
 	            case 'send-photo-remote':

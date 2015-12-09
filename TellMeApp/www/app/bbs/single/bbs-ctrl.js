@@ -1,8 +1,9 @@
 ﻿angular.module('tellme')
-    .controller('bbsControll', ['$scope', '$ionicHistory','$state', '$stateParams', '$ionicHistory', '$window', 'bbsSer', 'communitySer', 'commonSer', 'tellmeActionSheet', 'appConfig', 'LoadingSvr',
-        function ($scope, $ionicHistory, $stateParams,$state, $ionicHistory, $window, bbsSer, communitySer,commonSer,tellmeActionSheet, appConfig, LoadingSvr) {
+    .controller('bbsControll', ['$scope', '$ionicHistory', '$state', '$stateParams', '$ionicHistory', '$window', 'bbsSer', 'communitySer', 'commonSer', 'tellmeActionSheet', 'appConfig', 'LoadingSvr',
+        function ($scope, $ionicHistory, $state, $stateParams, $ionicHistory, $window, bbsSer, communitySer, commonSer, tellmeActionSheet, appConfig, LoadingSvr) {
             $scope.baseUrl = appConfig.server.getUrl();
             var bbsId = $stateParams.bbsId;
+           // $state.go('login', {pageName: 'communityList'});
         $scope.goBack = function () {
             $ionicHistory.goBack();
         };
@@ -142,8 +143,9 @@
          }
            // 分享
           $scope.share = function (bbsDetail) {
-              var isLogin = $scope.userIsLogin();
-              if (isLogin) {//如果用户已经登录
+              $scope.showAnswer = false;
+              //var isLogin = $scope.userIsLogin();
+              //if (isLogin) {//如果用户已经登录
                   var args = {};
                   args.url = "";
                   args.title = bbsDetail.title;
@@ -156,9 +158,9 @@
                   args.appName = "";
                   tellmeActionSheet.show(args);
 
-              } else {
-                  $state.go('login', { pageName: 'communityList' });
-              }
+              //} else {
+              //    $state.go('login', { pageName: 'communityList' });
+              //}
           }
          //回复某人
          $scope.answerChildren = function (id) {
@@ -199,7 +201,7 @@
               }
                 }
                   );
-        }
+             }
           }
 
     }]);

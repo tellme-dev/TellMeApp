@@ -77,6 +77,7 @@
                 //$scope.bbsImages.push(image);
             }
             function cFail(message) {
+                alert(message);
                 console.log(message);
             }
         };

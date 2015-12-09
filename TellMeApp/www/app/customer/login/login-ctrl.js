@@ -33,7 +33,8 @@
                             window.localStorage['userTel'] = $scope.loginData.username;
                             window.localStorage['userPsd'] = $scope.loginData.password;
                             window.localStorage['userId'] = data.data.id;
-                            $state.go(pageName);
+                            // $state.go(pageName);
+                            $ionicHistory.goBack();
                         } else {
                             switch (data.msg) {
                                 case '2':

@@ -6,6 +6,8 @@
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };
+            //发表评论
+
             //点赞
             $scope.toSaveAgree = function (id) {
                 var isLogin = $scope.userIsLogin();

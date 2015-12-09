@@ -1,0 +1,42 @@
+﻿<!--系统设置-->
+<ion-view>
+    <div class="bar bar-header item-input-inset sz-top">
+        <button ng-click="goBack()" class="button icon button-clear ion-ios-arrow-back " style="color:#444"></button>
+        <h1 class="title sz-top-text">设置</h1>
+    </div>
+    <!--内容块-->
+
+    <ion-content class="sz-cont-background">
+        <div class="content has-header ionic-pseudo sz-ion-col">
+            <div class="sz-padding">
+                <div class="list sz-background">
+                    <div ng-click="goData()" class="item item-button-right ">
+                        个人资料
+                        <button class="button button-clear">
+                            <i class="icon ion-ios-arrow-forward sz-ion-colriges"></i>
+                        </button>
+                    </div>
+                    <div class="item item-button-right" ng-click="goFeedback()">
+                        意见反馈
+                        <button class="button button-clear">
+                            <i class="icon ion-ios-arrow-forward sz-ion-colriges"></i>
+                        </button>
+                    </div>
+                    <div class="item item-button-right ">
+                        关于我们
+                        <button class="button button-clear ">
+                            <i class="icon ion-ios-arrow-forward sz-ion-colriges"></i>
+                        </button>
+                    </div>
+                    <div class="item item-button-right ">
+                        帮助中心
+                        <button class="button button-clear ">
+                            <i class="icon ion-ios-arrow-forward sz-ion-colriges"></i>
+                        </button>
+                    </div>
+                </div>
+                <button ng-click="loginOut()" class="sz-button">退出登录</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,6 +1,6 @@
 ﻿<style type="text/css">
     .selected {
-        background-color: red;
+       border-bottom: 2px solid #99c600;
     }
 </style>
 
@@ -22,35 +22,36 @@
                             <h2 class="style-h2" style="font-size:2em; font-family:'黑体';">{{customer.mobile}}</h2>
                             <p class="p-style" style="font-size:1.125em; color:#a3a3a3;margin-top:10px;">昵称：{{customer.name}}</p>
                         </div>
-                        <i class="ion-ios-gear fr tupiao-style"></i>
+                        <!--设置-->
+                        <i ng-click="goSystem()" class="ion-ios-gear fr tupiao-style"></i>
                         <div class="clear"></div>
                     </a>
                 </div>
                 <div class="row row-style-background">
-                    <button class="col button-col button-col-clock ">
+                    <button class="col button-col" ng-click="showTabs(1)" ng-class="{selected:1==selectedIndex}">
                         长住酒店
                         <p>{{customer.countAlways}}</p>
                     </button>
-                    <button class="col button-col">
+                    <button class="col button-col" ng-click="showTabs(2)"  ng-class="{selected:2==selectedIndex}">
                         最近浏览
                         <p>{{customer.countBrowse}}</p>
                     </button>
-                    <button class="col button-col">
-                        关注
+                    <button class="col button-col" ng-click="showTabs(3)" ng-class="{selected:3==selectedIndex}">
+                        收藏
                         <p>{{customer.countCollection}}</p>
                     </button>
-                    <button class="col button-col">
+                    <button class="col button-col" ng-click="showTabs(4)" ng-class="{selected:4==selectedIndex}">
                         话题
                         <p>{{customer.countTopic}}</p>
                     </button>
-                    <button class="col button-col border-r">
+                    <button class="col button-col border-r" ng-click="showTabs(5)" ng-class="{selected:5==selectedIndex}">
                         动态
                         <p>{{customer.countDynamic}}</p>
                     </button>
                 </div>
             </div>
-
-            <div style="padding:0px 10px; margin-top:65px;" ng-if="hotels">
+            <!--常住酒店-->
+            <div ng-show="1==selectedIndex" style="padding:0px 10px; margin-top:65px;" ng-if="hotels">
                 <div ng-repeat="hotel in hotels">
                     <div class="list card item-mb xq-item">
                         <div class="item item-body xq-item-cont">
@@ -74,11 +75,197 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
+            <!--最近浏览-->
+            <!--最近浏览-->
+            <!--收藏-->
+            <div  ng-show="3==selectedIndex" class="gr-cont">
+                <div class="list card item-mb xq-item">
+                    <div class="item item-body xq-item-cont">
+                        <a href=""><img class="full-image" src="images/jiudianer.jpg"></a>
+                        <div class="xq-item-fl">
+                            <ul class="xq-ul">
+                                <li><i class="ion ion-ios-pricetag"></i></li>
+                                <li><a href="#" class="xq-back">成都</a></li>
+                                <li><a href="#">旅行</a></li>
+                                <li><a href="#">市区</a></li>
+                                <li><a href="#">美食</a></li>
+                                <li><a href="#">高档餐厅</a></li>
+                            </ul>
+                            <div class="clear"></div>
+                            <p>
+                                <a href="#" class="xq-p-span">皇冠假日酒店</a>
+                            </p>
+                            <p class="xq-p">入住舒适度：9.0分</p>
+
+                            <p class="xq-p">成都市锦江区总府街31号</p>
+
+                            <p class="xq-p">房间数：330 间</p>
+                        </div>
+                    </div>
+                    <div class="item tabs tabs-secondary tabs-icon-left">
+                        <a class="tab-item xq-tab-item" href="#">
+                            <i class="icon ion-chatbox"></i>
+                        </a>
+                        <a class="tab-item xq-tab-item" href="#">
+                            <i class="icon ion-share"></i>
+                        </a>
+                        <a class="tab-item xq-tab-item" href="# ">
+                            <i class="icon ion-thumbsup"></i>
+                        </a>
+                        <a class="tab-item xq-tab-item" href="#">
+                            <i class="icon ion-android-favorite ion-shouc-col "></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="list card item-mb xq-item">
+                    <div class="item item-body xq-item-cont">
+                        <a href=""><img class="full-image" src="images/jiudianer.jpg"></a>
+                        <div class="xq-item-fl">
+                            <ul class="xq-ul">
+                                <li><i class="ion ion-ios-pricetag"></i></li>
+                                <li><a href="#" class="xq-back">成都</a></li>
+                                <li><a href="#">旅行</a></li>
+                                <li><a href="#">市区</a></li>
+                                <li><a href="#">美食</a></li>
+                                <li><a href="#">高档餐厅</a></li>
+                            </ul>
+                            <div class="clear"></div>
+                            <p>
+                                <a href="#" class="xq-p-span">皇冠假日酒店</a>
+                            </p>
+                            <p class="xq-p">入住舒适度：9.0分</p>
+
+                            <p class="xq-p">成都市锦江区总府街31号</p>
+
+                            <p class="xq-p">房间数：330 间</p>
+                        </div>
+                    </div>
+                    <div class="item tabs tabs-secondary tabs-icon-left">
+                        <a class="tab-item xq-tab-item" href="#">
+                            <i class="icon ion-chatbox"></i>
+                        </a>
+                        <a class="tab-item xq-tab-item" href="#">
+                            <i class="icon ion-share"></i>
+                        </a>
+                        <a class="tab-item xq-tab-item" href="#">
+                            <i class="icon ion-thumbsup"></i>
+                        </a>
+                        <a class="tab-item xq-tab-item" href="#">
+                            <i class="icon ion-android-favorite ion-shouc-col"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <!--收藏-->
+            <!--话题-->
+            <div ng-show="4==selectedIndex" class="gr-cont">
+                <div class="list card item-mb sq-item">
+
+                    <div href="#" class="item-avatar sq-item-top ">
+                        <img src="http://www.runoob.com/try/demo_source/mcfly.jpg" class="sq-item-img" />
+                        <div class="sq-item-vit">
+                            <h2 style="margin-top:10px;">陆拾笑笑</h2>
+                        </div>
+                        <div class="sq-item-min">
+                            <button class="ht-button">删除</button>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="item-body sq-item-cont ht-text">
+                        <div class="sq-item-fl">
+                            # 酒店 # @ 大家 大府大道万达新开了一家电影
+                            主题酒店，也就是说开房就可感受影院级的电影
+                            节奏，大家快快收藏起来。有时间去体验一下。。。
+                        </div>
+                    </div>
+
+                    <div class="item tabs tabs-secondary tabs-icon-left sq-item-col pl-class">
+                        <a class="tab-item sq-tab-item" href="#">
+                            <i class="icon ion-chatbox"></i>
+                            3
+                        </a>
+                        <a class="tab-item sq-tab-item" href="#">
+                            <i class="icon ion-share"></i>
+
+                        </a>
+                        <a class="tab-item sq-tab-item" href="# ">
+                            <i class="icon ion-thumbsup"></i>
+
+                        </a>
+                        <a class="tab-item sq-tab-item" href="#">
+                            <i class="icon ion-android-favorite"></i>
+
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="list card item-mb sq-item">
+
+                    <div href="#" class="item-avatar sq-item-top ">
+                        <img src="http://www.runoob.com/try/demo_source/mcfly.jpg" class="sq-item-img" />
+                        <div class="sq-item-vit">
+                            <h2 class="ht-ti" style="margin-top:10px;">陆拾笑笑</h2>
+                        </div>
+                        <div class="sq-item-min">
+                            <button class="ht-button">删除</button>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="item-body sq-item-cont ht-text">
+                        <div class="sq-item-fl">
+                            # 酒店 # @ 大家 大府大道万达新开了一家电影
+                            主题酒店，也就是说开房就可感受影院级的电影
+                            节奏，大家快快收藏起来。有时间去体验一下。。。
+                        </div>
+                    </div>
+
+                    <div class="item tabs tabs-secondary tabs-icon-left sq-item-col pl-class">
+                        <a class="tab-item sq-tab-item" href="#">
+                            <i class="icon ion-chatbox"></i>
+                            3
+                        </a>
+                        <a class="tab-item sq-tab-item" href="#">
+                            <i class="icon ion-share"></i>
+
+                        </a>
+                        <a class="tab-item sq-tab-item" href="# ">
+                            <i class="icon ion-thumbsup"></i>
+
+                        </a>
+                        <a class="tab-item sq-tab-item" href="#">
+                            <i class="icon ion-android-favorite"></i>
+
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+            <!--话题-->
+            <!--动态-->
+            <div ng-show="5==selectedIndex" style="padding:10px 10px; position:relative;margin-top:58px;">
+                <div style="background:#fff;">
+
+                    <a class="item item-avatar" href="#" ng-click="goDiscuss()" >
+                        <img src="images/05--_03.png">
+                        <i style="width:1.125em; height:1.125em;border-radius:50%; background:#ff0000;text-align:center;line-height:1.125em;position:absolute; color:#fff;display:inline-block;left:40px; top:15px;">9</i>
+                        <h2 style="line-height:40px;">评论<i class="fr ion-ios-arrow-forward" style="margin-top:12px;color:#9ac600"></i></h2>
+                    </a>
+                    <a class="item item-avatar" href="#" ng-click="goAgree()">
+                        <img src="images/05--_06.png">
+                        <i style="width:1.125em; height:1.125em;border-radius:50%; background:#ff0000;text-align:center;line-height:1.125em;position:absolute; color:#fff;display:inline-block;left:40px; top:15px;">3</i>
+                        <h2 style="line-height:40px;">赞 <i class="fr ion-ios-arrow-forward" style="margin-top:12px;color:#9ac600"></i></h2>
+                    </a>
+                </div>
+            </div>
+            <!--动态-->
             <!--内容块-->
-
-
         </ion-content>
         <div class="tabs tabs-icon-left" style=" background-color: #444444;background-image: linear-gradient(0deg, #111, #111 50%, transparent 50%);">
             <a class="tab-item" ng-click="goHome()">
