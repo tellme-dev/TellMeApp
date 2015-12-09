@@ -1,5 +1,5 @@
 angular.module('tellme')
-	.service('WeiboSer', [function () {
+	.service('WeiboSer', ['popUpSer', function (popUpSer) {
 		//Weibo SSO Login
 		this.ssoLogin = function () {
 			YCWeibo.ssoLogin(function (args) {
@@ -30,7 +30,7 @@ angular.module('tellme')
 			YCWeibo.shareToWeibo(function () {
 				alert("share success");
 			}, function (failReason) {
-				alert(failReason);
+			    popUpSer.showAlert(failReason);
 			}, args);
 		}
 

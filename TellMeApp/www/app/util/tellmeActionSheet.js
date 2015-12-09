@@ -1,5 +1,5 @@
 angular.module('tellme')
-	.service('tellmeActionSheet', ['$ionicActionSheet', '$timeout', 'QQSer', 'WechatShareSer', 'WeiboSer', function ($ionicActionSheet, $timeout, QQSer, WechatShareSer, WeiboSer) {
+	.service('tellmeActionSheet', ['$ionicActionSheet', '$timeout', 'QQSer', 'WechatShareSer', 'WeiboSer', 'popUpSer', function ($ionicActionSheet, $timeout, QQSer, WechatShareSer, WeiboSer, popUpSer) {
 	    var _args = {};
 	    this.show = function (args) {
 	        _args = args;
@@ -7,22 +7,28 @@ angular.module('tellme')
 	        var hideSheet = $ionicActionSheet.show({
 	            buttons: [
 					{
-					    text: 'QQ好友'
+					    text: 'QQ好友',
+					    type: 'button-dark'
 					},
 					{
-					    text: 'QQ空间'
+					    text: 'QQ空间',
+					    type: 'button-dark'
 					},
                     {
-                        text: '微信好友'
+                        text: '微信好友',
+                        type: 'button-dark'
                     },
                     {
-                        text: '朋友圈'
+                        text: '朋友圈',
+                        type: 'button-dark'
                     },
                     {
-                        text: '新浪微博'
+                        text: '新浪微博',
+                        type: 'button-dark'
                     },
                     {
-                        text: '取消'
+                        text: '取消',
+                        type: 'button-dark'
                     },
 	            ],
 	            titleText: '分享至',
@@ -32,6 +38,7 @@ angular.module('tellme')
 	                        if (QQSer.checkClientInstalled()) {
 	                            QQSer.share(_args);
 	                        } else {
+	                            popUpSer.showAlert('未安装QQ');
 	                            console.log('未安装QQ');
 	                        }
 	                        break;
@@ -39,6 +46,7 @@ angular.module('tellme')
 	                        if (QQSer.checkClientInstalled()) {
 	                            QQSer.shareToQZone(_args);
 	                        } else {
+	                            popUpSer.showAlert('未安装QQ');
 	                            console.log('未安装QQ');
 	                        }
 	                        break;
@@ -46,6 +54,7 @@ angular.module('tellme')
 	                        if (WechatShareSer.weChatShare(0, 'check-installed', _args)) {
 	                            WechatShareSer.weChatShare(0, 'send-photo-local', _args);
 	                        } else {
+	                            popUpSer.showAlert('未安装微信');
 	                            console.log('未安装微信');
 	                        }
 	                        break;
@@ -53,6 +62,7 @@ angular.module('tellme')
 	                        if (WechatShareSer) {
 	                            WechatShareSer.weChatShare(1, 'send-photo-local', _args);
 	                        } else {
+	                            popUpSer.showAlert('未安装微信');
 	                            console.log('未安装微信');
 	                        }
 	                        break;
@@ -60,6 +70,7 @@ angular.module('tellme')
 	                        if (WeiboSer.checkClientInstalled()) {
 	                            WeiboSer.shareToWeibo(_args);
 	                        } else {
+	                            popUpSer.showAlert('未安装微博');
 	                            console.log('未安装微博');
 	                        }
 	                        break;
