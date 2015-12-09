@@ -92,6 +92,7 @@
                 $scope.uploadPhoto(imgURI, fileName);
             }
             function cFail(message) {
+                alert(message);
                 console.log(message);
             }
         };
@@ -104,6 +105,7 @@
             function tSuccess(result) {
                 //上传成功 将图片url放到对象中再放到数组中
                 var image = {};
+                alert(result);
                 image.imageUrl = "app/bbs/temp/" + fileName + ".jpg";
                 $scope.bbsImages.push(image);
 
@@ -114,7 +116,9 @@
             传输失败
             */
             function tFail(error) {
+                alert(error);
                 console.log(error);
+                alert(error);
             }
             /*
                 传输进度

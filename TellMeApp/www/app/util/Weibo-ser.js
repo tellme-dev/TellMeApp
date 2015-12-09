@@ -36,7 +36,7 @@ angular.module('tellme')
 
 		//CheckClientInstalled
 		this.checkClientInstalled = function () {
-			YCWeibo.checkClientInstalled(function () {
+		    YCWeibo.checkClientInstalled(function () {
 			    console.log('client is installed');
 			    return true;
 			}, function () {

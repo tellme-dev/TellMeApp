@@ -7,28 +7,28 @@ angular.module('tellme')
 	        var hideSheet = $ionicActionSheet.show({
 	            buttons: [
 					{
-					    text: 'QQ好友',
-					    type: 'button-dark'
+					    text: '<b>QQ好友</b>',
+					    type: 'inline-block button-dark'
 					},
 					{
 					    text: 'QQ空间',
-					    type: 'button-dark'
+					    type: 'button button-dark'
 					},
                     {
                         text: '微信好友',
-                        type: 'button-dark'
+                        type: 'button button-dark'
                     },
                     {
                         text: '朋友圈',
-                        type: 'button-dark'
+                        type: 'button button-dark'
                     },
                     {
                         text: '新浪微博',
-                        type: 'button-dark'
+                        type: 'button button-dark'
                     },
                     {
                         text: '取消',
-                        type: 'button-dark'
+                        type: 'button button-dark'
                     },
 	            ],
 	            titleText: '分享至',
@@ -52,6 +52,7 @@ angular.module('tellme')
 	                        break;
 	                    case 2://微信好友
 	                        if (WechatShareSer.weChatShare(0, 'check-installed', _args)) {
+	                            popUpSer.showAlert('调用微信分享');
 	                            WechatShareSer.weChatShare(0, 'send-photo-local', _args);
 	                        } else {
 	                            popUpSer.showAlert('未安装微信');
@@ -59,7 +60,7 @@ angular.module('tellme')
 	                        }
 	                        break;
 	                    case 3://朋友圈
-	                        if (WechatShareSer) {
+	                        if (WechatShareSer.weChatShare(0, 'check-installed', _args)) {
 	                            WechatShareSer.weChatShare(1, 'send-photo-local', _args);
 	                        } else {
 	                            popUpSer.showAlert('未安装微信');
@@ -68,6 +69,7 @@ angular.module('tellme')
 	                        break;
 	                    case 4://新浪微博
 	                        if (WeiboSer.checkClientInstalled()) {
+	                            popUpSer.showAlert('调用微博');
 	                            WeiboSer.shareToWeibo(_args);
 	                        } else {
 	                            popUpSer.showAlert('未安装微博');
