@@ -91,6 +91,7 @@
                 $scope.uploadPhoto(imgURI, fileName);
             }
             function cFail(message) {
+                alert(message);
                 console.log(message);
             }
         };
@@ -114,6 +115,7 @@
             */
             function tFail(error) {
                 console.log(error);
+                alert(error);
             }
             /*
                 传输进度
