@@ -5,18 +5,18 @@
         $scope.bbsInfo = {};
         var now = new Date();
         $scope.bbsImages = [
-            {
-                imageUrl:"/"
-            },
-            {
-                imageUrl: "/"
-            }
+            //{
+            //    imageUrl:"/"
+            //},
+            //{
+            //    imageUrl: "/"
+            //}
         ];
         //var year = now.getFullYear();
         //var month = (now.getMonth() + 1).toString();
         //var day = (now.getDate()).toString();
         var mill = now.getTime();//getTime() 方法可返回距 1970 年 1 月 1 日之间的毫秒数。
-        
+
         //$('.sh-cont li').find('input').click(function () {
         //    $(this).parent().hide();
             //})
@@ -68,7 +68,7 @@
             function cSuccess(imgURI) {
                 LoadingSvr.show();
                 var customerId = window.localStorage['userId'];
-                var fileName = customerId + '_' + mill + Math.floor(Math.random() * 9999 + 1000) + '.jpg';
+                var fileName = customerId + '_' + mill + Math.floor(Math.random() * 9999 + 1000);
                 /*上传图片*/
                 $scope.uploadPhoto(imgURI, fileName);
                 //上传成功 将图片url放到对象中再放到数组中
@@ -86,11 +86,12 @@
             function cSuccess(imgURI) {
                 LoadingSvr.show();
                 var customerId = window.localStorage['userId'];
-                var fileName = customerId + '_' + mill + Math.floor(Math.random() * 9999 + 1000) + '.jpg';
+                var fileName = customerId + '_' + mill + Math.floor(Math.random() * 9999 + 1000);
                 /*上传图片*/
                 $scope.uploadPhoto(imgURI, fileName);
             }
             function cFail(message) {
+                alert(message);
                 console.log(message);
             }
         };
@@ -103,7 +104,7 @@
             function tSuccess(result) {
                 //上传成功 将图片url放到对象中再放到数组中
                 var image = {};
-                image.imageUrl = "app/bbs/temp/" + fileName;
+                image.imageUrl = "app/bbs/temp/" + fileName + ".jpg";
                 $scope.bbsImages.push(image);
 
                 LoadingSvr.hide();
@@ -114,6 +115,7 @@
             */
             function tFail(error) {
                 console.log(error);
+                alert(error);
             }
             /*
                 传输进度
