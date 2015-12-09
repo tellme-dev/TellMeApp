@@ -1,4 +1,4 @@
-package __PACKAGE_NAME__;
+package com.hotelmee.tellmeapp;
 
 import android.app.Activity;
 import android.content.Intent;

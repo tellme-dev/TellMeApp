@@ -1,4 +1,4 @@
-package __PACKAGE_NAME__;
+package com.hotelmee.tellmeapp;
 
 public class WXEntryActivity extends EntryActivity {
 }
