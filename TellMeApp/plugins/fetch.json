@@ -52,5 +52,16 @@
         "variables": {
             "QQ_APP_ID": "1105008574"
         }
+    },
+    "xu.li.cordova.wechat": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/xu-li/cordova-plugin-wechat",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {
+            "WECHATAPPID": "wx8d25a682873339b9"
+        }
     }
 }
