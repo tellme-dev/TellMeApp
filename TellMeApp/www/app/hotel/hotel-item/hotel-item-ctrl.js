@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('hotelItemControll', ['$scope', '$ionicHistory', '$stateParams', '$ionicHistory', 'hotelSer', 'commonSer', 'appConfig', 'LoadingSvr',
-        function ($scope, $ionicHistory, $stateParams, $ionicHistory, hotelSer, commonSer, appConfig, LoadingSvr) {
+    .controller('hotelItemControll', ['$scope', '$ionicHistory', '$stateParams', '$ionicHistory', 'hotelSer', 'commonSer', 'tellmeActionSheet', 'appConfig', 'LoadingSvr',
+        function ($scope, $ionicHistory, $stateParams, $ionicHistory, hotelSer, commonSer,tellmeActionSheet, appConfig, LoadingSvr) {
             var itemId = $stateParams.itemId;
             $scope.baseUrl = appConfig.server.getUrl();
             $scope.goBack = function () {
@@ -54,6 +54,25 @@
                   );
                 } else {
                     $state.go('login', { pageName: 'hotelItem' });
+                }
+            }
+            // 分享
+            $scope.share = function (bbsDetail) {
+                var isLogin = $scope.userIsLogin();
+                if (isLogin) {//如果用户已经登录
+                    var args = {};
+                    args.url = "";
+                    args.title = bbsDetail.title;
+                    args.description = bbsDetail.text;
+                    var imgs = [];
+                    angular.forEach(bbsDetail.bbsAttachUrls, function (de, index) {
+                        imgs[index] = $scope.baseUrl + de.attachUrl;
+                    });
+                    args.imageUrl = imgs;
+                    args.appName = "";
+                    tellmeActionSheet.show(args);
+                } else {
+                    $state.go('login', { pageName: 'communityList' });
                 }
             }
             //下拉加载更多 根据标签获取酒店列表
