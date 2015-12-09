@@ -1,5 +1,5 @@
 angular.module('tellme')
-	.service('QQSer', ['popUpSer', function (popUpSer) {
+	.service('QQSer', ['popUpSer', 'LoadingSvr', function (popUpSer, LoadingSvr) {
 		//QQ SSO Login
 		this.ssoLogin = function (args) {
 			var checkClientIsInstalled = 1; //default is 0,only for iOS
@@ -22,36 +22,36 @@ angular.module('tellme')
 		}
 
 		//QQ Share
-		this.share = function (args) {
-			//var args = {};
-			//args.url = "";
-			//args.title = "";
-			//args.description = "";
-			//args.imageUrl = "";
-			//args.appName = "";
-
+		this.share = function (argss) {
+			var args = {};
+			args.url = (typeof (argss.url) === 'undefined' ? "http://connect.qq.com" : argss.url);
+			args.title = (typeof (argss.title) === 'undefined' ? "来自挑米科技 应用分享" : argss.title);
+			args.description = (typeof (argss.description) === 'undefined' ? "描述" : argss.description);
+			args.imageUrl = (typeof (argss.imageUrl) === 'undefined' ? "" : argss.imageUrl[0]);
+			args.appName = "挑米科技";
+			LoadingSvr.goShare();
 			YCQQ.shareToQQ(function () {
-				console.log("share success");
+			    popUpSer.showAlert('分享成功');
 			}, function (failReason) {
-			    popUpSer.showAlert(failReason);
+			    //popUpSer.showAlert(failReason);
 			}, args);
+			LoadingSvr.hide();
 		}
 
 		//QZone Share
-		this.shareToQZone = function (args) {
- //   		var args = {};
- //   		args.url = "http://www.baidu.com";
- //   		args.title = "This is cordova QZone share ";
- //   		args.description = "This is cordova QZone share ";
- //   		var imgs = ['https://www.baidu.com/img/bdlogo.png',
- //'https://www.baidu.com/img/bdlogo.png',
- //'https://www.baidu.com/img/bdlogo.png'];
- //   		args.imageUrl = imgs;
+		this.shareToQZone = function (argss) {
+    		var args = {};
+    		args.url = (typeof (argss.url) === 'undefined' ? "http://www.hotellmee.com" : argss.url);
+    		args.title = (typeof (argss.title) === 'undefined' ? "来自挑米科技 应用分享" : argss.title);
+    		args.description = (typeof (argss.description) === 'undefined' ? "描述" : argss.description);
+    		args.imageUrl = argss.imageUrl;
+    		LoadingSvr.goShare();
 			YCQQ.shareToQzone(function () {
-				alert("share success");
+			    popUpSer.showAlert('分享成功');
 			}, function (failReason) {
-				alert(failReason);
+			    popUpSer.showAlert(failReason);
 			}, args);
+			LoadingSvr.hide();
 		}
 
 		//QQ Favorites

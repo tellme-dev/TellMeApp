@@ -11,4 +11,12 @@
     this.hide = function () {
         $ionicLoading.hide();
     }
+    this.goShare = function () {
+        $ionicLoading.show({
+            template: '跳转分享中'
+        });
+        $timeout(function () {
+            $ionicLoading.hide();
+        }, 5000);
+    }
 }])
