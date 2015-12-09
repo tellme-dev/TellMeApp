@@ -32,8 +32,8 @@ angular.module('tellme')
 				vm.moredata = false;
 				vm.loadMore();
 			}
-			$scope.showAnswer = false;
 
+			$scope.showAnswer = false;
 			$scope.globalVar.answerText = ""; //回帖内容
 			var bbsId = 0;
 			var bbsTitle = "";
@@ -45,7 +45,6 @@ angular.module('tellme')
 				} else {
 					$scope.showAnswer = true;
 				}
-
 			}
 
 			//回帖
@@ -95,7 +94,7 @@ angular.module('tellme')
 			$scope.share = function (detail) {
 			    var args = {};
 			    args.url = "";
-			    args.title = detail.title;
+			    args.title = detail.name;
 			    args.description = detail.text;
 			    var imgs = [];
 			    angular.forEach(detail.bbsAttachUrls, function (de, index) {
@@ -103,6 +102,7 @@ angular.module('tellme')
 			    });
                 args.imageUrl = imgs;
 			    args.appName = "";
+                args.defaultText = "";
 			    tellmeActionSheet.show(args);
 			}
 

@@ -71,11 +71,14 @@ angular.module('tellme')
 
 		//CheckClientInstalled
 		this.checkClientInstalled = function () {
-			YCQQ.checkClientInstalled(function () {
-				console.log('client is installed');
+		    YCQQ.checkClientInstalled(function () {
+
+		        console.log('client is installed');
+		        return true;
 			}, function () {
 				// if installed QQ Client version is not supported sso,also will get this error
-				console.log('client is not installed');
+			    console.log('client is not installed');
+			    return false;
 			});
 		}
   }])
