@@ -10,7 +10,7 @@
     "cordova-plugin-whitelist": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-whitelist@1"
+            "id": "cordova-plugin-whitelist@1.0.0"
         },
         "is_top_level": true,
         "variables": {}
@@ -30,25 +30,6 @@
         },
         "is_top_level": true,
         "variables": {}
-    },
-    "cordova-plugin-x-socialsharing": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-x-socialsharing"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "xu.li.cordova.wechat": {
-        "source": {
-            "type": "git",
-            "url": "https://github.com/xu-li/cordova-plugin-wechat",
-            "subdir": "."
-        },
-        "is_top_level": true,
-        "variables": {
-            "WECHATAPPID": "wx8d25a682873339b9"
-        }
     },
     "cordova-plugin-weibosdk": {
         "source": {
