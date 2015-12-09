@@ -40,7 +40,7 @@
             .state('bbsHome', { url: '/bbsHome', templateUrl: 'app/bbs/main/main.html', controller: 'bbsMainControll' })
             .state('bbsList', { url: '/bbsList', templateUrl: 'app/bbs/list/bbs-list.html', controller: 'bbsListControll' })
             .state('bbs', { cache: false, url: '/bbs?bbsId', templateUrl: 'app/bbs/single/bbs.html', controller: 'bbsControll' })
-            .state('addBbs', { url: '/addBbs', templateUrl: 'app/bbs/addbbs/addbbs.html', controller: 'addBbsControll' })
+            .state('addBbs', { cache: false, url: '/addBbs', templateUrl: 'app/bbs/addbbs/addbbs.html', controller: 'addBbsControll' })
 
             //酒店
              .state('hotelList', { url: '/hotelList', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
@@ -51,7 +51,7 @@
             //发现 
             .state('discoverList', { cache: false, url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverListControll' })
            // 社区
-           .state('communityList', { url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
+           .state('communityList', { cache: false, url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
             //搜索
             .state('willSearch', { url: '/willSearch', templateUrl: 'app/search/will/willSearch.html', controller: 'willSearchControll'})
             .state('doneSearch', { url: '/doneSearch', templateUrl: 'app/search/done/doneSearch.html', controller: 'doneSearchControll'})
