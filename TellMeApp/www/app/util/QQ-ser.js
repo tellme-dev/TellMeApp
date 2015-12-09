@@ -1,5 +1,5 @@
 angular.module('tellme')
-	.service('QQSer', [function () {
+	.service('QQSer', ['popUpSer', function (popUpSer) {
 		//QQ SSO Login
 		this.ssoLogin = function (args) {
 			var checkClientIsInstalled = 1; //default is 0,only for iOS
@@ -33,7 +33,7 @@ angular.module('tellme')
 			YCQQ.shareToQQ(function () {
 				console.log("share success");
 			}, function (failReason) {
-				console.log(failReason);
+			    popUpSer.showAlert(failReason);
 			}, args);
 		}
 
