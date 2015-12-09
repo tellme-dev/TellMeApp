@@ -12,9 +12,7 @@ angular.module('tellme')
 			$scope.msgShow = false;
 			//跳转到单个论坛详情
 			$scope.toBbsDetail = function (bbsId) {
-					$state.go('bbs', {
-						bbsId: bbsId
-					});
+					$state.go('bbs', {bbsId: bbsId});
 				}
 				//跳转到发帖页面
 			$scope.toAddBbs = function () {
