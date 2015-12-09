@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('feedbackControll', ['$scope', '$ionicHistory', 'systemSer',
-        function ($scope, $ionicHistory, systemSer) {
+    .controller('feedbackControll', ['$scope', '$ionicHistory', 'customerSer',
+        function ($scope, $ionicHistory, customerSer) {
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };

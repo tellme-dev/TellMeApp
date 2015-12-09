@@ -25,7 +25,18 @@
             $scope.goCommunity = function () {
                 $state.go('communityList');
             }
-        
+            //跳转到系统设置
+            $scope.goSystem = function () {
+                $state.go('system');
+            }
+            //跳转到评论
+            $scope.goDiscuss = function () {
+                $state.go('discuss');
+            }
+            //跳转到赞
+            $scope.goAgree = function () {
+                $state.go('agree');
+            }
             $scope.getCustomerInfo = function () {
                 //默认值
                 var customerId = 1;
@@ -70,55 +81,9 @@
             }
 
             $scope.getCustomerInfo();
-        //customerSer
-        
-      //  $scope.selectedI = 0;
-      //  $scope.b = [
-      //{ name: "KTV",id:0},
-      //{ name: "游泳馆", id: 1 },
-      //{ name: "SPA", id: 2 },
-      //{ name: "温泉", id: 3 },
-      //{ name: "各类球场", id: 4 },
-      //{ name: "健身房", id: 5 }
-      //  ];
-      //  $scope.c = [
-      //    { name: "KTV1" },
-      //    { name: "KTV2" },
-      //    { name: "KTV2" }
-         
-      //  ];
-      //  $scope.selectRestaurant = function (index) {
-           
-      //      if (index == 1) {
-      //          $scope.selectedI = 1;
-      //          $scope.c = [
-      //            { name: "游泳馆1" },
-      //            { name: "游泳馆2" },
-      //            { name: "游泳馆2" }
-
-      //          ];
-      //      }
-      //      else if (index == 2) {
-      //          $scope.selectedI = 2;
-      //          $scope.c = [
-      //            { name: "温泉1" },
-      //            { name: "温泉2" },
-      //            { name: "温泉3" }
-      //          ];
-      //      } else {
-      //          $scope.selectedI = 3;
-      //          $scope.c = [
-      //                           { name: "温泉1" },
-      //                           { name: "温泉2" },
-      //                           { name: "温泉3" }
-      //          ];
-      //      }
-      //  }
-      //  $scope.t = function () {
-      //      $scope.c = [
-      //                          { name: "温泉1" },
-      //                          { name: "温泉2" },
-      //                          { name: "温泉3" }
-      //      ];
-      //  }
+            $scope.selectedIndex = 1;
+            $scope.showTabs = function (index) {
+                $scope.selectedIndex = index;
+            }
+      
     }]);

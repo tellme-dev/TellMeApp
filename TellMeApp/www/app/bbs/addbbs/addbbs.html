@@ -14,7 +14,7 @@
                     <input ng-model="bbsInfo.title" placeholder="标题" style="width:100%;border:none;" />
                 </div>
 
-                <textarea type="text" ng-model="bbsInfo.text" placeholder="分享你的吐槽..." class="fab-textarea"></textarea>
+                <textarea type="text" ng-model="bbsInfo.text" placeholder="分享你的吐槽..." class="fab-textarea" required></textarea>
             </div>
             <div class="fab-cont">
                 <span class="fl fab-sc-tie">上传图片</span>
@@ -29,7 +29,7 @@
             <div class="fab-botton-cont" >
                 <ul class="sh-cont" >
                     <li class="fl fab-li" ng-repeat="bbsImage in bbsImages">
-                        <img src="{{baseUrl}}{{bbsImage.imageUrl}}" />
+                        <img ng-src="{{baseUrl}}{{bbsImage.imageUrl}}" />
                         <button ng-click="deletePhoto(bbsImage.imageUrl)">×</button>
                     </li>
                     <li ng-click="show()" class="fl fab-li-ac">
