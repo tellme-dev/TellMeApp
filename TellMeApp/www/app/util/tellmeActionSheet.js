@@ -19,15 +19,11 @@ angular.module('tellme')
                         img: "images/share/wechat.png"
                     },
                     {
-                        text: '朋友圈子 ',
-                        img: "images/share/circle.png"
-                    },
-                    {
                         text: '新浪微博',
                         img: "images/share/weibo.png"
                     }
 	            ],
-	            titleText: '分享至',
+	            titleText: '<b>分享至</b>',
 	            cancelText: "取消",
 	            buttonClicked: function (index, args) {
 	                switch (index) {
