@@ -3,13 +3,12 @@
         <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
         <h1 class="title">发帖</h1>
     </ion-header-bar>
-    <ion-content style="background-color:#ddd;">
+    <ion-content style="background-color:#ddd;top:46px;">
 
-        <div class="list fab-text has-header">
-            <div style="background:#fff;margin-bottom:10px;padding:5px 10px;border-radius:5px;">
+        <div class="list fab-text">
+            <div style="background:#fff;margin-top:5px;margin-bottom:10px;padding:5px 10px;border-radius:5px;">
                 <input ng-model="bbsInfo.title" placeholder="标题" style="width:100%;border:none;" />
             </div>
-
             <textarea type="text" ng-model="bbsInfo.text" placeholder="分享你的吐槽..." class="fab-textarea" required></textarea>
         </div>
         <div class="fab-cont">
