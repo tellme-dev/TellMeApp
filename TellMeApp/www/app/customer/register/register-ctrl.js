@@ -112,8 +112,11 @@
                 function (data) {
                   if (data.isSuccess) {
                       console.log('注册：注册成功');
+                      $scope.stopCountDown();
                       $ionicHistory.goBack();
                   } else {
+                      $scope.stopCountDown();
+                      $scope.resetCount();
                       console.log('注册：注册失败');
                       //提示
 
@@ -137,7 +140,6 @@
                    if (data.isSuccess) {
                        console.log('验证码发送成功');
                        $scope.countDown();
-                      // $scope.verifyTips = '还剩:  ' + $scope.countInterval + 's';
                    } else {
                        console.log(data.msg);
                        //提示

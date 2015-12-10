@@ -1,45 +1,37 @@
-﻿<ion-side-menus>
+﻿<ion-view>
+    <ion-header-bar class="bar bar-header bar-dark">
+        <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
+        <h1 class="title">发帖</h1>
+    </ion-header-bar>
+    <ion-content style="background-color:#ddd;top:46px;">
 
-
-    <ion-side-menu-content style="background-color:#ddd;">
-
-        <div class="bar bar-header">
-            <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
-            <h1 class="title">发帖</h1>
+        <div class="list fab-text">
+            <div style="background:#fff;margin-top:5px;margin-bottom:10px;padding:5px 10px;border-radius:5px;">
+                <input ng-model="bbsInfo.title" placeholder="标题" style="width:100%;border:none;" />
+            </div>
+            <textarea type="text" ng-model="bbsInfo.text" placeholder="分享你的吐槽..." class="fab-textarea" required></textarea>
         </div>
-        <ion-content style="top:55px;">
-            
-            <div class="list fab-text">
-                <div style="background:#fff;margin-bottom:10px;padding:5px 10px;border-radius:5px;">
-                    <input ng-model="bbsInfo.title" placeholder="标题" style="width:100%;border:none;" />
-                </div>
+        <div class="fab-cont">
+            <span class="fl fab-sc-tie">上传图片</span>
 
-                <textarea type="text" ng-model="bbsInfo.text" placeholder="分享你的吐槽..." class="fab-textarea" required></textarea>
+            <button class="fr fab-fabu" ng-click="saveBbs()">发布</button>
+            <div class="fr fab-but-cont">
+                <button class="ion-ios-location fr"></button>
+                <input class="fl" placeholder="四川省成都市武侯区锦里" />
             </div>
-            <div class="fab-cont">
-                <span class="fl fab-sc-tie">上传图片</span>
-
-                <button class="fr fab-fabu" ng-click="saveBbs()">发布</button>
-                <div class="fr fab-but-cont">
-                    <button class="ion-ios-location fr"></button>
-                    <input class="fl" placeholder="四川省成都市武侯区锦里" />
-                </div>
+            <div class="clear"></div>
+        </div>
+        <div class="fab-botton-cont">
+            <ul class="sh-cont">
+                <li class="fl fab-li" ng-repeat="bbsImage in bbsImages">
+                    <img ng-src="{{baseUrl}}{{bbsImage.imageUrl}}" />
+                    <button ng-click="deletePhoto(bbsImage.imageUrl)">×</button>
+                </li>
+                <li ng-click="show()" class="fl fab-li-ac">
+                    +
+                </li>
                 <div class="clear"></div>
-            </div>
-            <div class="fab-botton-cont" >
-                <ul class="sh-cont" >
-                    <li class="fl fab-li" ng-repeat="bbsImage in bbsImages">
-                        <img ng-src="{{baseUrl}}{{bbsImage.imageUrl}}" />
-                        <button ng-click="deletePhoto(bbsImage.imageUrl)">×</button>
-                    </li>
-                    <li ng-click="show()" class="fl fab-li-ac">
-                        +
-                    </li>
-                    <div class="clear"></div>
-                </ul>
-            </div>
-        </ion-content>
-
-
-    </ion-side-menu-content>
-</ion-side-menus>
+            </ul>
+        </div>
+    </ion-content>
+</ion-view>
