@@ -26,9 +26,11 @@
                         <!--bbs图片-->
                         <div class="item-body sq-item-cont">
                             <div class="sqer-item-fl" style="font-family:微软雅黑;">{{detail.text}}</div>
-                            <div class="col col-padding" ng-repeat="image in bbs.bbsAttachUrls">
-                                <img href="#" ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" />
+                            <div class="row">
+                                <div ng-repeat="image in bbs.bbsAttachUrls" class="col"><img href="#"  ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" /></div>
+                                
                             </div>
+                           
                         </div>
                         <!--bbs图片-->
                         <!--bbs操作-->

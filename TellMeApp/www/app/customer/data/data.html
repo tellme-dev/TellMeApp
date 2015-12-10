@@ -1,0 +1,38 @@
+﻿<ion-view>
+    <ion-pane>
+        <div class="bar bar-header item-input-inset sz-top">
+            <button ng-click="goBack()" class="button icon button-clear ion-ios-arrow-back " style="color:#444"></button>
+            <h1 class="title sz-top-text">个人资料</h1>
+        </div>
+        <ion-content>
+            <div class="has-header grtx-cont">
+                <div class="list grtx-list">
+                    <label class="item item-input item-stacked-label grtz-label" ng-click="show()">
+                        <img class="fl" src="images/tx.jpg" />
+                        <span class="fl">更换头像</span>
+                        <i class="ion-chevron-right fr"></i>
+                    </label>
+                    <label class="item item-input item-stacked-label grtz-labeler">
+                        <span class="input-label">昵称</span>
+                        <input type="text" placeholder="小羊">
+                    </label>
+                    <label class="item item-input item-stacked-label grtz-labeler">
+                        <span class="input-label">帐号</span>
+                        <input type="text" placeholder="15682071802">
+                    </label>
+                    <label class="item item-input item-stacked-label grtz-labeler">
+                        <span class="input-label">性别</span>
+                        <input type="text" placeholder="男">
+                    </label>
+                    <label class="item item-input item-stacked-label grtz-labeler">
+                        <span class="input-label">生日</span>
+                        <input type="text" placeholder="1992-11-03">
+                    </label>
+                    <label class="item item-input item-stacked-label grtz-labeler" style="margin-top:10px;">
+                        <button>确定修改</button>
+                    </label>
+                </div>
+            </div>
+        </ion-content>
+    </ion-pane>
+</ion-view>
