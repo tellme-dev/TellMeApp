@@ -1,13 +1,10 @@
 ﻿<ion-view view-title="单个论坛详情">
-    <ion-side-menus>
 
-        <ion-side-menu-content style="background-color:#ddd;">
-
-            <div class="bar bar-header">
+            <div class="bar bar-dark bar-header">
                 <button ng-click="goBack()" class="button icon ion-chevron-left sqer-but"></button>
                 <h1 class="title" style="font-family:微软雅黑;">{{bbs.categoryName}}</h1>
             </div>
-            <ion-content>
+            <ion-content style="background-color:#ddd;">
 
                 <div class="content sq-hea sqer-hea">
                     <div class="list card item-mb sq-item">
@@ -87,8 +84,4 @@
                 <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite --> 
                 <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
             </ion-content>
-
-
-        </ion-side-menu-content>
-    </ion-side-menus>
 </ion-view>
