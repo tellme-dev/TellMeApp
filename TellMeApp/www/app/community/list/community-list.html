@@ -14,10 +14,10 @@
             </div>
             <div class="tabs-striped tabs-top  tabs-color-active ">
                 <div class="tabs sq-tier" style="background-color:#f2f2f2;">
-                    <a ng-click="gettypedetail(1,1)"  class="tab-item" ng-class="{active:1==globalVar.SelectedTag}" href="#">最新活动</a>
-                    <a ng-click="gettypedetail(2,2)" class="tab-item" ng-class="{active:2==globalVar.SelectedTag}" href="#">热门话题</a>
-                    <a ng-click="gettypedetail(3,3)" class="tab-item" ng-class="{active:3==globalVar.SelectedTag}" href="#">吐槽专区</a>
-                    <a ng-click="gettypedetail(4,4)" class="tab-item" ng-class="{active:4==globalVar.SelectedTag}" href="#">达人推荐</a>
+                    <a ng-click="gettypedetail(1,1)"  class="tab-item" ng-class="{active:1==globalVar.SelectedTag}" href="#" style="color:black;">最新活动</a>
+                    <a ng-click="gettypedetail(2,2)" class="tab-item" ng-class="{active:2==globalVar.SelectedTag}" href="#" style="color:black;">热门话题</a>
+                    <a ng-click="gettypedetail(3,3)" class="tab-item" ng-class="{active:3==globalVar.SelectedTag}" href="#" style="color:black;">吐槽专区</a>
+                    <a ng-click="gettypedetail(4,4)" class="tab-item" ng-class="{active:4==globalVar.SelectedTag}" href="#" style="color:black;">达人推荐</a>
                 </div>
             </div>
             <ion-content>
@@ -49,22 +49,22 @@
                                 </div>
                             </div>
                         </a>
-                        <div class="item tabs tabs-secondary tabs-icon-left sq-item-col">
+                        <div class="item tabs tabs-secondary tabs-icon-left sq-item-col" style="background-color:#f2f2f2;">
                           <!--回帖-->
-                           <a  class="tab-item sq-tab-item" href="#">
+                           <a  class="tab-item sq-tab-item" href="#" style="color:black;">
                                 <i class="icon ion-chatbox"></i>
                                 {{detail.answerCount}}
                             </a>
-                            <a class="tab-item sq-tab-item" ng-click="share(detail)" >
+                            <a class="tab-item sq-tab-item" ng-click="share(detail)" style="color:black;">
                                 <i class="icon ion-share"></i>
                             </a>
                            <!--点赞-->
-                            <a ng-click="agreeBbs(detail.id,detail.agreeCount)" class="tab-item sq-tab-item" href="# ">
+                            <a ng-click="agreeBbs(detail.id,detail.agreeCount)" class="tab-item sq-tab-item" href="# " style="color:black;">
                                 <i class="icon ion-thumbsup"></i>
                                 {{detail.agreeCount}}
                             </a>
                         <!--收藏-->
-                            <a ng-click="collectBbs(detail.id,detail.collectionCount)" class="tab-item sq-tab-item" href="#" >
+                            <a ng-click="collectBbs(detail.id,detail.collectionCount)" class="tab-item sq-tab-item" href="#" style="color:black;">
                                 <i class="icon ion-android-favorite"></i>
                                {{detail.collectionCount}}
                             </a>
@@ -88,7 +88,7 @@
                 <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
             </ion-content>
     <!--底部导航-->
-            <div class="tabs tabs-icon-left" style=" background-color: #444444;background-image: linear-gradient(0deg, #111, #111 50%, transparent 50%);">
+            <!--<div class="tabs tabs-icon-left" style=" background-color: #444444;background-image: linear-gradient(0deg, #111, #111 50%, transparent 50%);">
                 <a class="tab-item"  ng-click="goHome()">
                     <i class="icon ion-home " style="color:#fff">
                     </i>
@@ -105,6 +105,6 @@
                     <i class="icon ion-android-checkbox-outline" style="color:#fff">
                     </i>
                 </a>
-            </div>
+            </div>-->
 
 </ion-view>

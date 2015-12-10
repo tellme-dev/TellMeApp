@@ -45,7 +45,7 @@
             $scope.baseUrl = appConfig.server.getUrl();
             //跳转到首页
             $scope.goHome = function () {
-                $state.go('home');
+                $state.go('menu.home');
             }
             /*（点击底部菜单）跳转“入住”*/
             $scope.goCheckinto = function () {
@@ -54,7 +54,7 @@
             }
             /*（点击底部菜单）跳转“社区”*/
             $scope.goCommunity = function () {
-                $state.go('communityList');
+                $state.go('menu.communityList');
             }
             //    //下拉加载更多
             var vm = $scope.vm = {

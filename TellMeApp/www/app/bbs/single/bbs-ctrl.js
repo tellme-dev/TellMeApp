@@ -63,7 +63,7 @@
               }
               );
             } else {
-                $state.go('login', { pageName: 'communityList' });
+                $state.go('login', { pageName: 'menu.communityList' });
             }
           
         }
@@ -105,7 +105,7 @@
                   }
                   );
             } else {
-                $state.go('login', { pageName: 'communityList' });
+                $state.go('login', { pageName: 'menu.communityList' });
             }
          
         }
@@ -138,7 +138,7 @@
                }
                );
             } else {
-                $state.go('login', { pageName: 'communityList' });
+                $state.go('login', { pageName: 'menu.communityList' });
             }
          }
            // 分享
