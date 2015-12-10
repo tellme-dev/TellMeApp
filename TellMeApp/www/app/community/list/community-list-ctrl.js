@@ -16,7 +16,7 @@ angular.module('tellme')
 				}
 				//跳转到发帖页面
 			$scope.toAddBbs = function () {
-				$state.go('addBbs');
+			    $state.go('addBbs');
 			}
 			$scope.globalVar = {};
 			$scope.globalVar.SelectedTag = 1; //选中分类标签索引
@@ -195,7 +195,7 @@ angular.module('tellme')
 				moredata: false,
 				typeDetail: [],
 				pageNo: 0,
-				pageSize: 3,
+				pageSize:5,
 				loadMore: function () {
 					LoadingSvr.show();
 					vm.pageNo += 1;

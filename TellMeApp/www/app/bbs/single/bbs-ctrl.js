@@ -184,7 +184,7 @@
                 moredata: false,
                 bbsDetail: [],
                 pageNo: 0,
-                pageSize: 15,
+                pageSize: 10,
                 loadMore: function () {//加载BBS回复内容详情
                 LoadingSvr.show();
                 vm.pageNo += 1;
