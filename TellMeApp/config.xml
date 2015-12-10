@@ -3,7 +3,7 @@
   <name>TellMeApp</name>
   <description>A blank project that uses Apache Cordova to help you build an app that targets multiple mobile platforms: Android, iOS, Windows, and Windows Phone.</description>
   <author href="http://cordova.io" email="dev@cordova.apache.org">tellme dev</author>
-  <content src="index.html" />
+  <content src="app.html" />
   <access origin="*" />
   <vs:features />
   <preference name="SplashScreen" value="screen" />
@@ -137,5 +137,11 @@
   <vs:plugin name="cordova-plugin-file" version="3.0.0" />
   <vs:plugin name="xu.li.cordova.wechat" version="0.9.3" src="https://github.com/xu-li/cordova-plugin-wechat">
     <param name="WECHATAPPID" value="wx8d25a682873339b9" />
+  </vs:plugin>
+  <vs:plugin name="cordova-plugin-weibosdk" version="0.3.4" src="https://github.com/iVanPan/cordova_weibo.git">
+    <param name="WEIBO_APP_ID" value="3379583054" />
+  </vs:plugin>
+  <vs:plugin name="cordova-plugin-qqsdk" version="0.3.9" src="https://github.com/iVanPan/Cordova_QQ.git">
+    <param name="QQ_APP_ID" value="1105008574" />
   </vs:plugin>
 </widget>

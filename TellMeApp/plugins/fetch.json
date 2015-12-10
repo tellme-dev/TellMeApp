@@ -57,5 +57,27 @@
         "variables": {
             "WECHATAPPID": "wx8d25a682873339b9"
         }
+    },
+    "cordova-plugin-weibosdk": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/iVanPan/cordova_weibo.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {
+            "WEIBO_APP_ID": "3379583054"
+        }
+    },
+    "cordova-plugin-qqsdk": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/iVanPan/Cordova_QQ.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {
+            "QQ_APP_ID": "1105008574"
+        }
     }
 }

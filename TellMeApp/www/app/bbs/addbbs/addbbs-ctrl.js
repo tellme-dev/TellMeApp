@@ -1,17 +1,10 @@
 ﻿angular.module('tellme')
     .controller('addBbsControll', ['$scope','$state', '$window','$ionicHistory', 'appConfig', '$ionicActionSheet','$timeout', 'cameraSvr', 'fileTransferSvr', 'LoadingSvr', 'bbsSer',
         function ($scope,$state, $window,$ionicHistory, appConfig,$ionicActionSheet,$timeout, cameraSvr, fileTransferSvr, LoadingSvr, bbsSer) {
-        var baseUrl = appConfig.server.getUrl();
+        $scope.baseUrl = appConfig.server.getUrl();
         $scope.bbsInfo = {};
+        $scope.bbsImages = [];
         var now = new Date();
-        $scope.bbsImages = [
-            //{
-            //    imageUrl:"/"
-            //},
-            //{
-            //    imageUrl: "/"
-            //}
-        ];
         //var year = now.getFullYear();
         //var month = (now.getMonth() + 1).toString();
         //var day = (now.getDate()).toString();
@@ -40,12 +33,19 @@
                             $scope.takePhoto(); break;
                         case 1:
                             $scope.getPhoto(); break;
+                        default:
+                            break;
                     }
+                    return true;
                 }
             });
         };
         /*发帖*/
         $scope.saveBbs = function () {
+            if ($scope.bbsInfo.text == undefined) {
+                alert("please写点内容啊");
+                return;
+            }
             bbsSer.saveBbs($scope.bbsInfo).then(
                 function (data) {
                     if (data.isSuccess) {
@@ -73,7 +73,7 @@
                 $scope.uploadPhoto(imgURI, fileName);
                 //上传成功 将图片url放到对象中再放到数组中
                 //var image = {};
-                //image.imageUrl = "app/bbs/temp/" + fileName;
+                //image.imageUrl = "app/bbs/temp/" + fileName+".jpg";
                 //$scope.bbsImages.push(image);
             }
             function cFail(message) {
@@ -105,7 +105,6 @@
             function tSuccess(result) {
                 //上传成功 将图片url放到对象中再放到数组中
                 var image = {};
-                alert(result);
                 image.imageUrl = "app/bbs/temp/" + fileName + ".jpg";
                 $scope.bbsImages.push(image);
 
@@ -118,7 +117,6 @@
             function tFail(error) {
                 alert(error);
                 console.log(error);
-                alert(error);
             }
             /*
                 传输进度

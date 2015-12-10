@@ -91,16 +91,17 @@ angular.module('tellme')
             // 分享
 			$scope.share = function (detail) {
 			    var args = {};
-			    args.url = "";
+                //args.url = "";
 			    args.title = detail.name;
 			    args.description = detail.text;
-			    var imgs = [];
+                args.text = detail.text;
+                var imgs = typeof (detail.bbsAttachUrls) === 'undefined' ? undefined : [];
 			    angular.forEach(detail.bbsAttachUrls, function (de, index) {
-			        imgs[index] = $scope.baseUrl+de.attachUrl;
+                    imgs[index] = $scope.baseUrl + de.attachUrl;
 			    });
                 args.imageUrl = imgs;
-			    args.appName = "";
-                args.defaultText = "";
+                args.appName = "挑米科技";
+                args.defaultText = "来自挑米科技";
 			    tellmeActionSheet.show(args);
 			}
 
