@@ -63,7 +63,7 @@
               }
               );
             } else {
-                $state.go('login', { pageName: 'communityList' });
+                $state.go('login', { pageName: 'menu.communityList' });
             }
           
         }
@@ -105,7 +105,7 @@
                   }
                   );
             } else {
-                $state.go('login', { pageName: 'communityList' });
+                $state.go('login', { pageName: 'menu.communityList' });
             }
          
         }
@@ -138,14 +138,14 @@
                }
                );
             } else {
-                $state.go('login', { pageName: 'communityList' });
+                $state.go('login', { pageName: 'menu.communityList' });
             }
          }
            // 分享
           $scope.share = function (bbsDetail) {
               $scope.showAnswer = false;
-              //var isLogin = $scope.userIsLogin();
-              //if (isLogin) {//如果用户已经登录
+              var isLogin = $scope.userIsLogin();
+              if (isLogin) {//如果用户已经登录
                   var args = {};
                   args.url = "";
                   args.title = bbsDetail.title;
@@ -155,12 +155,13 @@
                       imgs[index] = $scope.baseUrl + de.attachUrl;
                   });
                   args.imageUrl = imgs;
-                  args.appName = "";
+                  args.appName = "挑米科技";
+                  args.defaultText = "来自挑米科技";
                   tellmeActionSheet.show(args);
 
-              //} else {
-              //    $state.go('login', { pageName: 'communityList' });
-              //}
+              } else {
+                  $state.go('login', { pageName: 'communityList' });
+              }
           }
          //回复某人
          $scope.answerChildren = function (id) {

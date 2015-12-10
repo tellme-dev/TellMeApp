@@ -23,14 +23,24 @@
             $ionicConfigProvider.tabs.position('bottom');
 
             $stateProvider
-               //test
-                .state('test', { url: '/test', templateUrl: 'app/test/test.html', controller: 'testControll' })
-                //menu
-                .state('menu', { url: '/menu', templateUrl: 'app/menu.html', controller: 'menuControll' })
+            //test
+            .state('test', { url: '/test', templateUrl: 'app/test/test.html', controller: 'testControll', abstract: true })
             //首次启动页面
             .state('start', { url: '/start', templateUrl: 'app/start/start.html', controller: 'startControll' })
-            //首页
-            .state('home', {  url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
+            //menu
+            .state('menu', { url: '/menu', templateUrl: 'app/menu.html', controller: 'menuControll' })
+                //首页
+                //.state('menu.home', { url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
+                .state('menu.home', { url: '/home', views: { 'home-tab': { templateUrl: 'app/home/home.html', controller: 'homeControll' } } })
+                //发现 
+               // .state('menu.discoverList', { cache: false, url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverListControll' })
+                 .state('menu.discoverList', { cache: false, url: '/discoverList', views: { 'discovery-tab': { templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverListControll' } } })
+                // 社区
+                //.state('menu.communityList', { cache: false, url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
+                .state('menu.communityList', { cache: false, url: '/communityList', views: { 'community-tab': { templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' } } })
+                //入住
+                .state('menu.rcu', { url: '/rcu', views: { 'rcu-tab': { templateUrl: 'app/rcu/rcu.html', controller: 'rcuControll' } } })
+            
             //个人中心
             .state('customer', { url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
             .state('login', { url: '/login?pageName', templateUrl: 'app/customer/login/login.html', controller: 'loginControll' })
@@ -57,10 +67,7 @@
              .state('hotelItem', { url: '/hotelItem?itemId', templateUrl: 'app/hotel/hotel-item/hotel-item.html', controller: 'hotelItemControll' })
             //广告
             .state('adList', { url: '/adList?adInfo', templateUrl: 'app/ad/list/ad-list.html', controller: 'adListControll' })
-            //发现 
-            .state('discoverList', { cache: false, url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverListControll' })
-           // 社区
-           .state('communityList', { cache: false, url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
+            
             //搜索
             .state('willSearch', { url: '/willSearch', templateUrl: 'app/search/will/willSearch.html', controller: 'willSearchControll'})
             .state('doneSearch', { url: '/doneSearch', templateUrl: 'app/search/done/doneSearch.html', controller: 'doneSearchControll'})
@@ -69,7 +76,7 @@
             var appLaunchCount = window.localStorage.getItem('launchCount');
             //需要进行页面测试，则修改下面的路由即可
             if (appLaunchCount) {
-                $urlRouterProvider.otherwise('/data');
+                $urlRouterProvider.otherwise('/menu');
             } else {
                 $urlRouterProvider.otherwise('/start');
             }

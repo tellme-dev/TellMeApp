@@ -2,19 +2,21 @@
     .controller('discoverListControll', ['$scope', '$window', '$state', '$ionicHistory', 'discoverSer', 'commonSer', 'LoadingSvr', 'appConfig',
         function ($scope, $window, $state, $ionicHistory, discoverSer, commonSer, LoadingSvr, appConfig) {
             // 获取当前位置
-            //AMap.service(["AMap.CitySearch"], function () {
-            //    //实例化城市查询类
-            //    var citysearch = new AMap.CitySearch();
-            //    citysearch.getLocalCity(function (status, result) {
-            //        if (status === 'complete' && result.info === 'OK') {
-            //            if (result && result.city && result.bounds) {
-            //                cityinfo = result.city;
-            //                $scope.currentCity = cityinfo;
-            //                console.log('当前城市：' + cityinfo);
-            //            }
-            //        }
-            //    });
-            //});
+            AMap.service(["AMap.CitySearch"], function () {
+                //实例化城市查询类
+                var citysearch = new AMap.CitySearch();
+                citysearch.getLocalCity(function (status, result) {
+                    if (status === 'complete' && result.info === 'OK') {
+                        if (result && result.city && result.bounds) {
+                            cityinfo = result.city;
+                            $scope.currentCity = cityinfo;
+                            console.log('当前城市：' + cityinfo);
+                        }
+                    }
+
+
+                });
+            });
             $scope.dataShow = false;
             $scope.msgShow = false;
             /*返回前一个界面*/
@@ -43,7 +45,7 @@
             $scope.baseUrl = appConfig.server.getUrl();
             //跳转到首页
             $scope.goHome = function () {
-                $state.go('home');
+                $state.go('menu.home');
             }
             /*（点击底部菜单）跳转“入住”*/
             $scope.goCheckinto = function () {
@@ -52,7 +54,7 @@
             }
             /*（点击底部菜单）跳转“社区”*/
             $scope.goCommunity = function () {
-                $state.go('communityList');
+                $state.go('menu.communityList');
             }
             //    //下拉加载更多
             var vm = $scope.vm = {

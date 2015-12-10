@@ -1,13 +1,67 @@
 ﻿angular.module('tellme')
-    .controller('hotelItemControll', ['$scope', '$ionicHistory', '$stateParams', '$ionicHistory', 'hotelSer', 'commonSer', 'tellmeActionSheet', 'appConfig', 'LoadingSvr',
-        function ($scope, $ionicHistory, $stateParams, $ionicHistory, hotelSer, commonSer,tellmeActionSheet, appConfig, LoadingSvr) {
+    .controller('hotelItemControll', ['$scope', '$ionicHistory', '$stateParams', '$ionicHistory', 'hotelSer', 'commonSer', 'tellmeActionSheet', 'appConfig', 'LoadingSvr', 'communitySer',
+        function ($scope, $ionicHistory, $stateParams, $ionicHistory, hotelSer, commonSer, tellmeActionSheet, appConfig, LoadingSvr, communitySer) {
             var itemId = $stateParams.itemId;
             $scope.baseUrl = appConfig.server.getUrl();
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };
-            //发表评论
+            //获取ItemName//data.data.name
+            hotelSer.getItemInfo(itemId).then(
+				function (data) {
+					if (data.isSuccess) {
+						$scope.itemName = data.data.name;
+						$scope.itemText = data.data.text;
+					} else {
+						console.log(data.msg);
+					}
+				},
+				function (data) {
+							    console.log('其他');
+							}
+			);
 
+            //发表评论
+            $scope.answerHotel = function (hotelId,hotelName) {
+                var el = document.getElementById('hotel-' + hotelId);
+                var answerText = el.value;
+                if (answerText == "") {
+                    alert("请输入内容");
+                    return;
+                }
+                var isLogin = $scope.userIsLogin();
+                if (isLogin) { //如果用户已经登录
+                    var jsonData = JSON.stringify({
+                        id: 0,
+                        customerId: window.localStorage['userId'],
+                        bbsType: 1,
+                        postType: 1,
+                        targetType: 1,
+                        parentId: hotelId,
+                        title: hotelName,
+                        text: answerText
+                    });
+                    var promise = communitySer.answerBbs(jsonData)
+						.then(
+							function (data) {
+							    if (data.isSuccess) {
+							        vm.loadMore();
+							        el.value = "";
+							        console.log('回帖成功');
+							    } else {
+							        console.log(data.msg);
+							    }
+							},
+							function (data) {
+							    console.log('其他');
+							}
+						);
+                } else {
+                    $state.go('login', {
+                        pageName: 'communityList'
+                    });
+                }
+            }
             //点赞
             $scope.toSaveAgree = function (id) {
                 var isLogin = $scope.userIsLogin();
@@ -71,7 +125,8 @@
                         imgs[index] = $scope.baseUrl + de.attachUrl;
                     });
                     args.imageUrl = imgs;
-                    args.appName = "";
+                    args.appName = "挑米科技";
+                    args.defaultText = "来自挑米科技";
                     tellmeActionSheet.show(args);
                 } else {
                     $state.go('login', { pageName: 'communityList' });
@@ -97,8 +152,8 @@
                               $scope.msgShow = true;
                           }
                           vm.listData = data.rows;
-                          var total = data.total;
-                          if (vm.pageNo * vm.pageSize > total || vm.pageNo * vm.pageSize == total) {
+                          var total = data.total;//总的页数
+                          if (vm.pageNo>= total) {
                               vm.moredata = true;
                               vm.pageNo = 0;
                           }

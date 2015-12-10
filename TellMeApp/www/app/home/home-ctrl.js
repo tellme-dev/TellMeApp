@@ -54,19 +54,19 @@ angular.module('tellme')
         //获取URL
         $scope.baseUrl = appConfig.server.getUrl();
        //获取城市定位
-        //AMap.service(["AMap.CitySearch"], function () {
-        //    //实例化城市查询类
-        //    var citysearch = new AMap.CitySearch();
-        //    citysearch.getLocalCity(function (status, result) {
-        //        if (status === 'complete' && result.info === 'OK') {
-        //            if (result && result.city && result.bounds) {
-        //                cityinfo = result.city;
-        //                 $scope.currentCity = cityinfo;
-        //                console.log('当前城市：' + cityinfo);
-        //            }
-        //        }
-        //    });
-        //});
+        AMap.service(["AMap.CitySearch"], function () {
+            //实例化城市查询类
+            var citysearch = new AMap.CitySearch();
+            citysearch.getLocalCity(function (status, result) {
+                if (status === 'complete' && result.info === 'OK') {
+                    if (result && result.city && result.bounds) {
+                        cityinfo = result.city;
+                         $scope.currentCity = cityinfo;
+                        console.log('当前城市：' + cityinfo);
+                    }
+                }
+            });
+        });
         //广告（头部广告、底部专栏）动态加载
         ////获取头部广告信息
             var promise = homeSer.getAdd();
@@ -181,11 +181,11 @@ angular.module('tellme')
         }
             /*（点击底部菜单）跳转“发现”*/
         $scope.goDiscover = function () {
-            $state.go('discoverList');
+            $state.go('menu.discoverList');
         }
             /*（点击底部菜单）跳转“社区”*/
         $scope.goCommunity = function () {
-            $state.go('communityList');
+            $state.go('menu.communityList');
         }
         }])
     .directive('admenu', function () {//加载酒店滚动菜单
