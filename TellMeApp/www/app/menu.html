@@ -1,8 +1,14 @@
-﻿<ion-view view-title="Tabs">
-    <ion-tabs class="tabs-stable tabs-icon-only">
-        <ion-tab title="首页" href="#home" icon-on="ion-ios-home-outline"></ion-tab>
-        <ion-tab title="发现" href="#discoverList" icon-on="ion-ios-eye-outline"></ion-tab>
-        <ion-tab title="社区" href="#communityList" icon-on="ion-ios-people-outline"></ion-tab>
-        <ion-tab title="房控" href="#home" icon-on="ion-android-checkbox-outline"></ion-tab>
-    </ion-tabs>
-</ion-view>
+﻿<ion-tabs class="tabs-dark tabs-icon-only">
+    <ion-tab title="首页" ng-click="home()" href="#/menu/home" icon="ion-ios-home-outline">
+        <ion-nav-view name="home-tab"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="发现" ng-click="discovery()" href="#/menu/discoverList" icon="ion-ios-eye-outline">
+        <ion-nav-view name="discovery-tab"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="社区" ng-click="community()" href="#/menu/communityList" icon="ion-ios-people-outline">
+        <ion-nav-view name="community-tab"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="房控" ng-click="rcu()" href="#/menu/rcu" icon="ion-android-checkbox-outline">
+        <ion-nav-view name="rcu-tab"></ion-nav-view>
+    </ion-tab>
+</ion-tabs>

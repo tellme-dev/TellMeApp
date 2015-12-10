@@ -181,11 +181,11 @@ angular.module('tellme')
         }
             /*（点击底部菜单）跳转“发现”*/
         $scope.goDiscover = function () {
-            $state.go('discoverList');
+            $state.go('menu.discoverList');
         }
             /*（点击底部菜单）跳转“社区”*/
         $scope.goCommunity = function () {
-            $state.go('communityList');
+            $state.go('menu.communityList');
         }
         }])
     .directive('admenu', function () {//加载酒店滚动菜单

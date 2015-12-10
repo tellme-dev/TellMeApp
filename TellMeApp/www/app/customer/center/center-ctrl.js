@@ -16,14 +16,14 @@
                 $ionicHistory.goBack();
             };
             $scope.goHome = function () {
-                $state.go('home');
+                $state.go('menu.home');
             }
             $scope.goDiscover = function () {
-                $state.go('discoverList');
+                $state.go('menu.discoverList');
             }
                 /*（点击底部菜单）跳转“社区”*/
             $scope.goCommunity = function () {
-                $state.go('communityList');
+                $state.go('menu.communityList');
             }
             //跳转到系统设置
             $scope.goSystem = function () {

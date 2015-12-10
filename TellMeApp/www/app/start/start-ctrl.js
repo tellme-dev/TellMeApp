@@ -1,5 +1,5 @@
 ﻿angular.module('tellme')
-    .controller('startControll', ['$scope', '$state', '$ionicSlideBoxDelegate', 'appConfig', function ($scope,$state, $ionicSlideBoxDelegate, appConfig) {
+    .controller('startControll', ['$scope', '$state', '$ionicSlideBoxDelegate', '$ionicHistory', 'appConfig', function ($scope, $state, $ionicSlideBoxDelegate, $ionicHistory,appConfig) {
         $scope.baseUrl = appConfig.server.getUrl();
 
         $scope.startImages = [
@@ -19,6 +19,6 @@
         }
         //跳转到首页
         $scope.goToHome = function () {
-            $state.go('home');
+            $ionicHistory.goBack();
         }
     }]);

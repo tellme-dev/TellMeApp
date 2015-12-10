@@ -83,7 +83,7 @@ angular.module('tellme')
 						);
 				} else {
 					$state.go('login', {
-						pageName: 'communityList'
+					    pageName: 'menu.communityList'
 					});
 				}
 			}
@@ -131,7 +131,7 @@ angular.module('tellme')
 							);
 					} else {
 						$state.go('login', {
-							pageName: 'communityList'
+						    pageName: 'menu.communityList'
 						});
 					}
 				}
@@ -162,18 +162,18 @@ angular.module('tellme')
 						);
 				} else {
 					$state.go('login', {
-						pageName: 'communityList'
+					    pageName: 'menu.communityList'
 					});
 				}
 			}
 
 			//跳转到首页
 			$scope.goHome = function () {
-					$state.go('home');
+			    $state.go('menu.home');
 				}
 				/*（点击底部菜单）跳转“发现”*/
 			$scope.goDiscover = function () {
-					$state.go('discoverList');
+			    $state.go('menu.discoverList');
 				}
 				/*（点击底部菜单）跳转“入住”*/
 			$scope.goCheckinto = function () {
