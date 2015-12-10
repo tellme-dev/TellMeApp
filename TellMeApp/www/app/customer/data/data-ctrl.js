@@ -14,8 +14,8 @@
             $scope.baseUrl = appConfig.server.getUrl();
             var now = new Date();
             var mill = now.getTime();//getTime() 方法可返回距 1970 年 1 月 1 日之间的毫秒数。
-
-            $scope.image = {};//存放头像
+            
+            $scope.imameUrl;//存放头像,保存信息时的头像url
             //返回前页
             $scope.goBack = function () {
                 $ionicHistory.goBack();
@@ -65,12 +65,13 @@
             };
             //上传图片
             $scope.uploadPhoto = function (imgURI, fileName) {
-                fileTransferSvr.uploadPhoto(imgURI,'customerImg', fileName, tSuccess, tFail, tProgress);
+                var url = $scope.baseUrl + "app/customer/uploadHeadImg.do";//服务器接口地址
+                fileTransferSvr.uploadPhoto(imgURI,'customerImg',url, fileName, tSuccess, tFail, tProgress);
                 /*
                    传输成功
                 */
                 function tSuccess(result) {
-                    $scope.image.imageUrl = "app/head/" + fileName;
+                    $scope.imageUrl = "app/head/" + fileName;
 
                     LoadingSvr.hide();
                     console.log(result);
