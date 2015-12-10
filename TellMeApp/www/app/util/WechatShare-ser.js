@@ -1,5 +1,5 @@
 angular.module('tellme')
-	.service('WechatShareSer', [function () {
+	.service('WechatShareSer', ['popUpSer', 'LoadingSvr', function (popUpSer, LoadingSvr) {
 	    //微信分享
 	    /*scene:0->会话;1->朋友圈;2->收藏;
         id:"check-installed": "是否安装了微信";
@@ -32,7 +32,7 @@ angular.module('tellme')
 	        };
 
 	        if (id == 'send-text') {
-	            params.text = '';
+	            params.text = args.text;
 	        } else {
 	            params.message = {
 	                title: '[TEST]' + id,
@@ -140,12 +140,13 @@ angular.module('tellme')
 	                alert(id + " can not be recognized!");
 	                return false;
 	        }
-
+	        LoadingSvr.goShare();
 	        Wechat.share(params, function () {
-	            alert("Success");
+	            popUpSer.showAlert("分享成功");
 	        }, function (reason) {
-	            alert("Failed: " + reason);
+	            popUpSer.showAlert(reason);
 	        });
+	        LoadingSvr.hide();
 	        return true;
 	    }
 	    }])

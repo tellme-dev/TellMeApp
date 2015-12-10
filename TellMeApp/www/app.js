@@ -1,4 +1,4 @@
-﻿angular.module('tellme', ['ionic'])
+﻿angular.module('tellme', ['ionic', 'FtActionSheet'])
     .run(['$ionicPlatform', '$rootScope', 'commonSer', function ($ionicPlatform, $rootScope, commonSer) {
         $ionicPlatform.ready(function () {
 
@@ -18,11 +18,15 @@
 
 
     }])
-    .config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
-        function ($stateProvider, $urlRouterProvider, $httpProvider ) {
+    .config(['$stateProvider', '$urlRouterProvider', '$httpProvider','$ionicConfigProvider',
+        function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
+            $ionicConfigProvider.tabs.position('bottom');
+
             $stateProvider
                //test
                 .state('test', { url: '/test', templateUrl: 'app/test/test.html', controller: 'testControll' })
+                //menu
+                .state('menu', { url: '/menu', templateUrl: 'app/menu.html', controller: 'menuControll' })
             //首次启动页面
             .state('start', { url: '/start', templateUrl: 'app/start/start.html', controller: 'startControll' })
             //首页
