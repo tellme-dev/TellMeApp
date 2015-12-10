@@ -1,7 +1,7 @@
 ﻿<ion-view view-title="发现详情">
     <ion-header-bar class="bar bar-header bar-light ion-bor">
         <button class="button icon ion-chevron-left xq-but" ng-click="goBack()"></button>
-        <h1 class="title">婚礼专题</h1>
+        <h1 class="title">{{itemName}}</h1>
         <button class="button ion-share xq-but" style=" font-size:24px;"></button>
     </ion-header-bar>
     <ion-content>
@@ -11,7 +11,7 @@
             <div style="width:100%; text-align:center;">
                 <img src="images/fa-1.png" style="width:30%;" />
                 <div style="border-bottom:1px solid #c2c2c2">
-                    给你一场浪漫婚礼
+                    {{itemText}}
                 </div>
             </div>
 
@@ -19,7 +19,7 @@
                 <div class="item item-avatar xq-item-top">
                     <img src="http://www.runoob.com/try/demo_source/mcfly.jpg" />
                     <h2 class="xq-item-h2">{{data.name}}</h2>
-                    <button class="xq-item-but">
+                    <button ng-click="toSaveCollection(data.id)" class="xq-item-but">
                         关 注
                     </button>
                     <div class="clear"></div>
@@ -57,16 +57,14 @@
                     </a>
                 </div>
                 <!--发表评论-->
-                <div class="list">
-                    <div ng-show="showAnswer" class="sq-show">
-                        <div class="item-input-inset ">
-                            <label class="item-input-wrapper">
-                                <input type="text" ng-model="globalVar.answerText" placeholder="说点什么..." style="width:100%">
-                            </label>
-                            <button ng-click="answerbbs(data.id)" class="button button-small butt-op">
-                                发送
-                            </button>
-                        </div>
+                <div class="sq-show">
+                    <div class="item-input-inset">
+                        <label class="item-input-wrapper">
+                            <input type="text" id="hotel-{{data.id}}" placeholder="写点什么..." style="width:100%">
+                        </label>
+                        <button ng-click="answerHotel(data.id,data.name)" class="button button-small butt-op">
+                            发送
+                        </button>
                     </div>
                 </div>
                 <!--发表评论-->
