@@ -16,7 +16,16 @@ angular.module('tellme')
 				}
 				//跳转到发帖页面
 			$scope.toAddBbs = function () {
-				$state.go('addBbs');
+			    //判断是否登录
+			    var isLogin = $scope.userIsLogin();
+			    if (isLogin) {
+			        $state.go('addBbs');
+			    } else {
+			        $state.go('login', {
+			            pageName: 'communityList'
+			        });
+			    }
+				
 			}
 			$scope.globalVar = {};
 			$scope.globalVar.SelectedTag = 1; //选中分类标签索引
