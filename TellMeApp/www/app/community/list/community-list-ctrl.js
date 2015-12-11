@@ -198,7 +198,7 @@ angular.module('tellme')
 						return true;
 					}
 				}
-				//    //下拉加载更多
+			//下拉加载更多
 			var vm = $scope.vm = {
 				categoryId: 1,
 				moredata: false,

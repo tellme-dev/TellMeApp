@@ -8,28 +8,35 @@
             <div class="has-header grtx-cont">
                 <div class="list grtx-list">
                     <label class="item item-input item-stacked-label grtz-label" ng-click="show()">
-                        <img class="fl" ng-src="{{baseUrl}}{{customerInfo.imageUrl}}" style=""/>
+                        <img class="fl" ng-src="{{baseUrl}}{{customerInfo.photoUrl}}" style=""/>
                         <span class="fl">更换头像</span>
                         <i class="ion-chevron-right fr"></i>
                     </label>
                     <label class="item item-input item-stacked-label grtz-labeler">
                         <span class="input-label">昵称</span>
-                        <input type="text" ng-model="{{customerInfo.name}}"/>
+                        <input type="text" ng-model="customerInfo.name" value="{{customerInfo.name}}"/>
                     </label>
-                    <label class="item item-input item-stacked-label grtz-labeler">
+                    <!--<label class="item item-input item-stacked-label grtz-labeler">
                         <span class="input-label">帐号</span>
                         <input type="text" placeholder="15682071802">
-                    </label>
-                    <label class="item item-input item-stacked-label grtz-labeler">
+                    </label>-->
+                    <!--<label class="item item-input item-stacked-label grtz-labeler">
                         <span class="input-label">性别</span>
                         <input type="text" placeholder="男">
-                    </label>
+                    </label>-->
+                    <!--<label class="item item-input item-stacked-label grtz-labeler">
+                        <span class="input-label">性别</span>
+                        <select ng-model="customerInfo.sex">
+                            <option value="1">男</option>
+                            <option value="2">女</option>
+                        </select>
+                    </label>-->
                     <label class="item item-input item-stacked-label grtz-labeler">
                         <span class="input-label">生日</span>
-                        <input type="text" placeholder="1992-11-03">
+                        <input type="text" value="{{customerInfo.birthday}}" ng-click="datePicker()"/>
                     </label>
                     <label class="item item-input item-stacked-label grtz-labeler" style="margin-top:10px;">
-                        <button>确定修改</button>
+                        <button ng-click="saveData()">确定修改</button>
                     </label>
                 </div>
             </div>
