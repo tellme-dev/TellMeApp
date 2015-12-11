@@ -171,7 +171,7 @@ IonicModule
 					'<div class="action-sheet" ng-class="{\'action-sheet-has-icons\': $actionSheetHasIcon}">' +
 					'<div class="action-sheet-group action-sheet-options">' +
 					'<div class="action-sheet-title" ng-if="titleText" ng-bind-html="titleText"></div>' +
-					'<div class="sheetspan" ng-repeat="b in buttons" ng-click="buttonClicked($index)"><img ng-src="{{b.img}}" class="sheetimg"/><span ng-bind-html="b.text"></span></div>' +
+					'<div class="sheetspan" ng-repeat="b in buttons" ng-click="buttonClicked($index)" style="width:50px;"><img ng-src="{{b.img}}" class="sheetimg"/><span ng-bind-html="b.text"></span></div>' +
 					'<button class="button destructive action-sheet-destructive" ng-if="destructiveText" ng-click="destructiveButtonClicked()" ng-bind-html="destructiveText"></button>' +
 					'</div>' +
 					'<div class="action-sheet-group action-sheet-cancel" ng-if="cancelText">' +

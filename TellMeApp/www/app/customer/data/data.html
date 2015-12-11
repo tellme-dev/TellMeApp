@@ -8,13 +8,13 @@
             <div class="has-header grtx-cont">
                 <div class="list grtx-list">
                     <label class="item item-input item-stacked-label grtz-label" ng-click="show()">
-                        <img class="fl" ng-src="{{baseUrl}}{{imageUrl}}" />
+                        <img class="fl" ng-src="{{baseUrl}}{{customerInfo.imageUrl}}" style=""/>
                         <span class="fl">更换头像</span>
                         <i class="ion-chevron-right fr"></i>
                     </label>
                     <label class="item item-input item-stacked-label grtz-labeler">
                         <span class="input-label">昵称</span>
-                        <input type="text" placeholder="小羊">
+                        <input type="text" ng-model="{{customerInfo.name}}"/>
                     </label>
                     <label class="item item-input item-stacked-label grtz-labeler">
                         <span class="input-label">帐号</span>

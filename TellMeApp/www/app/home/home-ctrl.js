@@ -1,13 +1,13 @@
 ﻿
 angular.module('tellme')
-    .controller('homeControll', ['$scope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', function ($scope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer) {
+    .controller('homeControll', ['$scope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', 'LoadingSvr', function ($scope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer, LoadingSvr) {
         /*首页初始化*/
         var mySwiper = new Swiper('.swiper-container', {
             pagination: '.pagination',
             paginationClickable: true,
             centeredSlides: true,
-            slidesPerView: 1.3,
-            watchActiveIndex: false
+            slidesPerView: 2,
+            loop: true,
         });
         var vm = $scope.vm = {
             moredata: false,
@@ -15,15 +15,6 @@ angular.module('tellme')
             pagination: {
                 perPage: 5,
                 currentPage: 1
-            },
-            //加载
-           show :function() {
-                $ionicLoading.show({
-                    template: 'Loading...'
-                });
-            },
-           hide : function(){
-                $ionicLoading.hide();
             },
             //下拉刷新
             doRefresh: function () {
@@ -34,7 +25,7 @@ angular.module('tellme')
                           if (data.rows.length == 0) {
                               console.log("未获取数据！")
                           }
-                       } 
+                       }
                     }
                   );
                     $scope.$broadcast('scroll.refreshComplete');
@@ -42,15 +33,14 @@ angular.module('tellme')
             },
             //加载更多
             loadMore: function () {
-                   vm.show();
                    console.log("上拉加载数据。")
                    vm.moredata = true;
                    $scope.$broadcast('scroll.infiniteScrollComplete');
-                   vm.hide();
+                   
                 //})
-            } 
+            }
         }
-      
+
         //获取URL
         $scope.baseUrl = appConfig.server.getUrl();
        //获取城市定位
@@ -72,17 +62,19 @@ angular.module('tellme')
             var promise = homeSer.getAdd();
             promise.then(
                    function (data) {
+                       LoadingSvr.show();
                        if (data.isSuccess) {
                            if (data.rows.length == 0) {
                                console.log("未获取数据！")
                            } else {
+                               LoadingSvr.hide();
                                $scope.adData = data.rows;
                            }
-                         
+
                        } else {
                            console.log("获取数据失败！" + data.msg)
                        }
-                      
+
                    },
                    function (data) {
                        console.log('其他');
@@ -92,10 +84,12 @@ angular.module('tellme')
             var promise = homeSer.getFootAdd();
             promise.then(
                    function (data) {
+                       LoadingSvr.show();
                        if (data.isSuccess) {
                            if (data.rows.length == 0) {
                                console.log("未获取数据！")
                            } else {
+                               LoadingSvr.hide();
                                $scope.footAdData = data.rows;
                            }
 
@@ -113,10 +107,12 @@ angular.module('tellme')
                 var promise = homeSer.getSwiperAd ();
                 promise.then(
                        function (data) {
+                           LoadingSvr.show();
                            if (data.isSuccess) {
                                if (data.rows.length == 0) {
                                    console.log("未获取数据！")
                                } else {
+                                   LoadingSvr.hide();
                                     $scope.swiperAdData = data.rows;
 
                                }
@@ -124,14 +120,14 @@ angular.module('tellme')
                            } else {
                                console.log("获取数据失败！" + data.msg)
                            }
-                       
+
                        },
                        function (data) {
                            console.log('其他');
                        }
                      );
-                         
-                      
+
+
 
         //菜单先查询本地是否有保存，没有，动态加载；有，在家本地数据；
 
@@ -145,13 +141,6 @@ angular.module('tellme')
         }
         /*跳转“个人信息页面”*/
         $scope.goToCustomer = function () {
-        //    if (typeof (window.localStorage['userTel']) == 'undefined') {//如果用户未登录跳转到登录页面
-        //        $state.go('login', { pageName: 'home' });
-        //    } else {
-        //        $state.go('customer');
-        //}
-            
-            // customerSer.register();
             $state.go('customer');
         }
         //跳转到搜索页面
