@@ -15,20 +15,41 @@
         <!-- <ion-refresher> 下拉刷新指令  -->
         <ion-refresher pulling-text="下拉刷新" on-refresh="vm.doRefresh()"></ion-refresher>
         <!--广告推广begin-->
-        <ion-slide-box on-slide-changed="slideHasChanged($index)" does-continue="true" auto-play="true" ng-if="adData" ><!--ng-if="adData"-->
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" does-continue="true" auto-play="true" ng-if="adData">
+            <!--ng-if="adData"-->
             <ion-slide ng-repeat="ad in adData" repeat-done="repeatDone()">
                 <img ng-src="{{baseUrl}}{{ad.adDetailList[0].imageUrl}}" ng-click="goToAd(ad)" alt="" style="width:100%; height:100%" />
             </ion-slide>
         </ion-slide-box>
         <!--广告推广end-->
         <!--酒店分类begin-->
-        <div class="device">
+        <div class="device" ng-if="swiperAdData">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide white-slide">
+
+                    <!--<div class="swiper-slide white-slide">
                         <div>
                             <p>酒店</p>
-                            <div><img src="images/a.png" width="100%" height="100%" /></div>
+                                <div class="col"><img ng-src="{{baseUrl}}{{swiperAdData[0].imageUrls[0]}}" width="100%" height="100%" /></div>
+                                
+                        </div>
+                    </div>-->
+                    <div class="swiper-slide white-slide">
+                        <div>
+                            <p>吃货</p>
+                            <div><img src="images/b.png" width="100%" height="100%" /></div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide white-slide">
+                        <div>
+                            <p>闲人</p>
+                            <div><img src="images/b.png" width="100%" height="100%" /></div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide white-slide">
+                        <div>
+                            <p>玩家</p>
+                            <div><img src="images/b.png" width="100%" height="100%" /></div>
                         </div>
                     </div>
                     <div class="swiper-slide white-slide">
@@ -42,7 +63,18 @@
                             <p>亲子</p>
                             <div><img src="images/b.png" width="100%" height="100%" /></div>
                         </div>
-                        /d
+                    </div>
+                    <div class="swiper-slide white-slide">
+                        <div>
+                            <p>智能控</p>
+                            <div><img src="images/b.png" width="100%" height="100%" /></div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide white-slide">
+                        <div>
+                            <p>更多</p>
+                            <div><img src="images/b.png" width="100%" height="100%" /></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,118 +82,39 @@
         </div>
         <!--<div class="device" >
             <div class="swiper-container" ng-if="swiperAdData">-->
-                <!--酒店滚动菜单数据加载-->
-                <!--<admenu menuData="{{swiperAdData}}" class="swiper-wrapper"></admenu>-->
-                <!--<div class="swiper-wrapper" >
-                    <div ng-click="hotelType()" class="swiper-slide red-slide red-padding" ng-repeat="menu in swiperAdData">
-                        <div class="title" style="">
-                            {{menu.name}}
-                        </div>
-                        <div class="scroll-content has-header mar-top">
-                            <div class="row">
-                                <div class="col"><img ng-src="{{baseUrl}}{{menu.imageUrls[0]}}" width="100%" height="40%" /></div>
-                                <div class="col"><img ng-src="{{baseUrl}}{{menu.imageUrls[1]}}" width="100%" height="40%" /></div>-->
-                                <!--<div class="col "><img src="images/a.png" width="100%" height="40%" /></div>
-                                <div class="col "><img src="images/b.png" width="100%" height="40%" /></div>-->
-                            <!--</div>
-                            <div class="row">
-                                <div class="col"><img ng-src="{{baseurl}}{{menu.imageurls[2]}}" width="100%" height="40%" /></div>
-                                <div class="col"><img ng-src="{{baseurl}}{{menu.imageurls[3]}}" width="100%" height="40%" /></div>-->
-                                <!--<div class="col "><img src="images/a.png" width="100%" height="40%" /></div>
-                                <div class="col "><img src="images/b.png" width="100%" height="40%" /></div>-->
-                            <!--</div>
-                        </div>
+        <!--<div class="swiper-wrapper" >
+            <div ng-click="hotelType()" class="swiper-slide red-slide red-padding" ng-repeat="menu in swiperAdData">
+                <div class="title" style="">
+                    {{menu.name}}
+                </div>
+                <div class="scroll-content has-header mar-top">
+                    <div class="row">
+                        <div class="col"><img ng-src="{{baseUrl}}{{menu.imageUrls[0]}}" width="100%" height="40%" /></div>
+                        <div class="col"><img ng-src="{{baseUrl}}{{menu.imageUrls[1]}}" width="100%" height="40%" /></div>-->
+        <!--<div class="col "><img src="images/a.png" width="100%" height="40%" /></div>
+        <div class="col "><img src="images/b.png" width="100%" height="40%" /></div>-->
+        <!--</div>
+        <div class="row">
+            <div class="col"><img ng-src="{{baseurl}}{{menu.imageurls[2]}}" width="100%" height="40%" /></div>
+            <div class="col"><img ng-src="{{baseurl}}{{menu.imageurls[3]}}" width="100%" height="40%" /></div>-->
+        <!--<div class="col "><img src="images/a.png" width="100%" height="40%" /></div>
+        <div class="col "><img src="images/b.png" width="100%" height="40%" /></div>-->
+        <!--</div>
                     </div>
-                </div>-->
-                    <!--
-                    <div class="swiper-slide red-slide red-padding">
-                        <div class="title" style="">
-                            文件控制
-                        </div>
-                        <div class="scroll-content has-header mar-top">
-                            <div class="row ">
-                                <div class="col "><img src="images/a.png" width="100%" height="40%" /></div>
-                                <div class="col "><img src="images/b.png" width="100%" height="40%" /></div>
-                            </div>
-                            <div class="row">
-                                <div class="col"><img src="images/c.png" width="100%" height="40%" /></div>
-                                <div class="col"><img src="images/d.png" width="100%" height="40%" /></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide red-slide red-padding">
-                        <div class="title" style="">
-                            文件控制
-                        </div>
-                        <div class="scroll-content has-header mar-top">
-                            <div class="row">
-                                <div class="col"><img src="images/a.png" width="100%" height="40%" /></div>
-                                <div class="col"><img src="images/b.png" width="100%" height="40%" /></div>
-                            </div>
-                            <div class="row">
-                                <div class="col"><img src="images/c.png" width="100%" height="40%" /></div>
-                                <div class="col"><img src="images/d.png" width="100%" height="40%" /></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide red-slide red-padding">
-                        <div class="title" style="">
-                            文件控制
-                        </div>
-                        <div class="scroll-content has-header mar-top">
-                            <div class="row">
-                                <div class="col"><img src="images/a.png" width="100%" height="40%" /></div>
-                                <div class="col"><img src="images/b.png" width="100%" height="40%" /></div>
-                            </div>
-                            <div class="row">
-                                <div class="col"><img src="images/c.png" width="100%" height="40%" /></div>
-                                <div class="col"><img src="images/d.png" width="100%" height="40%" /></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide red-slide red-padding">
-                        <div class="title" style="">
-                            更多
-                        </div>
-                        <div class="scroll-content has-header mar-top">
-                            <div class="row">
-                                <div class="col"><img src="images/a.png" width="100%" height="20%" /></div>
-                                <div class="col"><img src="images/b.png" width="100%" height="20%" /></div>
-                            </div>
-                            <div class="row">
-                                <div class="col"><img src="images/c.png" width="100%" height="20%" /></div>
-                                <div class="col"><img src="images/d.png" width="100%" height="20%" /></div>
-                            </div>
+                </div>
+            </div>
 
-
-
-
-                            <div class="row">
-                                <div class="col"><img src="images/c.png" width="100%" height="20%" /></div>
-                                <div class="col"><img src="images/d.png" width="100%" height="20%" /></div>
-                            </div>
-                            <div class="row">
-                                <div class="col"><img src="images/c.png" width="100%" height="20%" /></div>
-                                <div class="col"><img src="images/d.png" width="100%" height="20%" /></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-            <!--</div>
-            <div class="pagination"></div>-->
+        <div class="pagination"></div>-->
         <!--</div>-->
         <!--酒店分类end-->
         <!--活动推荐begin-->
         <div style="background-color:#f2ecec;">
-            <div class="item" >
+            <div class="item">
                 <h2>活动推荐</h2>
             </div>
             <a href="#" ng-repeat="fad in footAdData">
-            <img ng-src="{{baseUrl}}{{fad.adDetailList[0].imageUrl}}" ng-click="goToAd(fad)" style="margin-bottom:10px; width:100% " />
+                <img ng-src="{{baseUrl}}{{fad.adDetailList[0].imageUrl}}" ng-click="goToAd(fad)" style="margin-bottom:10px; width:100% " />
             </a>
-            <!--<a href="#"><img src="images/u92.jpg" style="margin-bottom:10px; width:100% " /></a>
-            <a href="#"><img src="images/u94.jpg" style="margin-bottom:10px; width:100% " /></a>
-            <a href="#"><img src="images/u96.jpg" style="margin-bottom:10px; width:100% " /></a>-->
             <div class="item" ng-click="goDiscover()" style="text-align:center">
                 <a href="#" style="color:#ffd800">更多推荐 ></a>
             </div>
@@ -170,21 +123,4 @@
         <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
         <!--<ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>-->
     </ion-content>
-    <!--body end-->
-    <!--底部begin-->
-    <!--<ion-footer-bar align-title="left" class="bar-dark">
-        <a class="tab-item" href="#">
-            <i class="icon ion-ios-home-outline"></i>
-        </a>
-        <a class="tab-item" ng-click="goDiscover()" href="#">
-            <i class="icon ion-ios-eye-outline"></i>
-        </a>
-        <a class="tab-item" href="#" ng-click="goCommunity()">
-            <i class="icon ion-ios-people-outline"></i>
-        </a>
-        <a class="tab-item" href="#">
-            <i class="icon ion-android-checkbox-outline"></i>
-        </a>
-    </ion-footer-bar>-->
-    <!--底部end-->
 </ion-view>

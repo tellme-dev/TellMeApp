@@ -13,8 +13,6 @@
                             console.log('当前城市：' + cityinfo);
                         }
                     }
-
-
                 });
             });
             $scope.dataShow = false;

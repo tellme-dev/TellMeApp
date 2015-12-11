@@ -42,9 +42,9 @@
                         <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" style="left:0px;max-width:50px; max-height:50px; border-radius:0px; top:12px;" />
                         <div class="item-body sq-item-cont">
                             <div class="sq-item-fl">
-                                <span style="background-color:red;">#<strong>{{detail.title}}</strong>#</span><br />
+                                <span style="background-color:aqua;">#<strong>{{detail.title}}</strong>#</span><br />
                                 {{detail.text|limitTo:textMaxLength}}
-                                <p ng-if="func.filterBbsText(detail.text)">……</p>
+                                <p ng-show="func.filterBbsText(detail.text)">……</p>
                             </div>
                             <div class="row">
                                 <div class="col col-20" style="float:right;"><i class="icon ion-chatbox"></i>&nbsp;&nbsp;{{detail.answerCount}}</div>

@@ -19,7 +19,7 @@ angular.module('tellme')
 			    //判断是否登录
 			    var isLogin = $scope.userIsLogin();
 			    if (isLogin) {
-			        $state.go('addBbs');
+				$state.go('addBbs');
 			    } else {
 			        $state.go('login', {
 			            pageName: 'communityList'
@@ -204,7 +204,7 @@ angular.module('tellme')
 				moredata: false,
 				typeDetail: [],
 				pageNo: 0,
-				pageSize: 3,
+				pageSize:5,
 				loadMore: function () {
 					LoadingSvr.show();
 					vm.pageNo += 1;
