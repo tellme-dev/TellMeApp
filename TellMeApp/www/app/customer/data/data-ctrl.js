@@ -15,10 +15,14 @@
             var now = new Date();
             var mill = now.getTime();//getTime() 方法可返回距 1970 年 1 月 1 日之间的毫秒数。
             
-            $scope.imameUrl;//存放头像,保存信息时的头像url
+            $scope.customerInfo = {};//存放客户信息
             //返回前页
             $scope.goBack = function () {
                 $ionicHistory.goBack();
+            };
+            //保存修改
+            $scope.saveData = function () {
+
             };
             $scope.show = function () {
                 var hideSheet = $ionicActionSheet.show({
@@ -71,7 +75,7 @@
                    传输成功
                 */
                 function tSuccess(result) {
-                    $scope.imageUrl = "app/head/" + fileName;
+                    $scope.customerInfo.imageUrl = "app/head/" + fileName;
 
                     LoadingSvr.hide();
                     console.log(result);

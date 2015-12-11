@@ -1,17 +1,141 @@
 ﻿angular.module('tellme')
-    .controller('customerCenterControll', ['$scope', '$window', '$state', '$ionicHistory', 'customerSer',
-        function ($scope, $window, $state, $ionicHistory, customerSer) {
-
+    .controller('customerCenterControll', ['$scope', '$state', '$ionicHistory', 'customerSer','LoadingSvr',
+        function ($scope, $state, $ionicHistory, customerSer, LoadingSvr) {
             $scope.customer = {};
             $scope.hotels = new Array();
             $scope.host = customerSer.host;
-
+            var userId = 0;
+            $(".zxx_text_overflow-2").wordLimit(200);
             //判断用户是否登录
-            if (typeof (window.localStorage['userTel']) == 'undefined') {//如果用户未登录跳转到登录页面
+            if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel']=="") {//如果用户未登录跳转到登录页面
                 $state.go('login', { pageName: 'customer' });
+            } else {
+                userId = window.localStorage['userId'];
             }
-            /*返回前一个界面*/
-            $scope.$window = $window;
+            $scope.getCustomerInfo = function () {
+                //默认值
+                var customerId = 1;
+                if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel']==""){
+                    $state.go('login', { pageName: 'customer' }); 
+            } else {
+                  customerId = window.localStorage['userId'];
+            }
+                var promise = customerSer.getCustomerInfo(customerId);
+                promise.then(
+                    function (data) {
+                        if (data.isSuccess) {
+                            $scope.customer = data.data;
+                        } else {
+                            alert(data.msg);
+                        }
+                    },
+                    function (data) {
+                        console.log('其他');
+                    }
+                    );
+            }
+            $scope.getCustomerInfo();
+            $scope.selectedIndex = 1;
+            $scope.showTabs = function (index) {
+                $scope.selectedIndex = index;
+                vm.pageNumber = 0;
+                vm.moredata=false,
+                vm.loadMore;
+            }
+            //下拉加载更多 根据标签获取酒店列表
+            var vm = $scope.vm = {
+                moredata: false,
+                pageNumber: 0,
+                pageSize: 10,
+                loadMore: function () {
+                    if ($scope.selectedIndex == 1) { //常住酒店
+                        LoadingSvr.show();
+                        vm.pageNumber += 1;
+                        var promise = customerSer.getCustomerAlways(userId,vm.pageNumber, vm.pageSize);
+                        promise.then(
+                            function (data) {
+                                if (data.isSuccess) {
+                                    $scope.hotels = data.rows;
+                                    var total = data.total;//总的页数
+                                    if (vm.pageNumber >= total) {
+                                        vm.moredata = true;
+                                        vm.pageNumber = 0;
+                                    }
+                                    LoadingSvr.hide();
+                                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                             }
+                            }, function (data) {
+                                LoadingSvr.hide();
+                                $scope.$broadcast('scroll.infiniteScrollComplete');
+                                console.log('其他');
+                            }
+                          );
+                    }
+                    else if ($scope.selectedIndex == 2) {  //获取用户最近浏览
+                        LoadingSvr.show();
+                        vm.pageNumber += 1;
+                        var promise = customerSer.nearBrowse(userId, vm.pageNumber, vm.pageSize);
+                        promise.then(
+                            function (data) {
+                                if (data.isSuccess) {
+                                    $scope.saveData = data.rows;
+                                    var total = data.total;//总的页数
+                                    if (vm.pageNumber >= total) {
+                                        vm.moredata = true;
+                                        vm.pageNumber = 0;
+                                    }
+                                    LoadingSvr.hide();
+                                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                                }
+                            }, function (data) {
+                                LoadingSvr.hide();
+                                $scope.$broadcast('scroll.infiniteScrollComplete');
+                                console.log('其他');
+                            });
+                    }
+                    else if ($scope.selectedIndex == 3) {   //获取用户收藏
+                        LoadingSvr.show();
+                        vm.pageNumber += 1;
+                        var promise = customerSer.customerSave(userId,vm.pageNumber, vm.pageSize);
+                        promise.then(
+                            function (data) {
+                                if (data.isSuccess) {
+                                    $scope.browseData = data.rows;
+                                    var total = data.total;//总的页数
+                                    if (vm.pageNumber >= total) {
+                                        vm.moredata = true;
+                                        vm.pageNumber = 0;
+                                    }
+                                    LoadingSvr.hide();
+                                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                                }
+                            });
+                    }
+                    else if ($scope.selectedIndex == 4) {   //话题消息
+                        LoadingSvr.show();
+                        vm.pageNumber += 1;
+                        var promise = customerSer.customerTopic(userId,vm.pageNumber, vm.pageSize);
+                        promise.then(
+                            function (data) {
+                                if (data.isSuccess) {
+                                    $scope.topicData= data.rows;
+                                    var total = data.total;//总的页数
+                                    if (vm.pageNumber >= total) {
+                                        vm.moredata = true;
+                                        vm.pageNumber = 0;
+                                    }
+                                    LoadingSvr.hide();
+                                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                                }
+                            }, function (data) {
+                                LoadingSvr.hide();
+                                $scope.$broadcast('scroll.infiniteScrollComplete');
+                                console.log('其他');
+                            });
+                        }
+                     }
+                 }
+
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };
@@ -21,7 +145,7 @@
             $scope.goDiscover = function () {
                 $state.go('menu.discoverList');
             }
-                /*（点击底部菜单）跳转“社区”*/
+            /*（点击底部菜单）跳转“社区”*/
             $scope.goCommunity = function () {
                 $state.go('menu.communityList');
             }
@@ -37,53 +161,8 @@
             $scope.goAgree = function () {
                 $state.go('agree');
             }
-            $scope.getCustomerInfo = function () {
-                //默认值
-                var customerId = 1;
-                if (typeof (window.localStorage['userId']) != 'undefined') {
-                    customerId = window.localStorage['userId'];
-                }
-                var promise = customerSer.getCustomerInfo(customerId);
-                promise.then(
-                    function (data) {
-                        if (data.isSuccess) {
-                            $scope.customer = data.data;
-                        } else {
-                            alert(data.msg);
-                        }
-                    },
-                    function (data) {
-                        console.log('其他');
-                    }
-                    );
+            //跳转到BBS
+            $scope.goBBS = function (id) {
+                $state.go('bbs', { bbsId: id });
             }
-
-            $scope.getCustomerAlways = function () {
-                //默认值
-                var customerId = 1;
-                var pageNumber = 1;
-                if (typeof (window.localStorage['userId']) != 'undefined') {
-                    customerId = window.localStorage['userId'];
-                }
-                var promise = customerSer.getCustomerAlways(customerId, pageNumber);
-                promise.then(
-                    function (data) {
-                        if (data.isSuccess) {
-                            $scope.hotels = data.rows;
-                        } else {
-                            alert(data.msg);
-                        }
-                    },
-                    function (data) {
-                        console.log('其他');
-                    }
-                    );
-            }
-
-            $scope.getCustomerInfo();
-            $scope.selectedIndex = 1;
-            $scope.showTabs = function (index) {
-                $scope.selectedIndex = index;
-            }
-      
     }]);

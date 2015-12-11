@@ -22,7 +22,7 @@ angular.module('tellme')
 				$state.go('addBbs');
 			    } else {
 			        $state.go('login', {
-			            pageName: 'communityList'
+			            pageName: 'menu.communityList'
 			        });
 			    }
 				

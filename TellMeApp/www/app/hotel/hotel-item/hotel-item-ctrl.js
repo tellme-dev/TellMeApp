@@ -137,11 +137,11 @@
                 moredata: false,
                 pageNo: 0,
                 listData: [],
-                pageSize: 3,
+                pageSize: 10,
                 loadMore: function () {
                     LoadingSvr.show();
                     vm.pageNo += 1;
-                    var promise = hotelSer.getHotelListByItem(itemId, vm.pageNo).then(
+                    var promise = hotelSer.getHotelListByItem(itemId, vm.pageNo,vm.pageSize).then(
                   function (data) {
                       if (data.isSuccess) {
                           if (data.total != 0) {
@@ -163,7 +163,7 @@
                           $scope.dataShow = false;
                           $scope.msgShow = true;
                       }
-                  }
+                   }
                   );
                 }
             }
