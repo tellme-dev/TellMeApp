@@ -1,12 +1,38 @@
 ﻿<ion-view view-title="城市定位">
+    <div class="bar bar-dark bar-header">
+        <button class="button icon ion-chevron-left dw-but" ng-click="goBack()"></button>
+        <label class="item-input-wrapper dw-label">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="搜索城市" ng-model="searchText" class="dw-input" style="height:22px;">
+        </label>
+        <button class="button  button-qx-col" ng-click="cancelOrsearch()">
+            {{cancelBtnText}}
+        </button>
+    </div>
     <ion-content>
-       
-        <!--<div id="stage" class="theme">
-            <h1>Social Sharing</h1>
-            <a href="#" class="btn" onclick="window.plugins.socialsharing.share('Message only')">Share Message</a>
-            <a href="#" class="btn" onclick="window.plugins.socialsharing.share(null, null, 'http://www.baidu.com/img/bdlogo.gif', null)">Share Image</a>
-            <a href="#" class="btn" onclick="window.plugins.socialsharing.shareViaSMS('My cool message', null, function(msg) {console.log('ok: ' + msg)}, function(msg) {alert('error: ' + msg)})">Share via SMS</a>
-           
-        </div>-->
+        <!--内容块-->
+        <div class="top-cont list dw-list"ng-if="hasInputSearchText">
+            <a class="item" href="#" ng-repeat="region in regionlist|filter:searchText" >{{region.name}}</a>
+        </div>
+        <div class="top-cont" ng-if="!hasInputSearchText">
+            <ul class="dw-ul">
+                <li class="fl li-1">当前所在城市:</li>
+                <li class="fl li-2">{{currentCity}}</li>
+                <li class="fl li-3" ng-click="updateCity()"><a>GPS</a></li>
+                <li class="clear"></li>
+            </ul>
+            <div class="dw-tit-on">
+                热门搜索
+            </div>
+            <hot ng-model="hotSearchCities"></hot>
+
+            
+            <div class="dw-tit-on">
+                历史记录
+            </div>
+            <historic ng-model="historicCities" ></historic>
+            <regionls ng-model="regionlist"></regionls>
+        </div>
+        <!--内容块-->
     </ion-content>
 </ion-view>

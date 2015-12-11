@@ -1,6 +1,8 @@
 ﻿angular.module('tellme')
-    .controller('startControll', ['$scope', '$state', '$ionicSlideBoxDelegate', '$ionicHistory', 'appConfig', function ($scope, $state, $ionicSlideBoxDelegate, $ionicHistory,appConfig) {
+    .controller('startControll', ['$scope', '$state', '$ionicSlideBoxDelegate', '$ionicHistory', 'appConfig', 'tellMeMapSvr', function ($scope, $state, $ionicSlideBoxDelegate, $ionicHistory, appConfig, tellMeMapSvr) {
         $scope.baseUrl = appConfig.server.getUrl();
+
+        tellMeMapSvr.updateCurrentcity();
 
         $scope.startImages = [
             {
@@ -19,6 +21,6 @@
         }
         //跳转到首页
         $scope.goToHome = function () {
-            $ionicHistory.goBack();
+            $state.go('menu');
         }
     }]);
