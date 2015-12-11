@@ -23,7 +23,6 @@
                 });
             return deferred.promise;
         }
-
         //获取2级菜单
         this.getChildMenu = function (itemTagId) {
             var url = baseUrl + 'app/menu/loadMenuChildList.do';
@@ -44,7 +43,6 @@
                 });
             return deferred.promise;
         }
-
         //获取酒店列表数据
         this.getHotelList = function (page, itemTagId) {
             var url = baseUrl + 'app/hotel/hotelListByItem.do';
@@ -66,7 +64,6 @@
                 });
             return deferred.promise;
         }
-
         //收藏酒店
         this.saveCollection = function (customerId, targetId) {
             var url = baseUrl + 'app/customer/saveCollectionHistory.do';
@@ -90,10 +87,11 @@
             return deferred.promise;
         }
         //根据标签获取酒店列表
-        this.getHotelListByItem = function (itemTagId, pageNumber) {
+        this.getHotelListByItem = function (itemTagId, pageNumber,pageSize) {
             var url = baseUrl + 'app/hotel/hotelListByItem.do';
             var getDataJSON = JSON.stringify({
-                pageNumber:pageNumber,
+                pageNumber: pageNumber,
+                pageSize:pageSize,
                 itemTagId: itemTagId
             });
             var deferred = $q.defer();
