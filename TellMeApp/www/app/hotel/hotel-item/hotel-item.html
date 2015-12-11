@@ -30,12 +30,13 @@
                         <ul class="xq-ul">
                             <li><i class="ion ion-ios-pricetag"></i></li>
                             <li><a href="#" class="xq-back">{{data.city}}</a></li>
-                            <li ng-repeat="item in data.Item"><a href="#">{{item.name}}</a></li>
+                            <li ng-repeat="item in data.projects"><a href="#">{{item.name}}</a></li>
                         </ul>
                         <div class="clear"></div>
                         <p>
                             <span class="xq-p-span">{{data.name}}</span>
                         </p>
+                        <p class="xq-p">入住舒适度：{{data.score}}</p>
                         <p class="xq-p">{{data.text}}</p><!--酒店描述-->
                         <p class="xq-p">{{data.address}}</p>
                         <p class="xq-p">联系电话：{{data.tel}}</p>

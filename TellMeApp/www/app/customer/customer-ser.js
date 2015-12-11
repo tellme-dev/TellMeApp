@@ -86,13 +86,79 @@
                 });
             return deferred.promise;
         }
-
-        //获取用户信息
-        this.getCustomerAlways = function (customerId, pageNumber) {
+        //获取用户常住酒店信息
+        this.getCustomerAlways = function (customerId, pageNumber, pageSize) {
             var url = baseUrl + 'app/customer/getCustomerAlways.do';
             var getDataJSON = JSON.stringify({
                 customerId: customerId,
-                pageNumber: pageNumber
+                pageNumber: pageNumber,
+                pageSize: pageSize
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: getDataJSON }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
+        //获取用户最近浏览
+        this.nearBrowse = function (customerId,pageNumber,pageSize) {
+            var url = baseUrl + 'app/customer/getCustomerBrowse.do';
+            var getDataJSON = JSON.stringify({
+                customerId: customerId,
+                pageNumber: pageNumber,
+                pageSize: pageSize
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: getDataJSON }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
+        //获取用户收藏
+        this.customerSave = function (customerId, pageNumber, pageSize) {
+            var url = baseUrl + 'app/customer/getCustomerCollection.do';
+            var getDataJSON = JSON.stringify({
+                customerId: customerId,
+                pageNumber: pageNumber,
+                pageSize: pageSize
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: getDataJSON }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
+        //获取用户话题
+        this.customerTopic = function (customerId, pageNumber, pageSize) {
+            var url = baseUrl + 'app/customer/getCustomerTopic.do';
+            var getDataJSON = JSON.stringify({
+                customerId: customerId,
+                pageNumber: pageNumber,
+                pageSize: pageSize
             });
             var deferred = $q.defer();
             $http({
