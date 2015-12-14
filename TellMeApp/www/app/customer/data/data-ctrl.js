@@ -9,8 +9,8 @@
      //        }
      //    });
      //})
-    .controller('dataControll', ['$scope', '$state', '$window', '$ionicHistory','appConfig', '$ionicActionSheet', 'cameraSvr', 'fileTransferSvr', 'LoadingSvr', 'customerSer',
-        function ($scope, $state, $window, $ionicHistory,appConfig, $ionicActionSheet, cameraSvr, fileTransferSvr, LoadingSvr, customerSer) {
+    .controller('dataControll', ['$scope', '$state','$q', '$window', '$ionicHistory','appConfig', '$ionicActionSheet', 'cameraSvr', 'fileTransferSvr', 'LoadingSvr', 'customerSer',
+        function ($scope, $state,$q, $window, $ionicHistory,appConfig, $ionicActionSheet, cameraSvr, fileTransferSvr, LoadingSvr, customerSer) {
             $scope.baseUrl = appConfig.server.getUrl();
             var now = new Date();
             var mill = now.getTime();//getTime() 方法可返回距 1970 年 1 月 1 日之间的毫秒数。
@@ -43,10 +43,57 @@
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };
+            //加载个人信息
+            customerSer.getCustomerInfo(window.localStorage['userId']).then(
+                function (data) {
+                    if (data.isSuccess) {
+                        $scope.customerInfo = data.data;
+                        //日期格式转换
+                        var birthday = new Date(data.data.birthday);
+                        $scope.customerInfo.birthday = birthday.getFullYear() + "-" + (birthday.getMonth() + 1) + "-" + birthday.getDate();
+                        console.log(data.msg);
+                    } else {
+                        console.log(data.msg);
+                    }
+                });
             //保存修改
             $scope.saveData = function () {
-
+                $scope.customerInfo.customerId = window.localStorage['userId'];
+                customerSer.saveCustomerInfo($scope.customerInfo).then(
+                    function (data) {
+                        if (data.isSuccess) {
+                            alert(data.msg);
+                            console.log(data.msg);
+                        } else {
+                            console.log(data.msg);
+                        }
+                    });
             };
+            $scope.do = function () {
+                var a = 1;
+            }
+            //选择日期
+            $scope.datePicker = function () {
+                var options = {
+                    date: new Date(),
+                    mode: 'date'
+                };
+
+                function onSuccess(date) {
+                    $scope.customerInfo.birthday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+                    //alert('Selected date: ' + date);
+                    //alert(date.getYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate());
+                    //alert(date.toString());
+                    //alert(date.toLocaleString());
+                }
+
+                function onError(error) { // Android only
+                    //alert('Error: ' + error);
+                }
+
+                datePicker.show(options, onSuccess, onError);
+            }
+
             $scope.show = function () {
                 var hideSheet = $ionicActionSheet.show({
                     buttons: [

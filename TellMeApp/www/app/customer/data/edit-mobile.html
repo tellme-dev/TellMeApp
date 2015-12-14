@@ -1,0 +1,33 @@
+﻿<ion-view style="background-color:#ddd;">
+    <div class="bar bar-dark bar-header" style="border-bottom:1px solid #ddd;">
+        <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
+        <h1 class="title">修改电话</h1>
+    </div>
+    <ion-content class="zt-conter">
+        <!--内容块-->
+
+        <div class="content has-header list-top">
+            <div class="list list-padding">
+                <label class="item item-input item-border">
+                    <span class="input-label input-color">新手机号码：</span>
+                    <input type="tel" ng-blur="verifyTel()" ng-maxlength="11" ng-model="registerData.mobile" class="input-color" required>
+
+                </label>
+                <label class="item item-input item-cont">
+                    <span class="input-label input-color">新密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
+                    <input type="password" ng-model="registerData.psd" class="input-color" required>
+                </label>
+                <label class="item item-input item-cont">
+                    <span class="input-label input-color">验&nbsp;&nbsp;证&nbsp;&nbsp;码：</span>
+                    <input type="password" ng-model="registerData.verifyCode" class="input-color" required>
+                </label>
+                <button class="butt-a butt-atop denglu-stylewe" ng-disabled="!verifyDisabled" ng-click="sendShortMessageCode()">{{verifyTips}}</button>
+                <div class="clear"></div>
+            </div>
+            <div class="paddinger">
+                <button class="button button-dark button-block" ng-click="register()">确认修改</button>
+            </div>
+        </div>
+        <!--内容块-->
+    </ion-content>
+</ion-view>
