@@ -20,6 +20,10 @@
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };
+            //跳转到修改电话页面
+            $scope.goToEditMobile = function () {
+                $state.go('editMobile');
+            }
             //加载个人信息
             customerSer.getCustomerInfo(window.localStorage['userId']).then(
                 function (data) {
