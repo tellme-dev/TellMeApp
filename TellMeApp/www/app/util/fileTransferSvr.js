@@ -4,7 +4,7 @@ angular.module('tellme')
         /*
         上传照片
         imgURI,文件路径 来自于getPicture返回的imgURI
-
+        url：服务器接口地址
         */
         this.uploadPhoto = function (imgURI,fileKey,url,fileName, successCallBack, failCallBack, progressCallBack) {
 
@@ -12,7 +12,7 @@ angular.module('tellme')
 
             var opts = new FileUploadOptions();
 
-            opts.fileKey = fileKey;
+            opts.fileKey = fileKey;//后台接收的名称
             //opts.fileName = imgURI.substr(imgURI.lastIndexOf('/') + 1);
             opts.fileName = fileName;
             opts.mimeType = "image/jpeg";   

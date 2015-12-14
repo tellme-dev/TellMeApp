@@ -79,5 +79,14 @@
         "variables": {
             "QQ_APP_ID": "1105008574"
         }
+    },
+    "cordova-plugin-datepicker": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/VitaliiBlagodir/cordova-plugin-datepicker",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

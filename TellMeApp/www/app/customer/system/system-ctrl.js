@@ -17,6 +17,6 @@
                 window.localStorage['userTel'] ="";
                 window.localStorage['userPsd'] = "";
                 window.localStorage['userId'] = "";
-                $state.go('home');
+                $state.go('menu.home');
             }
         }]);
