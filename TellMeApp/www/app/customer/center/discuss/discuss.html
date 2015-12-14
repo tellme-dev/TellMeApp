@@ -4,7 +4,7 @@
         <h1 class="title">评论</h1>
     </div>
     <ion-content>
-        <div style="margin-top:47px;">
+        <div  ng-show="dataShow" style="margin-top:47px;">
             <div class="pl-cont">
                 <div class="pl-cont-s">
                     <div>
@@ -27,28 +27,8 @@
                     </div>
                 </div>
             </div>
-            <div class="pl-cont">
-                <div class="pl-cont-s">
-                    <div>
-                        <img class="fl pl-img-toux" src="images/xq-2.jpg" />
-                        <div class="fl pl-text-s pl-text-er"><span>ADNAK</span><i>回复了你：</i> <b class="zxx_text_overflow_3">有，而且非常多！</b></div>
-                        <button class="fr pl-hf-button"><img src="images/hf.png" class="fl" /><div class="fr">回复</div></button>
-                        <div class="clear"></div>
-                    </div>
-                    <a href="#" class="pl-esr">
-                        <img class="fl" src="images/xq-2.jpg" />
-                        <div class="fl pl-esr-cont"><span>ADNAK ：</span><b class="zxx_text_overflow_3">圣地酒店服务很好，环境也很便利。 并且还有一个漂亮的游泳馆</b></div>
-                        <div class="clear"></div>
-                    </a>
-                    <div>
-                        <img class="fl pl-img-toux" src="images/tx.jpg" />
-                        <a class="fl pl-text-s "><span>你</span><i>评论了</i><span>ADNAK：</span><b class="zxx_text_overflow_3">这个酒店周边有大型商店吗？这个酒店周边有大型商店吗？这个酒店周边有大型商店吗？这个酒店周边有大型商店吗？</b></a>
-                        <!--<button class="fr pl-hf-button"><img src="images/hf.png" class="fl" /><div class="fr">回复</div></button>-->
-                        <div class="clear"></div>
-                    </div>
-
-                </div>
-            </div>
+         
         </div>
+        <div ng-show="msgShow" style="text-align:center;margin-top:50px;"><h3>暂无数据,请稍后重试！</h3></div>
     </ion-content>
 </ion-view>
