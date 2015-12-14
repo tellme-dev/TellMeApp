@@ -14,7 +14,7 @@
                     </label>
                     <label class="item item-input item-stacked-label grtz-labeler">
                         <span class="input-label">昵称</span>
-                        <input type="text" ng-model="customerInfo.name" value="{{customerInfo.name}}"/>
+                        <input type="text" ng-model="customerInfo.name"/>
                     </label>
                     <!--<label class="item item-input item-stacked-label grtz-labeler">
                         <span class="input-label">帐号</span>
@@ -33,7 +33,7 @@
                     </label>-->
                     <label class="item item-input item-stacked-label grtz-labeler">
                         <span class="input-label">生日</span>
-                        <input type="text" value="{{customerInfo.birthday}}" ng-click="datePicker()"/>
+                        <input type="text" ng-model="customerInfo.birthday" ng-click="datePicker()"/>
                     </label>
                     <label class="item item-input item-stacked-label grtz-labeler" style="margin-top:10px;">
                         <button ng-click="saveData()">确定修改</button>
