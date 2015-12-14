@@ -33,9 +33,9 @@
                 //.state('menu.home', { url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
                 .state('menu.home', { url: '/home', views: { 'home-tab': { templateUrl: 'app/home/home.html', controller: 'homeControll' } } })
                 
-                  .state('menu.home.banner',{url:'/banner',views:{'home-banner':{templateUrl:'app/home/banner/banner.html',controller:'bannerControll'}}})
-                  .state('menu.home.swiper',{url:'/swiper',views:{'home-swiper':{templateUrl:'app/home/swiper/swiper.html',controller:'swiperControll'}}})
-                  .state('menu.home.topic',{url:'/topic',views:{'home-topic':{templateUrl:'app/home/topic/topic.html',controller:'topicControll'}}})
+                  //.state('menu.home.banner',{url:'/banner',views:{'home-banner':{templateUrl:'app/home/banner/banner.html',controller:'bannerControll'}}})
+                  //.state('menu.home.swiper',{url:'/swiper',views:{'home-swiper':{templateUrl:'app/home/swiper/swiper.html',controller:'swiperControll'}}})
+                  //.state('menu.home.topic',{url:'/topic',views:{'home-topic':{templateUrl:'app/home/topic/topic.html',controller:'topicControll'}}})
                 //发现
                // .state('menu.discoverList', { cache: false, url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverListControll' })
                  .state('menu.discoverList', { cache: false, url: '/discoverList', views: { 'discovery-tab': { templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverListControll' } } })
@@ -52,11 +52,12 @@
           //个人中心 设置
             .state('system', { url: '/system', templateUrl: 'app/customer/system/system.html', controller: 'systemControll' })
             .state('feedback', { url: '/feedback', templateUrl: 'app/customer/feedback/feedback.html', controller: 'feedbackControll' })
-            .state('data', { cache: false, url: '/data', templateUrl: 'app/customer/data/data.html', controller: 'dataControll' })
+            .state('data', { url: '/data', templateUrl: 'app/customer/data/data.html', controller: 'dataControll' })
+            .state('editMobile', { url: '/editMobile', templateUrl: 'app/customer/register/register.html', controller: 'registerControll' })
             .state('discuss', { url: '/discuss', templateUrl: 'app/customer/center/discuss/discuss.html', controller: 'discussControll' })
             .state('agree', { url: '/agree', templateUrl: 'app/customer/center/agree/agree.html', controller: 'agreeControll' })
             //定位
-            .state('location', { url: '/location', templateUrl: 'app/map/location/cities.html', controller: '' })//mapLocationControll
+            .state('location', { cache: false, url: '/location', templateUrl: 'app/map/location/cities.html', controller: 'mapLocationControll' })//mapLocationControll
             .state('map', { url: '/map', templateUrl: 'app/map/map/map.html', controller: 'mapControll' })
 
             //论坛
