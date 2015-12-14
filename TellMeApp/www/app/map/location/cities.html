@@ -12,8 +12,9 @@
     <ion-content>
         <!--内容块-->
         <div class="top-cont list dw-list"ng-if="hasInputSearchText">
-            <a class="item" href="#" ng-repeat="region in regionlist|filter:searchText" >{{region.name}}</a>
+            <a class="item" href="#" ng-repeat="region in regionlist|filter:searchText" ng-click="changeRegion(region)">{{region.name}}</a>
         </div>
+
         <div class="top-cont" ng-if="!hasInputSearchText">
             <ul class="dw-ul">
                 <li class="fl li-1">当前所在城市:</li>
@@ -21,17 +22,31 @@
                 <li class="fl li-3" ng-click="updateCity()"><a>GPS</a></li>
                 <li class="clear"></li>
             </ul>
+            
             <div class="dw-tit-on">
                 热门搜索
             </div>
-            <hot ng-model="hotSearchCities"></hot>
+            <div class="row dw-row" ng-repeat="hotitem in hotArray" style="margin-top:10px;">
+                <button class="col col-20" ng-repeat="item in hotitem" ng-click="changeRegion(item)">{{item.name}}</button>
+            </div>
 
             
             <div class="dw-tit-on">
                 历史记录
             </div>
-            <historic ng-model="historicCities" ></historic>
-            <regionls ng-model="regionlist"></regionls>
+            <div class="row dw-row" ng-repeat="historicitem in historicArray" style="margin-top:10px;">
+                <button class="col col-20" ng-repeat="item in historicitem" ng-click="changeRegion(item)">{{item.name}}<i ng-click="deleteHistoricItem(item)" style="float:right;width:1.125em; height:1.125em;border-radius:50%; background:#686161;text-align:top;line-height:1.125em;color:#fff;display:inline-block;left:40px; top:15px;">×</i></button>
+            </div>
+            <!--<historic ng-model="historicCities" ></historic>-->
+            <!--<regionls ng-model="regionlist"></regionls>-->
+            <div class="list dw-list">
+                <div ng-repeat="orderItem in orderRegionList">
+                    <div class="item item-divider">
+                        {{orderItem[0].firstChar}}
+                    </div>
+                    <a class="item" href="#" ng-repeat="item in orderItem" ng-click="changeRegion(item)">{{item.name}}</a>
+                </div>
+            </div>
         </div>
         <!--内容块-->
     </ion-content>
