@@ -3,7 +3,7 @@
         padding: 0.1em;
     }
     .current {
-      border-color: #99c600;
+      border-bottom: 2px solid #99c600;
     } 
 </style>
 
@@ -14,10 +14,10 @@
             </div>
             <div class="tabs-striped tabs-top  tabs-color-active ">
                 <div class="tabs sq-tier" style="background-color:#f2f2f2;">
-                    <a ng-click="gettypedetail(1,1)"  class="tab-item" ng-class="{active:1==globalVar.SelectedTag}" href="#" style="color:black;">最新活动</a>
-                    <a ng-click="gettypedetail(2,2)" class="tab-item" ng-class="{active:2==globalVar.SelectedTag}" href="#" style="color:black;">热门话题</a>
-                    <a ng-click="gettypedetail(3,3)" class="tab-item" ng-class="{active:3==globalVar.SelectedTag}" href="#" style="color:black;">吐槽专区</a>
-                    <a ng-click="gettypedetail(4,4)" class="tab-item" ng-class="{active:4==globalVar.SelectedTag}" href="#" style="color:black;">达人推荐</a>
+                    <a ng-click="gettypedetail(1,1)"  class="tab-item" ng-class="{current:1==globalVar.SelectedTag}" href="#" style="color:black;">最新活动</a>
+                    <a ng-click="gettypedetail(2,2)" class="tab-item" ng-class="{current:2==globalVar.SelectedTag}" href="#" style="color:black;">热门话题</a>
+                    <a ng-click="gettypedetail(3,3)" class="tab-item" ng-class="{current:3==globalVar.SelectedTag}" href="#" style="color:black;">吐槽专区</a>
+                    <a ng-click="gettypedetail(4,4)" class="tab-item" ng-class="{current:4==globalVar.SelectedTag}" href="#" style="color:black;">达人推荐</a>
                 </div>
             </div>
             <ion-content>
