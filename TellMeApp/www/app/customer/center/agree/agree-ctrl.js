@@ -37,7 +37,7 @@
                     LoadingSvr.show();
                     vm.pageNo += 1;
                     var promise = customerSer.customerDynamicPraise(customerId, vm.pageNo, vm.pageSize).then(
-                  function (data) {
+                   function (data) {
                       if (data.isSuccess) {
                           if (data.total != 0) {
                               $scope.dataShow = true;
@@ -51,7 +51,7 @@
                           if (vm.pageNo>= total) {
                               vm.moredata = true;
                               vm.pageNo = 0;
-                        } 
+                         } 
                       } else {
                           $scope.dataShow = false;
                           $scope.msgShow = true;

@@ -116,8 +116,8 @@
                                     }
                                     LoadingSvr.hide();
                                     $scope.$broadcast('scroll.infiniteScrollComplete');
-                             }
-                            }, function (data) {
+                               }
+                             }, function (data) {
                                 LoadingSvr.hide();
                                 $scope.$broadcast('scroll.infiniteScrollComplete');
                                 console.log('其他');
@@ -189,6 +189,17 @@
                      }
                  }
 
+            //跳转到广告、主题详情
+            $scope.goDetail = function (targetType, targetId) {
+                if (targetType == 1) {//单个酒店 酒店ID
+                    console.log("单个酒店详情");
+                    //  $state.go('discover');
+                } else if (targetType == 2) {//酒店项目 itemid
+                    $state.go('hotelItem', { itemId: targetId });
+                } else if (targetType == 3) {//社区bbsid
+                    $state.go('bbs', { bbsId: targetId });
+                }
+            }
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };
