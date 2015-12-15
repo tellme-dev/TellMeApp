@@ -1,8 +1,9 @@
 ﻿angular.module('tellme')
-    .controller('startControll', ['$scope', '$state', '$ionicSlideBoxDelegate', '$ionicHistory', 'appConfig', 'tellMeMapSvr', function ($scope, $state, $ionicSlideBoxDelegate, $ionicHistory, appConfig, tellMeMapSvr) {
+    .controller('startControll', ['$scope', '$state', '$ionicSlideBoxDelegate', '$ionicHistory', 'appConfig', 'tellMeMapSvr', 'commonSer', function ($scope, $state, $ionicSlideBoxDelegate, $ionicHistory, appConfig, tellMeMapSvr, commonSer) {
         $scope.baseUrl = appConfig.server.getUrl();
 
         tellMeMapSvr.updateCurrentcity();
+        commonSer.updateRegionInfo();
 
         $scope.startImages = [
             {

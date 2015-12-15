@@ -4,7 +4,14 @@
 
         })
         var onDeviceReady = function () {
+            //判断是否用户登录
+            var userId = window.localStorage.getItem('userId');
+            if (!userId) {
+                //没有，则设置为游客，id为0
+                window.localStorage.getItem('userId') = 0;
+            }
             var appLaunchCount = window.localStorage.getItem('launchCount');
+
             if (appLaunchCount) {
 
             } else {
