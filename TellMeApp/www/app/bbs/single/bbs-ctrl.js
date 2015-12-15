@@ -7,6 +7,18 @@
         $scope.goBack = function () {
             $ionicHistory.goBack();
         };
+        //跳转到图片浏览
+        $scope.goToImageBrowse = function (bbsId) {
+            //判断是否登录
+            var isLogin = $scope.userIsLogin();
+            if (isLogin) {
+                $state.go('imageBrowse', { 'bbsId': bbsId });
+            } else {
+                $state.go('login', {
+                    pageName: 'menu.communityList'
+                });
+            }
+        }
         $scope.globalVar = {};
         $scope.globalVar.answerText = "";//回帖内容
         $scope.showAnswer = false;

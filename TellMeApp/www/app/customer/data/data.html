@@ -1,7 +1,7 @@
 ﻿<ion-view>
     <ion-pane>
-        <div class="bar bar-header item-input-inset sz-top">
-            <button ng-click="goBack()" class="button icon button-clear ion-ios-arrow-back " style="color:#444"></button>
+        <div class="bar bar-dark bar-header" style="border-bottom:1px solid #ddd;">
+            <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
             <h1 class="title sz-top-text">个人资料</h1>
             <button class="button button-style" ng-click="goToEditMobile()">修改电话</button>
         </div>
@@ -28,17 +28,21 @@
                     </label>-->
                     <!--<label class="item item-input item-stacked-label grtz-labeler">
                         <span class="input-label">性别</span>
-                        <select ng-model="customerInfo.sex">
-                            <option value="1" ng-selected="customerInfo.sex == 1">男</option>
-                            <option value="2" ng-selected="customerInfo.sex == 2">女</option>
-                        </select>
+                        <label class="item item-input item-select">
+                            <span class="input-label">性别</span>
+                            <select ng-model="customerInfo.sex" style="float:left">
+                                <option value="1" ng-selected="customerInfo.sex == 1">男</option>
+                                <option value="2" ng-selected="customerInfo.sex == 2">女</option>
+                            </select>
+                        </label>
                     </label>-->
+                    
                     <label class="item item-input item-stacked-label grtz-labeler">
                         <span class="input-label">生日</span>
                         <input type="text" ng-model="customerInfo.birthday" ng-click="datePicker()" readonly/>
                     </label>
                     <label class="item item-input item-stacked-label grtz-labeler" style="margin-top:10px;">
-                        <button ng-click="saveData()">确定修改</button>
+                        <button class="button button-dark button-block" ng-click="editMobile()">确认修改</button>
                     </label>
                 </div>
             </div>

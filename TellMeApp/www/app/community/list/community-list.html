@@ -39,30 +39,31 @@
 
                             <div class="item-body sq-item-cont">
                                 <div class="sq-item-fl">
-                                {{detail.text}}
+                                    {{detail.text}}
                                 </div>
-                                <div class="row">
-                                    <div class="col col-padding">
-                                        <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" style="width:100%" />
-                                    </div>
-                                    <div class="col col-padding">
-                                        <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}}" style="width:100%" />
-                                    </div>
-                                    <div class="col col-padding">
-                                        <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[2].attachUrl}}" style="width:100%" />
-                                    </div>
-                                    <div class="col col-padding">
-                                        <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[3].attachUrl}}" style="width:100%" />
-                                    </div>
-                                </div>
+                                
                                 <!--<div class="row" >
                                     <div class="col col-padding" ng-repeat="image in detail.bbsAttachUrls">
-                                     <img href="#" ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" />
+                                     <img href="#" ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" ng-if="$index<4"/>
                                     </div>
                                   
                                 </div>-->
                             </div>
                         </a>
+                        <div class="row" ng-click="goToImageBrowse(detail.bbsAttachUrls[0].bbsId)">
+                            <div class="col col-padding">
+                                <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" style="width:100%" />
+                            </div>
+                            <div class="col col-padding">
+                                <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}}" style="width:100%" />
+                            </div>
+                            <div class="col col-padding">
+                                <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[2].attachUrl}}" style="width:100%" />
+                            </div>
+                            <div class="col col-padding">
+                                <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[3].attachUrl}}" style="width:100%" />
+                            </div>
+                        </div>
                         <div class="item tabs tabs-secondary tabs-icon-left sq-item-col" style="background-color:#f2f2f2;">
                           <!--回帖-->
                            <a  class="tab-item sq-tab-item" href="#" style="color:black;">
