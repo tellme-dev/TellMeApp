@@ -65,6 +65,29 @@
                 });
             return deferred.promise;
         }
+        // 用户修改电话号码
+        this.editMobile = function (registerData) {
+            var url = baseUrl + 'app/customer/editMobile.do';
+            var jsonData = JSON.stringify({
+                id: registerData.customerId,
+                mobile: registerData.mobile,
+                psd: registerData.psd,
+                verifyCode: registerData.verifyCode
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { registerData: jsonData }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        }
 
         //获取用户信息
         this.getCustomerInfo = function (customerId) {
