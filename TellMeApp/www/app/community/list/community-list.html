@@ -3,7 +3,7 @@
         padding: 0.1em;
     }
     .current {
-      border-color: #99c600;
+      border-bottom: 2px solid #99c600;
     } 
 </style>
 
@@ -14,10 +14,10 @@
             </div>
             <div class="tabs-striped tabs-top  tabs-color-active ">
                 <div class="tabs sq-tier" style="background-color:#f2f2f2;">
-                    <a ng-click="gettypedetail(1,1)"  class="tab-item" ng-class="{active:1==globalVar.SelectedTag}" href="#" style="color:black;">最新活动</a>
-                    <a ng-click="gettypedetail(2,2)" class="tab-item" ng-class="{active:2==globalVar.SelectedTag}" href="#" style="color:black;">热门话题</a>
-                    <a ng-click="gettypedetail(3,3)" class="tab-item" ng-class="{active:3==globalVar.SelectedTag}" href="#" style="color:black;">吐槽专区</a>
-                    <a ng-click="gettypedetail(4,4)" class="tab-item" ng-class="{active:4==globalVar.SelectedTag}" href="#" style="color:black;">达人推荐</a>
+                    <a ng-click="gettypedetail(1,1)"  class="tab-item" ng-class="{current:1==globalVar.SelectedTag}" href="#" style="color:black;">最新活动</a>
+                    <a ng-click="gettypedetail(2,2)" class="tab-item" ng-class="{current:2==globalVar.SelectedTag}" href="#" style="color:black;">热门话题</a>
+                    <a ng-click="gettypedetail(3,3)" class="tab-item" ng-class="{current:3==globalVar.SelectedTag}" href="#" style="color:black;">吐槽专区</a>
+                    <a ng-click="gettypedetail(4,4)" class="tab-item" ng-class="{current:4==globalVar.SelectedTag}" href="#" style="color:black;">达人推荐</a>
                 </div>
             </div>
             <ion-content>
@@ -39,30 +39,31 @@
 
                             <div class="item-body sq-item-cont">
                                 <div class="sq-item-fl">
-                                {{detail.text}}
+                                    {{detail.text}}
                                 </div>
-                                <div class="row">
-                                    <div class="col col-padding">
-                                        <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" style="width:100%" />
-                                    </div>
-                                    <div class="col col-padding">
-                                        <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}}" style="width:100%" />
-                                    </div>
-                                    <div class="col col-padding">
-                                        <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[2].attachUrl}}" style="width:100%" />
-                                    </div>
-                                    <div class="col col-padding">
-                                        <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[3].attachUrl}}" style="width:100%" />
-                                    </div>
-                                </div>
+                                
                                 <!--<div class="row" >
                                     <div class="col col-padding" ng-repeat="image in detail.bbsAttachUrls">
-                                     <img href="#" ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" />
+                                     <img href="#" ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" ng-if="$index<4"/>
                                     </div>
                                   
                                 </div>-->
                             </div>
                         </a>
+                        <div class="row" ng-click="goToImageBrowse(detail.bbsAttachUrls[0].bbsId)">
+                            <div class="col col-padding">
+                                <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" style="width:100%" />
+                            </div>
+                            <div class="col col-padding">
+                                <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}}" style="width:100%" />
+                            </div>
+                            <div class="col col-padding">
+                                <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[2].attachUrl}}" style="width:100%" />
+                            </div>
+                            <div class="col col-padding">
+                                <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[3].attachUrl}}" style="width:100%" />
+                            </div>
+                        </div>
                         <div class="item tabs tabs-secondary tabs-icon-left sq-item-col" style="background-color:#f2f2f2;">
                           <!--回帖-->
                            <a  class="tab-item sq-tab-item" href="#" style="color:black;">

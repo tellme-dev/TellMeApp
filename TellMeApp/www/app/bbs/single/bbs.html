@@ -24,12 +24,12 @@
                         <div class="item-body sq-item-cont">
                             <div class="sqer-item-fl" style="font-family:微软雅黑;">{{detail.text}}</div>
                             <div class="row">
-                                <div ng-repeat="image in bbs.bbsAttachUrls" class="col"><img href="#"  ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" /></div>
-                                
+                                <div ng-repeat="image in bbs.bbsAttachUrls" class="col"  ng-click="goToImageBrowse(image.bbsId)">
+                                       <img href="#"  ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" />
+                                </div>
                             </div>
                            
                         </div>
-                        <!--bbs图片-->
                         <!--bbs操作-->
                         <div ng-click="showInput()" class="item tabs tabs-secondary tabs-icon-left sq-item-col">
                             <a  class="tab-item sq-tab-item clock-i"  style="border-bottom:2px solid #95c300">

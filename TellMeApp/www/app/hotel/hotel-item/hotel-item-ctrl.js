@@ -20,7 +20,8 @@
 							    console.log('其他');
 							}
 			);
-
+            $scope.dataShow = false;
+            $scope.msgShow = false;
             //发表评论
             $scope.answerHotel = function (hotelId,hotelName) {
                 var el = document.getElementById('hotel-' + hotelId);

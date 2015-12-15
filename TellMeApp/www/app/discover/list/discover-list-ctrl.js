@@ -68,16 +68,15 @@
                               vm.moredata = true;
                               vm.pageNo = 0;
                           }
-                          LoadingSvr.hide();
-                          $scope.$broadcast('scroll.infiniteScrollComplete');
                       } else {
                           $scope.dataShow = false;
                           $scope.msgShow = true;
                       }
                     }
                   );
+                    LoadingSvr.hide();
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
                 }
             }
-
         }
     ]);

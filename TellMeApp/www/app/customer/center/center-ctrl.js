@@ -19,7 +19,6 @@
                     $state.go('login', { pageName: 'customer' }); 
             } else {
                   customerId = window.localStorage['userId'];
-            }
                 var promise = customerSer.getCustomerInfo(customerId);
                 promise.then(
                     function (data) {
@@ -33,14 +32,68 @@
                         console.log('其他');
                     }
                     );
+                }
             }
             $scope.getCustomerInfo();
+            //加载动态数据
+            $scope.getDynamicData = function () {
+                //默认值
+                var customerId = 1;
+                if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel'] == "") {
+                    $state.go('login', { pageName: 'customer' });
+                } else {
+                    customerId = window.localStorage['userId'];
+                    var promise = customerSer.customerDynamicCount(customerId);
+                    promise.then(
+                        function (data) {
+                            if (data.isSuccess) {
+                                $scope.DynamicCount = data.data;
+                            } else {
+                                alert(data.msg);
+                            }
+                        },
+                        function (data) {
+                            console.log('其他');
+                        }
+                    );
+                }
+            }
+            //删除话题
+            $scope.deleteCustomerTopic = function (topicId) {
+                var customerId = 0;
+                if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel'] == "") {
+                    $state.go('login', { pageName: 'customer' });
+                } else {
+                    customerId = window.localStorage['userId'];
+                    var promise = customerSer.deleteCustomerTopic(topicId,customerId);
+                    promise.then(
+                        function (data) {
+                            if (data.isSuccess) {
+                                 vm.moredata = false,
+                                 vm.loadMore;
+                                console.log('删除成功！');
+                            } else {
+                                alert(data.msg);
+                            }
+                        },
+                        function (data) {
+                            console.log('其他');
+                         }
+                    );
+                }
+              
+            }
             $scope.selectedIndex = 1;
             $scope.showTabs = function (index) {
                 $scope.selectedIndex = index;
-                vm.pageNumber = 0;
-                vm.moredata=false,
-                vm.loadMore;
+                if (index == 5) {//加载动态数据
+                    $scope.getDynamicData();
+                } else {
+                    vm.pageNumber = 0;
+                    vm.moredata = false,
+                    vm.loadMore;
+                }
+               
             }
             //下拉加载更多 根据标签获取酒店列表
             var vm = $scope.vm = {
@@ -63,8 +116,8 @@
                                     }
                                     LoadingSvr.hide();
                                     $scope.$broadcast('scroll.infiniteScrollComplete');
-                             }
-                            }, function (data) {
+                               }
+                             }, function (data) {
                                 LoadingSvr.hide();
                                 $scope.$broadcast('scroll.infiniteScrollComplete');
                                 console.log('其他');
@@ -78,7 +131,7 @@
                         promise.then(
                             function (data) {
                                 if (data.isSuccess) {
-                                    $scope.saveData = data.rows;
+                                    $scope.browseData = data.rows;
                                     var total = data.total;//总的页数
                                     if (vm.pageNumber >= total) {
                                         vm.moredata = true;
@@ -100,7 +153,7 @@
                         promise.then(
                             function (data) {
                                 if (data.isSuccess) {
-                                    $scope.browseData = data.rows;
+                                    $scope.saveData = data.rows;
                                     var total = data.total;//总的页数
                                     if (vm.pageNumber >= total) {
                                         vm.moredata = true;
@@ -136,6 +189,17 @@
                      }
                  }
 
+            //跳转到广告、主题详情
+            $scope.goDetail = function (targetType, targetId) {
+                if (targetType == 1) {//单个酒店 酒店ID
+                    console.log("单个酒店详情");
+                    //  $state.go('discover');
+                } else if (targetType == 2) {//酒店项目 itemid
+                    $state.go('hotelItem', { itemId: targetId });
+                } else if (targetType == 3) {//社区bbsid
+                    $state.go('bbs', { bbsId: targetId });
+                }
+            }
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };

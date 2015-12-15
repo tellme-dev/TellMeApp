@@ -90,4 +90,24 @@
                 });
             return deferred.promise;
         }
+        //获取图片
+        this.loadImageByBbsId = function (bbsId) {
+            var url = baseUrl + 'app/bbs/loadImageByBbsId.do';
+            var jsonData = JSON.stringify({
+                bbsId: bbsId
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { bbsParam: jsonData }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
     }]);

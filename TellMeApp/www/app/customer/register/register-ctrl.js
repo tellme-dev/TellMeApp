@@ -174,6 +174,7 @@
                         $scope.resetCount();
                         console.log(data.msg);
                         //提示
+                        alert(data.msg);
 
                     }
                 },
