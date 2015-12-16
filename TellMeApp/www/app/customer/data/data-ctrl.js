@@ -16,7 +16,6 @@
             var mill = now.getTime();//getTime() 方法可返回距 1970 年 1 月 1 日之间的毫秒数。
             
             $scope.customerInfo = {};//存放客户信息
-
             //返回前页
             $scope.goBack = function () {
                 $ionicHistory.goBack();
@@ -120,7 +119,6 @@
                     //$scope.image.imageUrl = 'app/head/' + fileName;
                 }
                 function cFail(message) {
-                    alert(message);
                     console.log(message);
                 }
             };
@@ -132,7 +130,7 @@
                    传输成功
                 */
                 function tSuccess(result) {
-                    $scope.customerInfo.imageUrl = "app/head/" + fileName;
+                    $scope.customerInfo.photoUrl = "app/head/" + fileName;
 
                     LoadingSvr.hide();
                     console.log(result);
@@ -141,7 +139,6 @@
                 传输失败
                 */
                 function tFail(error) {
-                    alert(error);
                     console.log(error);
                 }
                 /*
