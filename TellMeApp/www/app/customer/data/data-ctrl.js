@@ -16,29 +16,7 @@
             var mill = now.getTime();//getTime() 方法可返回距 1970 年 1 月 1 日之间的毫秒数。
             
             $scope.customerInfo = {};//存放客户信息
-            $scope.getCustomerInfo = function () {
-                //默认值
-                var customerId = 1;
-                if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel'] == "") {
-                    $state.go('login', { pageName: 'customer' });
-                } else {
-                    customerId = window.localStorage['userId'];
-                    var promise = customerSer.getCustomerInfo(customerId);
-                    promise.then(
-                        function (data) {
-                            if (data.isSuccess) {
-                                $scope.customerInfo = data.data;
-                            } else {
-                                alert(data.msg);
-                            }
-                        },
-                        function (data) {
-                            console.log('其他');
-                        }
-                        );
-                }
-            }
-            $scope.getCustomerInfo();
+
             //返回前页
             $scope.goBack = function () {
                 $ionicHistory.goBack();
@@ -48,7 +26,10 @@
                 $state.go('editMobile');
             }
             //加载个人信息
-            customerSer.getCustomerInfo(window.localStorage['userId']).then(
+            if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel'] == "") {
+                $state.go('login', { pageName: 'customer' });
+            } else {
+                customerSer.getCustomerInfo(window.localStorage['userId']).then(
                 function (data) {
                     if (data.isSuccess) {
                         $scope.customerInfo = data.data;
@@ -60,6 +41,8 @@
                         console.log(data.msg);
                     }
                 });
+            }
+            
             //保存修改
             $scope.saveData = function () {
                 $scope.customerInfo.customerId = window.localStorage['userId'];
