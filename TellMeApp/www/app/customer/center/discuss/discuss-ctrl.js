@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('discussControll', ['$scope', '$ionicHistory', '$ionicActionSheet', 'customerSer', 'LoadingSvr',
-        function ($scope, $ionicHistory, $ionicActionSheet, customerSer, LoadingSvr) {
+    .controller('discussControll', ['$scope', '$ionicHistory', '$ionicActionSheet', '$state', 'customerSer', 'LoadingSvr',
+        function ($scope, $ionicHistory, $ionicActionSheet, $state, customerSer, LoadingSvr) {
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };
@@ -31,6 +31,9 @@
                     );
             }
             $scope.getCustomerInfo();
+            $scope.goAnswer = function (bbsId) {
+                $state.go('answerBbs', { bbsId: 'bbsId' });
+            }
             //下拉加载更多 获取个人中心动态评论数据列表
             var vm = $scope.vm = {
                 moredata: false,
