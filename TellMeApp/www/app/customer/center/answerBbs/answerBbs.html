@@ -1,0 +1,14 @@
+﻿<ion-view>
+    <ion-header-bar class="bar bar-header bar-dark">
+        <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
+        <h1 class="title">回复</h1>
+    </ion-header-bar>
+     <ion-content style="background-color:#ddd;top:46px;">
+        <div class="list fab-text">
+            <textarea type="text" ng-model="bbsText" placeholder="回复..." class="fab-textarea" required></textarea>
+        </div>
+         <div class="fab-cont">
+             <button class="fr fab-fabu" ng-click="saveBbs()">回复</button>
+         </div>
+      </ion-content>
+</ion-view>
