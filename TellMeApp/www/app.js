@@ -4,7 +4,14 @@
 
         })
         var onDeviceReady = function () {
+            //判断是否用户登录
+            var userId = window.localStorage.getItem('userId');
+            if (!userId) {
+                //没有，则设置为游客，id为0
+                window.localStorage.getItem('userId') = 0;
+            }
             var appLaunchCount = window.localStorage.getItem('launchCount');
+
             if (appLaunchCount) {
 
             } else {
@@ -66,6 +73,7 @@
             .state('bbsList', { url: '/bbsList', templateUrl: 'app/bbs/list/bbs-list.html', controller: 'bbsListControll' })
             .state('bbs', { cache: false, url: '/bbs?bbsId', templateUrl: 'app/bbs/single/bbs.html', controller: 'bbsControll' })
             .state('addBbs', { cache: false, url: '/addBbs', templateUrl: 'app/bbs/addbbs/addbbs.html', controller: 'addBbsControll' })
+            .state('imageBrowse', { cache: false, url: '/imageBrowse?bbsId', templateUrl: 'app/bbs/image/imageBrowse.html', controller: 'imageBrowseControll' })
 
             //酒店
              .state('hotelList', { url: '/hotelList', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
@@ -83,7 +91,7 @@
             var appLaunchCount = window.localStorage.getItem('launchCount');
             //需要进行页面测试，则修改下面的路由即可
             if (appLaunchCount) {
-                $urlRouterProvider.otherwise('/menu');
+                $urlRouterProvider.otherwise('/system');
             } else {
                 $urlRouterProvider.otherwise('/start');
             }

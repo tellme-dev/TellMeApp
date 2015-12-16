@@ -19,13 +19,24 @@ angular.module('tellme')
 			    //判断是否登录
 			    var isLogin = $scope.userIsLogin();
 			    if (isLogin) {
-				$state.go('addBbs');
+				    $state.go('addBbs');
 			    } else {
 			        $state.go('login', {
 			            pageName: 'menu.communityList'
 			        });
 			    }
-				
+			}
+            //跳转到图片浏览
+			$scope.goToImageBrowse = function (bbsId) {
+			    //判断是否登录
+			    var isLogin = $scope.userIsLogin();
+			    if (isLogin) {
+			        $state.go('imageBrowse', {'bbsId':bbsId});
+			    } else {
+			        $state.go('login', {
+			            pageName: 'menu.communityList'
+			        });
+			    }
 			}
 			$scope.globalVar = {};
 			$scope.globalVar.SelectedTag = 1; //选中分类标签索引
