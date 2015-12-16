@@ -8,7 +8,7 @@
             var userId = window.localStorage.getItem('userId');
             if (!userId) {
                 //没有，则设置为游客，id为0
-                window.localStorage.getItem('userId') = 0;
+                window.localStorage.setItem('userId', 0);
             }
             var appLaunchCount = window.localStorage.getItem('launchCount');
 
@@ -91,7 +91,7 @@
             var appLaunchCount = window.localStorage.getItem('launchCount');
             //需要进行页面测试，则修改下面的路由即可
             if (appLaunchCount) {
-                $urlRouterProvider.otherwise('/menu');
+                $urlRouterProvider.otherwise('/system');
             } else {
                 $urlRouterProvider.otherwise('/start');
             }
