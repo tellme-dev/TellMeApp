@@ -4,9 +4,9 @@
         $scope.hasInputSearchText = false;
         $scope.currentCity = window.localStorage['currentcity'];
 
-        $scope.hotSearchCities = (window.localStorage['hotSearchCities']==="")?"":angular.fromJson(window.localStorage['hotSearchCities']);
-        $scope.historicCities = (window.localStorage['historicCities'] === "") ? "" : angular.fromJson(window.localStorage['historicCities']);
-        $scope.regionlist = (window.localStorage['regionlist'] === "") ? "" : angular.fromJson(window.localStorage['regionlist']);
+        $scope.hotSearchCities = (window.localStorage['hotSearchCities'] === "") ? undefined : angular.fromJson(window.localStorage['hotSearchCities']);
+        $scope.historicCities = (window.localStorage['historicCities'] === "") ? undefined : angular.fromJson(window.localStorage['historicCities']);
+        $scope.regionlist = (window.localStorage['regionlist'] === "") ? undefined : angular.fromJson(window.localStorage['regionlist']);
 
         $scope.getRowArray = function (items) {
             var array = [];
@@ -30,10 +30,10 @@
             return array;
         }
 
-        $scope.hotArray = $scope.getRowArray($scope.hotSearchCities);
+        $scope.hotArray = (typeof ($scope.hotSearchCities) ==='undefined') ? undefined : $scope.getRowArray($scope.hotSearchCities);
 
         
-        $scope.historicArray = $scope.getRowArray($scope.historicCities);
+        $scope.historicArray = (typeof ($scope.historicCities) === 'undefined') ? undefined : $scope.getRowArray($scope.historicCities);
 
         $scope.orderByAlpha = function (items) {
             var orders = [];
@@ -57,7 +57,7 @@
             }
             return orders;
         }
-        $scope.orderRegionList = $scope.orderByAlpha($scope.regionlist);
+        $scope.orderRegionList = (typeof ($scope.regionlist) === 'undefined') ? undefined : $scope.orderByAlpha($scope.regionlist);
         $scope.goBack = function () {
             $ionicHistory.goBack();
         }
