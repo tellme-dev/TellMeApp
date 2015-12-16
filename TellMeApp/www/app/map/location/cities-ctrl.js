@@ -1,30 +1,13 @@
 ﻿angular.module('tellme')
-    .controller('mapLocationControll', ['$scope', '$ionicHistory', 'tellMeMapSvr', function ($scope, $ionicHistory, tellMeMapSvr) {
-        //$('.dw-row-sr button').children().click(function () {
-        //    $(this).parent().remove()
-        //})
+    .controller('mapLocationControll', ['$scope', '$ionicHistory', 'tellMeMapSvr', 'commonSer', function ($scope, $ionicHistory, tellMeMapSvr, commonSer) {
         $scope.cancelBtnText = '取消';
         $scope.hasInputSearchText = false;
         $scope.currentCity = window.localStorage['currentcity'];
-        $scope.hotSearchCities = [{
-            name: '广州',
-            id: 1
-        }, {
-            name: '成都',
-            id: 2
-        }, {
-            name: '深圳',
-            id: 3
-        }, {
-            name: '南昌',
-            id: 4
-        }, {
-            name: '武汉',
-            id: 5
-        }, {
-            name: '长沙',
-            id: 6
-        }];
+
+        $scope.hotSearchCities = (window.localStorage['hotSearchCities']==="")?"":angular.fromJson(window.localStorage['hotSearchCities']);
+        $scope.historicCities = (window.localStorage['historicCities'] === "") ? "" : angular.fromJson(window.localStorage['historicCities']);
+        $scope.regionlist = (window.localStorage['regionlist'] === "") ? "" : angular.fromJson(window.localStorage['regionlist']);
+
         $scope.getRowArray = function (items) {
             var array = [];
             var count = 0;
@@ -49,7 +32,7 @@
 
         $scope.hotArray = $scope.getRowArray($scope.hotSearchCities);
 
-        $scope.historicCities = $scope.hotSearchCities;
+        
         $scope.historicArray = $scope.getRowArray($scope.historicCities);
 
         $scope.orderByAlpha = function (items) {
@@ -62,6 +45,7 @@
                 if (items[count].firstChar !== firstChar) {
                     i++; j = 0;
                     orders[i] = [];
+                    firstChar = items[count].firstChar;
                 } else {
                     if (count == 0) {
                         orders[i] = [];
@@ -73,34 +57,6 @@
             }
             return orders;
         }
-        $scope.regionlist = [
-            {
-                id: 1,
-                name: '鞍山',
-                pingyin: 'anshan',
-                firstChar: 'A'
-            }, {
-                id: 2,
-                name: '安阳',
-                pingyin: 'anyang',
-                firstChar: 'A'
-            },{
-                id: 3,
-                name: '亳州',
-                pingyin: 'bozhou',
-                firstChar: 'B'
-            }, {
-                id: 4,
-                name: '南康',
-                pingyin: 'nankang',
-                firstChar: 'N'
-            }, {
-                id: 5,
-                name: '南充',
-                pingyin: 'nanchong',
-                firstChar: 'N'
-            }
-        ];
         $scope.orderRegionList = $scope.orderByAlpha($scope.regionlist);
         $scope.goBack = function () {
             $ionicHistory.goBack();
@@ -138,6 +94,8 @@
             //删除元素
             $scope.historicCities = $scope.remove($scope.historicCities, item);
             $scope.historicArray = $scope.getRowArray($scope.historicCities);
+            //阻止事件上传
+            return false;
         }
         $scope.remove = function (items, item) {
             if (item.name == window.localStorage['currentcity']) {

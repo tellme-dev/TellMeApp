@@ -37,12 +37,13 @@
             <div class="row dw-row" ng-repeat="historicitem in historicArray" style="margin-top:10px;">
                 <button class="col col-20" ng-repeat="item in historicitem" ng-click="changeRegion(item)">{{item.name}}<i ng-click="deleteHistoricItem(item)" style="float:right;width:1.125em; height:1.125em;border-radius:50%; background:#686161;text-align:top;line-height:1.125em;color:#fff;display:inline-block;left:40px; top:15px;">×</i></button>
             </div>
-            <!--<historic ng-model="historicCities" ></historic>-->
-            <!--<regionls ng-model="regionlist"></regionls>-->
+            <div class="dw-tit-on">
+                区域列表
+            </div>
             <div class="list dw-list">
                 <div ng-repeat="orderItem in orderRegionList">
                     <div class="item item-divider">
-                        {{orderItem[0].firstChar}}
+                        {{orderItem[0].firstChar|uppercase}}
                     </div>
                     <a class="item" href="#" ng-repeat="item in orderItem" ng-click="changeRegion(item)">{{item.name}}</a>
                 </div>

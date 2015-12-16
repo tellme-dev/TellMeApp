@@ -89,5 +89,35 @@ angular.module('tellme')
                 });
             return deferred.promise;
         }
+        this.getHotSearchRegions = function () {
+
+        }
+        this.getHistoricRegions = function () {
+
+        }
+        this.updateRegionInfo = function () {
+            var url = baseUrl + 'app/region/getRegionInfo.do';
+            var deferred = $q.defer();
+            var customerIdJson = JSON.stringify(
+                {
+                    customerId: window.localStorage['userId']
+                });
+            $http({
+                method: 'post',
+                url: url,
+                data: { customerId: customerIdJson }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                    
+                    window.localStorage['hotSearchCities'] = (typeof (data.data.hotAndNearRegions) == 'undefined') ? "" : angular.toJson(data.data.hotAndNearRegions);
+                    window.localStorage['historicCities'] = (typeof (data.data.historicRegions) == 'undefined') ? "" : angular.toJson(data.data.historicRegions);
+                    window.localStorage['regionlist'] = (typeof (data.data.allRegions) == 'undefined') ? "" : angular.toJson(data.data.allRegions);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        }
         
     }]);
