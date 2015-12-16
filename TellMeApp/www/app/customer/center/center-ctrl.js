@@ -88,12 +88,12 @@
                 $scope.selectedIndex = index;
                 if (index == 5) {//加载动态数据
                     $scope.getDynamicData();
+                    vm.moredata = true;
                 } else {
                     vm.pageNumber = 0;
-                    vm.moredata = false,
+                    vm.moredata = false;
                     vm.loadMore;
                 }
-               
             }
             //下拉加载更多 根据标签获取酒店列表
             var vm = $scope.vm = {

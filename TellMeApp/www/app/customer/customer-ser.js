@@ -197,4 +197,69 @@
                 });
             return deferred.promise;
         }
+        //获取个人中心动态点赞数据列表
+        this.customerDynamicCount = function (customerId) {
+            var url = baseUrl + 'app/customer/getCustomerDynamicCount.do';
+            var getDataJSON = JSON.stringify({
+                customerId: customerId
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: getDataJSON }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
+      
+        //获取个人中心动态评论数据
+        this.customerDynamicComments = function (customerId, pageNumber, pageSize) {
+            var url = baseUrl + 'app/customer/getCustomerDynamicComments.do';
+            var getDataJSON = JSON.stringify({
+                customerId: customerId,
+                pageNumber: pageNumber,
+                pageSize: pageSize
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: getDataJSON }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
+        //获取个人中心动态点赞数据
+        this.customerDynamicPraise = function (customerId, pageNumber, pageSize) {
+            var url = baseUrl + 'app/customer/getCustomerDynamicPraise.do';
+            var getDataJSON = JSON.stringify({
+                customerId: customerId,
+                pageNumber: pageNumber,
+                pageSize: pageSize
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: getDataJSON }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
     }]);

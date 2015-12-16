@@ -8,7 +8,7 @@
             var userId = window.localStorage.getItem('userId');
             if (!userId) {
                 //没有，则设置为游客，id为0
-                window.localStorage.getItem('userId') = 0;
+                window.localStorage.setItem('userId', 0);
             }
             var appLaunchCount = window.localStorage.getItem('launchCount');
 
@@ -63,6 +63,7 @@
             .state('editMobile', { url: '/editMobile', templateUrl: 'app/customer/data/edit-mobile.html', controller: 'registerControll' })
             .state('discuss', { url: '/discuss', templateUrl: 'app/customer/center/discuss/discuss.html', controller: 'discussControll' })
             .state('agree', { url: '/agree', templateUrl: 'app/customer/center/agree/agree.html', controller: 'agreeControll' })
+            .state('answerBbs', { url: '/answerBbs?bbsId', templateUrl: 'app/customer/center/answerBbs/answerBbs.html', controller: 'answerBbsControll' })
             //定位
             .state('location', { cache: false, url: '/location', templateUrl: 'app/map/location/cities.html', controller: 'mapLocationControll' })//mapLocationControll
             .state('map', { url: '/map', templateUrl: 'app/map/map/map.html', controller: 'mapControll' })
@@ -78,6 +79,7 @@
              .state('hotelList', { url: '/hotelList', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
              .state('hotel', { url: '/hotel?hotelId', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
              .state('hotelItem', { url: '/hotelItem?itemId', templateUrl: 'app/hotel/hotel-item/hotel-item.html', controller: 'hotelItemControll' })
+             .state('hotelmap', { url: '/hotelmap', templateUrl: 'app/hotel/map/hotel-map.html', controller: 'hotelmapControll' })
             //广告
             .state('adList', { url: '/adList?adInfo', templateUrl: 'app/ad/list/ad-list.html', controller: 'adListControll' })
 
@@ -89,7 +91,7 @@
             var appLaunchCount = window.localStorage.getItem('launchCount');
             //需要进行页面测试，则修改下面的路由即可
             if (appLaunchCount) {
-                $urlRouterProvider.otherwise('/menu');
+                $urlRouterProvider.otherwise('/menu/home');
             } else {
                 $urlRouterProvider.otherwise('/start');
             }
