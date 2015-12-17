@@ -15,7 +15,8 @@
                     </label>
                     <label class="item item-input item-stacked-label grtz-labeler" >
                         <span class="input-label">电话</span>
-                        <input type="text" value="{{customerInfo.mobile}}" readonly>
+                        <input type="text" value="{{customerInfo.mobile}}" readonly/>
+                        <i class="ion-chevron-right fr"></i>
                     </label>
                     <label class="item item-input item-stacked-label grtz-labeler">
                         <span class="input-label">昵称</span>
@@ -37,10 +38,10 @@
                         </label>
                     </label>-->
                     
-                    <label class="item item-input item-stacked-label grtz-labeler">
+                    <!--<label class="item item-input item-stacked-label grtz-labeler">
                         <span class="input-label">生日</span>
-                        <input type="text" ng-model="customerInfo.birthday" ng-click="datePicker()" readonly/>
-                    </label>
+                        <input type="text" ng-model="customerInfo.birthday" ng-click="selectDate()" readonly/>
+                    </label>-->
                     <label class="item item-input item-stacked-label grtz-labeler" style="margin-top:10px;">
                         <button class="button button-dark button-block" ng-click="editMobile()">确认修改</button>
                     </label>
