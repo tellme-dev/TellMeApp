@@ -11,12 +11,12 @@
     </div>
     <ion-content>
         <!--内容块-->
-        <div class="top-cont list dw-list"ng-if="hasInputSearchText">
+        <div id="localCity" class="top-cont list dw-list"ng-if="hasInputSearchText">
             <a class="item" href="#" ng-repeat="region in regionlist|filter:searchText" ng-click="changeRegion(region)">{{region.name}}</a>
         </div>
 
-        <div class="top-cont" ng-if="!hasInputSearchText">
-            <ul class="dw-ul">
+        <div  class="top-cont" ng-if="!hasInputSearchText">
+            <ul  class="dw-ul">
                 <li class="fl li-1">当前所在城市:</li>
                 <li class="fl li-2">{{currentCity}}</li>
                 <li class="fl li-3" ng-click="updateCity()"><a>GPS</a></li>
@@ -29,8 +29,6 @@
             <div class="row dw-row" ng-repeat="hotitem in hotArray" style="margin-top:10px;">
                 <button class="col col-20" ng-repeat="item in hotitem" ng-click="changeRegion(item)">{{item.name}}</button>
             </div>
-
-            
             <div class="dw-tit-on">
                 历史记录
             </div>
@@ -45,7 +43,7 @@
                     <div class="item item-divider">
                         {{orderItem[0].firstChar|uppercase}}
                     </div>
-                    <a class="item" href="#" ng-repeat="item in orderItem" ng-click="changeRegion(item)">{{item.name}}</a>
+                    <a class="item" href="javascript:void(0)" ng-repeat="item in orderItem" ng-click="changeRegion(item,'localCity')">{{item.name}}</a>
                 </div>
             </div>
         </div>
