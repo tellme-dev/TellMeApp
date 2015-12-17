@@ -77,7 +77,6 @@
                 //$scope.bbsImages.push(image);
             }
             function cFail(message) {
-                alert(message);
                 console.log(message);
             }
         };
@@ -101,7 +100,6 @@
             传输失败
             */
             function tFail(error) {
-                alert(error);
                 console.log(error);
             }
             /*

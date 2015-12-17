@@ -59,12 +59,12 @@
           //个人中心 设置
             .state('system', { url: '/system', templateUrl: 'app/customer/system/system.html', controller: 'systemControll' })
             .state('feedback', { url: '/feedback', templateUrl: 'app/customer/feedback/feedback.html', controller: 'feedbackControll' })
-            .state('data', { url: '/data', templateUrl: 'app/customer/data/data.html', controller: 'dataControll' })
-            .state('editMobile', { url: '/editMobile', templateUrl: 'app/customer/register/register.html', controller: 'registerControll' })
+            .state('data', { cache: false, url: '/data', templateUrl: 'app/customer/data/data.html', controller: 'dataControll' })
+            .state('editMobile', { url: '/editMobile', templateUrl: 'app/customer/data/edit-mobile.html', controller: 'registerControll' })
             .state('discuss', { url: '/discuss', templateUrl: 'app/customer/center/discuss/discuss.html', controller: 'discussControll' })
             .state('agree', { url: '/agree', templateUrl: 'app/customer/center/agree/agree.html', controller: 'agreeControll' })
             .state('answerBbs', { url: '/answerBbs?bbsId', templateUrl: 'app/customer/center/answerBbs/answerBbs.html', controller: 'answerBbsControll' })
-             //定位
+            //定位
             .state('location', { cache: false, url: '/location', templateUrl: 'app/map/location/cities.html', controller: 'mapLocationControll' })//mapLocationControll
             .state('map', { url: '/map', templateUrl: 'app/map/map/map.html', controller: 'mapControll' })
 
@@ -80,7 +80,7 @@
              .state('hotel', { url: '/hotel?hotelId', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
              .state('hotelItem', { url: '/hotelItem?itemId', templateUrl: 'app/hotel/hotel-item/hotel-item.html', controller: 'hotelItemControll' })
              .state('hotelmap', { url: '/hotelmap', templateUrl: 'app/hotel/map/hotel-map.html', controller: 'hotelmapControll' })
-             //广告
+            //广告
             .state('adList', { url: '/adList?adInfo', templateUrl: 'app/ad/list/ad-list.html', controller: 'adListControll' })
 
             //搜索
@@ -91,7 +91,7 @@
             var appLaunchCount = window.localStorage.getItem('launchCount');
             //需要进行页面测试，则修改下面的路由即可
             if (appLaunchCount) {
-                $urlRouterProvider.otherwise('/menu');
+                $urlRouterProvider.otherwise('/home');
             } else {
                 $urlRouterProvider.otherwise('/start');
             }

@@ -17,7 +17,7 @@ angular.module('tellme')
                 quality: imgQuality,
                 destinationType: navigator.camera.DestinationType.FILE_URI,
                 saveToPhotoAlbum: true,//是否保存到手机
-                allowEdit: false
+                allowEdit: false,
             });
         }
         //从手机相册选取
