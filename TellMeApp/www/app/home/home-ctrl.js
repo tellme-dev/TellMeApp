@@ -2,13 +2,6 @@
 angular.module('tellme')
     .controller('homeControll', ['$scope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', 'LoadingSvr', function ($scope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer, LoadingSvr) {
         /*首页初始化*/
-        //var mySwiper = new Swiper('.swiper-container', {
-        //    pagination: '.pagination',
-        //    paginationClickable: true,
-        //    centeredSlides: true,
-        //    slidesPerView: 2,
-        //    loop: true,
-        //});
         var mySwiper = new Swiper('.swiper-container', {
 
             slidesPerView: 'auto',
