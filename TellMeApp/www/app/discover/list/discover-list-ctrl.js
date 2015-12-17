@@ -52,7 +52,7 @@
                 loadMore: function () {
                     LoadingSvr.show();
                     vm.pageNo += 1;
-                    var promise = discoverSer.getList(vm.pageNo, vm.pageSize).then(
+                    var promise = discoverSer.getList(vm.pageNo,vm.pageSize).then(
                   function (data) {
                       if (data.isSuccess) {
                           if (data.total != 0) {
