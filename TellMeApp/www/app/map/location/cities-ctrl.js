@@ -1,9 +1,8 @@
 ﻿angular.module('tellme')
-    .controller('mapLocationControll', ['$scope', '$ionicHistory', 'tellMeMapSvr', 'commonSer', function ($scope, $ionicHistory, tellMeMapSvr, commonSer) {
+    .controller('mapLocationControll', ['$scope', '$ionicHistory', '$location', '$anchorScroll', 'tellMeMapSvr', 'commonSer', function ($scope, $ionicHistory, $location,$anchorScroll, tellMeMapSvr, commonSer) {
         $scope.cancelBtnText = '取消';
         $scope.hasInputSearchText = false;
         $scope.currentCity = window.localStorage['currentcity'];
-
         $scope.hotSearchCities = (window.localStorage['hotSearchCities'] === "") ? undefined : angular.fromJson(window.localStorage['hotSearchCities']);
         $scope.historicCities = (window.localStorage['historicCities'] === "") ? undefined : angular.fromJson(window.localStorage['historicCities']);
         $scope.regionlist = (window.localStorage['regionlist'] === "") ? undefined : angular.fromJson(window.localStorage['regionlist']);
@@ -31,10 +30,7 @@
         }
 
         $scope.hotArray = (typeof ($scope.hotSearchCities) ==='undefined') ? undefined : $scope.getRowArray($scope.hotSearchCities);
-
-        
         $scope.historicArray = (typeof ($scope.historicCities) === 'undefined') ? undefined : $scope.getRowArray($scope.historicCities);
-
         $scope.orderByAlpha = function (items) {
             var orders = [];
             var firstChar = items[0].firstChar;
@@ -51,7 +47,6 @@
                         orders[i] = [];
                     }
                 }
-                
                 orders[i][j++] = items[count];
                 count++;
             }
@@ -84,11 +79,14 @@
                 $scope.hasInputSearchText = true;
             }
         }
-
-        $scope.changeRegion = function (region) {
+        $scope.changeRegion = function (region, idName) {
+         //   alert("region：" + region + ",idName:" + idName);
             window.localStorage['currentcity'] = region.name;
             $scope.currentCity = region.name;
             $scope.searchText = '';
+            //锚点
+            $location.hash(idName);
+            $anchorScroll();
         }
         $scope.deleteHistoricItem = function (item) {
             //删除元素
