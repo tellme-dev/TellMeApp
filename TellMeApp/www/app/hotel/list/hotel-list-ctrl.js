@@ -1,6 +1,9 @@
 ﻿angular.module('tellme')
     .controller('hotelListControll', ['$scope', '$window', 'hotelSer', function ($scope, $window, hotelSer) {
         var _MENU_SELECTED_ITEM = null;
+        var _CHILD_MENU_SELECTED_ITEM = null;
+
+        var pageSize = 5;
 
         //酒店列表数据
         $scope.list = null;
@@ -21,7 +24,15 @@
             obj.className = "li-but";
             _MENU_SELECTED_ITEM = obj;
             $scope.getChildMenu(id);
-            $scope.getHotelList(1,id);
+        }
+
+        function setChildSelectStyle(obj, id) {
+            if (_CHILD_MENU_SELECTED_ITEM != null) {
+                _CHILD_MENU_SELECTED_ITEM.className = "swiper-container3-sws";
+            }
+            obj.className = "swiper-container3-sws swiper-container3-border";
+            _CHILD_MENU_SELECTED_ITEM = obj;
+            $scope.getItemList(1,id);
         }
 
         //获取1级标题
@@ -60,7 +71,27 @@
             promise.then(
                 function (data) {
                     if (data.isSuccess) {
-                        $scope.menus = data.rows;
+                        //$scope.menus = data.rows;
+                        if (data.rows.length > 0) {
+                            //alert(data.rows.length);
+                            var view = document.getElementById("child_menu_view");
+                            view.style.width = (data.rows.length * 82) + "px";
+
+                            view.innerHTML = "";
+                            for (var i = 0; i < data.rows.length; i ++){
+                                var menu = data.rows[i];
+                                var a = document.createElement("a");
+                                a.className = "swiper-container3-sws";
+                                a.innerHTML = "<img src=\"" + $scope.host + menu.defaultImageUrl + "\" /><i>" + menu.name + "</i>";
+                                view.appendChild(a);
+                                new ChildMenuItem(a, menu.itemTagId);
+                                if (i == 0) {
+                                    setChildSelectStyle(a, menu.itemTagId);
+                                }
+                            }
+                        } else {
+                            document.getElementById("child_menu_view").style.width = "82px";
+                        }
                     }
                 },
                 function (data) {
@@ -70,8 +101,8 @@
         }
 
         //获取酒店列表
-        $scope.getHotelList = function (page, itemTagId) {
-            var promise = hotelSer.getHotelList(page, itemTagId);
+        $scope.getItemList = function (page, itemTagId) {
+            var promise = hotelSer.getItemList(page, pageSize, itemTagId);
             promise.then(
                 function (data) {
                     if (data.isSuccess) {
@@ -84,7 +115,7 @@
                 );
         }
 
-        //用户收藏酒店
+        //用户收藏项目
         $scope.saveCollection = function (targetId) {
             var customerId = 0;
             if (typeof(window.localStorage['userId']) != 'undefined') {
@@ -130,6 +161,13 @@
             //1级标题切换事件
             object.onclick = function () {
                 setSelectStyle(object, id);
+            }
+        }
+
+        var ChildMenuItem = function (object, id) {
+            //2级标题切换事件
+            object.onclick = function () {
+                setChildSelectStyle(object, id);
             }
         }
     }]);
