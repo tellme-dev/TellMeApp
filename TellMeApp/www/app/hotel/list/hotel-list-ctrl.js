@@ -1,5 +1,7 @@
 ﻿angular.module('tellme')
-    .controller('hotelListControll', ['$scope', '$window', 'hotelSer', function ($scope, $window, hotelSer) {
+    .controller('hotelListControll', ['$scope', '$window', '$stateParams', 'hotelSer', function ($scope, $window, $stateParams, hotelSer) {
+        var param_tagId = $stateParams.itemTagId;
+
         var _MENU_SELECTED_ITEM = null;
         var _CHILD_MENU_SELECTED_ITEM = null;
 
@@ -52,8 +54,14 @@
                                 view.appendChild(item);
                                 new MenuItem(item, obj.itemTagId);
                                 //初始化选中
-                                if (i == 0) {
-                                    setSelectStyle(item, obj.itemTagId);
+                                if (param_tagId > 0) {
+                                    if (param_tagId == obj.itemTagId) {
+                                        setSelectStyle(item, obj.itemTagId);
+                                    }
+                                } else {
+                                    if (i == 0) {
+                                        setSelectStyle(item, obj.itemTagId);
+                                    }
                                 }
                             }
                         }
