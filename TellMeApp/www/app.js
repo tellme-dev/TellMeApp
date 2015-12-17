@@ -59,8 +59,8 @@
           //个人中心 设置
             .state('system', { url: '/system', templateUrl: 'app/customer/system/system.html', controller: 'systemControll' })
             .state('feedback', { url: '/feedback', templateUrl: 'app/customer/feedback/feedback.html', controller: 'feedbackControll' })
-            .state('data', { url: '/data', templateUrl: 'app/customer/data/data.html', controller: 'dataControll' })
-            .state('editMobile', { url: '/editMobile', templateUrl: 'app/customer/register/register.html', controller: 'registerControll' })
+            .state('data', { cache: false, url: '/data', templateUrl: 'app/customer/data/data.html', controller: 'dataControll' })
+            .state('editMobile', { url: '/editMobile', templateUrl: 'app/customer/data/edit-mobile.html', controller: 'registerControll' })
             .state('discuss', { url: '/discuss', templateUrl: 'app/customer/center/discuss/discuss.html', controller: 'discussControll' })
             .state('agree', { url: '/agree', templateUrl: 'app/customer/center/agree/agree.html', controller: 'agreeControll' })
             .state('answerBbs', { url: '/answerBbs?bbsId', templateUrl: 'app/customer/center/answerBbs/answerBbs.html', controller: 'answerBbsControll' })
