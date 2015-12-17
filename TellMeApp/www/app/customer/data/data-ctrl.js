@@ -73,7 +73,7 @@
                       { text: '拍摄照片' },
                       { text: '选择手机上照片' }
                     ],
-                    titleText: '照片上传',
+                    titleText: '选择头像',
                     cancelText: '取消',
                     cancel: function () {
                     },
