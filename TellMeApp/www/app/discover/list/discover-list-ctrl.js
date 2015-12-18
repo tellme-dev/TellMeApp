@@ -13,7 +13,7 @@
             $scope.goDetail = function (targetType, targetId) {
                 if (targetType == 1) {//单个酒店 酒店ID
                     console.log("单个酒店详情");
-                  //  $state.go('discover');
+                    $state.go('hotel', { hotelId: targetId, rootTagId: 0, itemId:0});
                 } else if (targetType == 2) {//酒店项目 itemid
                     $state.go('hotelItem', { itemId: targetId });
                 } else if (targetType == 3) {//社区bbsid
