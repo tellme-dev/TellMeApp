@@ -1,5 +1,5 @@
 ﻿angular.module('tellme')
-    .controller('mapLocationControll', ['$scope', '$ionicHistory', '$location', '$anchorScroll', 'tellMeMapSvr', 'commonSer', function ($scope, $ionicHistory, $location,$anchorScroll, tellMeMapSvr, commonSer) {
+    .controller('mapLocationControll', ['$scope', '$rootScope', '$ionicHistory', '$location', '$ionicScrollDelegate', 'tellMeMapSvr', 'commonSer', function ($scope, $rootScope, $ionicHistory, $location, $ionicScrollDelegate, tellMeMapSvr, commonSer) {
         $scope.cancelBtnText = '取消';
         $scope.hasInputSearchText = false;
         $scope.currentCity = window.localStorage['currentcity'];
@@ -84,9 +84,8 @@
             window.localStorage['currentcity'] = region.name;
             $scope.currentCity = region.name;
             $scope.searchText = '';
-            //锚点
-            $location.hash(idName);
-            $anchorScroll();
+            $rootScope.setCity = region.name;
+            $ionicScrollDelegate.scrollTop();
         }
         $scope.deleteHistoricItem = function (item) {
             //删除元素
@@ -109,4 +108,6 @@
             items.splice(i, i + 1);
             return items;
         }
+     
     }])
+ 

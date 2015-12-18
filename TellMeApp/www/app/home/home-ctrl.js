@@ -1,7 +1,14 @@
 ﻿
 angular.module('tellme')
-    .controller('homeControll', ['$scope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', 'LoadingSvr', function ($scope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer, LoadingSvr) {
+    .controller('homeControll', ['$scope', '$rootScope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', 'LoadingSvr', function ($scope, $rootScope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer, LoadingSvr) {
         /*首页初始化*/
+        //var mySwiper = new Swiper('.swiper-container', {
+        //    pagination: '.pagination',
+        //    paginationClickable: true,
+        //    centeredSlides: true,
+        //    slidesPerView: 2,
+        //    loop: true,
+        //});
         var mySwiper = new Swiper('.swiper-container', {
 
             slidesPerView: 'auto',
@@ -79,7 +86,11 @@ angular.module('tellme')
 
         //获取URL
         $scope.baseUrl = appConfig.server.getUrl();
-        $scope.currentCity = window.localStorage['currentcity'];
+        $rootScope.setCity = window.localStorage['currentcity'];
+        $scope.$watch('setCity', function (newValue, oldValue) {
+            $rootScope.setCity = newValue;
+            console.log("newValue:" + newValue + ",oldValue:" + oldValue);
+        });
        //获取城市定位
         //广告（头部广告、底部专栏）动态加载
         ////获取头部广告信息
@@ -94,11 +105,9 @@ angular.module('tellme')
                                LoadingSvr.hide();
                                $scope.adData = data.rows;
                            }
-
                        } else {
                            console.log("获取数据失败！" + data.msg)
                        }
-
                    },
                    function (data) {
                        console.log('其他');
@@ -116,11 +125,9 @@ angular.module('tellme')
                                LoadingSvr.hide();
                                $scope.footAdData = data.rows;
                            }
-
                        } else {
                            console.log("获取数据失败！" + data.msg)
                        }
-
                    },
                    function (data) {
                        console.log('其他');
