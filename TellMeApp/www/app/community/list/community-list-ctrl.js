@@ -123,7 +123,13 @@ angular.module('tellme')
                 args.imageUrl = imgs;
                 args.appName = "挑米科技";
                 args.defaultText = "来自挑米科技";
-			    tellmeActionSheet.show(args);
+                var shareResult = tellmeActionSheet.show(args);
+                if (shareResult == 0) {
+                } else if (shareResult == 1) {
+                    commonSer.saveShare(detail.id);
+                } else {
+                    alert('蠢货，分享出现其他错误');
+                }
 			}
 
 			//点赞

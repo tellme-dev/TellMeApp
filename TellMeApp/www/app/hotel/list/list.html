@@ -46,11 +46,11 @@
             <!--内容块-->
             <div class="content has-header jd-has-header jd-has-head">
                 <div ng-repeat="item in list">
-                    <div class="list card item-mb jd-item-mb">
+                    <div class="list card item-mb jd-item-mb" ng-click="toDetailPage(item.hotel.id, item.item.id)">
                         <div class="item item-avatar">
                             <img src="http://www.runoob.com/try/demo_source/mcfly.jpg" />
                             <h2 style="">{{item.item.name}}</h2>
-                            <button class="bu-er" ng-click="saveCollection({{item.item.id}});">
+                            <button class="bu-er" ng-click="saveCollection(item.item.id)">
                                 关 注
                             </button>
                         </div>
@@ -74,7 +74,7 @@
                             <a class="tab-item jd-tab-itemer" href="#">
                                 <i class="icon ion-thumbsup"></i>
                             </a>
-                            <a class="tab-item jd-tab-itemer" href="#" ng-click="saveCollection({{item.item.id}});">
+                            <a class="tab-item jd-tab-itemer" href="#" ng-click="saveCollection(item.item.id)">
                                 <i class="icon ion-android-favorite"></i>
                             </a>
                         </div>

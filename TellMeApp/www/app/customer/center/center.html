@@ -1,343 +1,323 @@
 ﻿<style type="text/css">
     .selected {
-       border-bottom: 2px solid #99c600;
+        border-bottom: 2px solid #99c600;
     }
 </style>
 
-<ion-side-menus>
-    <ion-side-menu-content style="background-color:#ddd;">
-        <div class="bar bar-header bar-dark sq-top">
-            <h1 class="title">个人中心</h1>
+<ion-view style="background-color:#ddd;">
+    <div class="bar bar-header bar-dark sq-top">
+        <h1 class="title">个人中心</h1>
+    </div>
+    <ion-content>
+        <!--内容块-->
+        <div class="list list-style-padding">
+            <div class="cont-style">
+                <a class="item item-avatar a-border border-top-bott min-style" href="#">
+                    <img ng-src="{{host}}{{customer.photoUrl}}" style="left:0px;max-width:70px; max-height:70px; border-radius:0px; top:12px;">
+                    <div class="fl">
+                        <h2 class="style-h2" style="font-size:2em; font-family:'黑体';">{{customer.mobile}}</h2>
+                        <p class="p-style" style="font-size:1.125em; color:#a3a3a3;margin-top:10px;">昵称：{{customer.name}}</p>
+                    </div>
+                    <!--设置-->
+                    <i ng-click="goSystem()" class="ion-ios-gear fr tupiao-style"></i>
+                    <div class="clear"></div>
+                </a>
+            </div>
+            <div class="row row-style-background">
+                <button class="col button-col" ng-click="showTabs(1)" ng-class="{selected:1==selectedIndex}">
+                    长住酒店
+                    <p>{{customer.countAlways}}</p>
+                </button>
+                <button class="col button-col" ng-click="showTabs(2)" ng-class="{selected:2==selectedIndex}">
+                    最近浏览
+                    <p>{{customer.countBrowse}}</p>
+                </button>
+                <button class="col button-col" ng-click="showTabs(3)" ng-class="{selected:3==selectedIndex}">
+                    收藏
+                    <p>{{customer.countCollection}}</p>
+                </button>
+                <button class="col button-col" ng-click="showTabs(4)" ng-class="{selected:4==selectedIndex}">
+                    话题
+                    <p>{{customer.countTopic}}</p>
+                </button>
+                <button class="col button-col border-r" ng-click="showTabs(5)" ng-class="{selected:5==selectedIndex}">
+                    动态
+                    <p>{{customer.countDynamic}}</p>
+                </button>
+            </div>
         </div>
-        <ion-content>
-            <!--内容块-->
-            <div class="list list-style-padding">
-                <div class="cont-style">
-                    <a class="item item-avatar a-border border-top-bott min-style" href="#">
-                        <img ng-src="{{host}}{{customer.photoUrl}}" style="left:0px;max-width:70px; max-height:70px; border-radius:0px; top:12px;">
-                        <div class="fl">
-                            <h2 class="style-h2" style="font-size:2em; font-family:'黑体';">{{customer.mobile}}</h2>
-                            <p class="p-style" style="font-size:1.125em; color:#a3a3a3;margin-top:10px;">昵称：{{customer.name}}</p>
-                        </div>
-                        <!--设置-->
-                        <i ng-click="goSystem()" class="ion-ios-gear fr tupiao-style"></i>
-                        <div class="clear"></div>
-                    </a>
-                </div>
-                <div class="row row-style-background">
-                    <button class="col button-col" ng-click="showTabs(1)" ng-class="{selected:1==selectedIndex}">
-                        长住酒店
-                        <p>{{customer.countAlways}}</p>
-                    </button>
-                    <button class="col button-col" ng-click="showTabs(2)"  ng-class="{selected:2==selectedIndex}">
-                        最近浏览
-                        <p>{{customer.countBrowse}}</p>
-                    </button>
-                    <button class="col button-col" ng-click="showTabs(3)" ng-class="{selected:3==selectedIndex}">
-                        收藏
-                        <p>{{customer.countCollection}}</p>
-                    </button>
-                    <button class="col button-col" ng-click="showTabs(4)" ng-class="{selected:4==selectedIndex}">
-                        话题
-                        <p>{{customer.countTopic}}</p>
-                    </button>
-                    <button class="col button-col border-r" ng-click="showTabs(5)" ng-class="{selected:5==selectedIndex}">
-                        动态
-                        <p>{{customer.countDynamic}}</p>
-                    </button>
-                </div>
-            </div>
-            <!--常住酒店-->
-            <div ng-show="1==selectedIndex" style="padding:0px 10px; margin-top:65px;" ng-if="hotels">
-                <div ng-repeat="hotel in hotels">
-                    <div class="list card item-mb xq-item">
-                        <div class="item item-body xq-item-cont">
-                            <a href=""><img class="full-image" ng-src="{{host}}{{hotel.imgUrl}}"></a>
-                            <div class="xq-item-fl">
-                                <ul class="xq-ul">
-                                    <li><i class="ion ion-ios-pricetag"></i></li>
-                                    <li><a href="#" class="xq-back">{{hotel.city}}</a></li>
-                                    <li ng-repeat="liitem in item.projects"><a href="#">{{liitem.name}}</a></li>
-                                </ul>
-                                <div class="clear"></div>
-                                <p>
-                                    <a href="#" class="xq-p-span">{{item.name}}</a>
-                                </p>
-                                <p class="xq-p">入住舒适度：{{item.score}}分</p>
-
-                                <p class="xq-p">{{item.address}}</p>
-
-                                <p class="xq-p">房间数：[暂无相关数据]</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--最近浏览-->
-            <div ng-show="2==selectedIndex" class="gr-cont">
-                <div ng-repeat="browse in browseData">
-                    <!--酒店列表-->
-                    <div ng-if="browse.type==1"  class="list card item-mb xq-item">
-                            <div class="item item-body xq-item-cont">
-                                <a href=""><img class="full-image" ng-src="{{host}}{{browse.hotel.imgUrl}}"></a>
-                                <div class="xq-item-fl">
-                                    <ul class="xq-ul">
-                                        <li><i class="ion ion-ios-pricetag"></i></li>
-                                        <li><a href="#" class="xq-back">{{browse.hotel.city}}</a></li>
-                                        <li ng-repeat="tag in browse.hotel.projects"><a href="#">{{tag.name}}</a></li>
-                                    </ul>
-                                    <div class="clear"></div>
-                                    <p>
-                                       <a href="#" class="xq-p-span">{{browse.hotel.name}}</a>
-                                    </p>
-                                    <p class="xq-p">入住舒适度：{{browse.hotel.score}}</p>
-                                    <p class="xq-p">{{browse.hotel.address}}</p>
-                                    <p class="xq-p">房间数：[暂无相关数据]</p>
-                                </div>
-                            <!--<div class="item tabs tabs-secondary tabs-icon-left">
-                                <a class="tab-item xq-tab-item" href="#">
-                                    <i class="icon ion-chatbox"></i>
-                                </a>
-                                <a class="tab-item xq-tab-item" href="#">
-                                    <i class="icon ion-share"></i>
-                                </a>
-                                <a class="tab-item xq-tab-item" href="#">
-                                    <i class="icon ion-thumbsup"></i>
-                                </a>
-                                <a class="tab-item xq-tab-item" href="#">
-                                    <i class="icon ion-android-favorite ion-shouc-col"></i>
-                                </a>
-                            </div>-->
-                        </div>
-                    </div>
-                    <!--酒店列表-->
-                    <!--主题、广告-->
-                    <div ng-click="goDetail(browse.advertisement.target_type,browse.advertisement.target_id)" ng-if="browse.type==2" class="xq-cont" style="margin-bottom:10px;">
-                            <a><img ng-src="{{host}}{{browse.advertisement.imgUrl}}" /></a>
-                            <p class="zxx_text_overflow-2">
-                                {{browse.advertisement.text}}
+        <!--常住酒店-->
+        <div ng-show="1==selectedIndex" style="padding:0px 10px; margin-top:65px;" ng-if="hotels">
+            <div ng-repeat="hotel in hotels">
+                <div class="list card item-mb xq-item">
+                    <div class="item item-body xq-item-cont">
+                        <a href=""><img class="full-image" ng-src="{{host}}{{hotel.imgUrl}}"></a>
+                        <div class="xq-item-fl">
+                            <ul class="xq-ul">
+                                <li><i class="ion ion-ios-pricetag"></i></li>
+                                <li><a href="#" class="xq-back">{{hotel.city}}</a></li>
+                                <li ng-repeat="liitem in item.projects"><a href="#">{{liitem.name}}</a></li>
+                            </ul>
+                            <div class="clear"></div>
+                            <p>
+                                <a href="#" class="xq-p-span">{{item.name}}</a>
                             </p>
-                    </div>
-                    <!--主题、广告-->
-                    <!--bbs-->
-                    <div  ng-if="browse.type==3" class="list card item-mb sq-item">
-                        <div ng-click="goBBS(bbs.id)">
-                            <a href="#">
-                                <div href="#" class="item-avatar sq-item-top ">
-                                    <img ng-src="{{host}}{{browse.bbs.customer.photoUrl}}" class="sq-item-img" />
-                                    <div class="sq-item-vit">
-                                        <h2>{{browse.bbs.customer.name}}</h2>
-                                        <p>{{browse.bbs.createTime}}</p>
-                                    </div>
-                                    <div class="sq-item-min">
-                                        <span>{{browse.bbs.title}}</span>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="item-body sq-item-cont">
-                                    <div class="sq-item-fl">{{browse.bbs.text}}</div>
-                                    <div class="row">
-                                        <div class="col" ng-repeat="img in  browse.bbs.bbsAttachUrls"><img href="#" ng-src="{{host}}{{img.attachUrl}}" style="width:100%" /></div>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="item tabs tabs-secondary tabs-icon-left sq-item-col pl-class">
-                                <a class="tab-item sq-tab-item">
-                                    <i class="icon ion-chatbox"></i>
-                                   {{browse.bbs.answerCount}}
-                                </a>
-                                <a class="tab-item sq-tab-item" href="#">
-                                    <i class="icon ion-share"></i>
-                                    {{browse.bbs.shareCount}}
-                                </a>
-                                <a class="tab-item sq-tab-item" href="# ">
-                                    <i class="icon ion-thumbsup"></i>
-                                    {{browse.bbs.agreeCount}}
-                                </a>
-                                <a class="tab-item sq-tab-item" href="#">
-                                    <i class="icon ion-android-favorite"></i>
-                                    {{browse.bbs.collectionCount}}
-                                </a>
-                            </div>
-                         </div>
-                    </div>
-                   <!--bbs-->
-                </div>
-            </div>
-            <!--最近浏览-->
-            <!--收藏-->
-            <div ng-show="3==selectedIndex" class="gr-cont">
-                <div ng-repeat="save in saveData">
-                    <!--酒店列表-->
-                    <div ng-if="save.type==1" class="list card item-mb xq-item">
-                            <div class="item item-body xq-item-cont">
-                                <a href=""><img class="full-image" ng-src="{{host}}{{save.hotel.imgUrl}}"></a>
-                                <div class="xq-item-fl">
-                                    <ul class="xq-ul">
-                                        <li><i class="ion ion-ios-pricetag"></i></li>
-                                        <li><a href="#" class="xq-back">{{save.hotel.city}}</a></li>
-                                        <li ng-repeat="tag in save.hotel.projects"><a href="#">{{tag.name}}</a></li>
-                                    </ul>
-                                    <div class="clear"></div>
-                                    <p>
-                                        <a href="#" class="xq-p-span">{{save.hotel.name}}</a>
-                                    </p>
-                                    <p class="xq-p">入住舒适度：{{save.hotel.score}}</p>
-                                    <p class="xq-p">{{save.hotel.address}}</p>
-                                    <p class="xq-p">房间数：[暂无相关数据]</p>
-                                </div>
-                            <!--<div class="item tabs tabs-secondary tabs-icon-left">
-                                <a class="tab-item xq-tab-item" href="#">
-                                    <i class="icon ion-chatbox"></i>
-                                </a>
-                                <a class="tab-item xq-tab-item" href="#">
-                                    <i class="icon ion-share"></i>
-                                </a>
-                                <a class="tab-item xq-tab-item" href="#">
-                                    <i class="icon ion-thumbsup"></i>
-                                </a>
-                                <a class="tab-item xq-tab-item" href="#">
-                                    <i class="icon ion-android-favorite ion-shouc-col"></i>
-                                </a>
-                            </div>-->
+                            <p class="xq-p">入住舒适度：{{item.score}}分</p>
+
+                            <p class="xq-p">{{item.address}}</p>
+
+                            <p class="xq-p">房间数：[暂无相关数据]</p>
                         </div>
                     </div>
-                    <!--酒店列表-->
-                    <!--主题、广告-->
-                    <div ng-if="save.type==2" class="xq-cont" style="margin-bottom:10px;">
-                            <a><img ng-src="{{host}}{{save.advertisement.imgUrl}}" /></a>
-                            <p class="zxx_text_overflow-2">
-                                {{save.advertisement.text}}
+                </div>
+            </div>
+        </div>
+        <!--最近浏览-->
+        <div ng-show="2==selectedIndex" class="gr-cont">
+            <div ng-repeat="browse in browseData">
+                <!--酒店列表-->
+                <div ng-if="browse.type==1" class="list card item-mb xq-item">
+                    <div class="item item-body xq-item-cont">
+                        <a href=""><img class="full-image" ng-src="{{host}}{{browse.hotel.imgUrl}}"></a>
+                        <div class="xq-item-fl">
+                            <ul class="xq-ul">
+                                <li><i class="ion ion-ios-pricetag"></i></li>
+                                <li><a href="#" class="xq-back">{{browse.hotel.city}}</a></li>
+                                <li ng-repeat="tag in browse.hotel.projects"><a href="#">{{tag.name}}</a></li>
+                            </ul>
+                            <div class="clear"></div>
+                            <p>
+                                <a href="#" class="xq-p-span">{{browse.hotel.name}}</a>
                             </p>
-                    </div>
-                    <!--主题、广告-->
-                    <!--bbs-->
-                    <div ng-if="save.type==3" class="list card item-mb sq-item">
-                        <div   ng-click="goBBS(save.bbs.id)">
-                            <a href="#">
-                                <div href="#" class="item-avatar sq-item-top ">
-                                    <img ng-src="{{host}}{{save.bbs.customer.photoUrl}}" class="sq-item-img" />
-                                    <div class="sq-item-vit">
-                                        <h2>{{save.bbs.customer.name}}</h2>
-                                        <p>{{save.bbs.createTime}}</p>
-                                    </div>
-                                    <div class="sq-item-min">
-                                        <span>{{save.bbs.title}}</span>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="item-body sq-item-cont">
-                                    <div class="sq-item-fl">{{save.bbs.text}}</div>
-                                    <div class="row">
-                                        <div class="col" ng-repeat="img in save.bbs.bbsAttachUrls"><img href="#" ng-src="{{host}}{{img.attachUrl}}" style="width:100%" /></div>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="item tabs tabs-secondary tabs-icon-left sq-item-col pl-class">
-                                <a class="tab-item sq-tab-item">
-                                    <i class="icon ion-chatbox"></i>
-                                    {{save.bbs.answerCount}}
-                                </a>
-                                <a class="tab-item sq-tab-item" href="#">
-                                    <i class="icon ion-share"></i>
-                                    {{save.bbs.shareCount}}
-                                </a>
-                                <a class="tab-item sq-tab-item" href="# ">
-                                    <i class="icon ion-thumbsup"></i>
-                                    {{save.bbs.agreeCount}}
-                                </a>
-                                <a class="tab-item sq-tab-item" href="#">
-                                    <i class="icon ion-android-favorite"></i>
-                                    {{save.bbs.collectionCount}}
-                                </a>
-                            </div>
+                            <p class="xq-p">入住舒适度：{{browse.hotel.score}}</p>
+                            <p class="xq-p">{{browse.hotel.address}}</p>
+                            <p class="xq-p">房间数：[暂无相关数据]</p>
                         </div>
-                    </div>
-                    <!--bbs-->
-                </div>
-
-            </div>
-            <!--收藏-->
-            <!--话题-->
-            <div ng-show="4==selectedIndex" class="gr-cont">
-                <div ng-repeat="topic in topicData" class="list card item-mb sq-item">
-
-                    <div href="#" class="item-avatar sq-item-top ">
-                        <img ng-src="{{host}}{{customer.photoUrl}}" class="sq-item-img" />
-                        <div class="sq-item-vit">
-                            <h2 style="margin-top:10px;">{{customer.name}}</h2>
-                        </div>
-                        <div class="sq-item-min">
-                            <button class="ht-button" ng-click="deleteCustomerTopic(topic.id)">删除</button>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                    <div ng-click="goBBS(topic.id)">
-                        <div class="item-body sq-item-cont ht-text">
-                            <div class="sq-item-fl">
-                                {{topic.text}}
-                            </div>
-                        </div>
-
-                        <div class="item tabs tabs-secondary tabs-icon-left sq-item-col pl-class">
-                            <a class="tab-item sq-tab-item" href="#">
+                        <!--<div class="item tabs tabs-secondary tabs-icon-left">
+                            <a class="tab-item xq-tab-item" href="#">
                                 <i class="icon ion-chatbox"></i>
-                                {{topic.answerCount}}
+                            </a>
+                            <a class="tab-item xq-tab-item" href="#">
+                                <i class="icon ion-share"></i>
+                            </a>
+                            <a class="tab-item xq-tab-item" href="#">
+                                <i class="icon ion-thumbsup"></i>
+                            </a>
+                            <a class="tab-item xq-tab-item" href="#">
+                                <i class="icon ion-android-favorite ion-shouc-col"></i>
+                            </a>
+                        </div>-->
+                    </div>
+                </div>
+                <!--酒店列表-->
+                <!--主题、广告-->
+                <div ng-click="goDetail(browse.advertisement.target_type,browse.advertisement.target_id)" ng-if="browse.type==2" class="xq-cont" style="margin-bottom:10px;">
+                    <a><img ng-src="{{host}}{{browse.advertisement.imgUrl}}" /></a>
+                    <p class="zxx_text_overflow-2">
+                        {{browse.advertisement.text}}
+                    </p>
+                </div>
+                <!--主题、广告-->
+                <!--bbs-->
+                <div ng-if="browse.type==3" class="list card item-mb sq-item">
+                    <div ng-click="goBBS(bbs.id)">
+                        <a href="#">
+                            <div href="#" class="item-avatar sq-item-top ">
+                                <img ng-src="{{host}}{{browse.bbs.customer.photoUrl}}" class="sq-item-img" />
+                                <div class="sq-item-vit">
+                                    <h2>{{browse.bbs.customer.name}}</h2>
+                                    <p>{{browse.bbs.createTime}}</p>
+                                </div>
+                                <div class="sq-item-min">
+                                    <span>{{browse.bbs.title}}</span>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="item-body sq-item-cont">
+                                <div class="sq-item-fl">{{browse.bbs.text}}</div>
+                                <div class="row">
+                                    <div class="col" ng-repeat="img in  browse.bbs.bbsAttachUrls"><img href="#" ng-src="{{host}}{{img.attachUrl}}" style="width:100%" /></div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="item tabs tabs-secondary tabs-icon-left sq-item-col pl-class">
+                            <a class="tab-item sq-tab-item">
+                                <i class="icon ion-chatbox"></i>
+                                {{browse.bbs.answerCount}}
                             </a>
                             <a class="tab-item sq-tab-item" href="#">
                                 <i class="icon ion-share"></i>
-                                {{topic.shareCount}}
+                                {{browse.bbs.shareCount}}
                             </a>
                             <a class="tab-item sq-tab-item" href="# ">
                                 <i class="icon ion-thumbsup"></i>
-                                {{topic.agreeCount}}
+                                {{browse.bbs.agreeCount}}
                             </a>
                             <a class="tab-item sq-tab-item" href="#">
                                 <i class="icon ion-android-favorite"></i>
-                                {{topic.collectionCount}}
+                                {{browse.bbs.collectionCount}}
                             </a>
                         </div>
                     </div>
                 </div>
+                <!--bbs-->
             </div>
-            <!--话题-->
-            <!--动态-->
-            <div ng-show="5==selectedIndex" style="padding:10px 10px; position:relative;margin-top:58px;">
-                <div style="background:#fff;">
+        </div>
+        <!--最近浏览-->
+        <!--收藏-->
+        <div ng-show="3==selectedIndex" class="gr-cont">
+            <div ng-repeat="save in saveData">
+                <!--酒店列表-->
+                <div ng-if="save.type==1" class="list card item-mb xq-item">
+                    <div class="item item-body xq-item-cont">
+                        <a href=""><img class="full-image" ng-src="{{host}}{{save.hotel.imgUrl}}"></a>
+                        <div class="xq-item-fl">
+                            <ul class="xq-ul">
+                                <li><i class="ion ion-ios-pricetag"></i></li>
+                                <li><a href="#" class="xq-back">{{save.hotel.city}}</a></li>
+                                <li ng-repeat="tag in save.hotel.projects"><a href="#">{{tag.name}}</a></li>
+                            </ul>
+                            <div class="clear"></div>
+                            <p>
+                                <a href="#" class="xq-p-span">{{save.hotel.name}}</a>
+                            </p>
+                            <p class="xq-p">入住舒适度：{{save.hotel.score}}</p>
+                            <p class="xq-p">{{save.hotel.address}}</p>
+                            <p class="xq-p">房间数：[暂无相关数据]</p>
+                        </div>
+                        <!--<div class="item tabs tabs-secondary tabs-icon-left">
+                            <a class="tab-item xq-tab-item" href="#">
+                                <i class="icon ion-chatbox"></i>
+                            </a>
+                            <a class="tab-item xq-tab-item" href="#">
+                                <i class="icon ion-share"></i>
+                            </a>
+                            <a class="tab-item xq-tab-item" href="#">
+                                <i class="icon ion-thumbsup"></i>
+                            </a>
+                            <a class="tab-item xq-tab-item" href="#">
+                                <i class="icon ion-android-favorite ion-shouc-col"></i>
+                            </a>
+                        </div>-->
+                    </div>
+                </div>
+                <!--酒店列表-->
+                <!--主题、广告-->
+                <div ng-if="save.type==2" class="xq-cont" style="margin-bottom:10px;">
+                    <a><img ng-src="{{host}}{{save.advertisement.imgUrl}}" /></a>
+                    <p class="zxx_text_overflow-2">
+                        {{save.advertisement.text}}
+                    </p>
+                </div>
+                <!--主题、广告-->
+                <!--bbs-->
+                <div ng-if="save.type==3" class="list card item-mb sq-item">
+                    <div ng-click="goBBS(save.bbs.id)">
+                        <a href="#">
+                            <div href="#" class="item-avatar sq-item-top ">
+                                <img ng-src="{{host}}{{save.bbs.customer.photoUrl}}" class="sq-item-img" />
+                                <div class="sq-item-vit">
+                                    <h2>{{save.bbs.customer.name}}</h2>
+                                    <p>{{save.bbs.createTime}}</p>
+                                </div>
+                                <div class="sq-item-min">
+                                    <span>{{save.bbs.title}}</span>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="item-body sq-item-cont">
+                                <div class="sq-item-fl">{{save.bbs.text}}</div>
+                                <div class="row">
+                                    <div class="col" ng-repeat="img in save.bbs.bbsAttachUrls"><img href="#" ng-src="{{host}}{{img.attachUrl}}" style="width:100%" /></div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="item tabs tabs-secondary tabs-icon-left sq-item-col pl-class">
+                            <a class="tab-item sq-tab-item">
+                                <i class="icon ion-chatbox"></i>
+                                {{save.bbs.answerCount}}
+                            </a>
+                            <a class="tab-item sq-tab-item" href="#">
+                                <i class="icon ion-share"></i>
+                                {{save.bbs.shareCount}}
+                            </a>
+                            <a class="tab-item sq-tab-item" href="# ">
+                                <i class="icon ion-thumbsup"></i>
+                                {{save.bbs.agreeCount}}
+                            </a>
+                            <a class="tab-item sq-tab-item" href="#">
+                                <i class="icon ion-android-favorite"></i>
+                                {{save.bbs.collectionCount}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--bbs-->
+            </div>
 
-                    <a class="item item-avatar" href="#" ng-click="goDiscuss()" >
-                        <img src="images/05--_03.png">
-                        <i style="width:1.125em; height:1.125em;border-radius:50%; background:#ff0000;text-align:center;line-height:1.125em;position:absolute; color:#fff;display:inline-block;left:40px; top:15px;">{{DynamicCount.countComments}}</i>
-                        <h2 style="line-height:40px;">评论<i class="fr ion-ios-arrow-forward" style="margin-top:12px;color:#9ac600"></i></h2>
-                    </a>
-                    <a class="item item-avatar" href="#" ng-click="goAgree()">
-                        <img src="images/05--_06.png">
-                        <i style="width:1.125em; height:1.125em;border-radius:50%; background:#ff0000;text-align:center;line-height:1.125em;position:absolute; color:#fff;display:inline-block;left:40px; top:15px;">{{DynamicCount.countPraise}}</i>
-                        <h2 style="line-height:40px;">赞 <i class="fr ion-ios-arrow-forward" style="margin-top:12px;color:#9ac600"></i></h2>
-                    </a>
+        </div>
+        <!--收藏-->
+        <!--话题-->
+        <div ng-show="4==selectedIndex" class="gr-cont">
+            <div ng-repeat="topic in topicData" class="list card item-mb sq-item">
+
+                <div href="#" class="item-avatar sq-item-top ">
+                    <img ng-src="{{host}}{{customer.photoUrl}}" class="sq-item-img" />
+                    <div class="sq-item-vit">
+                        <h2 style="margin-top:10px;">{{customer.name}}</h2>
+                    </div>
+                    <div class="sq-item-min">
+                        <button class="ht-button" ng-click="deleteCustomerTopic(topic.id)">删除</button>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div ng-click="goBBS(topic.id)">
+                    <div class="item-body sq-item-cont ht-text">
+                        <div class="sq-item-fl">
+                            {{topic.text}}
+                        </div>
+                    </div>
+
+                    <div class="item tabs tabs-secondary tabs-icon-left sq-item-col pl-class">
+                        <a class="tab-item sq-tab-item" href="#">
+                            <i class="icon ion-chatbox"></i>
+                            {{topic.answerCount}}
+                        </a>
+                        <a class="tab-item sq-tab-item" href="#">
+                            <i class="icon ion-share"></i>
+                            {{topic.shareCount}}
+                        </a>
+                        <a class="tab-item sq-tab-item" href="# ">
+                            <i class="icon ion-thumbsup"></i>
+                            {{topic.agreeCount}}
+                        </a>
+                        <a class="tab-item sq-tab-item" href="#">
+                            <i class="icon ion-android-favorite"></i>
+                            {{topic.collectionCount}}
+                        </a>
+                    </div>
                 </div>
             </div>
-            <!--动态-->
-            <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
-            <!--内容块-->
-        </ion-content>
-        <div class="tabs tabs-icon-left" style=" background-color: #444444;background-image: linear-gradient(0deg, #111, #111 50%, transparent 50%);">
-            <a class="tab-item" ng-click="goHome()">
-                <i class="icon ion-home " style="color:#fff">
-                </i>
-            </a>
-            <a class="tab-item" ng-click="goDiscover()">
-                <i class="icon ion-ios-eye-outline" style="color:#fff">
-                </i>
-            </a>
-            <a class="tab-item" ng-click="goCommunity()">
-                <i class="icon ion-ios-people-outline" style="color:#fff">
-                </i>
-            </a>
-            <a class="tab-item">
-                <i class="icon ion-android-checkbox-outline" style="color:#fff">
-                </i>
-            </a>
         </div>
-    </ion-side-menu-content>
-</ion-side-menus>
+        <!--话题-->
+        <!--动态-->
+        <div ng-show="5==selectedIndex" style="padding:10px 10px; position:relative;margin-top:58px;">
+            <div style="background:#fff;">
+
+                <a class="item item-avatar" href="#" ng-click="goDiscuss()">
+                    <img src="images/05--_03.png">
+                    <i style="width:1.125em; height:1.125em;border-radius:50%; background:#ff0000;text-align:center;line-height:1.125em;position:absolute; color:#fff;display:inline-block;left:40px; top:15px;">{{DynamicCount.countComments}}</i>
+                    <h2 style="line-height:40px;">评论<i class="fr ion-ios-arrow-forward" style="margin-top:12px;color:#9ac600"></i></h2>
+                </a>
+                <a class="item item-avatar" href="#" ng-click="goAgree()">
+                    <img src="images/05--_06.png">
+                    <i style="width:1.125em; height:1.125em;border-radius:50%; background:#ff0000;text-align:center;line-height:1.125em;position:absolute; color:#fff;display:inline-block;left:40px; top:15px;">{{DynamicCount.countPraise}}</i>
+                    <h2 style="line-height:40px;">赞 <i class="fr ion-ios-arrow-forward" style="margin-top:12px;color:#9ac600"></i></h2>
+                </a>
+            </div>
+        </div>
+        <!--动态-->
+        <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
+        <!--内容块-->
+    </ion-content>
+</ion-view>
