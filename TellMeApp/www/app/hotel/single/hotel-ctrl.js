@@ -45,7 +45,6 @@
 
         //用户收藏项目
         $scope.saveCollection = function (targetId) {
-            alert(targetId);
             var customerId = 0;
             if (typeof (window.localStorage['userId']) != 'undefined') {
                 customerId = window.localStorage['userId'];
