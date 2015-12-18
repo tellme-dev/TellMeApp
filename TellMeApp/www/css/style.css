@@ -59,7 +59,7 @@ position:relative;float:right; margin-top:5px; margin-right:7px;
     padding-right:10px; padding-top:2px;padding-bottom:2px; border-bottom:none;
 }
     .item-avatar h2 {
-    line-height:65px; float:left; color:#828282; font-family:'Î¢ÈíÑÅºÚ';
+     color:#828282; font-family:'Î¢ÈíÑÅºÚ';
     }
 .bu-er {
 float:right; height:20px; background:none; border:1px solid #ddd; padding:0 3px;color:#ddd; margin-top:23px; border-radius:3px; font:'ËÎÌå'; font-size:0.8em
@@ -200,7 +200,7 @@ margin:0px 0px;
 }
 
 .grid li {
-  width: 50%;
+  width: 33%;
   background: #000000;
   float: left;
   position: relative;

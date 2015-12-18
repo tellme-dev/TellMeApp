@@ -48,7 +48,11 @@ angular.module('tellme')
 
         //获取URL
         $scope.baseUrl = appConfig.server.getUrl();
-        $scope.currentCity = window.localStorage['currentcity'];
+        $rootScope.setCity = window.localStorage['currentcity'];
+        $scope.$watch('setCity', function (newValue, oldValue) {
+            $rootScope.setCity = newValue;
+            console.log("newValue:" + newValue + ",oldValue:" + oldValue);
+        });
        //获取城市定位
         //广告（头部广告、底部专栏）动态加载
         ////获取头部广告信息

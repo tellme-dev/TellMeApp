@@ -175,8 +175,8 @@ float:right;
 }
 
 .button-col {
-font-size:0.75em;text-align:center; border:1px solid #ddd; border-left:1px solid #fff; background:#fff;
-border-bottom:2px solid #fff;
+font-size:1.2em;text-align:center; border:1px solid #ddd; border-left:1px solid #fff; background:#fff;
+border-bottom:2px solid #fff;padding:0px
 }
 .button-col-clock {
 border-bottom:2px solid #99c600
