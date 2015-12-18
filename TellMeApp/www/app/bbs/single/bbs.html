@@ -25,7 +25,7 @@
                             <div class="sqer-item-fl" style="font-family:微软雅黑;">{{bbs.text}}</div>
                             <div class="row">
                                 <div ng-repeat="image in bbs.bbsAttachUrls" class="col"  ng-click="goToImageBrowse(image.bbsId)">
-                                       <img href="#"  ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" />
+                                       <img href="#"  ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" err-src="images/failed.jpg"/>
                                 </div>
                             </div>
                            
