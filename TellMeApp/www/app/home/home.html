@@ -1,6 +1,6 @@
 ﻿<ion-view style="color:#fff; font-family:'微软雅黑';">
     <ion-header-bar class="bar bar-header bar-dark">
-        <button class="button icon ion-ios-location" ng-click="goToLocation()" style="border:none">{{currentCity}}</button>
+        <button id="cityName" class="button icon ion-ios-location" ng-click="goToLocation()" style="border:none">{{setCity}}</button>
         <label ng-click="goToSearch()" class="item item-input" style="margin:0 auto; width:60%; background:#ffffff">
             <i class="icon ion-search placeholder-icon"></i>
             <input type="text" placeholder="Search" disabled class="pad-top">
@@ -66,11 +66,11 @@
                     </div>
                 </div>
             </div>
-            <div class="pagination"></div>
         </div>
-
-        <div class="list" style="background-color:#f2ecec;">
-            <div class="item" style="text-align:left;">
+        <!--酒店分类end-->
+        <!--活动推荐begin-->
+        <div style="background-color:#f2ecec;">
+            <div class="item">
                 <h2>活动推荐</h2>
             </div>
             <a href="#" ng-repeat="fad in footAdData">

@@ -4,30 +4,30 @@
     }
 
     .current {
-        border-bottom: 2px solid #99c600;
-    }
+      border-bottom: 2px solid #99c600;
+    } 
 </style>
 
 <ion-view>
-    <div class="bar bar-header bar-dark sq-top">
-        <h1 class="title">社区</h1>
-        <button class="button button-style" ng-click="toAddBbs()">发表</button>
-    </div>
-    <div class="tabs-striped tabs-top  tabs-color-active ">
-        <div class="tabs sq-tier" style="background-color:#f2f2f2;">
+            <div class="bar bar-header bar-dark sq-top">
+                <h1 class="title">社区</h1>
+                <button class="button button-style" ng-click="toAddBbs()">发表</button>
+            </div>
+            <div class="tabs-striped tabs-top  tabs-color-active ">
+                <div class="tabs sq-tier" style="background-color:#f2f2f2;">
             <a ng-click="gettypedetail(1,1)" class="tab-item" ng-class="{current:1==globalVar.SelectedTag}" href="#" style="color:black;">最新活动</a>
-            <a ng-click="gettypedetail(2,2)" class="tab-item" ng-class="{current:2==globalVar.SelectedTag}" href="#" style="color:black;">热门话题</a>
-            <a ng-click="gettypedetail(3,3)" class="tab-item" ng-class="{current:3==globalVar.SelectedTag}" href="#" style="color:black;">吐槽专区</a>
-            <a ng-click="gettypedetail(4,4)" class="tab-item" ng-class="{current:4==globalVar.SelectedTag}" href="#" style="color:black;">达人推荐</a>
-        </div>
-    </div>
-    <ion-content>
-        <!--内容块-->
+                    <a ng-click="gettypedetail(2,2)" class="tab-item" ng-class="{current:2==globalVar.SelectedTag}" href="#" style="color:black;">热门话题</a>
+                    <a ng-click="gettypedetail(3,3)" class="tab-item" ng-class="{current:3==globalVar.SelectedTag}" href="#" style="color:black;">吐槽专区</a>
+                    <a ng-click="gettypedetail(4,4)" class="tab-item" ng-class="{current:4==globalVar.SelectedTag}" href="#" style="color:black;">达人推荐</a>
+                </div>
+            </div>
+            <ion-content>
+                <!--内容块-->
         <div ng-show="dataShow" class="content sq-hea">
             <div class="list card" ng-repeat="detail in vm.typeDetail">
                 <div class="item item-avatar">
                     <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}"><h2>{{detail.customer.name}}</h2><p>{{detail.createTime|date:'yyyy-MM-dd'}}</p>
-                </div>
+                                </div>
                 <div class="item item-body" ng-if="detail.bbsAttachUrls">
                     <p>
                         <b ng-if="detail.title">#{{detail.title}}#</b>{{detail.text}}
@@ -48,7 +48,7 @@
                         <a href="#" class="subdued">评论{{detail.answerCount}}次</a>
                         <a href="#" class="subdued">收藏{{detail.collectionCount}}次</a>
                     </p>
-                </div>
+                                </div>
                 <div class="item tabs tabs-secondary tabs-icon-left">
                     <a class="tab-item" href="#" ng-click="agreeBbs(detail.id,detail.agreeCount)">
                         <i class="icon ion-thumbsup">
@@ -66,15 +66,15 @@
                         <i class="icon ion-android-favorite">
                         </i>
                         收藏
-                    </a>
-                </div>
-            </div>
+                        </a>
+                        </div>
+                        </div>
 
-        </div>
-        <div ng-show="msgShow" style="text-align:center;margin-top:10px;"><h3>暂无数据,请稍后重试！</h3></div>
-        <!--内容块-->
-        <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
-        <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
-    </ion-content>
+                </div>
+                <div ng-show="msgShow" style="text-align:center;margin-top:10px;"><h3>暂无数据,请稍后重试！</h3></div>
+                <!--内容块-->
+                <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
+                <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
+            </ion-content>
 
 </ion-view>

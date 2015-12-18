@@ -13,7 +13,7 @@
         <ion-slide-box on-slide-changed="slideHasChanged($index)" style="background-color:#444444" class="slidebox" auto-play="false" slide-interval="4000" delegate-handle="slideimgs" does-continue="false">
             <ion-slide ng-repeat="image in bbsImage">
                 <div class="box">
-                    <img ng-src="{{baseUrl}}{{image.attachUrl}}" ng-click="goBack()" alt="" style="width:100%; height:auto"/>
+                    <img ng-src="{{baseUrl}}{{image.attachUrl}}" ng-click="goBack()" alt="" style="width:100%; height:auto" err-src="images/failed.jpg"/>
                 </div>
             </ion-slide>
         </ion-slide-box>
