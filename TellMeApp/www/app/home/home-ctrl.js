@@ -1,57 +1,7 @@
 ﻿
 angular.module('tellme')
-    .controller('homeControll', ['$scope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', 'LoadingSvr', function ($scope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer, LoadingSvr) {
+    .controller('homeControll', ['$scope', '$rootScope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', 'LoadingSvr', function ($scope, $rootScope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer, LoadingSvr) {
         /*首页初始化*/
-        //var mySwiper = new Swiper('.swiper-container', {
-        //    pagination: '.pagination',
-        //    paginationClickable: true,
-        //    centeredSlides: true,
-        //    slidesPerView: 2,
-        //    loop: true,
-        //});
-        var mySwiper = new Swiper('.swiper-container', {
-
-            slidesPerView: 'auto',
-            centeredSlides: true,
-            loop: true,
-            loopedSlides: 6,
-            watchSlidesProgress: true,
-            pagination: '.swiper-pagination',
-            paginationClickable: true,
-            paginationBulletRender: function (index, className) {
-                switch (index) {
-                    case 0: name = '洗'; break;
-                    case 1: name = '剪'; break;
-                    case 2: name = '烫'; break;
-                    case 3: name = '染'; break;
-                    case 4: name = '护'; break;
-                    case 5: name = '套'; break;
-                    default: name = '';
-                }
-
-                return '<span class="' + className + '"><i>' + name + '</i></span>';
-            },
-            onProgress: function (swiper) {
-                for (var i = 0; i < swiper.slides.length; i++) {
-                    var slide = swiper.slides[i];
-                    var progress = slide.progress;
-                    scale = 1 - Math.min(Math.abs(progress * 0.2), 1);
-
-                    es = slide.style;
-                    es.opacity = 1 - Math.min(Math.abs(progress / 2), 1);
-                    es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = 'translate3d(0px,0,' + (-Math.abs(progress * 150)) + 'px)';
-
-                }
-            },
-
-            onSetTransition: function (swiper, speed) {
-                for (var i = 0; i < swiper.slides.length; i++) {
-                    es = swiper.slides[i].style;
-                    es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration = es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = speed + 'ms';
-                }
-
-            }
-        });
         var vm = $scope.vm = {
             moredata: false,
             messages: [],
@@ -86,7 +36,11 @@ angular.module('tellme')
 
         //获取URL
         $scope.baseUrl = appConfig.server.getUrl();
-        $scope.currentCity = window.localStorage['currentcity'];
+        $rootScope.setCity = window.localStorage['currentcity'];
+        $scope.$watch('setCity', function (newValue, oldValue) {
+            $rootScope.setCity = newValue;
+            console.log("newValue:" + newValue + ",oldValue:" + oldValue);
+        });
        //获取城市定位
         //广告（头部广告、底部专栏）动态加载
         ////获取头部广告信息
@@ -101,11 +55,9 @@ angular.module('tellme')
                                LoadingSvr.hide();
                                $scope.adData = data.rows;
                            }
-
                        } else {
                            console.log("获取数据失败！" + data.msg)
                        }
-
                    },
                    function (data) {
                        console.log('其他');
@@ -123,16 +75,14 @@ angular.module('tellme')
                                LoadingSvr.hide();
                                $scope.footAdData = data.rows;
                            }
-
                        } else {
                            console.log("获取数据失败！" + data.msg)
                        }
-
                    },
                    function (data) {
                        console.log('其他');
                    }
-                       );
+               );
 
             //获取广告滑动菜单
                 var promise = homeSer.getSwiperAd ();

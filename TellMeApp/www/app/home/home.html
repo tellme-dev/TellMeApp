@@ -1,7 +1,7 @@
 ﻿<ion-view style="color:#fff; font-family:'微软雅黑';">
     <!--头部begin-->
     <ion-header-bar class="bar bar-header bar-dark">
-        <button class="button icon ion-ios-location" ng-click="goToLocation()" style="border:none">{{currentCity}}</button>
+        <button id="cityName" class="button icon ion-ios-location" ng-click="goToLocation()" style="border:none">{{setCity}}</button>
         <label ng-click="goToSearch()" class="item item-input" style="margin:0 auto; width:60%; background:#ffffff">
             <i class="icon ion-search placeholder-icon"></i>
             <input type="text" placeholder="Search" disabled class="pad-top">
@@ -22,7 +22,7 @@
         </ion-slide-box>
         <!--广告推广end-->
         <!--酒店分类begin-->
-        <div style="height:310px; margin-top:10px;margin-bottom:10px;">
+        <!--<div style="height:310px; margin-top:10px;margin-bottom:10px;">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><img src="images/zt1.jpg" class="main-img"></div>
@@ -33,7 +33,7 @@
                     <div class="swiper-slide"><img src="images/zt3.jpg" class="main-img"></div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!--酒店分类end-->
         <!--活动推荐begin-->
         <div style="background-color:#f2ecec;">
