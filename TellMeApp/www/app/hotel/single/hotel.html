@@ -1,11 +1,82 @@
-﻿
-<ion-view view-title="单个酒店详情"  >
-    <ion-header-bar class="bar bar-header bar-dark">
-        <button ng-click="goBack()" class="button icon ion-chevron-left sqer-but" style="border:none"></button>
-    </ion-header-bar>
-    <ion-content>
-        
-        {{hotelId}}
-    </ion-content>
+﻿<ion-view>
+        <ion-header-bar class="bar bar-header bar-light ">
+            <button class="button icon ion-chevron-left jd-border-no"></button>
+            <h1 class="title">娱乐设施</h1>
+        </ion-header-bar>
+        <!--导航-->
+        <div class="bar bar-subheader">
+            <div id="wrapper" style="width:100%">
+                <div id="scroller">
+                    <ul id="list">
+                        <li class="li-but">KTV</li>
+                        <li>游泳馆</li>
+                        <li>健身房</li>
+                        <li>SPA</li>
+                        <li>温泉</li>
+                        <li>各类球场</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <!--导航-->
+        <ion-content style="background-color:#ddd;">
+            <div class="cont-too">
+                <ion-view title="Home" hide-nav-bar="true">
+                    <ion-scroll zooming="true" direction="x" scrollbar-x="false" class="tu-cont-cont">
+                        <div class="tu-cont" id="child_menu_view">
+                            <a class="swiper-container3-sws swiper-container3-border"><img src="images/xq-2.jpg" /><i>介绍</i></a>
+                            <a class="swiper-container3-sws "><img src="images/xq-3.jpg" /><i>房型</i></a>
+                            <a class="swiper-container3-sws"><img src="images/xq-4.jpg" /><i>交通</i></a>
+                            <a class="swiper-container3-sws"><img src="images/xq-5.jpg" /><i>周边</i></a>
+                            <a class="swiper-container3-sws"><img src="images/xq-2.jpg" /><i>美食</i></a>
+                            <a class="swiper-container3-sws"><img src="images/xq-3.jpg" /><i>游玩</i></a>
+                        </div>
+                    </ion-scroll>
+
+                </ion-view>
+            </div>
+            <!--内容块-->
+            <div class="content has-header jd-has-header jd-has-head">
+                <div class="list card item-mb jd-item-mb">
+
+
+                    <div class="item item-body item-body-top">
+                        <div ng-repeat="item in itemData.details">
+                            <img class="full-image" ng-src="{{host}}{{item.imageUrl}}">
+                            <div class="pad-cont">
+
+                                <div class="clear"></div>
+                                <p class="p-te" style="margin-top:0px;margin-bottom:0px;">
+                                    <span style="font-family:'微软雅黑';">{{itemData.item.name}}</span>
+                                <p class="p-text" style="margin-top:8px;font-family:'微软雅黑';font-size:0.84em">
+                                    {{item.note}}
+                                </p>
+                                </p>
+
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="item tabs tabs-secondary tabs-icon-left">
+                        <a class="tab-item jd-tab-itemer" href="#">
+                            <i class="icon ion-chatbox"></i>
+                        </a>
+                        <a class="tab-item jd-tab-itemer" href="#">
+                            <i class="icon ion-share"></i>
+                        </a>
+                        <a class="tab-item jd-tab-itemer" href="#">
+                            <i class="icon ion-thumbsup"></i>
+                        </a>
+                        <a class="tab-item jd-tab-itemer" href="#" ng-click="saveCollection(itemData.item.id)">
+                            <i class="icon ion-android-favorite"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <!--内容块-->
+        </ion-content>
 </ion-view>
 
