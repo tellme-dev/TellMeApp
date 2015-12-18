@@ -10,6 +10,6 @@
             $state.go('menu.communityList');
         }
         $scope.rcu = function () {
-            $state.go('menu.rcu');
+            $state.go('menu.checkin');
         }
     }])
