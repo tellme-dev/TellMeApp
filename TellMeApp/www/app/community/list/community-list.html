@@ -29,7 +29,7 @@
                                 <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" class="sq-item-img" />
                                 <div class="sq-item-vit">
                                     <h2 class="">{{detail.customer.name}}</h2>
-                                    <p>{{detail.createTime|date:'yyyy-MM-dd'}}</p>
+                                    <p>{{detail.createTime| limitTo:10}}</p>
                                 </div>
                                 <div class="sq-item-min">
                                     <span>{{detail.title}}</span>

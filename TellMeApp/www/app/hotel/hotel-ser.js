@@ -107,4 +107,26 @@
                 });
             return deferred.promise;
         }
+        //根据酒店标签获取详情
+        this.getHotelListByItem = function (itemId,pageNumber,pageSize) {
+            var url = baseUrl + 'app/hotel/hotelListByItem.do ';
+            var getDataJSON = JSON.stringify({
+                itemTagId: itemId,
+                pageNumber: pageNumber,
+                pageSize: pageSize
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: getDataJSON }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
     }]);
