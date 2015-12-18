@@ -107,4 +107,46 @@
                 });
             return deferred.promise;
         }
+
+        //获取指定酒店已创建项目所属菜单（一级）
+        this.getRootItemTagByHotelId = function (hotelId) {
+            var url = baseUrl + 'app/hotel/getRootItemTagByHotelId.do';
+            var getDataJSON = JSON.stringify({
+                hotelId: hotelId
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: getDataJSON }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
+        //获取指定1级菜单下酒店已创建的项目
+        this.itemListByTagRootAndHotel = function (hotelId, tagId) {
+            var url = baseUrl + 'app/hotel/itemListByTagRootAndHotel.do';
+            var getDataJSON = JSON.stringify({
+                hotelId: hotelId,
+                itemTagId: tagId
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: getDataJSON }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
     }]);

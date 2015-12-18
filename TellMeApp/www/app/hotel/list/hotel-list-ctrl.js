@@ -1,11 +1,12 @@
 ﻿angular.module('tellme')
-    .controller('hotelListControll', ['$scope', '$window', '$stateParams', 'hotelSer', function ($scope, $window, $stateParams, hotelSer) {
+    .controller('hotelListControll', ['$scope', '$window', '$stateParams', '$state', 'hotelSer', function ($scope, $window, $stateParams, $state, hotelSer) {
         var param_tagId = $stateParams.itemTagId;
 
         var _MENU_SELECTED_ITEM = null;
         var _CHILD_MENU_SELECTED_ITEM = null;
 
         var pageSize = 5;
+        var rootTagId = 0;
 
         //酒店列表数据
         $scope.list = null;
@@ -18,6 +19,7 @@
         $scope.go_back = function () {
             $window.history.back();
         };
+        var collectionSelected = false;
         //设置1级菜单选择事件
         function setSelectStyle(obj, id) {
             if (_MENU_SELECTED_ITEM != null) {
@@ -25,6 +27,7 @@
             }
             obj.className = "li-but";
             _MENU_SELECTED_ITEM = obj;
+            rootTagId = id;
             $scope.getChildMenu(id);
         }
 
@@ -35,6 +38,15 @@
             obj.className = "swiper-container3-sws swiper-container3-border";
             _CHILD_MENU_SELECTED_ITEM = obj;
             $scope.getItemList(1,id);
+        }
+
+        //跳转至详情页面
+        $scope.toDetailPage = function (hotelId, itemId) {
+            if (collectionSelected) {
+                collectionSelected = false;
+                return;
+            }
+            $state.go('hotel', { 'hotelId': hotelId, 'rootTagId': rootTagId, 'itemId': itemId });
         }
 
         //获取1级标题
@@ -125,6 +137,7 @@
 
         //用户收藏项目
         $scope.saveCollection = function (targetId) {
+            collectionSelected = true;
             var customerId = 0;
             if (typeof(window.localStorage['userId']) != 'undefined') {
                 customerId = window.localStorage['userId'];
