@@ -16,13 +16,13 @@
                                 <p>{{bbs.createTime}}</p>
                             </div>
                             <div class="sq-item-min">
-                                <span style="font-family:微软雅黑;">{{detail.title}}</span>
+                                <span style="font-family:微软雅黑;">{{bbs.title}}</span>
                             </div>
                             <div class="clear"></div>
                         </div>
                         <!--bbs图片-->
                         <div class="item-body sq-item-cont">
-                            <div class="sqer-item-fl" style="font-family:微软雅黑;">{{detail.text}}</div>
+                            <div class="sqer-item-fl" style="font-family:微软雅黑;">{{bbs.text}}</div>
                             <div class="row">
                                 <div ng-repeat="image in bbs.bbsAttachUrls" class="col"  ng-click="goToImageBrowse(image.bbsId)">
                                        <img href="#"  ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" />
@@ -70,7 +70,7 @@
                                 评论（{{bbs.answerCount}}）
                             </div>
 
-                            <a ng-click="answerChildren(detail.id)" ng-repeat="detail in vm.bbsDetail" class="item item-icon-left item-icon-right item-avatar" href="#">
+                            <a ng-click="answerChildren(detail.id,detail.level)" ng-repeat="detail in vm.bbsDetail" class="item item-icon-left item-icon-right item-avatar" href="#">
                                 <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}">
                                 <h2>{{detail.customer.name}}</h2>
                                 <p>{{detail.text}}</p>

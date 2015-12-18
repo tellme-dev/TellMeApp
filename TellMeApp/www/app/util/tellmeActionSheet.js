@@ -2,47 +2,45 @@ angular.module('tellme')
 	.service('tellmeActionSheet', ['$ionicActionSheet', '$timeout', 'QQSer', 'WechatShareSer', 'WeiboSer', 'popUpSer', '$ionicFtActionSheet', function ($ionicActionSheet, $timeout, QQSer, WechatShareSer, WeiboSer, popUpSer, $ionicFtActionSheet) {
 	    var _args = {};
 	    this.show = function (args) {
+            //0表示分享未成功；1表示分享成功；
+	        var shareResult = 0;
 	        _args = args;
 	        // Show the action sheet
-	        var hideSheet = $ionicFtActionSheet.show({
+	        var hideSheet = $ionicActionSheet.show({
 	            buttons: [
 					{
-					    text: 'QQ好友',
-					    img: "images/share/qq.png"
+					    text: template("QQ好友", "images/share/qq.png")
 					},
 					{
-					    text: 'QQ空间',
-					    img: "images/share/space.png"
+					    text: template("QQ空间", "images/share/space.png")
 					},
                     {
-                        text: '微信好友',
-                        img: "images/share/wechat.png"
+                        text: template("微信好友", "images/share/wechat.png")
                     },
                     {
-                        text: '新浪微博',
-                        img: "images/share/weibo.png"
+                        text: template("新浪微博", "images/share/weibo.png")
                     }
 	            ],
-	            titleText: '<b>分享至</b>',
+	            titleText: '分享至',
 	            cancelText: "取消",
 	            buttonClicked: function (index, args) {
 	                switch (index) {
 	                    case 0://QQ好友
-	                        QQSer.share(_args);
+	                        shareResult = QQSer.share(_args);
 	                        break;
 	                    case 1://QQ空间
-	                        QQSer.shareToQZone(_args);
+	                        shareResult = QQSer.shareToQZone(_args);
 	                        break;
 	                    case 2://微信好友
 	                        var shareId = typeof (_args.imageUrl) === 'undefined' ? 'send-text' : 'send-photo-local';
-	                        WechatShareSer.weChatShare(0, shareId, _args);
+	                        shareResult = WechatShareSer.weChatShare(0, shareId, _args);
 	                        break;
 	                    case 3://朋友圈
 	                        var shareId = typeof (_args.imageUrl) === 'undefined' ? 'send-text' : 'send-photo-local';
-	                        WechatShareSer.weChatShare(1, shareId, _args);
+	                        shareResult = WechatShareSer.weChatShare(1, shareId, _args);
 	                        break;
 	                    case 4://新浪微博
-	                        WeiboSer.shareToWeibo(_args);
+	                        shareResult = WeiboSer.shareToWeibo(_args);
 	                        break;
 	                    default://退出
 	                        hideSheet();
@@ -51,11 +49,12 @@ angular.module('tellme')
 	                return true;
 	            }
 	        });
+	        return shareResult;
+	    }
+	    var template = function (shareToName,ShareToImgUrl) {
+	        var template = '<div class="item item-avatar"><img src="' + ShareToImgUrl + '"><h2>' + shareToName + '</h2></div>';
+	        return template;
 
-	        // For example's sake, hide the sheet after two seconds
-	        //$timeout(function () {
-	        //    hideSheet();
-	        //}, 4000);
 	    }
 
 	}])

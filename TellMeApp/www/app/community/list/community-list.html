@@ -2,124 +2,79 @@
     .col-padding {
         padding: 0.1em;
     }
+
     .current {
-      border-bottom: 2px solid #99c600;
-    } 
+        border-bottom: 2px solid #99c600;
+    }
 </style>
 
 <ion-view>
-            <div class="bar bar-header bar-dark sq-top">
-                <h1 class="title">社区</h1>
-                <button class="button button-style" ng-click="toAddBbs()">发表</button>
-            </div>
-            <div class="tabs-striped tabs-top  tabs-color-active ">
-                <div class="tabs sq-tier" style="background-color:#f2f2f2;">
-                    <a ng-click="gettypedetail(1,1)"  class="tab-item" ng-class="{current:1==globalVar.SelectedTag}" href="#" style="color:black;">最新活动</a>
-                    <a ng-click="gettypedetail(2,2)" class="tab-item" ng-class="{current:2==globalVar.SelectedTag}" href="#" style="color:black;">热门话题</a>
-                    <a ng-click="gettypedetail(3,3)" class="tab-item" ng-class="{current:3==globalVar.SelectedTag}" href="#" style="color:black;">吐槽专区</a>
-                    <a ng-click="gettypedetail(4,4)" class="tab-item" ng-class="{current:4==globalVar.SelectedTag}" href="#" style="color:black;">达人推荐</a>
+    <div class="bar bar-header bar-dark sq-top">
+        <h1 class="title">社区</h1>
+        <button class="button button-style" ng-click="toAddBbs()">发表</button>
+    </div>
+    <div class="tabs-striped tabs-top  tabs-color-active ">
+        <div class="tabs sq-tier" style="background-color:#f2f2f2;">
+            <a ng-click="gettypedetail(1,1)" class="tab-item" ng-class="{current:1==globalVar.SelectedTag}" href="#" style="color:black;">最新活动</a>
+            <a ng-click="gettypedetail(2,2)" class="tab-item" ng-class="{current:2==globalVar.SelectedTag}" href="#" style="color:black;">热门话题</a>
+            <a ng-click="gettypedetail(3,3)" class="tab-item" ng-class="{current:3==globalVar.SelectedTag}" href="#" style="color:black;">吐槽专区</a>
+            <a ng-click="gettypedetail(4,4)" class="tab-item" ng-class="{current:4==globalVar.SelectedTag}" href="#" style="color:black;">达人推荐</a>
+        </div>
+    </div>
+    <ion-content>
+        <!--内容块-->
+        <div ng-show="dataShow" class="content sq-hea">
+            <div class="list card" ng-repeat="detail in vm.typeDetail">
+                <div class="item item-avatar">
+                    <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}"><h2>{{detail.customer.name}}</h2><p>{{detail.createTime|date:'yyyy-MM-dd'}}</p>
+                </div>
+                <div class="item item-body" ng-if="detail.bbsAttachUrls">
+                    <p>
+                        <b ng-if="detail.title">#{{detail.title}}#</b>{{detail.text}}
+                    </p>
+                    <ul class="grid" ng-click="goToImageBrowse(detail.bbsAttachUrls[0].bbsId)">
+                        <li ng-repeat="imgUrl in detail.bbsAttachUrls">
+                            <a href="#">
+                                <img ng-src="{{baseUrl}}{{imgUrl.attachUrl}}" alt="">
+                                <div class="info">
+                                    <p>Kitty 6</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <p>
+                        <a href="#" class="subdued">赞{{detail.agreeCount}}次</a>
+                        <a href="#" class="subdued">评论{{detail.answerCount}}次</a>
+                        <a href="#" class="subdued">收藏{{detail.collectionCount}}次</a>
+                    </p>
+                </div>
+                <div class="item tabs tabs-secondary tabs-icon-left">
+                    <a class="tab-item" href="#" ng-click="agreeBbs(detail.id,detail.agreeCount)">
+                        <i class="icon ion-thumbsup">
+                        </i>
+                        赞
+                    </a><a class="tab-item" href="#">
+                        <i class="icon ion-chatbox">
+                        </i>
+                        评论
+                    </a><a class="tab-item" href="#" ng-click="share(detail)">
+                        <i class="icon ion-share">
+                        </i>
+                        分享
+                    </a><a class="tab-item" href="#" ng-click="collectBbs(detail.id,detail.collectionCount)">
+                        <i class="icon ion-android-favorite">
+                        </i>
+                        收藏
+                    </a>
                 </div>
             </div>
-            <ion-content>
-                <!--内容块-->
-                <div ng-show="dataShow" class="content sq-hea" >
-                    <div ng-repeat="detail in vm.typeDetail" class="list card item-mb sq-item" >
-                        <a href="javascript:void(0)"  ng-click="toBbsDetail(detail.id)">
-                            <div class="item-avatar sq-item-top ">
-                                <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" class="sq-item-img" />
-                                <div class="sq-item-vit">
-                                    <h2 class="">{{detail.customer.name}}</h2>
-                                    <p>{{detail.createTime|date:'yyyy-MM-dd'}}</p>
-                                </div>
-                                <div class="sq-item-min">
-                                    <span>{{detail.title}}</span>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
 
-                            <div class="item-body sq-item-cont">
-                                <div class="sq-item-fl">
-                                    {{detail.text}}
-                                </div>
-                                
-                                <!--<div class="row" >
-                                    <div class="col col-padding" ng-repeat="image in detail.bbsAttachUrls">
-                                     <img href="#" ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" ng-if="$index<4"/>
-                                    </div>
-                                  
-                                </div>-->
-                            </div>
-                        </a>
-                        <div class="row" ng-click="goToImageBrowse(detail.bbsAttachUrls[0].bbsId)">
-                            <div class="col col-padding">
-                                <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" style="width:100%" />
-                            </div>
-                            <div class="col col-padding">
-                                <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}}" style="width:100%" />
-                            </div>
-                            <div class="col col-padding">
-                                <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[2].attachUrl}}" style="width:100%" />
-                            </div>
-                            <div class="col col-padding">
-                                <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[3].attachUrl}}" style="width:100%" />
-                            </div>
-                        </div>
-                        <div class="item tabs tabs-secondary tabs-icon-left sq-item-col" style="background-color:#f2f2f2;">
-                          <!--回帖-->
-                           <a  class="tab-item sq-tab-item" href="#" style="color:black;">
-                                <i class="icon ion-chatbox"></i>
-                                {{detail.answerCount}}
-                            </a>
-                            <a class="tab-item sq-tab-item" ng-click="share(detail)" style="color:black;">
-                                <i class="icon ion-share"></i>
-                            </a>
-                           <!--点赞-->
-                            <a ng-click="agreeBbs(detail.id,detail.agreeCount)" class="tab-item sq-tab-item" href="# " style="color:black;">
-                                <i class="icon ion-thumbsup"></i>
-                                {{detail.agreeCount}}
-                            </a>
-                        <!--收藏-->
-                            <a ng-click="collectBbs(detail.id,detail.collectionCount)" class="tab-item sq-tab-item" href="#" style="color:black;">
-                                <i class="icon ion-android-favorite"></i>
-                               {{detail.collectionCount}}
-                            </a>
-                        </div>
-
-                        <div class="sq-show">
-                            <div class="item-input-inset">
-                                <label class="item-input-wrapper">
-                                    <input type="text" id="bbs-{{detail.id}}" placeholder="写点什么..." style="width:100%">
-                                </label>
-                                <button ng-click="answerbbs(detail.id,detail.title)" class="button button-small butt-op">
-                                    发送
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div ng-show="msgShow" style="text-align:center;margin-top:10px;"><h3>暂无数据,请稍后重试！</h3></div>
-                <!--内容块-->
-                <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
-                <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
-            </ion-content>
-    <!--底部导航-->
-            <!--<div class="tabs tabs-icon-left" style=" background-color: #444444;background-image: linear-gradient(0deg, #111, #111 50%, transparent 50%);">
-                <a class="tab-item"  ng-click="goHome()">
-                    <i class="icon ion-home " style="color:#fff">
-                    </i>
-                </a>
-                <a class="tab-item" ng-click="goDiscover()">
-                    <i class="icon ion-ios-eye-outline" style="color:#fff">
-                    </i>
-                </a>
-                <a class="tab-item">
-                    <i class="icon ion-ios-people-outline" style="color:#fff">
-                    </i>
-                </a>
-                <a class="tab-item" ng-click="goCheckinto()">
-                    <i class="icon ion-android-checkbox-outline" style="color:#fff">
-                    </i>
-                </a>
-            </div>-->
+        </div>
+        <div ng-show="msgShow" style="text-align:center;margin-top:10px;"><h3>暂无数据,请稍后重试！</h3></div>
+        <!--内容块-->
+        <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
+        <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
+    </ion-content>
 
 </ion-view>

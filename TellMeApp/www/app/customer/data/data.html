@@ -15,7 +15,7 @@
                     </label>
                     <label class="item item-input item-stacked-label grtz-labeler" >
                         <span class="input-label">电话</span>
-                        <input type="text" value="{{customerInfo.mobile}}" readonly>
+                        <input type="text" value="{{customerInfo.mobile}}" readonly/>
                     </label>
                     <label class="item item-input item-stacked-label grtz-labeler">
                         <span class="input-label">昵称</span>
@@ -26,23 +26,21 @@
                         <span class="input-label">性别</span>
                         <input type="text" placeholder="男">
                     </label>-->
-                    <!--<label class="item item-input item-stacked-label grtz-labeler">
-                        <span class="input-label">性别</span>
-                        <label class="item item-input item-select">
-                            <span class="input-label">性别</span>
-                            <select ng-model="customerInfo.sex" style="float:left">
-                                <option value="1" ng-selected="customerInfo.sex == 1">男</option>
-                                <option value="2" ng-selected="customerInfo.sex == 2">女</option>
-                            </select>
-                        </label>
-                    </label>-->
-                    
                     <label class="item item-input item-stacked-label grtz-labeler">
-                        <span class="input-label">生日</span>
-                        <input type="text" ng-model="customerInfo.birthday" ng-click="datePicker()" readonly/>
+                        <span class="input-label">性别</span><br />
+                        <select ng-model="customerInfo.sex" style="background-color:#f8f8f8;width:100%;height:34px;padding-left:10px">
+                            <!--<option value="0" ng-selected="customerInfo.sex == 0">--请选择性别--</option>-->
+                            <option value="1" ng-selected="customerInfo.sex == 1">男</option>
+                            <option value="2" ng-selected="customerInfo.sex == 2">女</option>
+                        </select>
                     </label>
+                    
+                    <!--<label class="item item-input item-stacked-label grtz-labeler">
+                        <span class="input-label">生日</span>
+                        <input type="text" ng-model="customerInfo.birthday" ng-click="selectDate()" readonly/>
+                    </label>-->
                     <label class="item item-input item-stacked-label grtz-labeler" style="margin-top:10px;">
-                        <button class="button button-dark button-block" ng-click="editMobile()">确认修改</button>
+                        <button class="button button-dark button-block" ng-click="saveData()">确认修改</button>
                     </label>
                 </div>
             </div>

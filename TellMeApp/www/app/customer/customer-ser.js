@@ -88,6 +88,31 @@
                 });
             return deferred.promise;
         }
+        // 保存个人信息
+        this.saveCustomerInfo = function (customerInfo) {
+            var url = baseUrl + 'app/customer/saveCustomer.do';
+            var jsonData = JSON.stringify({
+                id: customerInfo.customerId,
+                //mobile: customerInfo.mobile,
+                name: customerInfo.name,
+                photoUrl:customerInfo.photoUrl,
+                birthday: customerInfo.birthday,
+                sex: customerInfo.sex
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { customerInfo: jsonData }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        }
 
         //获取用户信息
         this.getCustomerInfo = function (customerId) {

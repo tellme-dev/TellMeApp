@@ -44,10 +44,11 @@
             return deferred.promise;
         }
         //获取酒店列表数据
-        this.getHotelList = function (page, itemTagId) {
-            var url = baseUrl + 'app/hotel/hotelListByItem.do';
+        this.getItemList = function (page, pageSize, itemTagId) {
+            var url = baseUrl + 'app/hotel/itemListByTagChild.do';
             var getDataJSON = JSON.stringify({
-                pageNumber:page,
+                pageNumber: page,
+                pageSize:pageSize,
                 itemTagId: itemTagId
             });
             var deferred = $q.defer();
@@ -64,35 +65,13 @@
                 });
             return deferred.promise;
         }
-        //收藏酒店
+        //收藏项目
         this.saveCollection = function (customerId, targetId) {
             var url = baseUrl + 'app/customer/saveCollectionHistory.do';
             var getDataJSON = JSON.stringify({
                 collectionType: 1,
                 customerId: customerId,
                 targetId: targetId
-            });
-            var deferred = $q.defer();
-            $http({
-                method: 'post',
-                url: url,
-                data: { json: getDataJSON }
-            }).success(
-                function (data, status, headers, config) {
-                    deferred.resolve(data);
-                }).error(
-                function (data, status, headers, config) {
-                    deferred.reject(5);
-                });
-            return deferred.promise;
-        }
-        //根据标签获取酒店列表
-        this.getHotelListByItem = function (itemTagId, pageNumber,pageSize) {
-            var url = baseUrl + 'app/hotel/hotelListByItem.do';
-            var getDataJSON = JSON.stringify({
-                pageNumber: pageNumber,
-                pageSize:pageSize,
-                itemTagId: itemTagId
             });
             var deferred = $q.defer();
             $http({

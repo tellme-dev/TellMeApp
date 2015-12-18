@@ -76,7 +76,7 @@
             .state('imageBrowse', { cache: false, url: '/imageBrowse?bbsId', templateUrl: 'app/bbs/image/imageBrowse.html', controller: 'imageBrowseControll' })
 
             //酒店
-             .state('hotelList', { url: '/hotelList', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
+             .state('hotelList', { url: '/hotelList?itemTagId', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
              .state('hotel', { url: '/hotel?hotelId', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
              .state('hotelItem', { url: '/hotelItem?itemId', templateUrl: 'app/hotel/hotel-item/hotel-item.html', controller: 'hotelItemControll' })
              .state('hotelmap', { url: '/hotelmap', templateUrl: 'app/hotel/map/hotel-map.html', controller: 'hotelmapControll' })
@@ -91,7 +91,7 @@
             var appLaunchCount = window.localStorage.getItem('launchCount');
             //需要进行页面测试，则修改下面的路由即可
             if (appLaunchCount) {
-                $urlRouterProvider.otherwise('/menu/home');
+                $urlRouterProvider.otherwise('/menu/communityList');
             } else {
                 $urlRouterProvider.otherwise('/start');
             }

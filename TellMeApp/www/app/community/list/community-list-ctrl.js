@@ -66,10 +66,11 @@ angular.module('tellme')
 			}
 
 			//回帖
-			$scope.answerbbs = function (id, title) {
-				var el = document.getElementById('bbs-' + id);
-				var answerText = el.value;
-				if (answerText == "") {
+			$scope.answerbbs = function (index, id, title) {
+			    var answerText = vm.typeDetail[index].anstext;
+				//var el = document.getElementById('bbs-' + id);
+				//var answerText = el.value;
+				if (answerText == ""||answerText == undefined) {
 					alert("请输入内容");
 					return;
 				}
@@ -122,7 +123,13 @@ angular.module('tellme')
                 args.imageUrl = imgs;
                 args.appName = "挑米科技";
                 args.defaultText = "来自挑米科技";
-			    tellmeActionSheet.show(args);
+                var shareResult = tellmeActionSheet.show(args);
+                if (shareResult == 0) {
+                } else if (shareResult == 1) {
+                    commonSer.saveShare(detail.id);
+                } else {
+                    alert('蠢货，分享出现其他错误');
+                }
 			}
 
 			//点赞

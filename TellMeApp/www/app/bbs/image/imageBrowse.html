@@ -10,10 +10,10 @@
 <ion-view>
     <ion-content>
         <!--<button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>-->
-        <ion-slide-box on-slide-changed="slideHasChanged($index)" style="height:100%;" class="slidebox" auto-play="false" slide-interval="4000" delegate-handle="slideimgs" does-continue="false">
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" style="background-color:#444444" class="slidebox" auto-play="false" slide-interval="4000" delegate-handle="slideimgs" does-continue="false">
             <ion-slide ng-repeat="image in bbsImage">
                 <div class="box">
-                    <i></i><img ng-src="{{baseUrl}}{{image.attachUrl}}" ng-click="goBack()" alt="" style="width:100%; height:auto"/>
+                    <img ng-src="{{baseUrl}}{{image.attachUrl}}" ng-click="goBack()" alt="" style="width:100%; height:auto"/>
                 </div>
             </ion-slide>
         </ion-slide-box>

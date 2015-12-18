@@ -41,6 +41,27 @@ angular.module('tellme')
                 });
             return deferred.promise;
         }
+
+        this.saveShare = function (saveData) {
+            var url = baseUrl + 'app/customer/saveShare.do';
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: {
+                    json: JSON.stringify({
+                        targetId:saveData
+                    })
+                }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(data);
+                });
+            return deferred.promise;
+        }
         /**
         *ngdoc:
         *name:
