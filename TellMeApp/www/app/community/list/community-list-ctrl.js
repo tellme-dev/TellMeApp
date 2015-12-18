@@ -66,10 +66,11 @@ angular.module('tellme')
 			}
 
 			//回帖
-			$scope.answerbbs = function (id, title) {
-				var el = document.getElementById('bbs-' + id);
-				var answerText = el.value;
-				if (answerText == "") {
+			$scope.answerbbs = function (index, id, title) {
+			    var answerText = vm.typeDetail[index].anstext;
+				//var el = document.getElementById('bbs-' + id);
+				//var answerText = el.value;
+				if (answerText == ""||answerText == undefined) {
 					alert("请输入内容");
 					return;
 				}

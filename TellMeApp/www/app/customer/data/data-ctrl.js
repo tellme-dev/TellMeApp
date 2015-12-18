@@ -1,14 +1,4 @@
 ﻿angular.module('tellme')
-     //.run(function ($ionicPlatform) {
-     //    $ionicPlatform.ready(function () {
-     //        if (window.cordova && window.cordova.plugins.Keyboard) {
-     //            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-     //        }
-     //        if (window.StatusBar) {
-     //            StatusBar.styleDefault();
-     //        }
-     //    });
-     //})
     .controller('dataControll', ['$scope', '$state','$q', '$window', '$ionicHistory','appConfig', '$ionicActionSheet', 'cameraSvr', 'fileTransferSvr', 'LoadingSvr', 'customerSer',
         function ($scope, $state,$q, $window, $ionicHistory,appConfig, $ionicActionSheet, cameraSvr, fileTransferSvr, LoadingSvr, customerSer) {
             $scope.baseUrl = appConfig.server.getUrl();
@@ -55,11 +45,9 @@
                         }
                     });
             };
-            $scope.do = function () {
-                var a = 1;
-            }
+
             //选择日期
-            $scope.datePicker = function () {
+            $scope.selectDate = function () {
                 var options = {
                     date: new Date(),
                     mode: 'date'
@@ -67,7 +55,7 @@
 
                 function onSuccess(date) {
                     $scope.customerInfo.birthday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-                    //alert('Selected date: ' + date);
+                    alert('Selected date: ' + $scope.customerInfo.birthday);
                     //alert(date.getYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate());
                     //alert(date.toString());
                     //alert(date.toLocaleString());
@@ -76,7 +64,6 @@
                 function onError(error) { // Android only
                     //alert('Error: ' + error);
                 }
-
                 datePicker.show(options, onSuccess, onError);
             }
 
@@ -86,7 +73,7 @@
                       { text: '拍摄照片' },
                       { text: '选择手机上照片' }
                     ],
-                    titleText: '照片上传',
+                    titleText: '选择头像',
                     cancelText: '取消',
                     cancel: function () {
                     },

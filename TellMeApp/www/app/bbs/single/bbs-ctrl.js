@@ -1,12 +1,18 @@
 ﻿angular.module('tellme')
-    .controller('bbsControll', ['$scope', '$ionicHistory', '$state', '$stateParams', '$ionicHistory', '$window', 'bbsSer', 'communitySer', 'commonSer', 'tellmeActionSheet', 'appConfig', 'LoadingSvr',
+ .controller('bbsControll', ['$scope', '$ionicHistory', '$state', '$stateParams', '$ionicHistory', '$window', 'bbsSer', 'communitySer', 'commonSer', 'tellmeActionSheet', 'appConfig', 'LoadingSvr',
         function ($scope, $ionicHistory, $state, $stateParams, $ionicHistory, $window, bbsSer, communitySer, commonSer, tellmeActionSheet, appConfig, LoadingSvr) {
             $scope.baseUrl = appConfig.server.getUrl();
             var bbsId = $stateParams.bbsId;
-           // $state.go('login', {pageName: 'communityList'});
-        $scope.goBack = function () {
-            $ionicHistory.goBack();
-        };
+            // $state.go('login', {pageName: 'communityList'});
+
+            $scope.goBack = function () {
+                //查看被回复的人如果是第二级，则要返回到前一级的回复页面
+                if ($scope.bbs.level == 2) {
+                    $scope.answerChildren($scope.bbs.parentId, 2);//获取上一级（父级）的被回复人的bbs信息及他的回复
+                } else {
+                    $ionicHistory.goBack();
+                }
+            };
         //跳转到图片浏览
         $scope.goToImageBrowse = function (bbsId) {
             //判断是否登录
@@ -23,6 +29,7 @@
         $scope.globalVar.answerText = "";//回帖内容
         $scope.showAnswer = false;
        
+            //获取单个Bbs详情
             bbsSer.getBBs(bbsId).then(
                 function (data) {
                     if (data.isSuccess) {
@@ -175,8 +182,13 @@
                   $state.go('login', { pageName: 'communityList' });
               }
           }
-         //回复某人
-         $scope.answerChildren = function (id) {
+         //回复某人,获取他的bbs信息
+          $scope.answerChildren = function (id, level) {
+              //如果所点击的是第三级的回复，则不能再回复了
+              if (level == 3) {
+                  console.log("不能再回复了");
+                  return;
+              }
              bbsId = id;
              bbsSer.getBBs(id).then(
                        function (data) {
@@ -189,9 +201,9 @@
                 );
              vm.pageNo = 0;
              vm.moredata = true;
-             vm.loadMore();
+             vm.loadMore();//获取他的回复
           }
-         //下拉加载更多  //获取单个BBS回帖详情
+         //下拉加载更多  //获取BBS回帖详情
         var vm = $scope.vm = {
                 moredata: false,
                 bbsDetail: [],
@@ -208,12 +220,11 @@
                       if (vm.pageNo * vm.pageSize > total || vm.pageNo * vm.pageSize == total) {
                           vm.moredata = true;
                           vm.pageNo = 0;
-                  }
+                      }
                       LoadingSvr.hide();
                       $scope.$broadcast('scroll.infiniteScrollComplete');
-              }
-                }
-                  );
+                 }
+              });
              }
           }
 

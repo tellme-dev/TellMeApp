@@ -31,6 +31,4 @@ angular.module('tellme')
             });
         }
 
-
-
     }])
