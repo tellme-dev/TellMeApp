@@ -28,9 +28,9 @@
                         <div>
                             <span class="lamp-cont-span" style="font-family:'微软雅黑';">客厅灯</span>
                             <div class="ma-button">
-                                <div class="fl bag-cont" style="width:33%"><img class="img-style" src="images/ml.png" /></div>
-                                <div class="fl bag-cont" style="width:33%"><img class="img-style" src="images/sm.png" /></div>
-                                <div class="fl bag-cont" style="width:33%"><img class="img-style" src="images/ml.png" /></div>
+                                <div class="fl bag-cont" style="width:33%;" ng-click="changeLRLamp(0)"><img class="img-style" style="border-color:{{lrLampBorder0}};background:{{lrBackGround0}};" src="images/ml.png" /></div>
+                                <div class="fl bag-cont" style="width:33%;" ng-click="changeLRLamp(1)"><img class="img-style" style="border-color:{{lrLampBorder1}};background:{{lrBackGround1}};" src="images/sm.png" /></div>
+                                <div class="fl bag-cont" style="width:33%;" ng-click="changeLRLamp(2)"><img class="img-style" style="border-color:{{lrLampBorder2}};background:{{lrBackGround2}};" src="images/ml.png" /></div>
                                 <div class="clear"></div>
                             </div>
                         </div>
@@ -38,30 +38,30 @@
                         <div>
                             <span class="lamp-cont-span ma-button" style="font-family:'微软雅黑';">卫生间灯</span>
                             <div class="ma-button">
-                                <div class="fl bag-conter" style="width:33%"><img class="img-style" src="images/xs.png" /></div>
-                                <div class="fl bag-conter" style="width:33%"><img class="img-style" src="images/pm.png" /></div>
+                                <div class="fl bag-conter" style="width:33%" ng-click="changeToiletLamp(0)"><img class="img-style" src="images/xs.png" style="border-color:{{toiletLampBorder0}};background:{{toiletBackGround0}};"/></div>
+                                <div class="fl bag-conter" style="width:33%" ng-click="changeToiletLamp(1)"><img class="img-style" src="images/pm.png" style="border-color:{{toiletLampBorder1}};background:{{toiletBackGround1}};"/></div>
                                 <div class="clear"></div>
                             </div>
                         </div>
 
-                        <button class="lamp-button"></button>
+                        <button class="lamp-button" ng-click="lrSwitch()" style="background-image:{{lrBackgroundimage}}"></button>
                     </div>
                 </ion-slide>
                 <ion-slide>
                     <div class="lamp-conter">
                         <div class="kt-cont">
-                            <button class="kt-but-lef">
+                            <button class="kt-but-lef" ng-click="changeTemplature(0)">
                                 <img src="images/kongtiao2.png" style="width:100%;" />
                             </button>
 
                             <div class="kt-cont-cot">
                                 <div class="kt-cont-cot-div">
-                                    <span>25</span>
+                                    <span>{{templature}}</span>
                                     <p>温度</p>
                                 </div>
                             </div>
 
-                            <button class="kt-but-rig">
+                            <button class="kt-but-rig"  ng-click="changeTemplature(1)">
                                 <img src="images/kongtiao-3.png" style="width:100%;" />
                             </button>
                         </div>
@@ -71,7 +71,7 @@
                             <i class="icon fs-ri"></i>
                         </div>
                         <div class="text-fs">风速</div>
-                        <button class="kt-button-switch"></button>
+                        <button class="kt-button-switch" ng-click="conSwitch()" style="background-image:{{conBackgroundimage}}"></button>
                     </div>
                 </ion-slide>
                 <ion-slide>
@@ -102,7 +102,7 @@
                             <span class="fr cl-text-span">窗纱</span>
                             <div class="clear"></div>
                         </div>
-                        <button class="cl-button-switch"></button>
+                        <button class="cl-button-switch" ng-click="curtainSwitch()" style="background-image:{{curtainBackgroundimage}}"></button>
                     </div>
                 </ion-slide>
                 <ion-slide>
