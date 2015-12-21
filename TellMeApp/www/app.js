@@ -1,5 +1,5 @@
-﻿angular.module('tellme', ['ionic', 'FtActionSheet'])
-    .run(['$ionicPlatform', '$rootScope', 'commonSer', function ($ionicPlatform, $rootScope, commonSer) {
+﻿angular.module('tellme', ['ionic', 'FtActionSheet', 'tabSlideBox'])
+    .run(['$ionicPlatform', '$rootScope', '$location', 'commonSer', function ($ionicPlatform, $rootScope, $location, commonSer) {
         $ionicPlatform.ready(function () {
 
         })
@@ -22,10 +22,17 @@
             }, 4000);
         }
         document.addEventListener("deviceready", onDeviceReady, false);
+        $rootScope.$on("$locationChangeStart", function (event, next,current) {
+            $rootScope.error = null;
+            console.log("Route change!!!", $location.path());
+            var path = $location.path();
 
+
+            console.log("App Loaded!!!");
+        });
 
     }])
-    .config(['$stateProvider', '$urlRouterProvider', '$httpProvider','$ionicConfigProvider',
+    .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$ionicConfigProvider',
         function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
             $ionicConfigProvider.tabs.position('bottom');
 
@@ -39,7 +46,7 @@
                 //首页
                 //.state('menu.home', { url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
                 .state('menu.home', { url: '/home', views: { 'home-tab': { templateUrl: 'app/home/home.html', controller: 'homeControll' } } })
-                
+
                   //.state('menu.home.banner',{url:'/banner',views:{'home-banner':{templateUrl:'app/home/banner/banner.html',controller:'bannerControll'}}})
                   //.state('menu.home.swiper',{url:'/swiper',views:{'home-swiper':{templateUrl:'app/home/swiper/swiper.html',controller:'swiperControll'}}})
                   //.state('menu.home.topic',{url:'/topic',views:{'home-topic':{templateUrl:'app/home/topic/topic.html',controller:'topicControll'}}})
@@ -50,7 +57,7 @@
                 //.state('menu.communityList', { cache: false, url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
                 .state('menu.communityList', { cache: false, url: '/communityList', views: { 'community-tab': { templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' } } })
                 //入住
-                .state('menu.rcu', { url: '/rcu', views: { 'rcu-tab': { templateUrl: 'app/rcu/rcu.html', controller: 'rcuControll' } } })
+                .state('menu.checkin', { url: '/checkin', views: { 'checkin-tab': { templateUrl: 'app/checkin/center/center.html', controller: 'checkinCenterControll' } } })
 
             //个人中心
             .state('customer', { url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
@@ -84,57 +91,58 @@
             .state('adList', { url: '/adList?adInfo', templateUrl: 'app/ad/list/ad-list.html', controller: 'adListControll' })
 
             //搜索
-            .state('willSearch', { url: '/willSearch', templateUrl: 'app/search/will/willSearch.html', controller: 'willSearchControll'})
-            .state('doneSearch', { url: '/doneSearch', templateUrl: 'app/search/done/doneSearch.html', controller: 'doneSearchControll'})
+            .state('willSearch', { url: '/willSearch', templateUrl: 'app/search/will/willSearch.html', controller: 'willSearchControll' })
+            .state('doneSearch', { url: '/doneSearch', templateUrl: 'app/search/done/doneSearch.html', controller: 'doneSearchControll' })
 
+            .state('rcu', { url: '/rcu', templateUrl: 'app/checkin/rcu/rcu.html', controller: 'rcuControll' })
             ;
             var appLaunchCount = window.localStorage.getItem('launchCount');
             //需要进行页面测试，则修改下面的路由即可
             if (appLaunchCount) {
-                $urlRouterProvider.otherwise('/menu/communityList');
+                $urlRouterProvider.otherwise('/menu/checkin');
             } else {
                 $urlRouterProvider.otherwise('/start');
             }
-        //}
-        /*修改put 和 post 的数据传递方式*/
-        $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+            //}
+            /*修改put 和 post 的数据传递方式*/
+            $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+            $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 
-        /*修改默认的transformRequest 否则后台收不到值 */
-        $httpProvider.defaults.transformRequest = [function (data) {
+            /*修改默认的transformRequest 否则后台收不到值 */
+            $httpProvider.defaults.transformRequest = [function (data) {
 
-            var param = function (obj) {
-                var query = '';
-                var name, value, fullSubName, subName, subValue, innerObj, i;
+                var param = function (obj) {
+                    var query = '';
+                    var name, value, fullSubName, subName, subValue, innerObj, i;
 
-                for (name in obj) {
-                    value = obj[name];
+                    for (name in obj) {
+                        value = obj[name];
 
-                    if (value instanceof Array) {
-                        for (i = 0; i < value.length; ++i) {
-                            subValue = value[i];
-                            fullSubName = name + '[' + i + ']';
-                            innerObj = {};
-                            innerObj[fullSubName] = subValue;
-                            query += param(innerObj) + '&';
+                        if (value instanceof Array) {
+                            for (i = 0; i < value.length; ++i) {
+                                subValue = value[i];
+                                fullSubName = name + '[' + i + ']';
+                                innerObj = {};
+                                innerObj[fullSubName] = subValue;
+                                query += param(innerObj) + '&';
+                            }
+                        } else if (value instanceof Object) {
+                            for (subName in value) {
+                                subValue = value[subName];
+                                fullSubName = name + '[' + subName + ']';
+                                innerObj = {};
+                                innerObj[fullSubName] = subValue;
+                                query += param(innerObj) + '&';
+                            }
+                        } else if (value !== undefined && value !== null) {
+                            query += encodeURIComponent(name) + '='
+                                       + encodeURIComponent(value) + '&';
                         }
-                    } else if (value instanceof Object) {
-                        for (subName in value) {
-                            subValue = value[subName];
-                            fullSubName = name + '[' + subName + ']';
-                            innerObj = {};
-                            innerObj[fullSubName] = subValue;
-                            query += param(innerObj) + '&';
-                        }
-                    } else if (value !== undefined && value !== null) {
-                        query += encodeURIComponent(name) + '='
-                                   + encodeURIComponent(value) + '&';
                     }
-                }
 
-                return query.length ? query.substr(0, query.length - 1) : query;
-            };
+                    return query.length ? query.substr(0, query.length - 1) : query;
+                };
 
-            return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
-        }];
-    }]);
+                return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
+            }];
+        }]);

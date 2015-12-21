@@ -175,8 +175,8 @@ float:right;
 }
 
 .button-col {
-font-size:1.2em;text-align:center; border:1px solid #ddd; border-left:1px solid #fff; background:#fff;
-border-bottom:2px solid #fff;padding:0px
+font-size:0.75em;text-align:center; border:1px solid #ddd; border-left:1px solid #fff; background:#fff;
+border-bottom:2px solid #fff;
 }
 .button-col-clock {
 border-bottom:2px solid #99c600
@@ -531,3 +531,165 @@ padding:0px 10px; width:100%
     .dw-list a {
         color:#919191; border-left:none; border-right:none
     }
+
+
+
+    /*客控*/
+.style-cont {
+    padding:30px 50px;
+}
+.slider-slide h3{
+color:#fff;
+margin-top:10px;
+}
+.scroll{
+height:100%;
+}
+ .tabbed-slidebox .tsb-icons:after{
+display:none;}
+.toggle input:checked + .track .handle-re {
+  -webkit-transform: translate3d(20px, 0, 0);
+  transform: translate3d(66px, 0, 0);
+  background-color: #fff;
+
+}
+.style-cont-to {
+    width:100%; height:44px; margin-bottom:20px;
+}
+.toggle .handle-style{
+    width:70px; height:36px;border-radius:15px;
+}
+.toggle.toggle-balanced input:checked + .no-track {
+  border-color: #6dcda5;
+  background-color: #6dcda5; 
+
+}
+.toggle .no-style {
+    width:140px; height:40px;border-radius:15px;
+}
+.no-style .no-style-span-l{
+    display:block; height:40px;line-height:35px;color:#e6e6e6; font-size:1.3em; margin-right:15px; font-weight:bold;
+}
+.no-style .no-style-span-r {
+    display:block; height:40px;line-height:35px;color:#fff; font-size:1.3em; margin-left:15px; font-weight:bold;
+}
+
+.ke-top-nav {
+    background:#e7e8ea; padding:0px; margin-top:45px;
+}
+
+.ke-col-rde {
+   width:33%;height:80px;border:none; background-color:#fff; border-bottom:3px solid #18937b; margin:0px 0.1%;
+}
+.ke-border {
+    border-bottom:3px solid #6dcda5;
+}
+    .ke-col-rde img {
+        width:40%; height:40px; margin:0 auto ;margin-top:5px;
+    }
+.ke-col-rde p {
+    margin-top:3px; color:#a8a8a8; margin-bottom:0px;
+}
+.ke-ion-slide-box {
+    height:450px;
+}
+    /*灯控*/
+.lamp-cont {
+    padding:20px 10px; background-position:bottom;background-size:100%;
+}
+
+.lamp-cont-span {
+    display:block; width:100%;text-align:center;color:#1abc9c; font-family:'微软雅黑';margin-bottom:10px;
+}
+.lamp-button {
+    background:url(../images/kongtiaor-on.png)no-repeat 50% 0; background-size:100%; display:block; width:100px; height:100px; border:none; margin:0 auto;margin-top:1.5em;border-radius:50px;box-shadow: 0 2px 7px rgba(225, 225, 225, 0.3), 0 1px 1px rgba(225, 225, 225, 0.3);
+}
+.ma-button {
+    margin-bottom:10px;
+}
+.img-style {
+    background:#666;border:2px solid; border-radius:50%; width:90%; height:90%; border-color:#666;
+}
+
+/*空调*/
+.kt-cont {
+    padding:0px 10px;position:relative;
+}
+.kt-but-lef {
+    width:8%;position:absolute; left:20px; bottom:2px; border:none;background:none; padding:0px;
+}
+.kt-cont-cot {
+    width:225px; background:url(../images/kontiao-1.png) no-repeat 50% 0;background-size:200px; height:200px; margin:0 auto; padding-top:70px;
+}
+.kt-cont-cot-div {
+    text-align:center; margin:0 auto;
+}
+    .kt-cont-cot-div span {
+        font-size:3em;
+    }
+    .kt-cont-cot-div p {
+        margin-top:5px; color:#a4a4a4;
+    }
+.kt-but-rig {
+    width:8%;position:absolute; right:20px; bottom:0px; border:none;background:none; padding:0px;
+}
+.fs-le {
+    background:url(../images/kontiao5.png) no-repeat 50% 50%; background-size:80%;width:50px; height:50px;
+}
+.input-ct {
+    background-size:99% 30px;
+}
+.fs-ri {
+    background:url(../images/kontiao5.png) no-repeat 50% 50%; background-size:100%;width:50px; height:50px;
+}
+.text-fs {
+    width:100%; text-align:center; color:#a4a4a4
+}
+.kt-button-switch {
+    background:url(../images/kongtiaor-on.png)no-repeat 50% 0; background-size:100%; display:block; width:100px; height:100px; border:none; margin:0 auto;margin-top:1.5em;border-radius:50px;box-shadow: 0 2px 7px rgba(225, 225, 225, 0.3), 0 1px 1px rgba(225, 225, 225, 0.3);
+}
+/*窗帘*/
+.cl-text-span {
+    color:#6dcda5;line-height:40px;font-weight:bold
+}
+.cl-button-switch {
+    background:url(../images/kongtiaor-on.png)no-repeat 50% 0; background-size:100%; display:block; width:100px; height:100px; border:none; margin:0 auto; margin-top:50px; border-radius:50px;box-shadow: 0 2px 7px rgba(225, 225, 225, 0.3), 0 1px 1px rgba(225, 225, 225, 0.3);
+}
+
+/*入住*/
+        .cont-rz {
+            margin-top:44px;
+        }
+        .cont-rz-top {
+            width:100%;
+        }
+            .cont-rz-top img {
+                width:100% ;height:130px;
+            }
+            .cont-rz-top .button-er {
+                margin-bottom:3px;
+            }
+        .gn-cont-rz {
+            padding-top:10px; background:#eeeced
+        }
+            .gn-cont-rz span {
+                padding-left:20px;margin-top:5px; display:inline-block;color:#717171; font-family:1.3em; font-family:'微软雅黑';
+            }
+        .ru-rede {
+            border:none; background:none;
+        }
+            .ru-rede img {
+                width:100%; height:69px;
+            }
+        .fw-rz-cont {
+            background:#eeeced
+        }
+            .fw-rz-cont span {
+                padding-left:20px;display:inline-block;color:#717171; font-family:1.3em; font-family:'微软雅黑';
+            }
+        .fw-rz-ser {
+            width:100%; background:#fff;padding:10px 15px; margin-top:10px;
+        }
+            .fw-rz-ser img {
+                width:100%;padding-bottom:10px;
+            }
