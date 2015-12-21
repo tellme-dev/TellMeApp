@@ -14,6 +14,7 @@
                     if (data.isSuccess) {
                         $scope.bbsImage = data.rows;
                         $ionicSlideBoxDelegate.$getByHandle('slideimgs').update();
+                        $ionicTabsDelegate.select(2);
                     } else {
 
                     }

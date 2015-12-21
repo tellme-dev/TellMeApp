@@ -1,16 +1,7 @@
-﻿<style>
-    i {
-    display:inline-block;
-    height:100%;
-    vertical-align:middle
-    }
-    img{vertical-align:middle;}
-
-</style>
-<ion-view>
-    <ion-content>
+﻿<ion-view>
+    <ion-content style="background-color:#444444;">
         <!--<button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>-->
-        <ion-slide-box on-slide-changed="slideHasChanged($index)" style="background-color:#444444" class="slidebox" auto-play="false" slide-interval="4000" delegate-handle="slideimgs" does-continue="false">
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" style="height:100%;background-color:#444444;" class="slidebox" auto-play="false" slide-interval="4000" delegate-handle="slideimgs" does-continue="false">
             <ion-slide ng-repeat="image in bbsImage">
                 <div class="box">
                     <img ng-src="{{baseUrl}}{{image.attachUrl}}" ng-click="goBack()" alt="" style="width:100%; height:auto" err-src="images/failed.jpg"/>

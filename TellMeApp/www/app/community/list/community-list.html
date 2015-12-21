@@ -41,18 +41,18 @@
                         </li>
                     </ul>
                     </div>-->
-                    <div class="row" ng-click="goToImageBrowse(detail.bbsAttachUrls[0].bbsId)">
+                    <div class="row" ng-click="goToImageBrowse(detail.bbsAttachUrls[0].bbsId)" ng-if="detail.bbsAttachUrls.length">
                         <div class="col col-padding">
-                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" style="width:100%" errSrc ="images/failed.png"/>
+                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" style="width:100%" err-src ="images/failed.jpg"/>
                         </div>
                         <div class="col col-padding">
-                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}}" style="width:100%" errSrc ="images/failed.png"/>
+                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}}" style="width:100%" err-src ="images/failed.jpg"/>
                         </div>
                         <div class="col col-padding">
-                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[2].attachUrl}}" style="width:100%" errSrc ="images/failed.png" />
+                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[2].attachUrl}}" style="width:100%" err-src ="images/failed.jpg" />
                         </div>
                         <div class="col col-padding">
-                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[3].attachUrl}}" style="width:100%" errSrc ="images/failed.png"/>
+                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[3].attachUrl}}" style="width:100%" err-src ="images/failed.jpg"/>
                         </div>
                     </div>
                     <p ng-click="toBbsDetail(detail.id)">
