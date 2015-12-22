@@ -2,7 +2,7 @@
 angular.module('tellme')
 	.controller('communityControll', ['$scope', '$window', '$state', '$ionicHistory', '$ionicLoading', 'communitySer', 'commonSer', 'appConfig', 'LoadingSvr', 'tellmeActionSheet',
         function ($scope, $window, $state, $ionicHistory, $ionicLoading, communitySer, commonSer, appConfig, LoadingSvr, tellmeActionSheet) {
-			$scope.baseUrl = appConfig.server.getUrl();
+            $scope.baseUrl = appConfig.server.getUrl();
 			/*返回前一个界面*/
 			$scope.$window = $window;
 			$scope.goBack = function () {
@@ -50,7 +50,6 @@ angular.module('tellme')
 				vm.moredata = false;
 				vm.loadMore();
 			}
-
 			$scope.showAnswer = false;
 			$scope.globalVar.answerText = ""; //回帖内容
 			var bbsId = 0;
@@ -259,6 +258,7 @@ angular.module('tellme')
 			}
 
         }
+
            //获取社区分类
             //var promise = communitySer.getCommunityType();
             //promise.then(

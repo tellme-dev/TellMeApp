@@ -7,7 +7,7 @@
             <ion-content class="zt-conter" style="background-color:#ddd;">
                 <!--内容块-->
                 <ul class="zt-cont" ng-repeat="adDetail in adInfo.adDetailList">
-                    <li><a href="#"><img src="{{baseUrl}}{{adDetail.imageUrl}}" /></a></li>
+                    <li><a href="#" ng-click="goToTarget()"><img src="{{baseUrl}}{{adDetail.imageUrl}}" /></a></li>
                     <li><a href="#">{{adDetail.text}}</a></li>
                 </ul>
                 <!--内容块-->
