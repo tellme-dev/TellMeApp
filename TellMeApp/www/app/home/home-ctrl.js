@@ -1,17 +1,17 @@
 ﻿
 angular.module('tellme')
-    .controller('homeControll', ['$scope','$rootScope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', 'LoadingSvr', function ($scope,$rootScope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer, LoadingSvr) {
+    .controller('homeControll', ['$scope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', 'LoadingSvr', function ($scope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer, LoadingSvr) {
 
-        //var mySwiper = new Swiper('.swiper-container', {
-        //    pagination: '.pagination',
-        //    paginationClickable: true,
-        //    centeredSlides: true,
-        //    watchActiveIndex: true,
-        //    //loop: true,
-        //    setWrapperSize: true,
-        //    slidesPerView: 'auto',
-        //    loopedSlides: 8,
-        //});
+        var mySwiper = new Swiper('.swiper-container', {
+            pagination: '.pagination',
+            paginationClickable: true,
+            centeredSlides: true,
+            watchActiveIndex: true,
+            //loop: true,
+            setWrapperSize: true,
+            slidesPerView: 'auto',
+            loopedSlides: 8,
+        });
 
         /*首页初始化*/
         var vm = $scope.vm = {
@@ -136,7 +136,7 @@ angular.module('tellme')
         }
         //跳转到酒店分类二级页面
         $scope.hotelType = function (id) {
-            $state.go('hotelList', {'itemTagId':id});
+            $state.go('hotelList', { 'itemTagId': id });
         }
         /*（点击菜单项）跳转“酒店列表”*/
         $scope.goToHotelList = function (param) {
@@ -155,6 +155,21 @@ angular.module('tellme')
         $scope.repeatDone = function () {
             $ionicSlideBoxDelegate.update();
         }
-
-    ()
+        angular.element(document).ready(function () {
+            var swiper = new Swiper('.swiper-container', {
+                loop: true,
+                pagination: '.swiper-pagination',
+                effect: 'coverflow',
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: 'auto',
+                coverflow: {
+                    rotate: 50,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: true
+                }
+            });
+        });
         }])

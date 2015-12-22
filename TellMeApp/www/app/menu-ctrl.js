@@ -9,7 +9,13 @@
         $scope.community = function () {
             $state.go('menu.communityList');
         }
-        $scope.rcu = function () {
-            $state.go('menu.checkin');
+        $scope.checkin = function () {
+            //判断是否登录
+            if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel'] == "") {//如果用户未登录，跳转到登录页面
+                $state.go('login', { pageName: 'customer' });
+            } else {
+                $state.go('menu.checkin');
+            }
+            
         }
     }])

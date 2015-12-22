@@ -21,6 +21,10 @@ html{
 
 .swiper-container3{
 	width:100%;	
+    -webkit-perspective: 1200px;
+    -moz-perspective: 1200px;
+    -ms-perspective: 1200px;
+    perspective: 1200px;swiper-container3-sws
 }
 
 .swiper-wrapper{
@@ -37,7 +41,7 @@ html{
 
 }
 .swiper-slide .main-img{
-	width:80%;
+	width:85%;
     height:310px;
 	margin:0 auto;
 	display:block;
@@ -94,9 +98,3 @@ width:100%
 	color:#6dcda4;
 }
 
-.swiper-container3-sws {
-    margin:0px 1px; width:80px;overflow:hidden;position:relative; border:3px solid #ddd;
-}
-    .swiper-container3-sws i {
-        position:absolute;bottom:5px;left:5px;color:#fff;font-size:1.2em;
-    }
