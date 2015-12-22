@@ -40,7 +40,7 @@ angular.module('tellme')
 			}
 			$scope.globalVar = {};
 			$scope.globalVar.SelectedTag = 1; //选中分类标签索引
-			var initCategoryId = 0;
+			var initCategoryId = 1;
 
 			//根据获取社区分类标签内容 categoryId分类标签ID
 			$scope.gettypedetail = function (index, categoryid) {
@@ -113,7 +113,7 @@ angular.module('tellme')
 			$scope.share = function (detail) {
 			    var args = {};
                 //args.url = "";
-			    args.title = detail.name;
+			    args.title = detail.title;
 			    args.description = detail.text;
                 args.text = detail.text;
                 var imgs = typeof (detail.bbsAttachUrls) === 'undefined' ? undefined : [];
