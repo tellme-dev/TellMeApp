@@ -78,5 +78,6 @@
                     $scope.$broadcast('scroll.infiniteScrollComplete');
                 }
             }
+            vm.loadMore();
         }
     ]);

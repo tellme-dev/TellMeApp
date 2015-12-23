@@ -257,24 +257,7 @@ angular.module('tellme')
 				}
 
 			}
-
+			vm.loadMore();
         }
-           //获取社区分类
-            //var promise = communitySer.getCommunityType();
-            //promise.then(
-            //    function (data) {
-            //        if (data.isSuccess) {
-            //            $scope.typs = data.rows;
-            //            vm.categoryId = data.rows[0].id;
-            //            vm.pageNo = 0;
-            //            vm.loadMore();
-            //        } else {
-            //            console.log(data.msg);
-            //        }
-            //    },
-            //    function (data) {
-            //        console.log('其他');
-            //     }
-            //    );
-           // $scope.getTypeDetail(initSelectedTag, initCategoryId);
+          
     ]);

@@ -1,18 +1,8 @@
 ﻿
 angular.module('tellme')
-    .controller('homeControll', ['$scope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', 'LoadingSvr', function ($scope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer, LoadingSvr) {
+    .controller('homeControll', ['$scope', '$rootScope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', 'LoadingSvr', 'tellMeMapSvr', function ($scope, $rootScope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer, LoadingSvr, tellMeMapSvr) {
 
-        var mySwiper = new Swiper('.swiper-container', {
-            pagination: '.pagination',
-            paginationClickable: true,
-            centeredSlides: true,
-            watchActiveIndex: true,
-            //loop: true,
-            setWrapperSize: true,
-            slidesPerView: 'auto',
-            loopedSlides: 8,
-        });
-
+      //  tellMeMapSvr.getDistrict();
         /*首页初始化*/
         var vm = $scope.vm = {
             moredata: false,
