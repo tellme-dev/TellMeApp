@@ -50,7 +50,6 @@ angular.module('tellme')
 				vm.moredata = false;
 				vm.loadMore();
 			}
-
 			$scope.showAnswer = false;
 			$scope.globalVar.answerText = ""; //回帖内容
 			var bbsId = 0;
@@ -259,5 +258,5 @@ angular.module('tellme')
 			}
 			vm.loadMore();
         }
-          
+         
     ]);
