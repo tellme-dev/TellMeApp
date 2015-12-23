@@ -26,7 +26,7 @@
         <div ng-show="dataShow" class="content sq-hea">
             <div class="list card" ng-repeat="detail in vm.typeDetail">
                 <div class="item item-avatar sq-item-top" ng-click="toBbsDetail(detail.id)">
-                    <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}">
+                    <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" err-src="images/head.png">
                     <h2>{{detail.customer.name}}</h2>
                     <p>{{detail.createTime|date:'yyyy-MM-dd'}}</p>
                                 </div>
@@ -43,16 +43,16 @@
                     </div>-->
                     <div class="row" ng-click="goToImageBrowse(detail.bbsAttachUrls[0].bbsId)" ng-if="detail.bbsAttachUrls.length">
                         <div class="col col-padding">
-                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" style="width:100%" err-src ="images/failed.jpg"/>
+                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" style="width:100%" err-src ="images/failed.png"/>
                         </div>
                         <div class="col col-padding">
-                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}}" style="width:100%" err-src ="images/failed.jpg"/>
+                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}}" style="width:100%" err-src ="images/failed.png"/>
                         </div>
                         <div class="col col-padding">
-                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[2].attachUrl}}" style="width:100%" err-src ="images/failed.jpg" />
+                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[2].attachUrl}}" style="width:100%" err-src ="images/failed.png" />
                         </div>
                         <div class="col col-padding">
-                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[3].attachUrl}}" style="width:100%" err-src ="images/failed.jpg"/>
+                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[3].attachUrl}}" style="width:100%" err-src ="images/failed.png"/>
                         </div>
                     </div>
                     <p ng-click="toBbsDetail(detail.id)">
