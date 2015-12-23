@@ -144,7 +144,7 @@
         $scope.saveCollection = function (targetId) {
             collectionSelected = true;
             var customerId = 0;
-            if (typeof(window.localStorage['userId']) != 'undefined') {
+            if (typeof(window.localStorage['userTel']) != 'undefined') {
                 customerId = window.localStorage['userId'];
             }
             if (customerId < 1) {

@@ -5,7 +5,7 @@
             $scope.hotels = new Array();
             $scope.host = customerSer.host;
             var userId = 0;
-            $(".zxx_text_overflow-2").wordLimit(200);
+          //  $(".zxx_text_overflow-2").wordLimit(200);
             //判断用户是否登录
             if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel']=="") {//如果用户未登录跳转到登录页面
                 $state.go('login', { pageName: 'customer' });
@@ -92,7 +92,7 @@
                 } else {
                     vm.pageNumber = 0;
                     vm.moredata = false;
-                    vm.loadMore;
+                    vm.loadMore();
                 }
             }
             //下拉加载更多 根据标签获取酒店列表
