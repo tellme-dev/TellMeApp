@@ -129,7 +129,7 @@ angular.module('tellme')
         }
         /*（点击菜单项）跳转“酒店列表”*/
         $scope.goToHotelList = function (param) {
-            $state.go('hotelList');
+            $state.go('hotelList', { itemTagId:param});
         }
         //（点击头部广告）跳转“具体广告”图片展示
         $scope.goToAd = function (adInfo) {

@@ -15,17 +15,21 @@
               3:社区,
               4：URL地址, 5:html页面
            */
-           $scope.goToTarget = function(){
+           $scope.goToTarget = function () {
                var targetType = $scope.adInfo.targetType;
                var targetId = $scope.adInfo.targetId;
-               if (targetType == 1) {
-                   $state.go('hotel', { 'hotelId': targetId, 'rootTagId': 0, 'itemId': 0 });
-               }
-               else if (targetType == 2) {
-                   $state.go('hotelItem', { itemId: 2});
-               }
-               else if (targetType == 3) {
-                   $state.go('bbs', { 'bbsId': targetId });
+               var targetContent = $scope.adInfo.targetContent;
+               //if (targetType == 1) {
+               //    $state.go('hotel', { 'hotelId': targetId, 'rootTagId': 0, 'itemId': 0 });
+               //}
+               //else if (targetType == 2) {
+               //    $state.go('hotelItem', { itemId: 2});
+               //}
+               //else if (targetType == 3) {
+               //    $state.go('bbs', { 'bbsId': targetId });
+               //}
+               if (targetType == 4) {
+
                }
            }
 }]);

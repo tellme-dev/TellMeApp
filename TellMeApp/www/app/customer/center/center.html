@@ -6,6 +6,7 @@
 
 <ion-view style="background-color:#ddd;">
     <div class="bar bar-header bar-dark sq-top">
+        <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
         <h1 class="title">个人中心</h1>
     </div>
     <ion-content>
@@ -13,7 +14,7 @@
         <div class="list list-style-padding">
             <div class="cont-style">
                 <a class="item item-avatar a-border border-top-bott min-style" href="#">
-                    <img ng-src="{{host}}{{customer.photoUrl}}" style="left:0px;max-width:70px; max-height:70px; border-radius:0px; top:12px;">
+                    <img ng-src="{{host}}{{customer.photoUrl}}" err-src="images/head.png" style="left:0px;max-width:70px; max-height:70px; border-radius:0px; top:12px;">
                     <div class="fl">
                         <h2 class="style-h2" style="font-size:2em; font-family:'黑体';">{{customer.mobile}}</h2>
                         <p class="p-style" style="font-size:1.125em; color:#a3a3a3;margin-top:10px;">昵称：{{customer.name}}</p>
