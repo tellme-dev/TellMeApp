@@ -9,6 +9,7 @@
                         if (result && result.city && result.bounds) {
                             cityinfo = result.city;
                             window.localStorage['currentcity'] = cityinfo;
+                            //window.localStorage['regionId'] = 
                             console.log('更新当前城市：' + cityinfo);
                         }
                     }

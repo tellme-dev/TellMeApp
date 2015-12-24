@@ -18,7 +18,12 @@
         <button style="border:none; background:darkseagreen; display:block;height:3em;width:100%;color:#fff">你附近的酒店</button>
 
 
-        <div class="list card">
+        <div class="list card" ng-if="nearHotels">
+            <div class="item item-avatar" ng-repeat="nearHotel in nearHotels">
+                <img src="images/xq-2.jpg" style="border-radius:0px">
+                <h2>{{nearHotel.name}}</h2>
+                <p>入住舒适度:9.0分</p>
+            </div>
             <div class="item item-avatar">
                 <img src="images/xq-2.jpg" style="border-radius:0px">
                 <h2>成都环球中心天堂洲际大饭店</h2>
@@ -42,7 +47,7 @@
     </ion-content>
 
     <div class="bar bar-header bar-dark sq-top" ng-show="hasCheckIn">
-        <h1 class="title">{{hotel.name}}</h1>
+        <h1 class="title">{{checkinHotel.name}}</h1>
     </div>
 
     <ion-content ng-show="hasCheckIn">
@@ -71,16 +76,19 @@
             </div>
             <div class="fw-rz-cont">
                 <span>服务区</span>
-                <div class="fw-rz-ser">
-                    
-                    <div style="width:100%; height:87px; position:relative; margin-bottom:10px;">
+                <div class="fw-rz-ser" ng-if="checkinHotel">
+                    <div style="width:100%; height:87px; position:relative; margin-bottom:10px;" ng-repeat="hotelItem in checkinHotel.itemVMs" ng-click="goToItemInfo(hotelItem.id)">
+                        <img ng-src="{{baseUrl}}{{hotelItem.itemDetails[0].imageUrl}}" style="margin-bottom:0px;" />
+                        <div style="min-width:30%; height:87px; line-height:87px;position:absolute; background:#ff0000; top:0px; left:0px; text-align:center;color:#fff; font-size:1.2em">{{hotelItem.name}}</div>
+                    </div>
+                    <!--<div style="width:100%; height:87px; position:relative; margin-bottom:10px;">
                         <img src="images/zu-3.jpg"style="margin-bottom:0px;"/>
                         <div style="min-width:30%; height:87px; line-height:87px;position:absolute; background:#ff0000; top:0px; left:0px; text-align:center;color:#fff; font-size:1.2em">中餐厅</div>
                     </div>
                     <div style="width:100%; height:87px; position:relative; margin-bottom:10px;">
                         <img src="images/ru-4.jpg" style="margin-bottom:0px;" />
                         <div style="min-width:30%; height:87px; line-height:87px;position:absolute; background:#ff0000; top:0px; left:0px; text-align:center;color:#fff; font-size:1.2em">中餐厅</div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
 

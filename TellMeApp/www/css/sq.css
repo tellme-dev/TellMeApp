@@ -584,6 +584,25 @@ display:none;}
 .ke-border {
     border-bottom:3px solid #6dcda5;
 }
+.kechooseBorder {
+    width:33%;height:80px;border:none; background-color:#fff;margin:0px 0.1%;
+    border-bottom:3px solid #6dcda5;float:left;
+}
+.kechooseBorder img {
+        width:40%; height:40px; margin:0 auto ;margin-top:5px;
+    }
+.kechooseBorder p {
+    margin-top:3px; color:#a8a8a8; margin-bottom:0px;
+}
+.keUnChooseBorder {
+    width:33%;height:80px;border:none; background-color:#fff; border-bottom:3px solid #18937b; margin:0px 0.1%;float:left;
+}
+.keUnChooseBorder img {
+        width:40%; height:40px; margin:0 auto ;margin-top:5px;
+    }
+.keUnChooseBorder p {
+    margin-top:3px; color:#a8a8a8; margin-bottom:0px;
+}
     .ke-col-rde img {
         width:40%; height:40px; margin:0 auto ;margin-top:5px;
     }

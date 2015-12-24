@@ -22,14 +22,6 @@
             }, 4000);
         }
         document.addEventListener("deviceready", onDeviceReady, false);
-        $rootScope.$on("$locationChangeStart", function (event, next,current) {
-            $rootScope.error = null;
-            console.log("Route change!!!", $location.path());
-            var path = $location.path();
-
-
-            console.log("App Loaded!!!");
-        });
 
     }])
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$ionicConfigProvider',
@@ -94,12 +86,12 @@
             .state('willSearch', { url: '/willSearch', templateUrl: 'app/search/will/willSearch.html', controller: 'willSearchControll' })
             .state('doneSearch', { url: '/doneSearch', templateUrl: 'app/search/done/doneSearch.html', controller: 'doneSearchControll' })
 
-            .state('rcu', { url: '/rcu', templateUrl: 'app/checkin/rcu/rcu.html', controller: 'rcuControll' })
+            .state('rcu', { url: '/rcu?roomId', templateUrl: 'app/checkin/rcu/rcu.html', controller: 'rcuControll' })
             ;
             var appLaunchCount = window.localStorage.getItem('launchCount');
             //需要进行页面测试，则修改下面的路由即可
             if (appLaunchCount) {
-                $urlRouterProvider.otherwise('/menu/home');
+                $urlRouterProvider.otherwise('/menu/checkin');
             } else {
                 $urlRouterProvider.otherwise('/start');
             }

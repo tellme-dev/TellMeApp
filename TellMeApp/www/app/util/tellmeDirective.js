@@ -1,12 +1,12 @@
 ﻿angular.module('tellme')
-    .directive('hotregion',function(){
+    .directive('hotregion', function () {
         return {
             restrict: 'EA',
             scope: {
                 region: '=',
                 index: '=',
                 change: '&',
-                length:'='
+                length: '='
             },
             template: function (element, attrs) {
                 var html = '<div ng-if="index % 4 === 0" class="row dw-row" style="margin-top:10px;"><button ng-if="index % 4 === 0" class="col col-20" ng-click="change()">{{region.name}}</button>'
@@ -15,7 +15,7 @@
                 return html;
             },
             link: function (scope, element, attrs) {
-                
+
             }
         }
     })
@@ -96,13 +96,14 @@
             }
         };
     })
-.directive('errSrc', function() {
+.directive('errSrc', function () {
     return {
-        link: function(scope, element, attrs) {
-            element.bind('error', function() {
+        link: function (scope, element, attrs) {
+            element.bind('error', function () {
                 if (attrs.src != attrs.errSrc) {
                     attrs.$set('src', attrs.errSrc);
                 }
             });
         }
-    }})
+    };
+})
