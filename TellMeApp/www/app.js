@@ -75,8 +75,8 @@
             .state('imageBrowse', { url: '/imageBrowse?bbsId', templateUrl: 'app/bbs/image/imageBrowse.html', controller: 'imageBrowseControll' })
 
             //酒店
-             .state('hotelList', { url: '/hotelList?itemTagId', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
-             .state('hotel', { url: '/hotel?hotelId&rootTagId&itemId', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
+             .state('hotelList', { cache: false, url: '/hotelList?itemTagId&itemId', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
+             .state('hotel', { cache: false, url: '/hotel?hotelId&rootTagId&itemId', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
              .state('hotelItem', { url: '/hotelItem?itemId', templateUrl: 'app/hotel/hotel-item/hotel-item.html', controller: 'hotelItemControll' })
              .state('hotelmap', { url: '/hotelmap', templateUrl: 'app/hotel/map/hotel-map.html', controller: 'hotelmapControll' })
             //广告
