@@ -5,7 +5,7 @@
                 $ionicHistory.goBack();
             };
             $scope.baseUrl = customerSer.host;
-            $(".zxx_text_overflow_3").wordLimit(15);
+           // $(".zxx_text_overflow_3").wordLimit(15);
             $(".pl-text-s").click(function () {
             $(".zxx_text_overflow_3").wordLimit(100);
             })
@@ -69,5 +69,5 @@
                     $scope.$broadcast('scroll.infiniteScrollComplete');
                 }
             }
-
+            vm.loadMore();
         }]);

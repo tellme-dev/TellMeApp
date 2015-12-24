@@ -10,7 +10,19 @@
                     <li><a href="#" ng-click="goToTarget()"><img src="{{baseUrl}}{{adDetail.imageUrl}}" /></a></li>
                     <!--<li><a href="#">{{adDetail.text}}</a></li>-->
                 </ul>
-                <!--内容块-->
+                <div class="item tabs tabs-secondary tabs-icon-left" style="background-color:#f2f2f2;">
+                    <a class="tab-item sq-tab-item" ng-click="share(bbs)">
+                        <i class="icon ion-share"></i>
+                    </a>
+                    <a ng-click="agree(bbs.id)" class="tab-item sq-tab-item" href="# ">
+                        <i class="icon ion-thumbsup"></i>
+                        {{bbs.agreeCount}}
+                    </a>
+                    <a ng-click="collect(bbs.id)" class="tab-item sq-tab-item" href="#">
+                        <i class="icon ion-android-favorite"></i>
+                        {{bbs.collectionCount}}
+                    </a>
+                </div>
             </ion-content>
 
 </ion-view>

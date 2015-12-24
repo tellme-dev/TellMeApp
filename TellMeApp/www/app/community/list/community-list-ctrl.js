@@ -214,8 +214,8 @@ angular.module('tellme')
 					} else {
 						return true;
 					}
-				}
-			//下拉加载更多
+			}
+			//上拉加载更多
 			var vm = $scope.vm = {
 				categoryId: 1,
 				moredata: false,

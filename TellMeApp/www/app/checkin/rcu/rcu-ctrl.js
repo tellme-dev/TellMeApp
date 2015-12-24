@@ -1,5 +1,40 @@
 ﻿angular.module('tellme')
-    .controller('rcuControll', ['$rootScope', "$scope",'$ionicHistory', "$stateParams", "$q", "$location", "$window", '$timeout', function ($rootScope, $scope,$ionicHistory, $stateParams, $q, $location, $window, $timeout) {
+    .controller('rcuControll', ['$rootScope', "$scope", '$ionicHistory', "$stateParams", "$q", "$location", "$window", '$timeout', 'checkinSer', 'popUpSer', function ($rootScope, $scope, $ionicHistory, $stateParams, $q, $location, $window, $timeout, checkinSer, popUpSer) {
+        $scope.roomId = $stateParams.roomId;
+        //获取房间的控制信息
+        var parseExpression = function (expression) {
+            var tab = angular.fromJson(expression);
+            return tab;
+        }
+        var promise = checkinSer.getRcusInfo($scope.roomId);
+        promise.then(
+            function (data) {
+                if (data.isSuccess) {
+                    $scope.roomcfgs = [];
+                    var i = 0;
+                    for (;i<data.rows.length;i++) {
+                        $scope.roomcfgs[i] = {};
+                        $scope.roomcfgs[i].index = i;
+                        $scope.roomcfgs[i].name = data.rows[i].name;
+                        $scope.roomcfgs[i].serialId = data.rows[i].serialId;
+                        $scope.roomcfgs[i].rcuCfgItems = [];
+                        var j = 0;
+                        for (; j < data.rows[i].rcuCfgItems.length; j++) {
+                            var ex = data.rows[i].rcuCfgItems[j].expression;
+                            var obj = parseExpression(ex);
+                            $scope.roomcfgs[i].rcuCfgItems[j] = obj;
+                        } 
+                    }
+                } else {
+                    popUpSer.showAlert(data.msg);
+                }
+            },
+            function (data) {
+                popUpSer.showAlert("获取房间的控制信息出现异常");
+            }
+            );
+        $scope.chooseRoomCfg = 0;
+
         //LR :living room 客厅灯
         $scope.tabs = [
             { "text": "灯控" },
@@ -118,3 +153,35 @@
             //调用RCU指令改变空调温度的模式
         }
     }])
+.directive('tellmeac', function () {
+    return {
+        restrict: 'AE',
+        //scope: {
+        //    //configuration:'='
+        //},
+        template: '<div class="lamp-conter"><div class="kt-cont"><button class="kt-but-lef" ng-click="changeTemplature(0)"><img src="images/kongtiao2.png" style="width:100%;" /></button><div class="kt-cont-cot"><div class="kt-cont-cot-div"><span>{{templature}}</span><p>温度</p></div></div><button class="kt-but-rig"  ng-click="changeTemplature(1)"><img src="images/kongtiao-3.png" style="width:100%;" /></button></div><div class="range range-balanced" style="margin-top:1.5em;"><i class="icon fs-le"></i><input type="range" name="volume" min="0" max="100" value="50" class="input-ct"><i class="icon fs-ri"></i></div><div class="text-fs">风速</div><button class="kt-button-switch" ng-click="conSwitch()" style="background-image:{{conBackgroundimage}}"></button></div>',
+        link(scope, element, attrs) {
+            scope.templature = 24;
+            scope.ConBackgroundimage = 'url(images/kongtiaor-to.png)';
+            scope.isConSwitch = true;
+            scope.changeTemplature = function (direction) {
+                if (direction == 1) {
+                    scope.templature += 1;
+                } else {
+                    scope.templature -= 1;
+                }
+                //调用RCU指令改变空调温度的模式
+            }
+            scope.conSwitch = function () {
+                if (scope.isConSwitch) {
+                    scope.conBackgroundimage = 'url(images/kongtiaor-on.png)';
+                    scope.isConSwitch = false;
+                } else {
+                    scope.conBackgroundimage = 'url(images/kongtiaor-to.png)';
+                    scope.isConSwitch = true;
+                }
+                //调用RCU指令改变空调开关的模式
+            }
+        }
+    };
+})
