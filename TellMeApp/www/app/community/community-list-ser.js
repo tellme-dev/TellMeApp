@@ -57,38 +57,4 @@
                 });
             return deferred.promise;
         }
-       //点赞
-        this.agreeBbs = function (bbsParam) {
-            var url = baseUrl + 'app/bbs/saveBbs.do';
-            var deferred = $q.defer();
-            $http({
-                method: 'post',
-                url: url,
-                data: { bbsParam: bbsParam }
-            }).success(
-                function (data, status, headers, config) {
-                    deferred.resolve(data);
-                }).error(
-                function (data, status, headers, config) {
-                    deferred.reject(5);
-                });
-            return deferred.promise;
-        }
-        //收藏
-        this.collectionBbs = function (bbsParam) {
-            var url = baseUrl + 'app/customer/collectBbs.do';
-            var deferred = $q.defer();
-            $http({
-                method: 'post',
-                url: url,
-                data: { param: bbsParam }
-            }).success(
-                function (data, status, headers, config) {
-                    deferred.resolve(data);
-                }).error(
-                function (data, status, headers, config) {
-                    deferred.reject(5);
-                });
-            return deferred.promise;
-        }
     }]);
