@@ -22,6 +22,7 @@
                 </div>
             </div>
             <ion-content>
+                <ion-refresher pulling-text="" on-refresh="doRefresh()"></ion-refresher>
                 <!--内容块-->
         <div ng-show="dataShow" class="content sq-hea">
             <div class="list card" ng-repeat="detail in vm.typeDetail">
