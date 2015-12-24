@@ -10,7 +10,7 @@
                     <div class="list card item-mb sq-item">
                         <!--bbs内容-->
                         <div href="#" class="item-avatar sq-item-top ">
-                            <img ng-src="{{baseUrl}}{{bbs.customer.photoUrl}}" class="sq-item-img" />
+                            <img ng-src="{{baseUrl}}{{bbs.customer.photoUrl}}" err-src="images/head.png" class="sq-item-img" />
                             <div class="sq-item-vit">
                                 <h2 style="font-family:微软雅黑;">{{bbs.customer.name}}</h2>
                                 <p>{{bbs.createTime}}</p>
@@ -25,7 +25,7 @@
                             <div class="sqer-item-fl" style="font-family:微软雅黑;">{{bbs.text}}</div>
                             <div class="row">
                                 <div ng-repeat="image in bbs.bbsAttachUrls" class="col"  ng-click="goToImageBrowse(image.bbsId)">
-                                       <img href="#"  ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" err-src="images/failed.jpg"/>
+                                       <img href="#"  ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" err-src="images/failed.png"/>
                                 </div>
                             </div>
                            
@@ -71,7 +71,7 @@
                             </div>
 
                             <a ng-click="answerChildren(detail.id,detail.level)" ng-repeat="detail in vm.bbsDetail" class="item item-icon-left item-icon-right item-avatar" href="#">
-                                <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}">
+                                <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" err-src="images/head.png">
                                 <h2>{{detail.customer.name}}</h2>
                                 <p>{{detail.text}}</p>
                                 <!--点赞-->

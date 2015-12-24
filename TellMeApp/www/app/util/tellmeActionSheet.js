@@ -18,8 +18,12 @@ angular.module('tellme')
                         text: template("微信好友", "images/share/wechat.png")
                     },
                     {
-                        text: template("新浪微博", "images/share/weibo.png")
+                        text: template("朋友圈", "images/share/circle.png")
+                    },
+                    {
+                        text: template("微博", "images/share/weibo.png")
                     }
+
 	            ],
 	            titleText: '分享至',
 	            cancelText: "取消",

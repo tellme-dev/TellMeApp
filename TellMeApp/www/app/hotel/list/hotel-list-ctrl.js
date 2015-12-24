@@ -1,5 +1,5 @@
 ﻿angular.module('tellme')
-    .controller('hotelListControll', ['$scope', '$window', '$stateParams', '$state', 'hotelSer', function ($scope, $window, $stateParams, $state, hotelSer) {
+    .controller('hotelListControll', ['$scope', '$window', '$stateParams', '$state', 'hotelSer', 'LoadingSvr', function ($scope, $window, $stateParams, $state, hotelSer, LoadingSvr) {
         var param_tagId = $stateParams.itemTagId;
 
         var _MENU_SELECTED_ITEM = null;
@@ -7,6 +7,8 @@
 
         var pageSize = 5;
         var rootTagId = 0;
+
+        var selectId = 0;
 
         //酒店列表数据
         $scope.list = null;
@@ -37,7 +39,10 @@
             }
             obj.className = "swiper-container3-sws swiper-container3-border";
             _CHILD_MENU_SELECTED_ITEM = obj;
-            $scope.getItemList(1,id);
+            //$scope.getItemList(1, id);
+            selectId = id;
+            vm.pageNo = 0;
+            vm.loadMore();
         }
 
         //跳转至详情页面
@@ -139,7 +144,7 @@
         $scope.saveCollection = function (targetId) {
             collectionSelected = true;
             var customerId = 0;
-            if (typeof(window.localStorage['userId']) != 'undefined') {
+            if (typeof(window.localStorage['userTel']) != 'undefined') {
                 customerId = window.localStorage['userId'];
             }
             if (customerId < 1) {
@@ -176,6 +181,35 @@
       
         //设置1级标题
         $scope.getRootMenu();
+
+        var vm = $scope.vm = {
+            moredata: false,
+            typeDetail: [],
+            pageNo: 0,
+            pageSize: 5,
+            loadMore: function () {
+                LoadingSvr.show();
+                vm.pageNo += 1;
+                var promise = hotelSer.getItemList(vm.pageNo, vm.pageSize, selectId)
+                    .then(
+                        function (data) {
+                            LoadingSvr.hide();
+                            if (data.isSuccess) {
+                                $scope.list = data.rows;
+                                var total = data.total;
+                                if (total > vm.pageNo) {
+                                    vm.moredata = true;
+                                } else {
+                                    vm.moredata = false;
+                                }
+                                $scope.$broadcast('scroll.infiniteScrollComplete');
+                            }
+                        }
+
+                    );
+
+            }
+        };
 
         //Object
         var MenuItem = function (object, id) {

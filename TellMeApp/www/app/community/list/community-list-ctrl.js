@@ -40,7 +40,7 @@ angular.module('tellme')
 			}
 			$scope.globalVar = {};
 			$scope.globalVar.SelectedTag = 1; //选中分类标签索引
-			var initCategoryId = 0;
+			var initCategoryId = 1;
 
 			//根据获取社区分类标签内容 categoryId分类标签ID
 			$scope.gettypedetail = function (index, categoryid) {
@@ -50,7 +50,6 @@ angular.module('tellme')
 				vm.moredata = false;
 				vm.loadMore();
 			}
-
 			$scope.showAnswer = false;
 			$scope.globalVar.answerText = ""; //回帖内容
 			var bbsId = 0;
@@ -113,7 +112,7 @@ angular.module('tellme')
 			$scope.share = function (detail) {
 			    var args = {};
                 //args.url = "";
-			    args.title = detail.name;
+			    args.title = detail.title;
 			    args.description = detail.text;
                 args.text = detail.text;
                 var imgs = typeof (detail.bbsAttachUrls) === 'undefined' ? undefined : [];
@@ -139,7 +138,7 @@ angular.module('tellme')
 						var jsonData = JSON.stringify({
 							targetId: id,
 							praiseType: 0,
-							customerId: window.localStorage['userId']
+							customerId: window.localStorage['userTel']
 						});
 						//   var promise = communitySer.agreeBbs(jsonData).then
 						var promise = commonSer.saveAgree(jsonData)
@@ -257,24 +256,7 @@ angular.module('tellme')
 				}
 
 			}
-
+			vm.loadMore();
         }
-           //获取社区分类
-            //var promise = communitySer.getCommunityType();
-            //promise.then(
-            //    function (data) {
-            //        if (data.isSuccess) {
-            //            $scope.typs = data.rows;
-            //            vm.categoryId = data.rows[0].id;
-            //            vm.pageNo = 0;
-            //            vm.loadMore();
-            //        } else {
-            //            console.log(data.msg);
-            //        }
-            //    },
-            //    function (data) {
-            //        console.log('其他');
-            //     }
-            //    );
-           // $scope.getTypeDetail(initSelectedTag, initCategoryId);
+         
     ]);

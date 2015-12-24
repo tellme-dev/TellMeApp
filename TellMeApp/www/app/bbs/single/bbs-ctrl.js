@@ -53,6 +53,10 @@
                 $scope.showAnswer = false;
             var isLogin = $scope.userIsLogin();
             var answerText = $scope.globalVar.answerText;
+            if (answerText == "" || answerText == undefined) {
+                alert("请输入内容");
+                return;
+            }
             if (isLogin) {//如果用户已经登录
                 var jsonData = JSON.stringify({
                     id: 0, customerId: window.localStorage['userId'], bbsType: 1,postType:1,
@@ -227,5 +231,5 @@
               });
              }
           }
-
+        vm.loadMore();
     }]);
