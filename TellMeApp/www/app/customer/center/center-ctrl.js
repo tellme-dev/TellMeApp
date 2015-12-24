@@ -18,7 +18,7 @@
                 if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel']==""){
                     $state.go('login', { pageName: 'customer' }); 
             } else {
-                  customerId = window.localStorage['userId'];
+                 customerId = window.localStorage['userId'];
                 var promise = customerSer.getCustomerInfo(customerId);
                 promise.then(
                     function (data) {

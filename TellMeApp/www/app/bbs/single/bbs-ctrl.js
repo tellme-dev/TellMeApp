@@ -110,12 +110,14 @@
                               if (data.isSuccess) {
                                   $scope.bbs = data.data;
                               } else {
+                                
                                   console.log(data.msg);
                               }
-                          }
+                            }
                          );
                           console.log("点赞成功");
                       } else {
+                          alert(data.msg);
                           console.log(data.msg);
                       }
                   },
@@ -143,12 +145,14 @@
                              if (data.isSuccess) {
                                  $scope.bbs = data.data;
                              } else {
+                                
                                  console.log(data.msg);
                              }
                          }
                     );
                        console.log('收藏成功');
                    } else {
+                       alert(data.msg);
                        console.log(data.msg);
                    }
                },
