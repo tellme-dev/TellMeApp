@@ -1,11 +1,50 @@
-﻿<ion-view>
+﻿<style>
+.img_v {  
+ display:table-cell !important;  
+ display:block;  
+ position:static !important;  
+ position:relative;  
+ overflow:hidden;  
+ width:400px;  
+ height:400px;  
+ border:1px solid rgb(68, 68, 68);  
+ vertical-align:middle;  
+ text-align:center;  
+}  
+ 
+.img_v p {  
+ display:table-cell !important;  
+ display:block;  
+ margin:0;  
+ position:static !important;  
+ position:absolute;  
+ top:50%;  
+ left:50%;  
+ width:400px;  
+ margin-left:auto;  
+ margin-right:auto;  
+}  
+ 
+.img_v img {  
+ position:static !important;  
+ position:relative;  
+ top:auto !important;  
+ top:-50%;  
+ left:auto !important;  
+ left:-50%;  
+}  
+</style>
+<ion-view>
     <ion-content style="background-color:#444444;">
         <!--<button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>-->
         <ion-slide-box on-slide-changed="slideHasChanged($index)" style="height:100%;background-color:#444444;" class="slidebox" auto-play="false" slide-interval="4000" delegate-handle="slideimgs" does-continue="false">
             <ion-slide ng-repeat="image in bbsImage">
-                <div class="box">
-                    <img ng-src="{{baseUrl}}{{image.attachUrl}}" ng-click="goBack()" alt="" style="width:100%; height:auto" err-src="images/failed.jpg"/>
-                </div>
+                <div class="img_v">
+                    <p><img ng-src="{{baseUrl}}{{image.attachUrl}}" ng-click="goBack()" alt="" style="width:100%; height:auto" err-src="images/failed.png" /></p>
+                </div> 
+                <!--<div class="box">
+                    <img ng-src="{{baseUrl}}{{image.attachUrl}}" ng-click="goBack()" alt="" style="width:100%; height:auto" err-src="images/failed.png"/>
+                </div>-->
             </ion-slide>
         </ion-slide-box>
     </ion-content>
