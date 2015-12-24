@@ -4,6 +4,7 @@
         <h1 class="title">评论</h1>
     </div>
     <ion-content>
+        <div ng-show="msgShow" style="text-align:center;margin-top:50px;"><h3>暂无数据,请稍后重试！</h3></div>
         <div  ng-show="dataShow" style="margin-top:47px;">
             <div ng-repeat="discuss in vm.listData" class="pl-cont">
                 <div class="pl-cont-s">
@@ -32,6 +33,6 @@
          
         </div>
         <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="5%"></ion-infinite-scroll>
-        <div ng-show="msgShow" style="text-align:center;margin-top:50px;"><h3>暂无数据,请稍后重试！</h3></div>
+       
     </ion-content>
 </ion-view>

@@ -4,7 +4,7 @@
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };
-            $(".zxx_text_overflow_3").wordLimit(20);
+          //  $(".zxx_text_overflow_3").wordLimit(20);
               var customerId = 0;
                 if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel']==""){
                     $state.go('login', { pageName: 'customer' }); 
@@ -62,4 +62,5 @@
                     $scope.$broadcast('scroll.infiniteScrollComplete');
                 }
             }
+            vm.loadMore();
         }]);
