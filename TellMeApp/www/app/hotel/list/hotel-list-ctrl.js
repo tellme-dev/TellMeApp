@@ -18,9 +18,9 @@
         $scope.host = hotelSer.hostUrl;
         //后退
         $scope.$window = $window;
-        $scope.go_back = function () {
-            $window.history.back();
-        };
+        $scope.goBack = function () {
+            $ionicHistory.goBack();
+        }
         var collectionSelected = false;
         //设置1级菜单选择事件
         function setSelectStyle(obj, id) {
