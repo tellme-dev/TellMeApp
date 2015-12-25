@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
     .controller('hotelListControll', ['$scope', '$window', '$stateParams', '$state', 'hotelSer', 'LoadingSvr', function ($scope, $window, $stateParams, $state, hotelSer, LoadingSvr) {
-        var param_tagId = 1;//$stateParams.itemTagId;
+        var param_tagId = $stateParams.itemTagId;
         var param_itemId = $stateParams.itemId;
 
         var _MENU_SELECTED_ITEM = null;
