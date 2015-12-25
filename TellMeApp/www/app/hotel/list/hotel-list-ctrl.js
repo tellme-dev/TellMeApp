@@ -1,6 +1,7 @@
 ﻿angular.module('tellme')
     .controller('hotelListControll', ['$scope', '$window', '$stateParams', '$state', 'hotelSer', 'LoadingSvr', function ($scope, $window, $stateParams, $state, hotelSer, LoadingSvr) {
         var param_tagId = $stateParams.itemTagId;
+        var param_itemId = $stateParams.itemId;
 
         var _MENU_SELECTED_ITEM = null;
         var _CHILD_MENU_SELECTED_ITEM = null;
@@ -131,7 +132,45 @@
             promise.then(
                 function (data) {
                     if (data.isSuccess) {
-                        $scope.list = data.rows;
+                        var tempData = data.rows;
+                        if (typeof (param_itemId) == 'undefined' || param_itemId < 1) {
+                            //克隆数据
+                            var arr = new Array();
+                            for (var bf = 0; bf < tempData.length; bf++) {
+                                arr.push(tempData[bf]);
+                            }
+                            //游标缓存对象
+                            var temp_index = {};
+                            //内存置换缓存对象
+                            var temp = {};
+                            for (var i = 0; i < arr.length; i++) {
+                                if (i == 0) {
+                                    if (arr[i].id == param_itemId) {
+                                        break;
+                                    } else {
+                                        temp_index = arr[i];
+                                    }
+                                } else {
+                                    if (arr[i].id == param_itemId) {
+                                        arr[0] = arr[i];
+                                        arr[i] = temp_index;
+                                        break;
+                                    } else {
+                                        //没有找到指定数据需要还原数据
+                                        if (i == arr.length - 1) {
+                                            arr = tempData;
+                                        } else {
+                                            temp = arr[i];
+                                            arr[i] = temp_index;
+                                            temp_index = temp;
+                                        }
+                                    }
+                                }
+                            }
+                            tempData = arr;
+                        }
+                        
+                        $scope.list = tempData;
                     }
                 },
                 function (data) {

@@ -129,12 +129,12 @@ angular.module('tellme')
         }
         /*（点击菜单项）跳转“酒店列表”*/
         $scope.goToHotelList = function (param) {
-            $state.go('hotelList');
+            $state.go('hotelList', { itemTagId:param});
         }
         //（点击头部广告）跳转“具体广告”图片展示
-        $scope.goToAd = function (adInfo) {
+        $scope.goToAd = function (adId) {
             //param 根据target_type等于1（酒店）、2（服务项目）、3（社区）判断，传入参数target_id
-            $state.go('adList', { 'adInfo': angular.toJson(adInfo) });
+            $state.go('adList', { 'adId': adId });
         }
 
         //（点击专题）跳转“具体专题”

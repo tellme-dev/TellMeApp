@@ -22,14 +22,6 @@
             }, 4000);
         }
         document.addEventListener("deviceready", onDeviceReady, false);
-        $rootScope.$on("$locationChangeStart", function (event, next,current) {
-            $rootScope.error = null;
-            console.log("Route change!!!", $location.path());
-            var path = $location.path();
-
-
-            console.log("App Loaded!!!");
-        });
 
     }])
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$ionicConfigProvider',
@@ -45,7 +37,7 @@
             .state('menu', { url: '/menu', templateUrl: 'app/menu.html', controller: 'menuControll' })
                 //首页
                 //.state('menu.home', { url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
-                .state('menu.home', { url: '/home', views: { 'home-tab': { templateUrl: 'app/home/home.html', controller: 'homeControll' } } })
+                .state('menu.home', {url: '/home', views: { 'home-tab': { templateUrl: 'app/home/home.html', controller: 'homeControll' } } })
 
                   //.state('menu.home.banner',{url:'/banner',views:{'home-banner':{templateUrl:'app/home/banner/banner.html',controller:'bannerControll'}}})
                   //.state('menu.home.swiper',{url:'/swiper',views:{'home-swiper':{templateUrl:'app/home/swiper/swiper.html',controller:'swiperControll'}}})
@@ -55,12 +47,12 @@
                  .state('menu.discoverList', { cache: false, url: '/discoverList', views: { 'discovery-tab': { templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverListControll' } } })
                 // 社区
                 //.state('menu.communityList', { cache: false, url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
-                .state('menu.communityList', { cache: true, url: '/communityList', views: { 'community-tab': { templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' } } })
+                .state('menu.communityList', { url: '/communityList', views: { 'community-tab': { templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' } } })
                 //入住
                 .state('menu.checkin', { url: '/checkin', views: { 'checkin-tab': { templateUrl: 'app/checkin/center/center.html', controller: 'checkinCenterControll' } } })
 
             //个人中心
-            .state('customer', { url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
+            .state('customer', { cache: false, url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
             .state('login', { url: '/login?pageName', templateUrl: 'app/customer/login/login.html', controller: 'loginControll' })
             .state('register', { url: '/register', templateUrl: 'app/customer/register/register.html', controller: 'registerControll' })
           //个人中心 设置
@@ -83,18 +75,18 @@
             .state('imageBrowse', { url: '/imageBrowse?bbsId', templateUrl: 'app/bbs/image/imageBrowse.html', controller: 'imageBrowseControll' })
 
             //酒店
-             .state('hotelList', { url: '/hotelList?itemTagId', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
-             .state('hotel', { url: '/hotel?hotelId&rootTagId&itemId', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
+             .state('hotelList', { cache: false, url: '/hotelList?itemTagId&itemId', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })
+             .state('hotel', { cache: false, url: '/hotel?hotelId&rootTagId&itemId', templateUrl: 'app/hotel/single/hotel.html', controller: 'hotelControll' })
              .state('hotelItem', { url: '/hotelItem?itemId', templateUrl: 'app/hotel/hotel-item/hotel-item.html', controller: 'hotelItemControll' })
              .state('hotelmap', { url: '/hotelmap', templateUrl: 'app/hotel/map/hotel-map.html', controller: 'hotelmapControll' })
             //广告
-            .state('adList', { url: '/adList?adInfo', templateUrl: 'app/ad/list/ad-list.html', controller: 'adListControll' })
+            .state('adList', { cache: false, url: '/adList?adId', templateUrl: 'app/ad/list/ad-list.html', controller: 'adListControll' })
 
             //搜索
             .state('willSearch', { url: '/willSearch', templateUrl: 'app/search/will/willSearch.html', controller: 'willSearchControll' })
             .state('doneSearch', { url: '/doneSearch', templateUrl: 'app/search/done/doneSearch.html', controller: 'doneSearchControll' })
 
-            .state('rcu', { url: '/rcu', templateUrl: 'app/checkin/rcu/rcu.html', controller: 'rcuControll' })
+            .state('rcu', { url: '/rcu?roomId', templateUrl: 'app/checkin/rcu/rcu.html', controller: 'rcuControll' })
             ;
             var appLaunchCount = window.localStorage.getItem('launchCount');
             //需要进行页面测试，则修改下面的路由即可

@@ -1,14 +1,16 @@
 ﻿<ion-view>
     <div class="bar bar-header item-input-inset sz-top">
         <button class="button icon button-clear ion-ios-arrow-back " style="color:#444" ng-click="goBack()"></button>
-        <h1 class="title sz-top-text">空调</h1>
+        <h1 class="title sz-top-text">我的房间</h1>
     </div>
 
     <ion-content style="background:#fff; ">
-        <div class="ke-top-nav">
-            <button class="ke-col-rde ke-border fl" style="width:33%"><img src="images/ke1.jpg" /><p>客厅</p></button>
+        <div class="ke-top-nav" ng-if="roomcfgs">
+            <button ng-class="{kechooseBorder:(chooseRoomCfg ==roomcfg.index),keUnChooseBorder:(chooseRoomCfg !=roomcfg.index)}" style="width:33%;" ng-repeat="roomcfg in roomcfgs" ng-click="changeRoomCfg(roomcfg)"><img src="images/ke2.jpg" /><p>{{roomcfg.name}}</p></button>
+
+            <!--<button ng-class="{ke-col-rde fl:}" style="width:33%"><img src="images/ke1.jpg" /><p>客厅</p></button>
             <button class="ke-col-rde fl" style="width:33%"><img src="images/ke2.jpg" /><p>主卧</p></button>
-            <button class="ke-col-rde fl" style="width:33%"><img src="images/ke3.jpg" /><p>客卧</p></button>
+            <button class="ke-col-rde fl" style="width:33%"><img src="images/ke3.jpg" /><p>客卧</p></button>-->
             <div class="clear"></div>
         </div>
 
@@ -48,7 +50,8 @@
                     </div>
                 </ion-slide>
                 <ion-slide>
-                    <div class="lamp-conter">
+                    <div tellmeac></div>
+                    <!--<div class="lamp-conter">
                         <div class="kt-cont">
                             <button class="kt-but-lef" ng-click="changeTemplature(0)">
                                 <img src="images/kongtiao2.png" style="width:100%;" />
@@ -72,7 +75,7 @@
                         </div>
                         <div class="text-fs">风速</div>
                         <button class="kt-button-switch" ng-click="conSwitch()" style="background-image:{{conBackgroundimage}}"></button>
-                    </div>
+                    </div>-->
                 </ion-slide>
                 <ion-slide>
                     <div class="style-cont">

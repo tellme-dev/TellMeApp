@@ -96,7 +96,7 @@
                 }
             }
             //下拉加载更多 根据标签获取酒店列表
-            var vm = $scope.vm = {
+            var vm = $scope.vm = {  
                 moredata: false,
                 pageNumber: 0,
                 pageSize: 10,
@@ -200,6 +200,7 @@
                     $state.go('bbs', { bbsId: targetId });
                 }
             }
+            //返回
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };
