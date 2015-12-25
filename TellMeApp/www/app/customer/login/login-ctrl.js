@@ -39,13 +39,13 @@
                             switch (data.msg) {
                                 case '2':
                                 case '3':
-                                console.log('用户名不存在或者密码错误');
+                                    alert('用户名不存在或者密码错误');
                                 break;
                                 case '4':
-                                console.log('未知错误');
+                                    alert('未知错误');
                                 break;
                                 case '5':
-                                console.log('服务连接不上');
+                                    alert('服务连接不上');
                                 break;
                             default:
                                 console.log('其他');
