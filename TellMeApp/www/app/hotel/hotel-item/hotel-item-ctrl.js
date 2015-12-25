@@ -168,6 +168,7 @@
                   );
                 }
             }
+            vm.loadMore();
             //判断用户是否登录
             $scope.userIsLogin = function () {
                 var mobile = window.localStorage['userTel'];

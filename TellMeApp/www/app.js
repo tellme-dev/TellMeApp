@@ -55,7 +55,7 @@
                  .state('menu.discoverList', { cache: false, url: '/discoverList', views: { 'discovery-tab': { templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverListControll' } } })
                 // 社区
                 //.state('menu.communityList', { cache: false, url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
-                .state('menu.communityList', { cache: false, url: '/communityList', views: { 'community-tab': { templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' } } })
+                .state('menu.communityList', { cache: true, url: '/communityList', views: { 'community-tab': { templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' } } })
                 //入住
                 .state('menu.checkin', { url: '/checkin', views: { 'checkin-tab': { templateUrl: 'app/checkin/center/center.html', controller: 'checkinCenterControll' } } })
 

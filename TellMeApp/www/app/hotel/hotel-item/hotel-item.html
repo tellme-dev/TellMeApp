@@ -6,6 +6,7 @@
     </ion-header-bar>
     <ion-content>
         <!--内容块-->
+        <div ng-show="msgShow" style="text-align:center;margin-top:20px;color:dimgrey;"><h3>暂无数据,请稍后重试！</h3></div>
         <div ng-show="dataShow"  class="content has-header xq-hea" style="margin-top:45px;">
 
             <div style="width:100%; text-align:center;">
@@ -107,7 +108,7 @@
                 </div>
             </div>
         </div>
-        <div ng-show="msgShow" style="text-align:center;margin-top:50px;"><h3>暂无数据,请稍后重试！</h3></div>
+    
         <!--内容块-->
         <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
 

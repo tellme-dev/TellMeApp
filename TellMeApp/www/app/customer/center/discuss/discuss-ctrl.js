@@ -5,6 +5,7 @@
                 $ionicHistory.goBack();
             };
             $scope.baseUrl = customerSer.host;
+
            // $(".zxx_text_overflow_3").wordLimit(15);
             $(".pl-text-s").click(function () {
             $(".zxx_text_overflow_3").wordLimit(100);
@@ -32,7 +33,7 @@
             }
             $scope.getCustomerInfo();
             $scope.goAnswer = function (bbsId) {
-                $state.go('answerBbs', { bbsId: 'bbsId' });
+                $state.go('answerBbs', { bbsId: bbsId });
             }
             //下拉加载更多 获取个人中心动态评论数据列表
             var vm = $scope.vm = {
