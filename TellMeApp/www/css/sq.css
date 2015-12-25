@@ -543,7 +543,7 @@ color:#fff;
 margin-top:10px;
 }
 .scroll{
-height:100%;
+height:auto;
 }
  .tabbed-slidebox .tsb-icons:after{
 display:none;}

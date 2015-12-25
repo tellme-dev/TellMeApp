@@ -12,10 +12,12 @@
 
             <ion-content class="zt-conter" style="background-color:#ffffff;">
                 <!--内容块-->
+                <!--只显示每个广告第一张图-->
                 <ul  ng-show="dataShow"  class="zt-cont">
-                    <li ng-repeat="data in vm.list" ng-click="goDetail(data.targetType,data.targetId)">
-                    <a ng-repeat="image in data.adDetailList" href="#"><img ng-src="{{baseUrl}}{{image.imageUrl}}" />
-                     </a>
+                    <li ng-repeat="data in vm.list" ng-click="goToAd(data.id)">
+                        <a href="#">
+                            <img ng-src="{{baseUrl}}{{data.adDetailList[0].imageUrl}}" ng-show="data.adDetailList.length"/>
+                        </a>
                     </li>
                 </ul>
                 <div ng-show="msgShow" style="text-align:center;margin-top:10px;"><h3>暂无数据,请稍后重试！</h3></div>
