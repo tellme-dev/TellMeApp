@@ -1,8 +1,8 @@
 ﻿angular.module('tellme')
-.controller('adListControll', ['$scope','$state', '$window', '$stateParams', '$ionicHistory', 'appConfig','adSer','commonSer','tellmeActionSheet',
-       function ($scope, $state, $window, $stateParams, $ionicHistory, appConfig, adSer, commonSer, tellmeActionSheet) {
+.controller('adListControll', ['$scope','$state', '$window', '$stateParams', '$ionicHistory', 'appConfig','LoadingSvr','adSer','commonSer','tellmeActionSheet',
+       function ($scope, $state, $window, $stateParams, $ionicHistory, appConfig,LoadingSvr, adSer, commonSer, tellmeActionSheet) {
            $scope.baseUrl = appConfig.server.getUrl();
-           $scope.adInfo = angular.fromJson($stateParams.adInfo);
+           var adId = $stateParams.adId;
            
            /*返回前一个界面*/
         //$scope.$window = $window;
@@ -32,6 +32,22 @@
                }
            }
            //加载广告信息
+           LoadingSvr.show();
+           adSer.loadAdInfo(adId).then(
+                           function (data) {
+                               if (data.isSuccess) {
+                                   $scope.adInfo = data.data;
+                                   LoadingSvr.hide();
+                                   console.log('加載成功');
+                               } else {
+                                   alert(data.msg);
+                                   console.log(data.msg);
+                               }
+                           },
+                           function (data) {
+                               console.log('其他');
+                           }
+                       );
 
            // 分享
            $scope.share = function (detail) {
@@ -63,7 +79,7 @@
                    var jsonData = JSON.stringify({
                        targetId: $scope.adInfo.id,
                        praiseType: 2,
-                       customerId: window.localStorage['userTel']
+                       customerId: window.localStorage['userId']
                    });
                    //   var promise = communitySer.agreeBbs(jsonData).then
                    var promise = commonSer.saveAgree(jsonData)
@@ -82,7 +98,7 @@
                        );
                } else {
                    $state.go('login', {
-                       pageName: 'menu.communityList'
+                       pageName: 'adList'
                    });
                }
            }
@@ -92,7 +108,7 @@
                if (isLogin) { //如果用户已经登录
                    var jsonData = JSON.stringify({
                        customerId: window.localStorage['userId'],
-                       collectionType: 3,
+                       collectionType: 2,
                        targetId: $scope.adInfo.id
                    });
                    // var promise = commonSer.collectionBbs(jsonData).then(
@@ -113,8 +129,17 @@
                        );
                } else {
                    $state.go('login', {
-                       pageName: 'menu.communityList'
+                       pageName: 'adList'
                    });
+               }
+           }
+           //判断用户是否登录
+           $scope.userIsLogin = function () {
+               var mobile = window.localStorage['userTel'];
+               if (mobile == undefined || mobile == "") { 
+                   return false;
+               } else {
+                   return true;
                }
            }
 }]);

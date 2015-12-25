@@ -6,7 +6,7 @@
 
 <ion-view style="background-color:#ddd;">
     <div class="bar bar-header bar-dark sq-top">
-        <button ng-click="goHome()" class="button icon ion-chevron-left sqer-but"></button>
+        <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
         <h1 class="title">个人中心</h1>
     </div>
     <ion-content>
@@ -14,7 +14,7 @@
         <div class="list list-style-padding">
             <div class="cont-style">
                 <a class="item item-avatar a-border border-top-bott min-style" href="#">
-                    <img ng-src="{{host}}{{customer.photoUrl}}" style="left:0px;max-width:70px; max-height:70px; border-radius:0px; top:12px;">
+                    <img ng-src="{{host}}{{customer.photoUrl}}" err-src="images/head.png" style="left:0px;max-width:70px; max-height:70px; border-radius:0px; top:12px;">
                     <div class="fl">
                         <h2 class="style-h2" style="font-size:2em; font-family:'黑体';">{{customer.mobile}}</h2>
                         <p class="p-style" style="font-size:1.125em; color:#a3a3a3;margin-top:10px;">昵称：{{customer.name}}</p>
@@ -52,7 +52,7 @@
             <div ng-repeat="hotel in hotels">
                 <div class="list card item-mb xq-item">
                     <div class="item item-body xq-item-cont">
-                        <a href=""><img class="full-image" ng-src="{{host}}{{hotel.imgUrl}}"></a>
+                        <a href=""><img class="full-image" ng-src="{{host}}{{hotel.imgUrl}}" err-src="images/failed.png"></a>
                         <div class="xq-item-fl">
                             <ul class="xq-ul">
                                 <li><i class="ion ion-ios-pricetag"></i></li>
@@ -79,7 +79,7 @@
                 <!--酒店列表-->
                 <div ng-if="browse.type==1" class="list card item-mb xq-item">
                     <div class="item item-body xq-item-cont">
-                        <a href=""><img class="full-image" ng-src="{{host}}{{browse.hotel.imgUrl}}"></a>
+                        <a href=""><img class="full-image" ng-src="{{host}}{{browse.hotel.imgUrl}}" err-src="images/failed.png"></a>
                         <div class="xq-item-fl">
                             <ul class="xq-ul">
                                 <li><i class="ion ion-ios-pricetag"></i></li>
@@ -113,7 +113,7 @@
                 <!--酒店列表-->
                 <!--主题、广告-->
                 <div ng-click="goDetail(browse.advertisement.target_type,browse.advertisement.target_id)" ng-if="browse.type==2" class="xq-cont" style="margin-bottom:10px;">
-                    <a><img ng-src="{{host}}{{browse.advertisement.imgUrl}}" /></a>
+                    <a><img ng-src="{{host}}{{browse.advertisement.imgUrl}}" err-src="images/failed.png"/></a>
                     <p class="zxx_text_overflow-2">
                         {{browse.advertisement.text}}
                     </p>
@@ -124,7 +124,7 @@
                     <div ng-click="goBBS(bbs.id)">
                         <a href="#">
                             <div href="#" class="item-avatar sq-item-top ">
-                                <img ng-src="{{host}}{{browse.bbs.customer.photoUrl}}" class="sq-item-img" />
+                                <img ng-src="{{host}}{{browse.bbs.customer.photoUrl}}" err-src="images/head.png" class="sq-item-img" />
                                 <div class="sq-item-vit">
                                     <h2>{{browse.bbs.customer.name}}</h2>
                                     <p>{{browse.bbs.createTime}}</p>
@@ -137,7 +137,7 @@
                             <div class="item-body sq-item-cont">
                                 <div class="sq-item-fl">{{browse.bbs.text}}</div>
                                 <div class="row">
-                                    <div class="col" ng-repeat="img in  browse.bbs.bbsAttachUrls"><img href="#" ng-src="{{host}}{{img.attachUrl}}" style="width:100%" /></div>
+                                    <div class="col" ng-repeat="img in  browse.bbs.bbsAttachUrls"><img href="#" ng-src="{{host}}{{img.attachUrl}}" err-src="images/failed.png" style="width:100%" /></div>
                                 </div>
                             </div>
                         </a>
@@ -205,7 +205,7 @@
                 <!--酒店列表-->
                 <!--主题、广告-->
                 <div ng-if="save.type==2" class="xq-cont" style="margin-bottom:10px;">
-                    <a><img ng-src="{{host}}{{save.advertisement.imgUrl}}" /></a>
+                    <a><img ng-src="{{host}}{{save.advertisement.imgUrl}}" err-src="images/failed.png" /></a>
                     <p class="zxx_text_overflow-2">
                         {{save.advertisement.text}}
                     </p>
@@ -216,7 +216,7 @@
                     <div ng-click="goBBS(save.bbs.id)">
                         <a href="#">
                             <div href="#" class="item-avatar sq-item-top ">
-                                <img ng-src="{{host}}{{save.bbs.customer.photoUrl}}" class="sq-item-img" />
+                                <img ng-src="{{host}}{{save.bbs.customer.photoUrl}}" err-src="images/head.png" class="sq-item-img" />
                                 <div class="sq-item-vit">
                                     <h2>{{save.bbs.customer.name}}</h2>
                                     <p>{{save.bbs.createTime}}</p>
@@ -227,9 +227,20 @@
                                 <div class="clear"></div>
                             </div>
                             <div class="item-body sq-item-cont">
-                                <div class="sq-item-fl">{{save.bbs.text}}</div>
-                                <div class="row">
-                                    <div class="col" ng-repeat="img in save.bbs.bbsAttachUrls"><img href="#" ng-src="{{host}}{{img.attachUrl}}" style="width:100%" /></div>
+                                <div class="sqer-item-fl">{{save.bbs.text}}</div>
+                                <div class="row" ng-if="save.bbs.bbsAttachUrls.length">
+                                    <div class="col col-padding">
+                                        <img href="#" ng-src="{{host}}{{save.bbs.bbsAttachUrls[0].attachUrl}}" err-src="images/failed.png" style="width:100%" />
+                                    </div>
+                                    <div class="col col-padding">
+                                        <img href="#" ng-src="{{host}}{{save.bbs.bbsAttachUrls[1].attachUrl}}" err-src="images/failed.png" style="width:100%" />
+                                    </div>
+                                    <div class="col col-padding">
+                                        <img href="#" ng-src="{{host}}{{save.bbs.bbsAttachUrls[2].attachUrl}}" err-src="images/failed.png" style="width:100%" />
+                                    </div>
+                                    <div class="col col-padding">
+                                        <img href="#" ng-src="{{host}}{{save.bbs.bbsAttachUrls[3].attachUrl}}" err-src="images/failed.png" style="width:100%" />
+                                    </div>
                                 </div>
                             </div>
                         </a>
@@ -263,7 +274,7 @@
             <div ng-repeat="topic in topicData" class="list card item-mb sq-item">
 
                 <div href="#" class="item-avatar sq-item-top ">
-                    <img ng-src="{{host}}{{customer.photoUrl}}" class="sq-item-img" />
+                    <img ng-src="{{host}}{{customer.photoUrl}}" err-src="images/head.png" class="sq-item-img" />
                     <div class="sq-item-vit">
                         <h2 style="margin-top:10px;">{{customer.name}}</h2>
                     </div>

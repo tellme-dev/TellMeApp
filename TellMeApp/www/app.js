@@ -52,7 +52,7 @@
                 .state('menu.checkin', { url: '/checkin', views: { 'checkin-tab': { templateUrl: 'app/checkin/center/center.html', controller: 'checkinCenterControll' } } })
 
             //个人中心
-            .state('customer', { url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
+            .state('customer', { cache: false, url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
             .state('login', { url: '/login?pageName', templateUrl: 'app/customer/login/login.html', controller: 'loginControll' })
             .state('register', { url: '/register', templateUrl: 'app/customer/register/register.html', controller: 'registerControll' })
           //个人中心 设置
@@ -80,7 +80,7 @@
              .state('hotelItem', { url: '/hotelItem?itemId', templateUrl: 'app/hotel/hotel-item/hotel-item.html', controller: 'hotelItemControll' })
              .state('hotelmap', { url: '/hotelmap', templateUrl: 'app/hotel/map/hotel-map.html', controller: 'hotelmapControll' })
             //广告
-            .state('adList', { url: '/adList?adInfo', templateUrl: 'app/ad/list/ad-list.html', controller: 'adListControll' })
+            .state('adList', { cache: false, url: '/adList?adId', templateUrl: 'app/ad/list/ad-list.html', controller: 'adListControll' })
 
             //搜索
             .state('willSearch', { url: '/willSearch', templateUrl: 'app/search/will/willSearch.html', controller: 'willSearchControll' })
