@@ -48,17 +48,14 @@
                 <div ng-repeat="item in list">
                     <div class="list card item-mb jd-item-mb" ng-click="toDetailPage(item.hotel.id, item.item.id)">
                         <div class="item item-avatar">
-                            <img src="http://www.runoob.com/try/demo_source/mcfly.jpg" />
-                            <h2 style="">{{item.item.name}}</h2>
-                            <button class="bu-er" ng-click="saveCollection(item.item.id)">
-                                关 注
-                            </button>
+                            <img ng-src="{{host}}{{item.hotel.logo}}" />
+                            <h2  class="item-avatar-h2">{{item.hotel.name}}</h2>
                         </div>
 
                         <div class="item item-body item-body-top">
                             <img class="full-image" ng-src="{{host}}{{item.itemDetail.imageUrl}}">
                             <div class="pad-cont">
-                                <span class="p-te" style="font-family:'微软雅黑'; margin-top:5px;margin-bottom:0px;">{{item.hotel.name}}</span>
+                                <span class="p-te" style="font-family:'微软雅黑'; margin-top:5px;margin-bottom:0px;">{{item.item.name}}</span>
                                 <p style="margin-top:8px;font-size:0.84em">{{item.item.text}}</p>
 
                             </div>
