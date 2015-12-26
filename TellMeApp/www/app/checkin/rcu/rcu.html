@@ -12,56 +12,62 @@
             <div class="tsb-icons">
                 <div class="tsb-ic-wrp" style="height:80px;">
                     <ion-scroll direction="x" class="tsb-hscroll">
-                        <a href="javascript:;" class="{{tab.icon}}" ng-repeat="tab in room.tabs" on-finish-render="test()"><span>{{tab.tabName}}</span></a>
+                        <!--<a href="javascript:;" class="{{tab.icon}}" ng-repeat="tab in room.tabs" on-finish-render="test()"><span>{{tab.tabName}}</span></a>-->
+                        <a href="javascript:;" class="{{tab.icon}}" on-finish-render="test()" ng-show="room.tabs['LT']"><span>{{room.tabs['LT'].tabName}}</span></a>
+                        <a href="javascript:;" class="{{tab.icon}}" on-finish-render="test()" ng-show="room.tabs['AC']"><span>{{room.tabs['AC'].tabName}}</span></a>
+                        <a href="javascript:;" class="{{tab.icon}}" on-finish-render="test()" ng-show="room.tabs['CT']"><span>{{room.tabs['CT'].tabName}}</span></a>
+                        <a href="javascript:;" class="{{tab.icon}}" on-finish-render="test()" ng-show="room.tabs['SV']"><span>{{room.tabs['SV'].tabName}}</span></a>
                     </ion-scroll>
                 </div>
             </div>
             <ion-slide-box on-slide-changed="slideHasChanged($index)" class="ke-ion-slide-box" show-pager="">
-                <ion-slide ng-repeat="tab in room.tabs">
-                    <!--如果是"灯控"-->
-                    <div class="lamp-cont" ng-if="tab.dtype=='LT'">
+
+                <ion-slide ng-show="room.tabs['LT']">
+                    <div class="lamp-cont">
                         <div class="lamp_cont-img"></div>
-                        <div>
-                            <div class="row padding-0">
-                                <div class="col lamp-tie border-le-none">客厅灯</div>
-                                <div class="col lamp-tie border-le-none border-ri-none">卫生间灯</div>
-                            </div>
-                            <div class="row lamp-cont-ner" style="margin-top:-1px">
-                                <div class="col padding-0">
-                                    <div class="row padding-0">
+
+                        <div ng-if="room" style="width:100%;">
+                            <div class="fl" style="width:50%;" ng-repeat="cfgItem in room.rcuCfgItems" ng-show="cfgItem.dtype=='LT'">
+                                <div class="row padding-0">
+                                    <div class="col col-100 lamp-tie border-le-none">{{cfgItem.name}}</div>
+                                </div>
+                                <div class="row lamp-cont-ner">
+                                    <div class="row padding-0" ng-if="cfgItem.opers[1].labels.length ==3" style="margin-top:4px">
                                         <div class="col border-d border-ri-none border-img"><img src="images/dengguang.png" class="imger" width="100%" /></div>
                                         <div class="col border-d border-ri-none border-img"><img src="images/dengguang-2.png" class="imger" width="100%" /></div>
                                         <div class="col border-d border-le-none border-img"><img src="images/dengguang.png" class="imger" width="100%" /></div>
                                     </div>
-
-                                </div>
-                                <div class="col padding-0">
-                                    <div class="row padding-0">
+                                    <div class="row padding-0" ng-if="cfgItem.opers[1].labels.length ==2" style="margin-top:4px">
                                         <div class="col border-d border-img2"><img src="images/ch1.png" class="imger" width="78%" /></div>
                                         <div class="col border-der border-img2" style="border-left:none"><img src="images/ch2.png" class="imger" width="78%" /></div>
                                     </div>
                                 </div>
+                                <div class="clear"></div>
                             </div>
                         </div>
-                        <input type="button" value="ON" class="button-kg" style="height:60px;" />
+                        <input type="button" value="ON" class="button-kg" style="height:60px;border-top:1px solid #ddd;" />
                     </div>
-                    <!--如果是"空调"-->
-                    <div class="conditioner-top-cont" ng-if="tab.dtype=='AC'">
+                </ion-slide>
+
+                <ion-slide ng-show="room.tabs['AC']">
+                    <div class="conditioner-top-cont">
                         <span style="font-family:'黑体';">24<a>°</a></span>
                         <strong>温度</strong>
                     </div>
-                    <div class="row padding-0" ng-if="tab.dtype=='AC'">
+                    <div class="row padding-0">
                         <button class="col conditioner-button-on"></button>
                         <button class="col conditioner-button-to"></button>
                     </div>
-                    <div class="range range-balanced" style="border-bottom:1px solid #ddd; height:65px;" ng-if="tab.dtype=='AC'">
+                    <div class="range range-balanced" style="border-bottom:1px solid #ddd; height:65px;">
                         <i class="icon fs-le"><img src="images/kontiao5.png" style="width:70%" /></i>
                         <input type="range" name="volume" min="0" max="100" value="50" class="input-ct">
                         <i class="icon fs-ri"><img src="images/kontiao5.png" style="width:90%" /></i>
                     </div>
-                    <input type="button" value="ON" class="button-if" ng-if="tab.dtype=='AC'" />
-                    <!--如果是"窗帘"-->
-                    <div class="style-cont" ng-if="tab.dtype=='CT'">
+                    <input type="button" value="ON" class="button-if" />
+                </ion-slide>
+
+                <ion-slide ng-show="room.tabs['CT']">
+                    <div class="style-cont">
                         <div class="cou-images"></div>
                         <div class="row padding-0">
                             <button class="col cou-button-on">窗帘</button>
@@ -97,8 +103,10 @@
                         </div>
                         <input type="button" value="ON" class="button-if2" />
                     </div>
-                    <!--如果是"服务"-->
-                    <div class="style-cont" ng-if="tab.dtype=='SV'">
+                </ion-slide>
+
+                <ion-slide ng-show="room.tabs['SV']">
+                    <div class="style-cont">
                         <div class="service-img"></div>
                         <div class="row padding-0">
                             <button class="col service-button">勿打扰</button>
@@ -148,7 +156,6 @@
                         </div>
                     </div>
                 </ion-slide>
-
             </ion-slide-box>
         </tab-slide-box>
     </ion-content>

@@ -293,7 +293,7 @@ font-family:'微软雅黑';color:#646464; font-size:1.2em
         margin-left:10px;
     }
     .grtz-label i {
-        margin-right:10px; color:#a9cb1d
+        margin-right:10px; margin-top:13px; color:#a9cb1d
     }
 .grtz-labeler {
     padding-left:0px; border:none;
@@ -564,7 +564,7 @@ display:none;}
 
 }
 .tabbed-slidebox .tsb-icons {
-    margin:0px; height:80px;
+    margin:0px; height:90px;
 }
 .toggle .no-style {
     width:140px; height:40px;border-radius:15px;
@@ -615,7 +615,7 @@ display:none;}
             margin-top:44px;
         }
         .cont-rz-top {
-            width:100%;
+            width:100%; margin-top:44px;
         }
             .cont-rz-top img {
                 width:100% ;height:130px;
@@ -624,29 +624,36 @@ display:none;}
                 margin-bottom:3px;
             }
         .gn-cont-rz {
-            padding-top:10px; background:#eeeced
+            background:#eeeced
         }
             .gn-cont-rz span {
                 padding-left:20px;margin-top:5px; display:inline-block;color:#717171; font-family:1.3em; font-family:'微软雅黑';
             }
         .ru-rede {
-            border:none; background:none;
+            border:none; background:none;font-size:1.25em;color:#fff; height:85px;position:relative
         }
+.ru-rede-text {
+    position:absolute; width:93px; top:10px;height:69px;text-align:center;line-height:65px;
+}
             .ru-rede img {
                 width:100%; height:69px;
             }
         .fw-rz-cont {
-            background:#eeeced
+            background:#fff;padding:0px 10px;
         }
-            .fw-rz-cont span {
-                padding-left:20px;display:inline-block;color:#717171; font-family:1.3em; font-family:'微软雅黑';
-            }
+           
         .fw-rz-ser {
-            width:100%; background:#fff;padding:10px 15px; margin-top:10px;
+            width:100%; background:#fff; margin-top:10px;height:95px;position:relative;
         }
-            .fw-rz-ser img {
-                width:100%;padding-bottom:10px;
-            }
+        .fw-po{
+            width:100px;height:95px;  color:#fff; text-align:center; line-height:103px; font-size:20px;position:absolute;top:0px;
+        }
+        .fw-po-l{
+            left:0px;background:#7be370;
+        }
+        .fw-po-r {
+            right:0px;background:#ff6faf;
+        }  
 
 /*客控*/
 .style-cont {
@@ -775,3 +782,52 @@ display:none;}
     height:65px;border:1px solid #ddd;border-left:none; background:none;border-top:none;padding:0px 5px;
 }
 
+
+/*挑*/
+.t-cont {
+    margin-top:55px;
+}
+.t-cont-padd {
+    padding:0px 10px;
+}
+.t-cont-img {
+    width:100%;height:130px;
+}
+.t-conter {
+    text-align:center;width:177px; margin:0 auto; margin-top:15px; margin-bottom:15px;
+}
+.t-conter .t-conter-on {
+    color:#707070
+}
+.t-conter .t-conter-to {
+    font-size:1.6em; color:#707070; margin:0px 15px;
+}
+.t-botton-cont {
+    width:100%; padding:0px 5px;
+}
+.t-botton-cont .t-botton-padd {
+    width:50%;padding:5px; height:206px;
+}
+.t-botton-cont .t-botton-padd .t-botton-img-cont {
+    background:#fff; padding:10px;
+}
+    .t-botton-cont .t-botton-padd .t-botton-img-cont img {
+        width:100%; height:110px;
+    }
+.t-botton-tit {
+    margin-top:3px;color:#767676;margin-top:3px;
+}
+.t-botton-tit-co {
+    color:#e95a8c;margin-top:3px;margin-top:3px;
+}
+.t-cont-er {
+    margin-top:10px;
+}
+
+/*E房超市*/
+.t-cont-ertop {
+    padding:10px 10px;padding-top:0px; 
+}
+    .t-cont-ertop div {
+        background:#fff; font-size:1.6em; color:#707070; text-align:center;padding:10px 0px;
+    }
