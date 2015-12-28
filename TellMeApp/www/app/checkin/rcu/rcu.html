@@ -50,20 +50,26 @@
                 </ion-slide>
 
                 <ion-slide ng-show="room.tabs['AC']">
-                    <div class="conditioner-top-cont">
-                        <span style="font-family:'黑体';">24<a>°</a></span>
-                        <strong>温度</strong>
+                    <div ng-repeat="cfgItem in room.rcuCfgItems" ng-show="cfgItem.dtype=='AC'">
+                        <div class="conditioner-top-cont">
+                            <span style="font-family:'黑体';">24<a>°</a></span>
+                            <strong>温度</strong>
+                        </div>
+                        <div  ng-repeat="oper in cfgItem.opers">
+                            <div class="row padding-0"  ng-show="oper.mode==2&&oper.tag =='T'">
+                                <button class="col conditioner-button-on" ng-click="changeACTemplature(cfgItem,-1)"></button>
+                                <button class="col conditioner-button-to" ng-click="changeACTemplature(cfgItem,1)"></button>
+                            </div>
+                            <div class="range range-balanced" style="border-bottom:1px solid #ddd; height:65px;" ng-show="oper.mode==1&&oper.tag =='F'">
+                                <i class="icon fs-le"><img src="images/kontiao5.png" style="width:70%" /></i>
+                                <input type="range" name="volume" min="{{oper.min}}" max="{{oper.max}}" step="{{oper.inv}}" value="{{oper.windValue}}" class="input-ct">
+                                <i class="icon fs-ri"><img src="images/kontiao5.png" style="width:90%" /></i>
+                            </div>
+                            <input type="button" value="ON" class="button-if" ng-click="switch(cfgItem,'S')" ng-show="oper.mode==1&&oper.tag =='S'"/>
+                        </div>
+
                     </div>
-                    <div class="row padding-0">
-                        <button class="col conditioner-button-on"></button>
-                        <button class="col conditioner-button-to"></button>
-                    </div>
-                    <div class="range range-balanced" style="border-bottom:1px solid #ddd; height:65px;">
-                        <i class="icon fs-le"><img src="images/kontiao5.png" style="width:70%" /></i>
-                        <input type="range" name="volume" min="0" max="100" value="50" class="input-ct">
-                        <i class="icon fs-ri"><img src="images/kontiao5.png" style="width:90%" /></i>
-                    </div>
-                    <input type="button" value="ON" class="button-if" />
+
                 </ion-slide>
 
                 <ion-slide ng-show="room.tabs['CT']">
