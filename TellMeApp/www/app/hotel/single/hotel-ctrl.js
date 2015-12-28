@@ -1,5 +1,5 @@
 ﻿angular.module('tellme')
-    .controller('hotelControll', ['$scope', '$stateParams', '$ionicHistory', 'hotelSer', 'LoadingSvr', 'popUpSer', function ($scope, $stateParams, $ionicHistory, hotelSer, LoadingSvr, popUpSer) {
+    .controller('hotelControll', ['$scope', '$stateParams', '$ionicHistory', '$state', 'hotelSer', 'LoadingSvr', 'popUpSer', 'tellmeActionSheet', function ($scope, $stateParams, $ionicHistory, $state, hotelSer, LoadingSvr, popUpSer, tellmeActionSheet) {
         $scope.hotelId = $stateParams.hotelId;
         $scope.rootTagId = $stateParams.rootTagId;
         $scope.itemId = $stateParams.itemId;
@@ -50,14 +50,59 @@
                 customerId = window.localStorage['userId'];
             }
             if (customerId < 1) {
-                popUpSer.showAlert("请先登录");
+                $state.go('login', {});
                 return;
             }
             var promise = hotelSer.saveCollection(customerId, targetId);
             promise.then(
                 function (data) {
                     if (data.isSuccess) {
-                        popUpSer.showAlert("收藏/关注成功");
+                        popUpSer.showAlert("收藏成功");
+                    } else {
+                        popUpSer.showAlert(data.msg);
+                    }
+                },
+                function (data) {
+                    console.log('其他');
+                }
+                );
+        }
+
+        // 分享
+        $scope.share = function (title, text, imgUrl) {
+            var args = {};
+            //args.url = "";
+            args.title = title;
+            args.description = "";
+            args.text = text;
+            var imgs = [$scope.host + imgUrl];
+            args.imageUrl = imgs;
+            args.appName = "挑米科技";
+            args.defaultText = "来自挑米科技";
+            var shareResult = tellmeActionSheet.show(args);
+            if (shareResult == 0) {
+            } else if (shareResult == 1) {
+                commonSer.saveShare(detail.id);
+            } else {
+                popUpSer.showAlert('分享出现其他错误');
+            }
+        }
+
+        //用户点赞项目
+        $scope.savePraise = function (targetId) {
+            var customerId = 0;
+            if (typeof (window.localStorage['userTel']) != 'undefined') {
+                customerId = window.localStorage['userId'];
+            }
+            if (customerId < 1) {
+                $state.go('login', {});
+                return;
+            }
+            var promise = hotelSer.savePraise(customerId, targetId);
+            promise.then(
+                function (data) {
+                    if (data.isSuccess) {
+                        popUpSer.showAlert("点赞成功");
                     } else {
                         popUpSer.showAlert(data.msg);
                     }
