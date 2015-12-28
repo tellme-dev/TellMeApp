@@ -164,6 +164,12 @@
             if ($scope.registerData.psd == "" || typeof ($scope.registerData.psd) == "undefined") {
                 alert("请输入密码！"); return;
             }
+            if ($scope.registerData.rpsd == "" || typeof ($scope.registerData.rpsd) == "undefined") {
+                alert("请再次输入密码！"); return;
+            }
+            if ($scope.registerData.psd != $scope.registerData.rpsd) {
+                alert("两次密码不一致！"); return;
+            }
             if ($scope.registerData.verifyCode == "" || typeof ($scope.registerData.verifyCode) == "undefined") {
                 alert("请输入验证码！"); return;
             }
