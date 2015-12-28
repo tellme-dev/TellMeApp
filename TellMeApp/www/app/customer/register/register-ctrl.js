@@ -166,13 +166,13 @@
                 popUpSer.showAlert("请输入密码"); return;
             }
             if ($scope.registerData.rpsd == "" || typeof ($scope.registerData.rpsd) == "undefined") {
-                alert("请再次输入密码！"); return;
+                popUpSer.showAlert("请输入密码"); return;
             }
             if ($scope.registerData.psd != $scope.registerData.rpsd) {
-                alert("两次密码不一致！"); return;
+                popUpSer.showAlert("两次密码不一致"); return;
             }
             if ($scope.registerData.verifyCode == "" || typeof ($scope.registerData.verifyCode) == "undefined") {
-                popUpSer.showAlert("请输入密码"); return;
+                popUpSer.showAlert("请输入验证码"); return;
             }
             if (isSumit) {
                 $scope.registerData.customerId = window.localStorage['userId'];
