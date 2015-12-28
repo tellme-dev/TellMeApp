@@ -1,5 +1,5 @@
 ﻿angular.module('tellme')
-    .controller('hotelListControll', ['$scope', '$window', '$stateParams', '$state', 'hotelSer', 'LoadingSvr', function ($scope, $window, $stateParams, $state, hotelSer, LoadingSvr) {
+    .controller('hotelListControll', ['$scope', '$window', '$stateParams', '$state', 'hotelSer', 'LoadingSvr', 'popUpSer', function ($scope, $window, $stateParams, $state, hotelSer, LoadingSvr, popUpSer) {
         var param_tagId = $stateParams.itemTagId;
         var param_itemId = $stateParams.itemId;
 
@@ -187,16 +187,16 @@
                 customerId = window.localStorage['userId'];
             }
             if (customerId < 1) {
-                alert("请先登录");
+                popUpSer.showAlert("请先登录");
                 return;
             }
             var promise = hotelSer.saveCollection(customerId, targetId);
             promise.then(
                 function (data) {
                     if (data.isSuccess) {
-                        alert("收藏/关注成功");
+                        popUpSer.showAlert("收藏/关注成功");
                     } else {
-                        alert(data.msg);
+                        popUpSer.showAlert(data.msg);
                     }
                 },
                 function (data) {
