@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('addBbsControll', ['$scope','$state', '$window','$ionicHistory', 'appConfig', '$ionicActionSheet', 'cameraSvr', 'fileTransferSvr', 'LoadingSvr', 'bbsSer',
-        function ($scope,$state, $window,$ionicHistory, appConfig,$ionicActionSheet, cameraSvr, fileTransferSvr, LoadingSvr, bbsSer) {
+    .controller('addBbsControll', ['$scope','$state', '$window','$ionicHistory', 'appConfig', '$ionicActionSheet','popUpSer', 'cameraSvr', 'fileTransferSvr', 'LoadingSvr', 'bbsSer',
+        function ($scope,$state, $window,$ionicHistory, appConfig,$ionicActionSheet, popUpSer, cameraSvr, fileTransferSvr, LoadingSvr, bbsSer) {
         $scope.baseUrl = appConfig.server.getUrl();
         $scope.bbsInfo = {};
         $scope.bbsImages = [];
@@ -40,7 +40,7 @@
         /*发帖*/
         $scope.saveBbs = function () {
             if ($scope.bbsInfo.text == undefined) {
-                alert("please写点内容啊");
+                popUpSer.showAlert("内容为空");
                 return;
             }
             bbsSer.saveBbs($scope.bbsInfo).then(
@@ -54,7 +54,7 @@
                     }
                 },
                 function (data) {
-                    console.log("未知错误");
+                    popUpSer.showAlert("未知错误");
                 }
             )
         };
@@ -127,7 +127,7 @@
                     }
                 },
                 function (data) {
-                    console.log("未知错误");
+                    popUpSer.showAlert('未知错误');
                 }
             )
         };

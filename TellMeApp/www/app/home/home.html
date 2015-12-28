@@ -1,12 +1,20 @@
 ﻿<ion-view style="color:#fff; font-family:'微软雅黑';">
-    <ion-header-bar class="bar bar-header bar-dark">
-        <button id="cityName" class="button icon ion-ios-location" ng-click="goToLocation()" style="border:none">{{setCity}}</button>
+    <ion-header-bar class="bar bar-header item-input-inset bar-dark">
+        <!--<button id="cityName" class="button icon ion-ios-location" ng-click="goToLocation()" style="border:none">{{setCity}}</button>
         <label ng-click="gotosearch()" class="item item-input" style="margin:0 auto; width:60%; background:#ffffff">
             <i class="icon ion-search placeholder-icon"></i>
             <input type="text" placeholder="search" disabled class="pad-top">
         </label>
-
-        <button ng-click="goToCustomer()" class="button icon ion-android-person" style="border:none"></button>
+        <button ng-click="goToCustomer()" class="button icon ion-android-person" style="border:none"></button>-->
+       
+            <button class="button icon-left ion-ios-location"  ng-click="goToLocation()" style="border:none;padding-left:0px;">
+                {{setCity}}</button>
+                    <label ng-click="gotosearch()" class="item-input-wrapper">
+                        <i class="icon ion-ios-search placeholder-icon"></i>
+                        <input type="search" placeholder="搜索">
+                    </label>
+           <button ng-click="goToCustomer()" class="button button-clear ion-android-person"></button>
+        
     </ion-header-bar>
 
     <ion-content>

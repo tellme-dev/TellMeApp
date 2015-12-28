@@ -70,7 +70,7 @@
                         function (data) {
                             if (data.isSuccess) {
                                  vm.moredata = false,
-                                 vm.loadMore;
+                                 vm.loadMore();
                                 console.log('删除成功！');
                             } else {
                                  popUpSer.showAlert(data.msg);
@@ -217,6 +217,10 @@
             //跳转到系统设置
             $scope.goSystem = function () {
                 $state.go('system');
+            }
+            //跳转到广告详情
+            $scope.goToAd = function (adId) {
+                $state.go('adList', {'adId':adId});
             }
             //跳转到评论
             $scope.goDiscuss = function () {

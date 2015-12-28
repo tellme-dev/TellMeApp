@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('loginControll', ['$scope', '$ionicNavBarDelegate', '$window', '$state', '$stateParams', '$ionicHistory', 'customerSer',
-        function ($scope, $ionicNavBarDelegate,$window,$state,$stateParams,$ionicHistory, customerSer) {
+    .controller('loginControll', ['$scope', '$ionicNavBarDelegate', '$window', '$state', '$stateParams', '$ionicHistory', 'customerSer', 'popUpSer',
+        function ($scope, $ionicNavBarDelegate, $window, $state, $stateParams, $ionicHistory, customerSer, popUpSer) {
         /*保存登录的输入信息*/
         $scope.loginData = {};
         /*返回前一个界面*/
@@ -20,11 +20,13 @@
             /*校验输入是否是合法的电话号码*/
                 var re = /^1\d{10}$/;
                 if (!re.test($scope.loginData.username)) { 
-                    alert("请输入正确的电话号码！"); return;
+                    popUpSer.showAlert("请输入正确的电话号码！");
+                    return;
                 }
                 var pwd=$scope.loginData.password;
                 if (pwd == "" || typeof(pwd)=="undefined") {
-                    alert("请输入密码！"); return;
+                    popUpSer.showAlert("请输入密码！");
+                    return;
                 }
                 var promise = customerSer.login($scope.loginData);
                 promise.then(
@@ -39,21 +41,21 @@
                             switch (data.msg) {
                                 case '2':
                                 case '3':
-                                    alert('用户名不存在或者密码错误');
+                                    popUpSer.showAlert("用户名不存在或者密码错误");
                                 break;
                                 case '4':
-                                    alert('未知错误');
+                                    popUpSer.showAlert("未知错误");
                                 break;
                                 case '5':
-                                    alert('服务连接不上');
+                                    popUpSer.showAlert("服务连接不上");
                                 break;
                             default:
-                                console.log('其他');
+                                popUpSer.showAlert("其他");
                             }
                         }
                      },
                         function (data) {
-                             console.log('其他');
+                            popUpSer.showAlert("其他");
                         }
                     );
             

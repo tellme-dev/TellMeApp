@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('dataControll', ['$scope', '$state','$q', '$window', '$ionicHistory','appConfig', '$ionicActionSheet', 'cameraSvr', 'fileTransferSvr', 'LoadingSvr', 'customerSer',
-        function ($scope, $state,$q, $window, $ionicHistory,appConfig, $ionicActionSheet, cameraSvr, fileTransferSvr, LoadingSvr, customerSer) {
+    .controller('dataControll', ['$scope', '$state','$q', '$window', '$ionicHistory','appConfig', '$ionicActionSheet','popUpSer', 'cameraSvr', 'fileTransferSvr', 'LoadingSvr', 'customerSer',
+        function ($scope, $state,$q, $window, $ionicHistory,appConfig, $ionicActionSheet,popUpSer, cameraSvr, fileTransferSvr, LoadingSvr, customerSer) {
             $scope.baseUrl = appConfig.server.getUrl();
             var now = new Date();
             var mill = now.getTime();//getTime() 方法可返回距 1970 年 1 月 1 日之间的毫秒数。
@@ -38,7 +38,7 @@
                 customerSer.saveCustomerInfo($scope.customerInfo).then(
                     function (data) {
                         if (data.isSuccess) {
-                            alert(data.msg);
+                            popUpSer.showAlert(data.msg);
                             console.log(data.msg);
                         } else {
                             console.log(data.msg);
