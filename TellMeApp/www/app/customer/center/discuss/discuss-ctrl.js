@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('discussControll', ['$scope', '$ionicHistory', '$ionicActionSheet', '$state', 'customerSer', 'LoadingSvr',
-        function ($scope, $ionicHistory, $ionicActionSheet, $state, customerSer, LoadingSvr) {
+    .controller('discussControll', ['$scope', '$ionicHistory', '$ionicActionSheet', '$state', 'customerSer', 'LoadingSvr', 'popUpSer',
+        function ($scope, $ionicHistory, $ionicActionSheet, $state, customerSer, LoadingSvr, popUpSer) {
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };
@@ -23,7 +23,7 @@
                         if (data.isSuccess) {
                             $scope.customer = data.data;
                         } else {
-                            alert(data.msg);
+                            popUpSer.showAlert(data.msg);
                         }
                     },
                     function (data) {
