@@ -1,13 +1,32 @@
-﻿<style type="text/css">
-.zxx_align_box_4 li{float:left; margin-right:13px;}
-.zxx_align_box_4 li div{display:table-cell; width:100%; height:100%; border:1px solid #beceeb; vertical-align:middle;}
-.zxx_align_box_4 li div img{vertical-align:middle;}
+﻿<style>
+    .tellme-imageContainner {
+        /*background: #ffa url(images/piex.gif) repeat center;
+        height:100%;
+        float: left;
+        border: solid 1px #666;
+        vertical-align: middle;*/
+					width: 100%;/*元素的宽度*/
+					height:100%;/*元素的高度*/
+					position: absolute;
+					top: 100px;/*值的大小等于元素高度的一半*/
+    }
+    .tellme-img {
+        display:table-cell;/*让元素以表格的单元素格形式渲染*/
+					vertical-align: middle;/*使用元素的垂直对齐*/
+    }
 </style>
 <ion-view>
+    <!--<div class="bar bar-dark bar-header" style="border-bottom:1px solid #000;">
+        <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
+        <h1 class="title">查看图片</h1>
+    </div>-->
     <ion-content style="background-color:#444444;">
-        <ion-slide-box on-slide-changed="slideHasChanged($index)" style="height:100%;float:left;background-color:#444444;" class="slidebox" auto-play="false" slide-interval="4000" delegate-handle="slideimgs" does-continue="false">
-            <ion-slide ng-repeat="image in bbsImage" style="display:table-cell; width:100%; height:100%; border:1px solid #beceeb; vertical-align:middle;">
-                <img class="full-image" ng-src="{{baseUrl}}{{image.attachUrl}}" ng-click="goBack()" style="vertical-align:middle;"/>
+        <!--<button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>-->
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" style="background-color:#444444;height:100%;" class="slidebox" auto-play="false" slide-interval="4000" delegate-handle="slideimgs" does-continue="false">
+            <ion-slide ng-repeat="image in bbsImage" ng-click="goBack()" style="height:100%;">
+                <div style="width:100%;height:100%;top:{{image}}">
+                    <img  ng-src="{{baseUrl}}{{image.attachUrl}}" alt="" style="width:100%; height:auto" />
+                </div>
             </ion-slide>
         </ion-slide-box>
     </ion-content>

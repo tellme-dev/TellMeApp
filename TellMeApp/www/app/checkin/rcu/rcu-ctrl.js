@@ -1,5 +1,61 @@
 ﻿angular.module('tellme')
     .controller('rcuControll', ['$rootScope', "$scope", '$ionicHistory', "$stateParams", "$q", "$location", "$window", '$timeout', 'checkinSer', 'popUpSer', function ($rootScope, $scope, $ionicHistory, $stateParams, $q, $location, $window, $timeout, checkinSer, popUpSer) {
+        //初始化"主卧","客卧","客厅"按钮的背景图片
+        $scope.initRoomcfgImage = function (index, roomcfg) {
+            if (index == 0) {
+                roomcfg.imageurl = roomcfg.name+'.jpg';
+            } else {
+                roomcfg.imageurl = roomcfg.name+'_1.png';
+            }
+            
+        }
+        //点击"主卧","客卧","客厅"的响应事件
+        $scope.changeRoomcfg = function (index,roomcfg) {
+            $scope.room = roomcfg;
+            $scope.initRoomTab($scope.room);
+            for (var i = 0; i < $scope.roomcfgs.length; i++) {
+                if (index == i) {
+                    $scope.roomcfgs[i].imageurl  = $scope.roomcfgs[i].name+'.jpg';
+                } else {
+                    $scope.roomcfgs[i].imageurl = $scope.roomcfgs[i].name + '_1.png';
+                }
+            }
+        }
+        //当room改变时，重新初始化其内部的tabs
+        $scope.initRoomTab = function (room) {
+            room.tabs = {};
+            angular.forEach(room.rcuCfgItems, function (item, index) {
+                var name = '';        
+                switch(item.dtype){
+                    case 'LT':
+                        name = '灯控';
+                        break;
+                    case 'AC':
+                        name = '空调';
+                        break;
+                    case 'CT':
+                        name = '窗帘';
+                        break;
+                    case 'SV':
+                        name = '服务';
+                        break;
+                    case 'RH':
+                        name = '地暖';
+                        break;
+                    case 'TV':
+                        name = '电视';
+                        break;
+                    default:
+                        name = '其他';
+                        break;
+                }
+                room.tabs[item.dtype] = {
+                    tabName: name,
+                    dtype: item.dtype
+                };
+            });
+        }
+
         $scope.roomId = $stateParams.roomId;
         //获取房间的控制信息
         var parseExpression = function (expression) {
@@ -12,6 +68,8 @@
                 if (data.isSuccess) {
                     $scope.roomcfgs = [];
                     var i = 0;
+                    $scope.roomcfgWidth = Math.round(100 / data.rows.length).toString() + '%';
+
                     for (;i<data.rows.length;i++) {
                         $scope.roomcfgs[i] = {};
                         $scope.roomcfgs[i].index = i;
@@ -23,8 +81,12 @@
                             var ex = data.rows[i].rcuCfgItems[j].expression;
                             var obj = parseExpression(ex);
                             $scope.roomcfgs[i].rcuCfgItems[j] = obj;
-                        } 
+                        }
                     }
+
+                    $scope.room = $scope.roomcfgs[0];
+                    $scope.initRoomTab($scope.room);
+
                 } else {
                     popUpSer.showAlert(data.msg);
                 }
@@ -36,12 +98,12 @@
         $scope.chooseRoomCfg = 0;
 
         //LR :living room 客厅灯
-        $scope.tabs = [
-            { "text": "灯控" },
-            { "text": "空调" },
-            { "text": "窗帘" },
-            { "text": "服务" },
-        ];
+        //$scope.tabs = [
+        //    { "text": "灯控" },
+        //    { "text": "空调" },
+        //    { "text": "窗帘" },
+        //    { "text": "服务" },
+        //];
         //客厅 灯
         $scope.lrLampBorder0 = '#00a99d';
         $scope.lrBackGround0 = '#00a99d';

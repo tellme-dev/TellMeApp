@@ -11,12 +11,16 @@
                     <div class="list list-padding">
                         <label class="item item-input item-border">
                             <span class="input-label input-color">手机号码：</span>
-                            <input type="tel" ng-blur="verifyTel()" ng-maxlength="11" ng-model="registerData.mobile" class="input-color" required>
+                            <input type="tel" ng-blur="verifyTel()" ng-maxlength="11" ng-model="registerData.mobile" placeholder="手机号码" class="input-color" required>
                            
                         </label>
                         <label class="item item-input item-cont">
                             <span class="input-label input-color">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
                             <input type="password" ng-model="registerData.psd" class="input-color" required>
+                        </label>
+                        <label class="item item-input item-cont">
+                            <span class="input-label input-color">重复密码：</span>
+                            <input type="password" ng-model="registerData.rpsd" class="input-color" required>
                         </label>
                         <label class="item item-input item-cont">
                             <span class="input-label input-color">验&nbsp;&nbsp;证&nbsp;&nbsp;码：</span>

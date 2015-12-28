@@ -142,10 +142,8 @@
                 }
                 );
         }
-
         //设置1级标题
         $scope.getRootMenu();
-
         //Object
         var MenuItem = function (object, id) {
             //1级标题切换事件

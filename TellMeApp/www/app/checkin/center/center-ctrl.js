@@ -55,8 +55,41 @@
             $ionicSlideBoxDelegate.update();
         }
         $scope.goToRCU = function () {
-            //$state.go('rcu', { roomId: $scope.checkinHotel.roomId });
-            $state.go('rcu', { roomId: 11 });
+            //判断该房间是否有房控信息
+            var promise = checkinSer.getRcusInfo($scope.checkinHotel.roomId);
+            promise.then(
+                function (data) {
+                    if (data.isSuccess && data.rows && data.rows.length > 0) {
+                        $state.go('rcu', { roomId: $scope.checkinHotel.roomId });
+                        //$state.go('rcu', { roomId: 11 });
+                    } else {
+                        popUpSer.showAlert(data.msg);
+                    }
+                },
+                function (data) {
+                    popUpSer.showAlert("获取房间的控制信息出现异常");
+                }
+                );
+        }
+        $scope.goToChoose = function () {
+            for (var index = 0; index < $scope.checkinHotel.itemVMs.length; index++) {
+                if ($scope.checkinHotel.itemVMs[index].itemTags && $scope.checkinHotel.itemVMs[index].itemTags.length > 0 && $scope.checkinHotel.itemVMs[index].itemTags[0].name === '挑') {
+                    $state.go('choose', { item: JSON.stringify($scope.checkinHotel.itemVMs[index]) });
+                    return false;
+                } else if (index == $scope.checkinHotel.itemVMs.length - 1) {
+                    //提示
+                    popUpSer.showAlert('服务暂未开放');
+                }
+            }
+            //forEach($scope.checkinHotel.itemVMs, function (hotelItem, index) {
+            //    if (hotelItem.itemTags && hotelItem.itemTags.length > 0 && hotelItem.itemTags[0].name === '挑') {
+            //        $state.go('choose', { item: JSON.stringify(hotelItem) });
+            //        return false;
+            //    } else if (index == $scope.checkinHotel.itemVMs.length - 1) {
+            //        //提示
+            //        popUpSer.showAlert('服务暂未开放');
+            //    }
+            //});
         }
         /*跳转“定位页面”*/
         $scope.goToLocation = function () {

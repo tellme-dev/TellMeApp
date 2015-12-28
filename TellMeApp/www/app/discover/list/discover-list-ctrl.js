@@ -9,16 +9,17 @@
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };
-            //跳转到发现详情
-            $scope.goDetail = function (targetType, targetId) {
-                if (targetType == 1) {//单个酒店 酒店ID
-                    console.log("单个酒店详情");
-                    $state.go('hotel', { hotelId: targetId, rootTagId: 0, itemId:0});
-                } else if (targetType == 2) {//酒店项目 itemid
-                    $state.go('hotelItem', { itemId: targetId });
-                } else if (targetType == 3) {//社区bbsid
-                    $state.go('bbs', { bbsId: targetId });
-                }
+            //跳转到发现详情(广告详情内容)
+            $scope.goToAd = function (adId) {
+                $state.go('adList', { 'adId': adId });
+                //if (targetType == 1) {//单个酒店 酒店ID
+                //    console.log("单个酒店详情");
+                //    $state.go('hotel', { hotelId: targetId, rootTagId: 0, itemId:0});
+                //} else if (targetType == 2) {//酒店项目 itemid
+                //    $state.go('hotelItem', { itemId: targetId });
+                //} else if (targetType == 3) {//社区bbsid
+                //    $state.go('bbs', { bbsId: targetId });
+                //}
              }
             /*跳转“个人信息页面”*/
             $scope.goToCustomer = function () {
@@ -68,13 +69,13 @@
                               vm.moredata = true;
                               vm.pageNo = 0;
                           }
+                          LoadingSvr.hide();
                       } else {
                           $scope.dataShow = false;
                           $scope.msgShow = true;
                       }
                     }
                   );
-                    LoadingSvr.hide();
                     $scope.$broadcast('scroll.infiniteScrollComplete');
                 }
             }

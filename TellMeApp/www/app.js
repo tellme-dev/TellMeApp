@@ -20,6 +20,8 @@
             setTimeout(function () {
                 navigator.splashscreen.hide();
             }, 4000);
+
+            console.log(navigator.contacts);
         }
         document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -87,6 +89,7 @@
             .state('doneSearch', { url: '/doneSearch', templateUrl: 'app/search/done/doneSearch.html', controller: 'doneSearchControll' })
 
             .state('rcu', { url: '/rcu?roomId', templateUrl: 'app/checkin/rcu/rcu.html', controller: 'rcuControll' })
+            .state('choose', { url: '/choose?item', templateUrl: 'app/checkin/choose/choose.html', controller: 'chooseControll' })
             ;
             var appLaunchCount = window.localStorage.getItem('launchCount');
             //需要进行页面测试，则修改下面的路由即可

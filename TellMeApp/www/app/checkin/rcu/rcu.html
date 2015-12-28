@@ -1,159 +1,162 @@
 ﻿<ion-view>
     <div class="bar bar-header item-input-inset sz-top">
         <button class="button icon button-clear ion-ios-arrow-back " style="color:#444" ng-click="goBack()"></button>
-        <h1 class="title sz-top-text">我的房间</h1>
+        <h1 class="title sz-top-text">客控</h1>
     </div>
-
     <ion-content style="background:#fff; ">
-        <div class="ke-top-nav" ng-if="roomcfgs">
-            <button ng-class="{kechooseBorder:(chooseRoomCfg ==roomcfg.index),keUnChooseBorder:(chooseRoomCfg !=roomcfg.index)}" style="width:33%;" ng-repeat="roomcfg in roomcfgs" ng-click="changeRoomCfg(roomcfg)"><img src="images/ke2.jpg" /><p>{{roomcfg.name}}</p></button>
-
-            <!--<button ng-class="{ke-col-rde fl:}" style="width:33%"><img src="images/ke1.jpg" /><p>客厅</p></button>
-            <button class="ke-col-rde fl" style="width:33%"><img src="images/ke2.jpg" /><p>主卧</p></button>
-            <button class="ke-col-rde fl" style="width:33%"><img src="images/ke3.jpg" /><p>客卧</p></button>-->
+        <div class="ke-top-nav">
+            <button class="ke-col-rde fl" ng-repeat="roomcfg in roomcfgs"><img ng-init="initRoomcfgImage($index,roomcfg)" ng-src="images/{{roomcfg.imageurl}}" ng-click="changeRoomcfg($index,roomcfg)" /><p>{{roomcfg.name}}</p></button>
             <div class="clear"></div>
         </div>
-
         <tab-slide-box tab="0">
-            <div class="tsb-icons" style="margin:0px;">
-                <div class="tsb-ic-wrp">
+            <div class="tsb-icons">
+                <div class="tsb-ic-wrp" style="height:80px;">
                     <ion-scroll direction="x" class="tsb-hscroll">
-                        <a href="javascript:;" class="{{tab.icon}}" ng-repeat="tab in tabs"
-                           on-finish-render="test()">{{tab.text}}</a>
+                        <!--<a href="javascript:;" class="{{tab.icon}}" ng-repeat="tab in room.tabs" on-finish-render="test()"><span>{{tab.tabName}}</span></a>-->
+                        <a href="javascript:;" class="{{tab.icon}}" on-finish-render="test()" ng-show="room.tabs['LT']"><span>{{room.tabs['LT'].tabName}}</span></a>
+                        <a href="javascript:;" class="{{tab.icon}}" on-finish-render="test()" ng-show="room.tabs['AC']"><span>{{room.tabs['AC'].tabName}}</span></a>
+                        <a href="javascript:;" class="{{tab.icon}}" on-finish-render="test()" ng-show="room.tabs['CT']"><span>{{room.tabs['CT'].tabName}}</span></a>
+                        <a href="javascript:;" class="{{tab.icon}}" on-finish-render="test()" ng-show="room.tabs['SV']"><span>{{room.tabs['SV'].tabName}}</span></a>
                     </ion-scroll>
                 </div>
             </div>
             <ion-slide-box on-slide-changed="slideHasChanged($index)" class="ke-ion-slide-box" show-pager="">
 
-                <ion-slide>
+                <ion-slide ng-show="room.tabs['LT']">
                     <div class="lamp-cont">
-                        <div>
-                            <span class="lamp-cont-span" style="font-family:'微软雅黑';">客厅灯</span>
-                            <div class="ma-button">
-                                <div class="fl bag-cont" style="width:33%;" ng-click="changeLRLamp(0)"><img class="img-style" style="border-color:{{lrLampBorder0}};background:{{lrBackGround0}};" src="images/ml.png" /></div>
-                                <div class="fl bag-cont" style="width:33%;" ng-click="changeLRLamp(1)"><img class="img-style" style="border-color:{{lrLampBorder1}};background:{{lrBackGround1}};" src="images/sm.png" /></div>
-                                <div class="fl bag-cont" style="width:33%;" ng-click="changeLRLamp(2)"><img class="img-style" style="border-color:{{lrLampBorder2}};background:{{lrBackGround2}};" src="images/ml.png" /></div>
+                        <div class="lamp_cont-img"></div>
+
+                        <div ng-if="room" style="width:100%;">
+                            <div class="fl" style="width:50%;" ng-repeat="cfgItem in room.rcuCfgItems" ng-show="cfgItem.dtype=='LT'">
+                                <div class="row padding-0">
+                                    <div class="col col-100 lamp-tie border-le-none">{{cfgItem.name}}</div>
+                                </div>
+                                <div class="row lamp-cont-ner">
+                                    <div class="row padding-0" ng-if="cfgItem.opers[1].labels.length ==3" style="margin-top:4px">
+                                        <div class="col border-d border-ri-none border-img"><img src="images/dengguang.png" class="imger" width="100%" /></div>
+                                        <div class="col border-d border-ri-none border-img"><img src="images/dengguang-2.png" class="imger" width="100%" /></div>
+                                        <div class="col border-d border-le-none border-img"><img src="images/dengguang.png" class="imger" width="100%" /></div>
+                                    </div>
+                                    <div class="row padding-0" ng-if="cfgItem.opers[1].labels.length ==2" style="margin-top:4px">
+                                        <div class="col border-d border-img2"><img src="images/ch1.png" class="imger" width="78%" /></div>
+                                        <div class="col border-der border-img2" style="border-left:none"><img src="images/ch2.png" class="imger" width="78%" /></div>
+                                    </div>
+                                </div>
                                 <div class="clear"></div>
                             </div>
                         </div>
+                        <input type="button" value="ON" class="button-kg" style="height:60px;border-top:1px solid #ddd;" />
+                    </div>
+                </ion-slide>
 
-                        <div>
-                            <span class="lamp-cont-span ma-button" style="font-family:'微软雅黑';">卫生间灯</span>
-                            <div class="ma-button">
-                                <div class="fl bag-conter" style="width:33%" ng-click="changeToiletLamp(0)"><img class="img-style" src="images/xs.png" style="border-color:{{toiletLampBorder0}};background:{{toiletBackGround0}};"/></div>
-                                <div class="fl bag-conter" style="width:33%" ng-click="changeToiletLamp(1)"><img class="img-style" src="images/pm.png" style="border-color:{{toiletLampBorder1}};background:{{toiletBackGround1}};"/></div>
-                                <div class="clear"></div>
+                <ion-slide ng-show="room.tabs['AC']">
+                    <div class="conditioner-top-cont">
+                        <span style="font-family:'黑体';">24<a>°</a></span>
+                        <strong>温度</strong>
+                    </div>
+                    <div class="row padding-0">
+                        <button class="col conditioner-button-on"></button>
+                        <button class="col conditioner-button-to"></button>
+                    </div>
+                    <div class="range range-balanced" style="border-bottom:1px solid #ddd; height:65px;">
+                        <i class="icon fs-le"><img src="images/kontiao5.png" style="width:70%" /></i>
+                        <input type="range" name="volume" min="0" max="100" value="50" class="input-ct">
+                        <i class="icon fs-ri"><img src="images/kontiao5.png" style="width:90%" /></i>
+                    </div>
+                    <input type="button" value="ON" class="button-if" />
+                </ion-slide>
+
+                <ion-slide ng-show="room.tabs['CT']">
+                    <div class="style-cont">
+                        <div class="cou-images"></div>
+                        <div class="row padding-0">
+                            <button class="col cou-button-on">窗帘</button>
+                            <button class="col cou-button-to">窗纱</button>
+                        </div>
+                        <div class="row padding-0" style="margin-top:0px;">
+                            <div class="col cou-col">
+                                <div class="style-cont-to2">
+                                    <label class="toggle toggle-balanced">
+                                        <input type="checkbox">
+                                        <div class="track no-track no-style2">
+                                            <span class="fr no-style-span-l">ON</span>
+                                            <span class="fl no-style-span-r">OFF</span>
+                                            <div class="handle handle-re handle-style2"></div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col cou-col">
+                                <div class="style-cont-to2">
+                                    <label class="toggle toggle-balanced">
+                                        <input type="checkbox">
+                                        <div class="track no-track no-style2">
+                                            <span class="fr no-style-span-l">ON</span>
+                                            <span class="fl no-style-span-r">OFF</span>
+                                            <div class="handle handle-re handle-style2"></div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-
-                        <button class="lamp-button" ng-click="lrSwitch()" style="background-image:{{lrBackgroundimage}}"></button>
+                        <input type="button" value="ON" class="button-if2" />
                     </div>
                 </ion-slide>
-                <ion-slide>
-                    <div tellmeac></div>
-                    <!--<div class="lamp-conter">
-                        <div class="kt-cont">
-                            <button class="kt-but-lef" ng-click="changeTemplature(0)">
-                                <img src="images/kongtiao2.png" style="width:100%;" />
-                            </button>
 
-                            <div class="kt-cont-cot">
-                                <div class="kt-cont-cot-div">
-                                    <span>{{templature}}</span>
-                                    <p>温度</p>
+                <ion-slide ng-show="room.tabs['SV']">
+                    <div class="style-cont">
+                        <div class="service-img"></div>
+                        <div class="row padding-0">
+                            <button class="col service-button">勿打扰</button>
+                            <button class="col service-button">请稍后</button>
+                            <button class="col service-buttoner">请清洁</button>
+                        </div>
+                        <div class="row  service-tit">
+                            <div class="col service-not">
+                                <div class="style-cont-to2">
+                                    <label class="toggle toggle-balanced">
+                                        <input type="checkbox">
+                                        <div class="track no-track no-style3">
+                                            <span class="fr no-style-span-l">ON</span>
+                                            <span class="fl no-style-span-r">OFF</span>
+                                            <div class="handle handle-rer handle-style3"></div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </label>
                                 </div>
                             </div>
-
-                            <button class="kt-but-rig"  ng-click="changeTemplature(1)">
-                                <img src="images/kongtiao-3.png" style="width:100%;" />
-                            </button>
-                        </div>
-                        <div class="range range-balanced" style="margin-top:1.5em;">
-                            <i class="icon fs-le"></i>
-                            <input type="range" name="volume" min="0" max="100" value="50" class="input-ct">
-                            <i class="icon fs-ri"></i>
-                        </div>
-                        <div class="text-fs">风速</div>
-                        <button class="kt-button-switch" ng-click="conSwitch()" style="background-image:{{conBackgroundimage}}"></button>
-                    </div>-->
-                </ion-slide>
-                <ion-slide>
-                    <div class="style-cont">
-                        <div class="style-cont-to">
-                            <label class="toggle toggle-balanced fl">
-                                <input type="checkbox">
-                                <div class="track no-track no-style">
-                                    <span class="fr no-style-span-l">NO</span>
-                                    <span class="fl no-style-span-r">OFF</span>
-                                    <div class="handle handle-re handle-style"></div>
-                                    <div class="clear"></div>
+                            <div class="col service-not">
+                                <div class="style-cont-to2">
+                                    <label class="toggle toggle-balanced">
+                                        <input type="checkbox">
+                                        <div class="track no-track no-style3">
+                                            <span class="fr no-style-span-l">ON</span>
+                                            <span class="fl no-style-span-r">OFF</span>
+                                            <div class="handle handle-rer handle-style3"></div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </label>
                                 </div>
-                            </label>
-                            <span class="fr cl-text-span">窗帘</span>
-                            <div class="clear"></div>
-                        </div>
-                        <div class="style-cont-to">
-                            <label class="toggle toggle-balanced fl">
-                                <input type="checkbox">
-                                <div class="track no-track no-style">
-                                    <span class="fr no-style-span-l">NO</span>
-                                    <span class="fl no-style-span-r">OFF</span>
-                                    <div class="handle handle-re handle-style"></div>
-                                    <div class="clear"></div>
+                            </div>
+                            <div class="col service-not">
+                                <div class="style-cont-to2">
+                                    <label class="toggle toggle-balanced">
+                                        <input type="checkbox">
+                                        <div class="track no-track no-style3">
+                                            <span class="fr no-style-span-l">ON</span>
+                                            <span class="fl no-style-span-r">OFF</span>
+                                            <div class="handle handle-rer handle-style3"></div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </label>
                                 </div>
-                            </label>
-                            <span class="fr cl-text-span">窗纱</span>
-                            <div class="clear"></div>
-                        </div>
-                        <button class="cl-button-switch" ng-click="curtainSwitch()" style="background-image:{{curtainBackgroundimage}}"></button>
-                    </div>
-                </ion-slide>
-                <ion-slide>
-                    <div class="style-cont">
-                        <div class="style-cont-to">
-                            <label class="toggle toggle-balanced fl">
-                                <input type="checkbox">
-                                <div class="track no-track no-style">
-                                    <span class="fr no-style-span-l">NO</span>
-                                    <span class="fl no-style-span-r">OFF</span>
-                                    <div class="handle handle-re handle-style"></div>
-                                    <div class="clear"></div>
-                                </div>
-                            </label>
-                            <span class="fr cl-text-span">请勿打扰</span>
-                            <div class="clear"></div>
-                        </div>
-                        <div class="style-cont-to">
-                            <label class="toggle toggle-balanced fl">
-                                <input type="checkbox">
-                                <div class="track no-track no-style">
-                                    <span class="fr no-style-span-l">NO</span>
-                                    <span class="fl no-style-span-r">OFF</span>
-                                    <div class="handle handle-re handle-style"></div>
-                                    <div class="clear"></div>
-                                </div>
-                            </label>
-                            <span class="fr cl-text-span">请稍候</span>
-                            <div class="clear"></div>
-                        </div>
-                        <div class="style-cont-to">
-                            <label class="toggle toggle-balanced fl">
-                                <input type="checkbox">
-                                <div class="track no-track no-style">
-                                    <span class="fr no-style-span-l">NO</span>
-                                    <span class="fl no-style-span-r">OFF</span>
-                                    <div class="handle handle-re handle-style"></div>
-                                    <div class="clear"></div>
-                                </div>
-                            </label>
-                            <span class="fr cl-text-span">请清洁</span>
-                            <div class="clear"></div>
+                            </div>
                         </div>
                     </div>
                 </ion-slide>
-
             </ion-slide-box>
         </tab-slide-box>
     </ion-content>
-
 </ion-view>

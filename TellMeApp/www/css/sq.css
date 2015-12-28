@@ -535,15 +535,13 @@ padding:0px 10px; width:100%
 
 
     /*客控*/
-.style-cont {
-    padding:30px 50px;
-}
+
 .slider-slide h3{
 color:#fff;
 margin-top:10px;
 }
 .scroll{
-height:100%;
+height:auto;
 }
  .tabbed-slidebox .tsb-icons:after{
 display:none;}
@@ -556,6 +554,7 @@ display:none;}
 .style-cont-to {
     width:100%; height:44px; margin-bottom:20px;
 }
+
 .toggle .handle-style{
     width:70px; height:36px;border-radius:15px;
 }
@@ -564,9 +563,13 @@ display:none;}
   background-color: #6dcda5; 
 
 }
+.tabbed-slidebox .tsb-icons {
+    margin:0px; height:90px;
+}
 .toggle .no-style {
     width:140px; height:40px;border-radius:15px;
 }
+
 .no-style .no-style-span-l{
     display:block; height:40px;line-height:35px;color:#e6e6e6; font-size:1.3em; margin-right:15px; font-weight:bold;
 }
@@ -575,112 +578,44 @@ display:none;}
 }
 
 .ke-top-nav {
-    background:#e7e8ea; padding:0px; margin-top:45px;
+ padding:0px; margin-top:45px;background:#fff; border-bottom:1px solid #ddd
 }
 
 .ke-col-rde {
-   width:33%;height:80px;border:none; background-color:#fff; border-bottom:3px solid #18937b; margin:0px 0.1%;
+   width:33%;height:95px;border:none; background-color:#fff; border-right:1px solid #ddd; margin:0px 0.1%;text-align:center;
+   padding:10px 0px;
 }
+.ke-border-none {
+     border:none
+}
+
 .ke-border {
     border-bottom:3px solid #6dcda5;
 }
-.kechooseBorder {
-    width:33%;height:80px;border:none; background-color:#fff;margin:0px 0.1%;
-    border-bottom:3px solid #6dcda5;float:left;
-}
-.kechooseBorder img {
-        width:40%; height:40px; margin:0 auto ;margin-top:5px;
-    }
-.kechooseBorder p {
-    margin-top:3px; color:#a8a8a8; margin-bottom:0px;
-}
-.keUnChooseBorder {
-    width:33%;height:80px;border:none; background-color:#fff; border-bottom:3px solid #18937b; margin:0px 0.1%;float:left;
-}
-.keUnChooseBorder img {
-        width:40%; height:40px; margin:0 auto ;margin-top:5px;
-    }
-.keUnChooseBorder p {
-    margin-top:3px; color:#a8a8a8; margin-bottom:0px;
-}
     .ke-col-rde img {
-        width:40%; height:40px; margin:0 auto ;margin-top:5px;
+         width:50px; height:50px;
     }
 .ke-col-rde p {
-    margin-top:3px; color:#a8a8a8; margin-bottom:0px;
-}
-.ke-ion-slide-box {
-    height:450px;
-}
-    /*灯控*/
-.lamp-cont {
-    padding:20px 10px; background-position:bottom;background-size:100%;
+    color:#a8a8a8; margin-bottom:0px;
 }
 
-.lamp-cont-span {
-    display:block; width:100%;text-align:center;color:#1abc9c; font-family:'微软雅黑';margin-bottom:10px;
+.button-kg {
+    width:100%; height:65px; background:#fff; border:none;border-bottom:1px solid #ddd; font-size:1.2em
 }
-.lamp-button {
-    background:url(../images/kongtiaor-on.png)no-repeat 50% 0; background-size:100%; display:block; width:100px; height:100px; border:none; margin:0 auto;margin-top:1.5em;border-radius:50px;box-shadow: 0 2px 7px rgba(225, 225, 225, 0.3), 0 1px 1px rgba(225, 225, 225, 0.3);
+.button-if2 {
+    width:100%; height:65px; background:#fff; border:none;border-bottom:1px solid #ddd; font-size:1.2em
 }
-.ma-button {
-    margin-bottom:10px;
-}
-.img-style {
-    background:#666;border:2px solid; border-radius:50%; width:90%; height:90%; border-color:#666;
+.button-if {
+    width:100%; height:65px; background:#fff; border:none;border-bottom:1px solid #ddd; font-size:1.2em
 }
 
-/*空调*/
-.kt-cont {
-    padding:0px 10px;position:relative;
-}
-.kt-but-lef {
-    width:8%;position:absolute; left:20px; bottom:2px; border:none;background:none; padding:0px;
-}
-.kt-cont-cot {
-    width:225px; background:url(../images/kontiao-1.png) no-repeat 50% 0;background-size:200px; height:200px; margin:0 auto; padding-top:70px;
-}
-.kt-cont-cot-div {
-    text-align:center; margin:0 auto;
-}
-    .kt-cont-cot-div span {
-        font-size:3em;
-    }
-    .kt-cont-cot-div p {
-        margin-top:5px; color:#a4a4a4;
-    }
-.kt-but-rig {
-    width:8%;position:absolute; right:20px; bottom:0px; border:none;background:none; padding:0px;
-}
-.fs-le {
-    background:url(../images/kontiao5.png) no-repeat 50% 50%; background-size:80%;width:50px; height:50px;
-}
-.input-ct {
-    background-size:99% 30px;
-}
-.fs-ri {
-    background:url(../images/kontiao5.png) no-repeat 50% 50%; background-size:100%;width:50px; height:50px;
-}
-.text-fs {
-    width:100%; text-align:center; color:#a4a4a4
-}
-.kt-button-switch {
-    background:url(../images/kongtiaor-on.png)no-repeat 50% 0; background-size:100%; display:block; width:100px; height:100px; border:none; margin:0 auto;margin-top:1.5em;border-radius:50px;box-shadow: 0 2px 7px rgba(225, 225, 225, 0.3), 0 1px 1px rgba(225, 225, 225, 0.3);
-}
-/*窗帘*/
-.cl-text-span {
-    color:#6dcda5;line-height:40px;font-weight:bold
-}
-.cl-button-switch {
-    background:url(../images/kongtiaor-on.png)no-repeat 50% 0; background-size:100%; display:block; width:100px; height:100px; border:none; margin:0 auto; margin-top:50px; border-radius:50px;box-shadow: 0 2px 7px rgba(225, 225, 225, 0.3), 0 1px 1px rgba(225, 225, 225, 0.3);
-}
 
 /*入住*/
         .cont-rz {
             margin-top:44px;
         }
         .cont-rz-top {
-            width:100%;
+            width:100%; margin-top:44px;
         }
             .cont-rz-top img {
                 width:100% ;height:130px;
@@ -689,26 +624,210 @@ display:none;}
                 margin-bottom:3px;
             }
         .gn-cont-rz {
-            padding-top:10px; background:#eeeced
+            background:#eeeced
         }
             .gn-cont-rz span {
                 padding-left:20px;margin-top:5px; display:inline-block;color:#717171; font-family:1.3em; font-family:'微软雅黑';
             }
         .ru-rede {
-            border:none; background:none;
+            border:none; background:none;font-size:1.25em;color:#fff; height:85px;position:relative
         }
+.ru-rede-text {
+    position:absolute; width:93px; top:10px;height:69px;text-align:center;line-height:65px;
+}
             .ru-rede img {
                 width:100%; height:69px;
             }
         .fw-rz-cont {
-            background:#eeeced
+            background:#fff;padding:0px 10px;
         }
-            .fw-rz-cont span {
-                padding-left:20px;display:inline-block;color:#717171; font-family:1.3em; font-family:'微软雅黑';
-            }
+           
         .fw-rz-ser {
-            width:100%; background:#fff;padding:10px 15px; margin-top:10px;
+            width:100%; background:#fff; margin-top:10px;height:95px;position:relative;
         }
-            .fw-rz-ser img {
-                width:100%;
-            }
+        .fw-po{
+            width:100px;height:95px;  color:#fff; text-align:center; line-height:103px; font-size:20px;position:absolute;top:0px;
+        }
+        .fw-po-l{
+            left:0px;background:#7be370;
+        }
+        .fw-po-r {
+            right:0px;background:#ff6faf;
+        }  
+
+/*客控*/
+.style-cont {
+
+}
+.toggle .no-style2 {
+    width:140px; height:30px;border-radius:8px;
+}
+.toggle .handle-style2{
+    width:70px; height:26px;border-radius:8px; margin-top:0px;
+}
+.no-style2 .no-style-span-r {
+    display:block; height:30px;line-height:25px;color:#fff; font-size:1em; margin-left:15px; font-weight:bold;
+}
+.no-style2 .no-style-span-l{
+    display:block; height:30px;line-height:25px;color:#e6e6e6; font-size:1em; margin-right:15px; font-weight:bold;
+}
+.style-cont-to2 {
+    width:100%;margin-top:17px
+}
+
+
+
+   /*灯控*/
+.lamp-cont {
+     background-position:bottom;background-size:100%;
+}
+.lamp_cont-img {
+    width:100%;height:130px;background:url(../images/lamp.png)no-repeat 50% 50%;background-size:30%;margin-top:10px; margin-bottom:9px;
+}
+.padding-0 {
+    padding:0px;
+}
+.lamp-tie {
+   border:1px solid #ddd;font-size:1.2em;font-family:'黑体'; height:65px; line-height:55px;color:#666
+}
+.border-le-none {
+    border-left:none;
+}
+.border-ri-none {
+    border-right:none;
+}
+.lamp-cont-ner {
+    padding:0px; margin-top:-1px
+}
+.border-d {
+    border:1px solid #ddd;  border-left:none;  
+}
+.border-der {
+    border:1px solid #ddd; border-left:none;border-right:none; 
+}
+.border-img .imger{
+    background:#6d6d6d
+}
+.border-img2 .imger{
+    background:#6d6d6d
+}
+/*服务*/
+.service-img {
+    width:100%;height:130px;background:url(../images/chuanglian.png)no-repeat 50% 50%;background-size:80%;margin-top:10px; margin-bottom:9px;
+}
+.toggle .no-style3 {
+  width:80px;  height:30px;border-radius:8px;
+}
+.toggle .handle-style3{
+  width:40px;  height:26px;border-radius:8px; margin-top:0px;
+}
+.no-style3 .no-style-span-r {
+    display:block; height:30px;line-height:25px;color:#fff; font-size:1em; margin-left:5px; font-weight:bold;
+}
+.no-style3 .no-style-span-l{
+    display:block; height:30px;line-height:25px;color:#e6e6e6; font-size:1em;margin-right:5px; font-weight:bold;
+}
+.toggle input:checked + .track .handle-rer {
+  -webkit-transform: translate3d(20px, 0, 0);
+  transform: translate3d(36px, 0, 0);
+  background-color: #fff;
+
+}
+.service-button {
+    height:65px;border:1px solid #ddd;border-left:none; background:none;font-size:1.2em; color:#666666;
+}
+.service-buttoner {
+    height:65px;border:1px solid #ddd;border-right:none;border-left:none; background:none;font-size:1.2em;color:#666666;
+}
+.service-tit {
+    padding:0px;margin-top:0px;
+}
+.service-not {
+    height:65px;border-bottom:1px solid #ddd; background:none;border-top:none;padding:0px 5px;
+}
+/*空调*/
+.conditioner-top-cont {
+    margin-top:50px;width:100%; height:auto; margin-bottom:24px;
+}
+    .conditioner-top-cont span {
+        font-size:7em; margin-top:50px; font-family:'微软雅黑'; position:relative;color:#666;
+    }
+    .conditioner-top-cont a {
+        font-size:0.5em; margin-top:-5px; position:absolute; top:0.9em;
+    }
+    .conditioner-top-cont strong {
+        display:block; font-size:1em;color:#999; font-family:'黑体'; margin:5px 0px; 
+    }
+.conditioner-button-on {
+    background:url(../images/kongtiao2.png) no-repeat 50% 25%;background-size:20%;height:65px;border:1px solid #ddd;border-left:none;
+}
+.conditioner-button-to {
+    background:url(../images/kongtiao-3.png) no-repeat 50% 50%;background-size:20%;height:65px;border:1px solid #ddd;border-right:none;
+}
+
+/*窗帘*/
+.cou-images {
+    width:100%;height:130px;background:url(../images/chuanglian.png)no-repeat 50% 50%;background-size:80%;margin-top:10px; margin-bottom:9px;
+}
+.cou-button-on {
+    height:65px;border:1px solid #ddd;border-left:none; background:none;font-size:1.2em; color:#666;
+}
+.cou-button-to {
+    height:65px;border:1px solid #ddd;border-left:none; background:none;font-size:1.2em;color:#666;
+}
+.ma-to-0 {
+    margin-top:0px;
+}
+.cou-col {
+    height:65px;border:1px solid #ddd;border-left:none; background:none;border-top:none;padding:0px 5px;
+}
+
+
+/*挑*/
+.t-cont {
+    margin-top:55px;
+}
+.t-cont-padd {
+    padding:0px 10px;
+}
+.t-cont-img {
+    width:100%;height:130px;
+}
+.t-conter {
+    text-align:center;width:177px; margin:0 auto; margin-top:15px; margin-bottom:15px;
+}
+.t-conter .t-conter-on {
+    color:#707070
+}
+.t-conter .t-conter-to {
+    font-size:1.6em; color:#707070; margin:0px 15px;
+}
+.t-botton-cont {
+    width:100%; padding:0px 5px;
+}
+.t-botton-cont .t-botton-padd {
+    width:50%;padding:5px; height:206px;
+}
+.t-botton-cont .t-botton-padd .t-botton-img-cont {
+    background:#fff; padding:10px;
+}
+    .t-botton-cont .t-botton-padd .t-botton-img-cont img {
+        width:100%; height:110px;
+    }
+.t-botton-tit {
+    margin-top:3px;color:#767676;margin-top:3px;
+}
+.t-botton-tit-co {
+    color:#e95a8c;margin-top:3px;margin-top:3px;
+}
+.t-cont-er {
+    margin-top:10px;
+}
+
+/*E房超市*/
+.t-cont-ertop {
+    padding:10px 10px;padding-top:0px; 
+}
+    .t-cont-ertop div {
+        background:#fff; font-size:1.6em; color:#707070; text-align:center;padding:10px 0px;
+    }
