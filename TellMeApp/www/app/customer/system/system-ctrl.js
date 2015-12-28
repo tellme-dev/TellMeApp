@@ -12,7 +12,12 @@
             $scope.goData = function () {
                 $state.go('data');
             }
+            //跳转到关于
+            $scope.goAbout = function () {
+                $state.go('about');
+            }
             //退出
+
             $scope.loginOut = function () {
                 window.localStorage['userTel'] ="";
                 window.localStorage['userPsd'] = "";

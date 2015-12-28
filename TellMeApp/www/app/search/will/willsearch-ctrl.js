@@ -1,5 +1,5 @@
 ﻿angular.module('tellme')
-    .controller('willSearchControll', ['$scope', '$ionicHistory', '$state', 'LoadingSvr', 'searchSer', 'appConfig', function ($scope, $ionicHistory,$state, LoadingSvr, searchSer, appConfig) {
+    .controller('willSearchControll', ['$scope', '$ionicHistory', '$state', 'LoadingSvr', 'searchSer', 'appConfig', 'popUpSer', function ($scope, $ionicHistory, $state, LoadingSvr, searchSer, appConfig, popUpSer) {
         $scope.baseUrl = appConfig.server.getUrl();
         $scope.cancelBtnText = '取消';
         //是否进行搜索，进行页面的转换
@@ -32,10 +32,12 @@
                     LoadingSvr.hide();
                     $scope.recommandHotels = data.rows;
                 } else {
+                    popUpSer.showAlert(data.msg);
                     console.log(data.msg);
                 }
             },
             function (data) {
+                popUpSer.showAlert("未知错误");
                 console.log('异常');
             });
         //点击"取消"或者"搜索"按钮
