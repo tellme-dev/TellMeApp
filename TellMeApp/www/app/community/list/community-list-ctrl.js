@@ -1,7 +1,7 @@
 ﻿
 angular.module('tellme')
-	.controller('communityControll', ['$scope', '$window', '$state', '$ionicHistory', '$ionicLoading', 'communitySer', 'commonSer', 'appConfig', 'LoadingSvr', 'tellmeActionSheet',
-        function ($scope, $window, $state, $ionicHistory, $ionicLoading, communitySer, commonSer, appConfig, LoadingSvr, tellmeActionSheet) {
+	.controller('communityControll', ['$scope', '$window', '$state', '$ionicHistory', '$ionicLoading', 'communitySer', 'commonSer', 'appConfig', 'LoadingSvr', 'tellmeActionSheet', 'popUpSer',
+        function ($scope, $window, $state, $ionicHistory, $ionicLoading, communitySer, commonSer, appConfig, LoadingSvr, tellmeActionSheet, popUpSer) {
 			$scope.baseUrl = appConfig.server.getUrl();
 			/*返回前一个界面*/
 			$scope.$window = $window;
@@ -70,7 +70,7 @@ angular.module('tellme')
 				//var el = document.getElementById('bbs-' + id);
 				//var answerText = el.value;
 				if (answerText == ""||answerText == undefined) {
-					alert("请输入内容");
+					 popUpSer.showAlert("请输入内容");
 					return;
 				}
 				var isLogin = $scope.userIsLogin();
@@ -127,7 +127,7 @@ angular.module('tellme')
                 } else if (shareResult == 1) {
                     commonSer.saveShare(detail.id);
                 } else {
-                    alert('蠢货，分享出现其他错误');
+                     popUpSer.showAlert('蠢货，分享出现其他错误');
                 }
 			}
 
@@ -178,7 +178,7 @@ angular.module('tellme')
 									vm.loadMore();
 									console.log('收藏成功');
 								} else {
-									alert(data.msg);
+									 popUpSer.showAlert(data.msg);
 									console.log(data.msg);
 								}
 							},

@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('answerBbsControll', ['$scope', '$ionicHistory', '$ionicActionSheet', '$stateParams', 'communitySer',
-        function ($scope, $ionicHistory, $ionicActionSheet, $stateParams, communitySer) {
+    .controller('answerBbsControll', ['$scope', '$ionicHistory', '$ionicActionSheet', '$stateParams', 'communitySer', 'popUpSer',
+        function ($scope, $ionicHistory, $ionicActionSheet, $stateParams, communitySer, popUpSer) {
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };
@@ -20,7 +20,7 @@
                     var promise = communitySer.answerBbs(jsonData).then(
                   function (data) {
                       if (data.isSuccess) {
-                        alert('回复成功');
+                         popUpSer.showAlert('回复成功');
                           $scope.goBack();
                       } else {
                           console.log(data.msg);
