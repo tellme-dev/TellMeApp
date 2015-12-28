@@ -65,22 +65,35 @@
                             <a class="tab-item jd-tab-itemer" href="#">
                                 <i class="icon ion-chatbox"></i>
                             </a>
-                            <a class="tab-item jd-tab-itemer" href="#">
+                            <a class="tab-item jd-tab-itemer" href="#" ng-click="share(item.item.name,item.item.text,item.itemDetail.imageUrl);">
                                 <i class="icon ion-share"></i>
                             </a>
-                            <a class="tab-item jd-tab-itemer" href="#">
+                            <a class="tab-item jd-tab-itemer" href="#" ng-click="savePraise(item.item.id)">
                                 <i class="icon ion-thumbsup"></i>
                             </a>
                             <a class="tab-item jd-tab-itemer" href="#" ng-click="saveCollection(item.item.id)">
                                 <i class="icon ion-android-favorite"></i>
                             </a>
                         </div>
+                        <!--
+                        <div class="sq-show">
+                            <div class="item-input-inset">
+                                <label class="item-input-wrapper">
+                                    <input type="text" placeholder="写点什么..." style="width:100%"/>
+                                </label>
+                                <button class="button button-small butt-op" style="color:black;">
+                                    发送
+                                </button>
+                            </div>
+                        </div>
+                        -->
 
                     </div>
                 </div>
-
+                
             </div>
             <!--内容块-->
+            <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
         </ion-content>
 
 
