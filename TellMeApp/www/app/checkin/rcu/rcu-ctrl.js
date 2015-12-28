@@ -206,44 +206,18 @@
             }
             //调用RCU指令改变窗帘开关的模式
         }
-        $scope.changeTemplature = function (direction) {
+
+        //改变空调温度
+        $scope.changeACTemplature = function (direction, cfgItem) {
             if (direction == 1) {
-                $scope.templature += 1;
+                cfgItem.templature += 1;
             } else {
-                $scope.templature -= 1;
+                cfgItem.templature -= 1;
             }
             //调用RCU指令改变空调温度的模式
         }
-    }])
-.directive('tellmeac', function () {
-    return {
-        restrict: 'AE',
-        //scope: {
-        //    //configuration:'='
-        //},
-        template: '<div class="lamp-conter"><div class="kt-cont"><button class="kt-but-lef" ng-click="changeTemplature(0)"><img src="images/kongtiao2.png" style="width:100%;" /></button><div class="kt-cont-cot"><div class="kt-cont-cot-div"><span>{{templature}}</span><p>温度</p></div></div><button class="kt-but-rig"  ng-click="changeTemplature(1)"><img src="images/kongtiao-3.png" style="width:100%;" /></button></div><div class="range range-balanced" style="margin-top:1.5em;"><i class="icon fs-le"></i><input type="range" name="volume" min="0" max="100" value="50" class="input-ct"><i class="icon fs-ri"></i></div><div class="text-fs">风速</div><button class="kt-button-switch" ng-click="conSwitch()" style="background-image:{{conBackgroundimage}}"></button></div>',
-        link(scope, element, attrs) {
-            scope.templature = 24;
-            scope.ConBackgroundimage = 'url(images/kongtiaor-to.png)';
-            scope.isConSwitch = true;
-            scope.changeTemplature = function (direction) {
-                if (direction == 1) {
-                    scope.templature += 1;
-                } else {
-                    scope.templature -= 1;
-                }
-                //调用RCU指令改变空调温度的模式
-            }
-            scope.conSwitch = function () {
-                if (scope.isConSwitch) {
-                    scope.conBackgroundimage = 'url(images/kongtiaor-on.png)';
-                    scope.isConSwitch = false;
-                } else {
-                    scope.conBackgroundimage = 'url(images/kongtiaor-to.png)';
-                    scope.isConSwitch = true;
-                }
-                //调用RCU指令改变空调开关的模式
-            }
+
+        $scope.switch = function (oper, tag) {
+            var order = '#@{src:"app",dst:"rcu",type:"csts",sid:"' + $scope.room.serialId + '",uid:"' + window.localStorage['userId'] + '",' + $scope.room.sn + ':{' + tag+':'+oper.value + '}}@#';
         }
-    };
-})
+    }])

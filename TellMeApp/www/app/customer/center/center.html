@@ -205,10 +205,10 @@
                 <!--酒店列表-->
                 <!--主题、广告-->
                 <div ng-if="save.type==2" class="xq-cont" style="margin-bottom:10px;">
-                    <a><img ng-src="{{host}}{{save.advertisement.imgUrl}}" err-src="images/failed.png" /></a>
-                    <p class="zxx_text_overflow-2">
+                    <a><img ng-src="{{host}}{{save.advertisement.imgUrl}}" ng-click="goToAd(save.advertisement.id)" err-src="images/failed.png" /></a>
+                    <!--<p class="zxx_text_overflow-2">
                         {{save.advertisement.text}}
-                    </p>
+                    </p>-->
                 </div>
                 <!--主题、广告-->
                 <!--bbs-->
