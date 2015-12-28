@@ -287,4 +287,25 @@
                 });
             return deferred.promise;
         }
+        //删除个人话题
+        this.deleteCustomerTopic = function (topicId, customerId) {
+            var url = baseUrl + 'app/customer/deleteCustomerTopic.do';
+            var dataJSON = JSON.stringify({
+                customerId: customerId,
+                bbsId: topicId
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: dataJSON }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
     }]);

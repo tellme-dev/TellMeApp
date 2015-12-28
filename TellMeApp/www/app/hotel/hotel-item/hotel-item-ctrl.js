@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('hotelItemControll', ['$scope', '$ionicHistory', '$stateParams', '$ionicHistory', 'hotelSer', 'commonSer', 'tellmeActionSheet', 'appConfig', 'LoadingSvr', 'communitySer',
-        function ($scope, $ionicHistory, $stateParams, $ionicHistory, hotelSer, commonSer, tellmeActionSheet, appConfig, LoadingSvr, communitySer) {
+    .controller('hotelItemControll', ['$scope', '$ionicHistory', '$stateParams', '$ionicHistory', 'hotelSer', 'commonSer', 'tellmeActionSheet', 'appConfig', 'LoadingSvr', 'communitySer', 'popUpSer',
+        function ($scope, $ionicHistory, $stateParams, $ionicHistory, hotelSer, commonSer, tellmeActionSheet, appConfig, LoadingSvr, communitySer, popUpSer) {
             var itemId = $stateParams.itemId;
             $scope.baseUrl = appConfig.server.getUrl();
             $scope.goBack = function () {
@@ -27,7 +27,7 @@
                 var el = document.getElementById('hotel-' + hotelId);
                 var answerText = el.value;
                 if (answerText == "") {
-                    alert("请输入内容");
+                    popUpSer.showAlert("请输入内容");
                     return;
                 }
                 var isLogin = $scope.userIsLogin();

@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
- .controller('bbsControll', ['$scope', '$ionicHistory', '$state', '$stateParams', '$ionicHistory', '$window', 'bbsSer', 'communitySer', 'commonSer', 'tellmeActionSheet', 'appConfig', 'LoadingSvr',
-        function ($scope, $ionicHistory, $state, $stateParams, $ionicHistory, $window, bbsSer, communitySer, commonSer, tellmeActionSheet, appConfig, LoadingSvr) {
+ .controller('bbsControll', ['$scope', '$ionicHistory', '$state', '$stateParams', '$ionicHistory', '$window', 'bbsSer', 'communitySer', 'commonSer', 'tellmeActionSheet', 'appConfig', 'LoadingSvr', 'popUpSer',
+        function ($scope, $ionicHistory, $state, $stateParams, $ionicHistory, $window, bbsSer, communitySer, commonSer, tellmeActionSheet, appConfig, LoadingSvr, popUpSer) {
             $scope.baseUrl = appConfig.server.getUrl();
             var bbsId = $stateParams.bbsId;
             // $state.go('login', {pageName: 'communityList'});
@@ -54,7 +54,7 @@
             var isLogin = $scope.userIsLogin();
             var answerText = $scope.globalVar.answerText;
             if (answerText == "" || answerText == undefined) {
-                alert("请输入内容");
+                 popUpSer.showAlert("请输入内容");
                 return;
             }
             if (isLogin) {//如果用户已经登录
@@ -121,7 +121,7 @@
                          );
                           console.log("点赞成功");
                       } else {
-                          alert(data.msg);
+                           popUpSer.showAlert(data.msg);
                           console.log(data.msg);
                       }
                   },
@@ -156,7 +156,7 @@
                     );
                        console.log('收藏成功');
                    } else {
-                       alert(data.msg);
+                        popUpSer.showAlert(data.msg);
                        console.log(data.msg);
                    }
                },

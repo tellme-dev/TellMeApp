@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('customerCenterControll', ['$scope', '$state', '$ionicHistory', 'customerSer','LoadingSvr',
-        function ($scope, $state, $ionicHistory, customerSer, LoadingSvr) {
+    .controller('customerCenterControll', ['$scope', '$state', '$ionicHistory', 'customerSer', 'LoadingSvr', 'popUpSer',
+        function ($scope, $state, $ionicHistory, customerSer, LoadingSvr,popUpSer) {
             $scope.customer = {};
             $scope.hotels = new Array();
             $scope.host = customerSer.host;
@@ -25,7 +25,7 @@
                         if (data.isSuccess) {
                             $scope.customer = data.data;
                         } else {
-                            alert(data.msg);
+                          popUpSer.showAlert(data.msg);
                         }
                     },
                     function (data) {
@@ -49,7 +49,7 @@
                             if (data.isSuccess) {
                                 $scope.DynamicCount = data.data;
                             } else {
-                                alert(data.msg);
+                                 popUpSer.showAlert(data.msg);
                             }
                         },
                         function (data) {
@@ -73,7 +73,7 @@
                                  vm.loadMore;
                                 console.log('删除成功！');
                             } else {
-                                alert(data.msg);
+                                 popUpSer.showAlert(data.msg);
                             }
                         },
                         function (data) {

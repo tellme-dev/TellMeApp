@@ -1,5 +1,5 @@
 ﻿angular.module('tellme')
-    .controller('hotelmapControll', ['$scope', '$stateParams', '$ionicHistory', function ($scope, $stateParams, $ionicHistory) {
+    .controller('hotelmapControll', ['$scope', '$stateParams', '$ionicHistory', 'popUpSer', function ($scope, $stateParams, $ionicHistory, popUpSer) {
         $scope.hotelId = $stateParams.hotelId;
         $scope.goBack = function () {
             $ionicHistory.goBack();
@@ -45,7 +45,7 @@
                         extensions: "all"
                     });
                     geocoder.getAddress(lnglatXY, function (status, result) {
-                        alert("经纬度："+lnglatXY);
+                        popUpSer.showAlert("经纬度：" + lnglatXY);
                         if (status === 'complete' && result.info === 'OK') {
                             var address = result.regeocode.formattedAddress; //返回地址描述
                             var cityInfo = result.regeocode.addressComponent;
@@ -62,7 +62,7 @@
                 })
             });//返回定位信息
             AMap.event.addListener(geolocation, 'error', function () {//解析定位错误信息
-                alert("定位失败");
+                popUpSer.showAlert("定位失败");
             });  
         });
         }
