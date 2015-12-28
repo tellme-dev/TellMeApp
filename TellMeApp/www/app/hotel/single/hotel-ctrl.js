@@ -1,5 +1,5 @@
 ﻿angular.module('tellme')
-    .controller('hotelControll', ['$scope', '$stateParams', '$ionicHistory', 'hotelSer', 'popUpSer', function ($scope, $stateParams, $ionicHistory, hotelSer, popUpSer) {
+    .controller('hotelControll', ['$scope', '$stateParams', '$ionicHistory', 'hotelSer', 'LoadingSvr', 'popUpSer', function ($scope, $stateParams, $ionicHistory, hotelSer, LoadingSvr, popUpSer) {
         $scope.hotelId = $stateParams.hotelId;
         $scope.rootTagId = $stateParams.rootTagId;
         $scope.itemId = $stateParams.itemId;
@@ -106,41 +106,10 @@
 
         //获取二级菜单
         $scope.getChildMenu = function (itemTagId, isInit) {
-            var promise = hotelSer.itemListByTagRootAndHotel($scope.hotelId, itemTagId);
-            promise.then(
-                function (data) {
-                    if (data.isSuccess) {
-                        if (data.rows.length > 0) {
-                            var view = document.getElementById("child_menu_view");
-                            view.style.width = (data.rows.length * 82) + "px";
-                            view.innerHTML = "";
-                            itemDatas = data.rows;
-                            for (var i = 0; i < data.rows.length; i++) {
-                                var item = data.rows[i];
-                                var a = document.createElement("a");
-                                a.className = "swiper-container3-sws";
-                                a.innerHTML = "<img src=\"" + $scope.host + item.itemDetail.imageUrl + "\" /><i>" + item.item.name + "</i>";
-                                view.appendChild(a);
-                                new ChildMenuItem(a, item.item.id);
-                                if ($scope.itemId > 0 && isInit) {
-                                    if ($scope.itemId == item.item.id) {
-                                        setChildSelectStyle(a, item.item.id);
-                                    }
-                                } else {
-                                    if (i == 0) {
-                                        setChildSelectStyle(a, item.item.id);
-                                    }
-                                }
-                            }
-                        } else {
-                            document.getElementById("child_menu_view").style.width = "82px";
-                        }
-                    }
-                },
-                function (data) {
-                    console.log('其他');
-                }
-                );
+            vm.itemTagId = itemTagId;
+            vm.isInit = isInit;
+            vm.loadMore();
+            
         }
         //设置1级标题
         $scope.getRootMenu();
@@ -158,4 +127,53 @@
                 setChildSelectStyle(object, id);
             }
         }
+
+        var vm = $scope.vm = {
+            itemTagId: 0,
+            isInit: false,
+            moredata: false,
+            typeDetail: [],
+            pageNo: 0,
+            pageSize: 5,
+            loadMore: function () {
+                LoadingSvr.show();
+                var promise = hotelSer.itemListByTagRootAndHotel($scope.hotelId, vm.itemTagId);
+                promise.then(
+                    function (data) {
+                        if (data.isSuccess) {
+                            if (data.rows.length > 0) {
+                                var view = document.getElementById("child_menu_view");
+                                view.style.width = (data.rows.length * 82) + "px";
+                                view.innerHTML = "";
+                                itemDatas = data.rows;
+                                for (var i = 0; i < data.rows.length; i++) {
+                                    var item = data.rows[i];
+                                    var a = document.createElement("a");
+                                    a.className = "swiper-container3-sws";
+                                    a.innerHTML = "<img src=\"" + $scope.host + item.itemDetail.imageUrl + "\" /><i>" + item.item.name + "</i>";
+                                    view.appendChild(a);
+                                    new ChildMenuItem(a, item.item.id);
+                                    if ($scope.itemId > 0 && vm.isInit) {
+                                        if ($scope.itemId == item.item.id) {
+                                            setChildSelectStyle(a, item.item.id);
+                                        }
+                                    } else {
+                                        if (i == 0) {
+                                            setChildSelectStyle(a, item.item.id);
+                                        }
+                                    }
+                                }
+                            } else {
+                                document.getElementById("child_menu_view").style.width = "82px";
+                            }
+                        }
+                        LoadingSvr.hide();
+                        $scope.$broadcast('scroll.infiniteScrollComplete');
+                    },
+                    function (data) {
+                        console.log('其他');
+                    }
+                    );
+            }
+        };
     }]);
