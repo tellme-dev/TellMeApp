@@ -218,6 +218,10 @@
             $scope.goSystem = function () {
                 $state.go('system');
             }
+            //跳转到广告详情
+            $scope.goToAd = function (adId) {
+                $state.go('adList', {'adId':adId});
+            }
             //跳转到评论
             $scope.goDiscuss = function () {
                 $state.go('discuss');
