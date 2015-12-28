@@ -1,5 +1,5 @@
 ﻿angular.module('tellme')
-    .controller('hotelControll', ['$scope', '$stateParams', '$ionicHistory', 'hotelSer', function ($scope, $stateParams, $ionicHistory, hotelSer) {
+    .controller('hotelControll', ['$scope', '$stateParams', '$ionicHistory', 'hotelSer', 'popUpSer', function ($scope, $stateParams, $ionicHistory, hotelSer, popUpSer) {
         $scope.hotelId = $stateParams.hotelId;
         $scope.rootTagId = $stateParams.rootTagId;
         $scope.itemId = $stateParams.itemId;
@@ -50,16 +50,16 @@
                 customerId = window.localStorage['userId'];
             }
             if (customerId < 1) {
-                alert("请先登录");
+                popUpSer.showAlert("请先登录");
                 return;
             }
             var promise = hotelSer.saveCollection(customerId, targetId);
             promise.then(
                 function (data) {
                     if (data.isSuccess) {
-                        alert("收藏/关注成功");
+                        popUpSer.showAlert("收藏/关注成功");
                     } else {
-                        alert(data.msg);
+                        popUpSer.showAlert(data.msg);
                     }
                 },
                 function (data) {
