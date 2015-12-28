@@ -230,4 +230,8 @@
             $scope.goBBS = function (id) {
                 $state.go('bbs', { bbsId: id });
             }
+            //跳转到单个酒店详情
+            $scope.goHotel = function (hotelId) {
+                $state.go('hotel', { hotelId: hotelId, rootTagId: 0, itemId: 0 });
+            }
     }]);
