@@ -6,18 +6,27 @@
     <ion-content>
         <div ng-show="msgShow" style="text-align:center;margin-top:50px;"><h3>暂无数据,请稍后重试！</h3></div>
         <div  ng-show="dataShow" style="margin-top:47px;">
-            <div class="pl-cont" ng-repeat="data in listData">
+            <div class="pl-cont" ng-repeat="data in  vm.listData">
                 <div class="pl-cont-s">
                     <div>
                         <img class="fl pl-img-toux" src="images/xq-foot.jpg" />
-                        <div class="fl zan-text-s"><span class="zan-span" style="font-family:'微软雅黑';">{{data.customer.name}}</span><i>{{data.from.createTime}}</i> <b></b></div>
+                        <div ng-if="data.customer==null" class="fl zan-text-s">
+                            <span class="zan-span" style="font-family:'微软雅黑';">{{customer.name}}</span>
+                            <i>{{data.from.createTime | date:'yyyy-MM-dd HH:mm'}}</i>
+                            <b></b>
+                        </div>
+                        <div  ng-if="data.customer!=null" class="fl zan-text-s">
+                         <span class="zan-span" style="font-family:'微软雅黑';">{{data.customer.name}}</span>
+                         <i>{{data.from.createTime | date:'yyyy-MM-dd HH:mm'}}</i>
+                         <b></b>
+                        </div>
                         <div class="fl zan-tit" style="font-family:'微软雅黑';">赞了你的话题</div>
                         <!--<button class="fr zan-hf-button"><img src="images/hf.png" class="fl"/><div class="fr">回复</div></button>-->
                         <div class="clear"></div>
                     </div>
                     <a href="#" class="pl-esr">
                         <img class="fl" src="images/xq-2.jpg" />
-                        <div class="fl pl-esr-cont"><span>{{customer.name}} ：</span><b class="zxx_text_overflow_3">{{data.from.text}}</b></div>
+                        <div class="fl pl-esr-cont"><span>{{customer.name}} ：</span><b class="zxx_text_overflow_3">{{data.to.text}}</b></div>
                         <div class="clear"></div>
                     </a>
                 </div>

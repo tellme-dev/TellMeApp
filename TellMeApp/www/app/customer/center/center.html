@@ -49,7 +49,7 @@
         </div>
         <!--常住酒店-->
         <div ng-show="1==selectedIndex" style="padding:0px 10px; margin-top:65px;" ng-if="hotels">
-            <div ng-repeat="hotel in hotels">
+            <div ng-repeat="hotel in hotels" ng-click="goHotel(hotel.id)">
                 <div class="list card item-mb xq-item">
                     <div class="item item-body xq-item-cont">
                         <a href=""><img class="full-image" ng-src="{{host}}{{hotel.imgUrl}}" err-src="images/failed.png"></a>
@@ -205,10 +205,10 @@
                 <!--酒店列表-->
                 <!--主题、广告-->
                 <div ng-if="save.type==2" class="xq-cont" style="margin-bottom:10px;">
-                    <a><img ng-src="{{host}}{{save.advertisement.imgUrl}}" err-src="images/failed.png" /></a>
-                    <p class="zxx_text_overflow-2">
+                    <a><img ng-src="{{host}}{{save.advertisement.imgUrl}}" ng-click="goToAd(save.advertisement.id)" err-src="images/failed.png" /></a>
+                    <!--<p class="zxx_text_overflow-2">
                         {{save.advertisement.text}}
-                    </p>
+                    </p>-->
                 </div>
                 <!--主题、广告-->
                 <!--bbs-->

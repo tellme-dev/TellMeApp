@@ -1,15 +1,17 @@
 ﻿angular.module('tellme')
-    .controller('answerBbsControll', ['$scope', '$ionicHistory', '$ionicActionSheet', '$stateParams', 'communitySer',
-        function ($scope, $ionicHistory, $ionicActionSheet, $stateParams, communitySer) {
+    .controller('answerBbsControll', ['$scope', '$ionicHistory', '$ionicActionSheet', '$stateParams', 'communitySer', 'popUpSer',
+        function ($scope, $ionicHistory, $ionicActionSheet, $stateParams, communitySer, popUpSer) {
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };
             var bbsId = $stateParams.bbsId;
+            $scope.globalVar = {};
+            $scope.globalVar.answerText = "";//回帖内容
             //回复
             $scope.saveBbs = function () {
                 $scope.showAnswer = false;
                 var isLogin = $scope.userIsLogin();
-                var answerText = $scope.bbsText;
+                var answerText = $scope.globalVar.answerText;
                 if (isLogin) {//如果用户已经登录
                     var jsonData = JSON.stringify({
                         id: 0, customerId: window.localStorage['userId'], bbsType: 1,postType:1,
@@ -18,7 +20,7 @@
                     var promise = communitySer.answerBbs(jsonData).then(
                   function (data) {
                       if (data.isSuccess) {
-                          console.log('回复成功');
+                         popUpSer.showAlert('回复成功');
                           $scope.goBack();
                       } else {
                           console.log(data.msg);

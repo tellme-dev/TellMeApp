@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('customerCenterControll', ['$scope', '$state', '$ionicHistory', 'customerSer','LoadingSvr',
-        function ($scope, $state, $ionicHistory, customerSer, LoadingSvr) {
+    .controller('customerCenterControll', ['$scope', '$state', '$ionicHistory', 'customerSer', 'LoadingSvr', 'popUpSer',
+        function ($scope, $state, $ionicHistory, customerSer, LoadingSvr,popUpSer) {
             $scope.customer = {};
             $scope.hotels = new Array();
             $scope.host = customerSer.host;
@@ -25,7 +25,7 @@
                         if (data.isSuccess) {
                             $scope.customer = data.data;
                         } else {
-                            alert(data.msg);
+                          popUpSer.showAlert(data.msg);
                         }
                     },
                     function (data) {
@@ -49,7 +49,7 @@
                             if (data.isSuccess) {
                                 $scope.DynamicCount = data.data;
                             } else {
-                                alert(data.msg);
+                                 popUpSer.showAlert(data.msg);
                             }
                         },
                         function (data) {
@@ -73,7 +73,7 @@
                                  vm.loadMore;
                                 console.log('删除成功！');
                             } else {
-                                alert(data.msg);
+                                 popUpSer.showAlert(data.msg);
                             }
                         },
                         function (data) {
@@ -218,6 +218,10 @@
             $scope.goSystem = function () {
                 $state.go('system');
             }
+            //跳转到广告详情
+            $scope.goToAd = function (adId) {
+                $state.go('adList', {'adId':adId});
+            }
             //跳转到评论
             $scope.goDiscuss = function () {
                 $state.go('discuss');
@@ -229,5 +233,9 @@
             //跳转到BBS
             $scope.goBBS = function (id) {
                 $state.go('bbs', { bbsId: id });
+            }
+            //跳转到单个酒店详情
+            $scope.goHotel = function (hotelId) {
+                $state.go('hotel', { hotelId: hotelId, rootTagId: 0, itemId: 0 });
             }
     }]);

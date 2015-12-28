@@ -1,10 +1,11 @@
 ﻿angular.module('tellme')
-    .controller('discussControll', ['$scope', '$ionicHistory', '$ionicActionSheet', '$state', 'customerSer', 'LoadingSvr',
-        function ($scope, $ionicHistory, $ionicActionSheet, $state, customerSer, LoadingSvr) {
+    .controller('discussControll', ['$scope', '$ionicHistory', '$ionicActionSheet', '$state', 'customerSer', 'LoadingSvr', 'popUpSer',
+        function ($scope, $ionicHistory, $ionicActionSheet, $state, customerSer, LoadingSvr, popUpSer) {
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };
             $scope.baseUrl = customerSer.host;
+
            // $(".zxx_text_overflow_3").wordLimit(15);
             $(".pl-text-s").click(function () {
             $(".zxx_text_overflow_3").wordLimit(100);
@@ -22,7 +23,7 @@
                         if (data.isSuccess) {
                             $scope.customer = data.data;
                         } else {
-                            alert(data.msg);
+                            popUpSer.showAlert(data.msg);
                         }
                     },
                     function (data) {
@@ -32,7 +33,10 @@
             }
             $scope.getCustomerInfo();
             $scope.goAnswer = function (bbsId) {
-                $state.go('answerBbs', { bbsId: 'bbsId' });
+                $state.go('answerBbs', { bbsId: bbsId });
+            }
+            $scope.goBBs = function (bbsId) {
+                $state.go('bbs', { bbsId: bbsId });
             }
             //下拉加载更多 获取个人中心动态评论数据列表
             var vm = $scope.vm = {
