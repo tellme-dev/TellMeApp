@@ -70,7 +70,7 @@
                         function (data) {
                             if (data.isSuccess) {
                                  vm.moredata = false,
-                                 vm.loadMore;
+                                 vm.loadMore();
                                 console.log('删除成功！');
                             } else {
                                  popUpSer.showAlert(data.msg);

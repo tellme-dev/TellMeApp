@@ -40,7 +40,7 @@
         /*发帖*/
         $scope.saveBbs = function () {
             if ($scope.bbsInfo.text == undefined) {
-                alert("please写点内容啊");
+                popUpSer.showAlert("内容为空");
                 return;
             }
             bbsSer.saveBbs($scope.bbsInfo).then(
@@ -54,7 +54,7 @@
                     }
                 },
                 function (data) {
-                    console.log("未知错误");
+                    popUpSer.showAlert("未知错误");
                 }
             )
         };
