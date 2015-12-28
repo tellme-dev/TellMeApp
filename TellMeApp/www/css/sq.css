@@ -831,3 +831,17 @@ display:none;}
     .t-cont-ertop div {
         background:#fff; font-size:1.6em; color:#707070; text-align:center;padding:10px 0px;
     }
+
+      /*关于我们*/
+.contact-content {
+    margin-top:45px; padding:0px 10px;
+}
+.contact-content-img {
+    width:100%; height:auto;text-align:center; padding:25px 0px;
+}
+.contact-text {
+    font-size:20px; color:#666; font-family:'黑体'; line-height:25px; min-height:400px;
+}
+.contact-text-bu {
+    font-size:20px; color:#666; font-family:'黑体'; line-height:25px;text-align:center
+}

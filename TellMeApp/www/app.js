@@ -60,6 +60,7 @@
           //个人中心 设置
             .state('system', { url: '/system', templateUrl: 'app/customer/system/system.html', controller: 'systemControll' })
             .state('feedback', { url: '/feedback', templateUrl: 'app/customer/feedback/feedback.html', controller: 'feedbackControll' })
+            .state('about', { url: '/about', templateUrl: 'app/customer/about/about.html', controller: 'aboutControll' })
             .state('data', { cache: false, url: '/data', templateUrl: 'app/customer/data/data.html', controller: 'dataControll' })
             .state('editMobile', { url: '/editMobile', templateUrl: 'app/customer/data/edit-mobile.html', controller: 'registerControll' })
             .state('discuss', { url: '/discuss', templateUrl: 'app/customer/center/discuss/discuss.html', controller: 'discussControll' })
