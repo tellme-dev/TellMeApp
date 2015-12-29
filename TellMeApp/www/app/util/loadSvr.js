@@ -4,9 +4,9 @@
         $ionicLoading.show({
             template: '努力加载中'
         });
-        $timeout(function () {
-            $ionicLoading.hide();
-        }, 5000);
+        //$timeout(function () {
+        //    $ionicLoading.hide();
+        //}, 5000);
     }
     this.hide = function () {
         $ionicLoading.hide();
