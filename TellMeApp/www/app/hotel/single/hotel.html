@@ -60,13 +60,13 @@
                     </div>
 
                     <div class="item tabs tabs-secondary tabs-icon-left">
-                        <a class="tab-item jd-tab-itemer" href="#">
+                        <a class="tab-item jd-tab-itemer" href="#" ng-click="showComment($index)">
                             <i class="icon ion-chatbox"></i>
                         </a>
-                        <a class="tab-item jd-tab-itemer" href="#">
+                        <a class="tab-item jd-tab-itemer" href="#" ng-click="share(itemData.item.name, itemData.item.text, itemData.details[0].imageUrl)">
                             <i class="icon ion-share"></i>
                         </a>
-                        <a class="tab-item jd-tab-itemer" href="#">
+                        <a class="tab-item jd-tab-itemer" href="#" ng-click="savePraise(itemData.item.id)">
                             <i class="icon ion-thumbsup"></i>
                         </a>
                         <a class="tab-item jd-tab-itemer" href="#" ng-click="saveCollection(itemData.item.id)">
@@ -74,6 +74,24 @@
                         </a>
                     </div>
 
+                    <div class="item sq-show" ng-show="commentIds[$index]" ng-click="cancelTurn()">
+                        <div class="item-input-inset">
+                            <label class="item-input-wrapper">
+                                <input type="text" placeholder="写点什么..." ng-model="comments[$index]" style="width:100%" />
+                            </label>
+                            <button class="button button-small butt-op" ng-click="saveComment($index, itemData.item.id)" style="color:black;">
+                                发送
+                            </button>
+                        </div>
+                    </div>
+                    <a ng-repeat="detail in comment" class="item item-icon-left item-icon-right item-avatar" href="#">
+                        <img ng-src="{{host}}{{detail.customerPhoto}}" err-src="images/head.png">
+                        <h2>{{detail.customerName}}</h2>
+                        <p>{{detail.text}}</p>
+                        <!--点赞-->
+                        <!--<i  ng-click="agreeBbs(detail.id)"   class="icon ion-thumbsup item-icon-right sqer-pl-tb" style="font-size:22px;"></i>-->
+                    </a>
+                    <ion-infinite-scroll ng-if="!cvm.moredata" on-infinite="cvm.loadMore()" distance="1%"></ion-infinite-scroll>
                 </div>
             </div>
             <!--内容块-->

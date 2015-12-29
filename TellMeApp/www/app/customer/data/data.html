@@ -3,7 +3,7 @@
         <div class="bar bar-dark bar-header" style="border-bottom:1px solid #ddd;">
             <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
             <h1 class="title sz-top-text">个人资料</h1>
-            <button class="button button-style" ng-click="goToEditMobile()">修改电话</button>
+            <!--<button class="button button-style" ng-click="goToEditMobile()">修改电话</button>-->
         </div>
         <ion-content style="background-color:#f8f8f8">
             <div class="has-header grtx-cont">
@@ -13,11 +13,11 @@
                         <span class="fl">更换头像</span>
                         <i class="ion-chevron-right fr"></i>
                     </label>
-                    <label class="item item-input item-stacked-label grtz-labeler" >
+                    <!--<label class="item item-input item-stacked-label grtz-labeler" >
                         <span class="input-label">电话</span>
-                        <input type="text" style="width:100%;float:left" value="{{customerInfo.mobile}}" readonly/>
-                        <!--<button class="button button-style" ng-click="goToEditMobile()" style="top:5px;min-height:31px;line-height:30px;width:25%;float:right;">修改电话</button>-->
-                    </label>
+                        <input type="text" style="width:70%;float:left" value="{{customerInfo.mobile}}" readonly/>
+                        <button class="button button-style" ng-click="goToEditMobile()" style="top:5px;min-height:31px;line-height:30px;width:25%;float:right;">修改电话</button>
+                    </label>-->
                     <label class="item item-input item-stacked-label grtz-labeler">
                         <span class="input-label">昵称</span>
                         <input style="background-color:#f8f8f8" type="text" ng-model="customerInfo.name"/>

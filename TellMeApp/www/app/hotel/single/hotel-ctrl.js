@@ -1,5 +1,5 @@
 ﻿angular.module('tellme')
-    .controller('hotelControll', ['$scope', '$stateParams', '$ionicHistory', 'hotelSer', 'LoadingSvr', 'popUpSer', function ($scope, $stateParams, $ionicHistory, hotelSer, LoadingSvr, popUpSer) {
+    .controller('hotelControll', ['$scope', '$stateParams', '$ionicHistory', '$state', 'hotelSer', 'LoadingSvr', 'popUpSer', 'tellmeActionSheet', function ($scope, $stateParams, $ionicHistory, $state, hotelSer, LoadingSvr, popUpSer, tellmeActionSheet) {
         $scope.hotelId = $stateParams.hotelId;
         $scope.rootTagId = $stateParams.rootTagId;
         $scope.itemId = $stateParams.itemId;
@@ -37,6 +37,10 @@
                 for (var i = 0; i < itemDatas.length; i++) {
                     if (itemDatas[i].item.id == id) {
                         $scope.itemData = itemDatas[i];
+                        cvm.itemId = $scope.itemData.item.id;
+                        cvm.isInit = true;
+                        cvm.pageNo = 0;
+                        cvm.loadMore();
                         break;
                     }
                 }
@@ -50,14 +54,14 @@
                 customerId = window.localStorage['userId'];
             }
             if (customerId < 1) {
-                popUpSer.showAlert("请先登录");
+                $state.go('login', {});
                 return;
             }
             var promise = hotelSer.saveCollection(customerId, targetId);
             promise.then(
                 function (data) {
                     if (data.isSuccess) {
-                        popUpSer.showAlert("收藏/关注成功");
+                        popUpSer.showAlert("收藏成功");
                     } else {
                         popUpSer.showAlert(data.msg);
                     }
@@ -66,6 +70,118 @@
                     console.log('其他');
                 }
                 );
+        }
+
+        // 分享
+        $scope.share = function (title, text, imgUrl) {
+            var args = {};
+            //args.url = "";
+            args.title = title;
+            args.description = "";
+            args.text = text;
+            var imgs = [$scope.host + imgUrl];
+            args.imageUrl = imgs;
+            args.appName = "挑米科技";
+            args.defaultText = "来自挑米科技";
+            var shareResult = tellmeActionSheet.show(args);
+            if (shareResult == 0) {
+            } else if (shareResult == 1) {
+                commonSer.saveShare(detail.id);
+            } else {
+                popUpSer.showAlert('分享出现其他错误');
+            }
+        }
+
+        //用户点赞项目
+        $scope.savePraise = function (targetId) {
+            var customerId = 0;
+            if (typeof (window.localStorage['userTel']) != 'undefined') {
+                customerId = window.localStorage['userId'];
+            }
+            if (customerId < 1) {
+                $state.go('login', {});
+                return;
+            }
+            var promise = hotelSer.savePraise(customerId, targetId);
+            promise.then(
+                function (data) {
+                    if (data.isSuccess) {
+                        popUpSer.showAlert("点赞成功");
+                    } else {
+                        popUpSer.showAlert(data.msg);
+                    }
+                },
+                function (data) {
+                    console.log('其他');
+                }
+                );
+        }
+
+        $scope.commentIds = new Array();
+        $scope.comments = new Array();
+        $scope.comment = new Array();
+        $scope.showComment = function (id) {
+            collectionSelected = true;
+
+            /*
+             var customerId = 0;
+             if (typeof (window.localStorage['userTel']) != 'undefined') {
+                 customerId = window.localStorage['userId'];
+             }
+             if (customerId < 1) {
+                 $state.go('login', {});
+                 return;
+             }
+             */
+
+            if ($scope.commentIds[id]) {
+                $scope.commentIds[id] = false;
+            } else {
+                $scope.commentIds[id] = true;
+            }
+        }
+
+        //用户评论项目
+        $scope.saveComment = function (index, targetId) {
+            collectionSelected = true;
+            var customerId = 0;
+            if (typeof (window.localStorage['userTel']) != 'undefined') {
+                customerId = window.localStorage['userId'];
+            }
+            if (customerId < 1) {
+                $state.go('login', {});
+                return;
+            }
+
+            var content = $scope.comments[index];
+            if (typeof (content) == "undefined") {
+                popUpSer.showAlert("请输入评价内容");
+                return;
+            }
+            if (content.trim() == "") {
+                popUpSer.showAlert("请输入评价内容");
+                return;
+            }
+            var promise = hotelSer.saveComment(customerId, targetId, content);
+            promise.then(
+                function (data) {
+                    if (data.isSuccess) {
+                        //popUpSer.showAlert("评论成功");
+                        cvm.isInit = true;
+                        cvm.pageNo = 0;
+                        cvm.loadMore();
+                    } else {
+                        popUpSer.showAlert(data.msg);
+                    }
+                },
+                function (data) {
+                    console.log('其他');
+                }
+                );
+        }
+
+        $scope.cancelTurn = function () {
+            collectionSelected = true;
         }
 
         //获取1级标题
@@ -168,6 +284,45 @@
                             }
                         }
                         LoadingSvr.hide();
+                        $scope.$broadcast('scroll.infiniteScrollComplete');
+                    },
+                    function (data) {
+                        console.log('其他');
+                    }
+                    );
+            }
+        };
+
+        var cvm = $scope.cvm = {
+            itemId: 0,
+            isInit: false,
+            moredata: false,
+            typeDetail: [],
+            pageNo: 0,
+            pageSize: 10,
+            loadMore: function () {
+                LoadingSvr.show();
+                cvm.pageNo++;
+                var promise = hotelSer.commentListByHotelItem(cvm.itemId, cvm.pageNo, cvm.pageSize);
+                promise.then(
+                    function (data) {
+                        LoadingSvr.hide();
+                        if (data.isSuccess) {
+                            if (cvm.isInit) {
+                                $scope.comment = data.rows;
+                                cvm.isInit = false;
+                            } else {
+                                for (var i = 0, len = data.rows.length; i < len; i++) {
+                                    $scope.comment.push(data.rows[i]);
+                                }
+                            }
+                            var len = data.total;
+                            if (len > cvm.pageNo) {
+                                cvm.moredata = false;
+                            } else {
+                                cvm.moredata = true;
+                            }
+                        }
                         $scope.$broadcast('scroll.infiniteScrollComplete');
                     },
                     function (data) {

@@ -1,5 +1,5 @@
 ﻿angular.module('tellme')
-    .controller('hotelListControll', ['$scope', '$window', '$stateParams', '$state', 'hotelSer', 'LoadingSvr', 'popUpSer', function ($scope, $window, $stateParams, $state, hotelSer, LoadingSvr, popUpSer) {
+    .controller('hotelListControll', ['$scope', '$window', '$stateParams', '$state', 'hotelSer', 'LoadingSvr', 'popUpSer', 'tellmeActionSheet', function ($scope, $window, $stateParams, $state, hotelSer, LoadingSvr, popUpSer, tellmeActionSheet) {
         var param_tagId = $stateParams.itemTagId;
         var param_itemId = $stateParams.itemId;
 
@@ -126,60 +126,26 @@
                 );
         }
 
-        /*
-        //获取酒店列表
-        $scope.getItemList = function (page, itemTagId) {
-            var promise = hotelSer.getItemList(page, pageSize, itemTagId);
-            promise.then(
-                function (data) {
-                    if (data.isSuccess) {
-                        var tempData = data.rows;
-                        if (typeof (param_itemId) == 'undefined' || param_itemId < 1) {
-                            //克隆数据
-                            var arr = new Array();
-                            for (var bf = 0; bf < tempData.length; bf++) {
-                                arr.push(tempData[bf]);
-                            }
-                            //游标缓存对象
-                            var temp_index = {};
-                            //内存置换缓存对象
-                            var temp = {};
-                            for (var i = 0; i < arr.length; i++) {
-                                if (i == 0) {
-                                    if (arr[i].id == param_itemId) {
-                                        break;
-                                    } else {
-                                        temp_index = arr[i];
-                                    }
-                                } else {
-                                    if (arr[i].id == param_itemId) {
-                                        arr[0] = arr[i];
-                                        arr[i] = temp_index;
-                                        break;
-                                    } else {
-                                        //没有找到指定数据需要还原数据
-                                        if (i == arr.length - 1) {
-                                            arr = tempData;
-                                        } else {
-                                            temp = arr[i];
-                                            arr[i] = temp_index;
-                                            temp_index = temp;
-                                        }
-                                    }
-                                }
-                            }
-                            tempData = arr;
-                        }
-                        
-                        $scope.list = tempData;
-                    }
-                },
-                function (data) {
-                    console.log('其他');
-                }
-                );
+        // 分享
+        $scope.share = function (title, text, imgUrl) {
+            collectionSelected = true;
+            var args = {};
+            //args.url = "";
+            args.title = title;
+            args.description = "";
+            args.text = text;
+            var imgs = [$scope.host + imgUrl];
+            args.imageUrl = imgs;
+            args.appName = "挑米科技";
+            args.defaultText = "来自挑米科技";
+            var shareResult = tellmeActionSheet.show(args);
+            if (shareResult == 0) {
+            } else if (shareResult == 1) {
+                commonSer.saveShare(detail.id);
+            } else {
+                popUpSer.showAlert('分享出现其他错误');
+            }
         }
-        */
 
         //用户收藏项目
         $scope.saveCollection = function (targetId) {
@@ -189,14 +155,14 @@
                 customerId = window.localStorage['userId'];
             }
             if (customerId < 1) {
-                popUpSer.showAlert("请先登录");
+                $state.go('login', {});
                 return;
             }
             var promise = hotelSer.saveCollection(customerId, targetId);
             promise.then(
                 function (data) {
                     if (data.isSuccess) {
-                        popUpSer.showAlert("收藏/关注成功");
+                        popUpSer.showAlert("收藏成功");
                     } else {
                         popUpSer.showAlert(data.msg);
                     }
@@ -205,6 +171,95 @@
                     console.log('其他');
                 }
                 );
+        }
+
+        //用户点赞项目
+        $scope.savePraise = function (targetId) {
+            collectionSelected = true;
+            var customerId = 0;
+            if (typeof (window.localStorage['userTel']) != 'undefined') {
+                customerId = window.localStorage['userId'];
+            }
+            if (customerId < 1) {
+                $state.go('login', {});
+                return;
+            }
+            var promise = hotelSer.savePraise(customerId, targetId);
+            promise.then(
+                function (data) {
+                    if (data.isSuccess) {
+                        popUpSer.showAlert("点赞成功");
+                    } else {
+                        popUpSer.showAlert(data.msg);
+                    }
+                },
+                function (data) {
+                    console.log('其他');
+                }
+                );
+        }
+        $scope.commentIds = new Array();
+        $scope.comments = new Array();
+        $scope.showComment = function (id) {
+            collectionSelected = true;
+
+            /*
+            var customerId = 0;
+            if (typeof (window.localStorage['userTel']) != 'undefined') {
+                customerId = window.localStorage['userId'];
+            }
+            if (customerId < 1) {
+                $state.go('login', {});
+                return;
+            }
+            */
+
+            if ($scope.commentIds[id]) {
+                $scope.commentIds[id] = false;
+            } else {
+                $scope.commentIds[id] = true;
+            }
+        }
+
+        //用户评论项目
+        $scope.saveComment = function (index, targetId) {
+            collectionSelected = true;
+            var customerId = 0;
+            if (typeof (window.localStorage['userTel']) != 'undefined') {
+                customerId = window.localStorage['userId'];
+            }
+            if (customerId < 1) {
+                $state.go('login', {});
+                return;
+            }
+
+            var content = $scope.comments[index];
+            if (typeof (content) == "undefined") {
+                popUpSer.showAlert("请输入评价内容");
+                return;
+            }
+            if (content.trim() == "") {
+                popUpSer.showAlert("请输入评价内容");
+                return;
+            }
+            
+            var promise = hotelSer.saveComment(customerId, targetId, content);
+            promise.then(
+                function (data) {
+                    if (data.isSuccess) {
+                        popUpSer.showAlert("评论成功");
+                    } else {
+                        popUpSer.showAlert(data.msg);
+                    }
+                },
+                function (data) {
+                    console.log('其他');
+                }
+                );
+        }
+
+        $scope.cancelTurn = function () {
+            collectionSelected = true;
         }
 
         ////页面初始加载
@@ -277,9 +332,9 @@
                                 $scope.list = tempData;
                                 var total = data.total;
                                 if (total > vm.pageNo) {
-                                    vm.moredata = true;
-                                } else {
                                     vm.moredata = false;
+                                } else {
+                                    vm.moredata = true;
                                 }
                                 $scope.$broadcast('scroll.infiniteScrollComplete');
                             }

@@ -1,8 +1,12 @@
 ﻿angular.module('tellme')
-    .controller('discoverListControll', ['$scope', '$window', '$state', '$ionicHistory', 'discoverSer', 'commonSer', 'LoadingSvr', 'appConfig',
-        function ($scope, $window, $state, $ionicHistory, discoverSer, commonSer, LoadingSvr, appConfig) {
+    .controller('discoverListControll', ['$scope', '$rootScope', '$window', '$state', '$ionicHistory', 'discoverSer', 'commonSer', 'LoadingSvr', 'appConfig',
+        function ($scope,$rootScope, $window, $state, $ionicHistory, discoverSer, commonSer, LoadingSvr, appConfig) {
             // 获取当前位置
-            $scope.currentCity = window.localStorage['currentcity'];
+            $rootScope.currentCity = window.localStorage['currentcity'];
+            $scope.$watch('setCity', function (newValue, oldValue) {
+                $rootScope.currentCity = newValue;
+                console.log("newValue:" + newValue + ",oldValue:" + oldValue);
+            });
             $scope.dataShow = false;
             $scope.msgShow = false;
             /*返回前一个界面*/
@@ -28,6 +32,11 @@
             //跳转到搜索页面
             $scope.goToSearch = function () {
                 $state.go('willSearch');
+            }
+
+            /*跳转“定位页面”*/
+            $scope.goToLocation = function () {
+                $state.go('location');
             }
             $scope.baseUrl = appConfig.server.getUrl();
             //跳转到首页
