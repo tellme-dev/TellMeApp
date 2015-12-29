@@ -20,4 +20,20 @@
         $scope.goToSearch = function () {
             $state.go('willSearch');
         }
+
+        var promise = checkinSer.getCheckinInfo(window.localStorage['userId'], window.localStorage['regionCode']);//6
+        promise.then(
+            function (data) {
+                if (data.isSuccess) {
+                    if (typeof (data.data) === 'undefined' && typeof (data.rows) !== 'undefined' && data.rows.length > 0) {//没有，则获得一个酒店列表
+                        $scope.nearHotel = data.rows;
+                    }
+                } else {
+                    popUpSer.showAlert('查询入住信息异常');
+                }
+            },
+            function (data) {
+                popUpSer.showAlert('查询入住信息异常');
+            }
+            );
     }])

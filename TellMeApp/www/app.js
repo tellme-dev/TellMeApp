@@ -92,6 +92,10 @@
             .state('rcu', { url: '/rcu?roomId', templateUrl: 'app/checkin/rcu/rcu.html', controller: 'rcuControll' })
             .state('choose', { url: '/choose?item', templateUrl: 'app/checkin/choose/choose.html', controller: 'chooseControll' })
             .state('nocheckin', { url: '/nocheckin', templateUrl: 'app/checkin/nocheck/nocheckin.html', controller: 'noCheckinControll' })
+            .state('ESuperMarket', { url: '/ESuperMarket?item', templateUrl: 'app/checkin/esupermarket/esupermarket.html', controller: 'eSupermarketControll' })
+            .state('traffic', { url: '/traffic', templateUrl: 'app/checkin/traffic/traffic.html', controller: 'trafficControll' })
+            .state('tv', { url: '/tv', templateUrl: 'app/checkin/tv/tv.html', controller: 'tvControll' })
+            .state('near', { url: '/near', templateUrl: 'app/checkin/near/near.html', controller: 'nearControll' })
             ;
             var appLaunchCount = window.localStorage.getItem('launchCount');
             //需要进行页面测试，则修改下面的路由即可
