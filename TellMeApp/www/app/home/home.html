@@ -120,7 +120,7 @@
                 <h2>活动推荐</h2>
             </div>
             <a href="#" ng-repeat="fad in footAdData">
-                <img ng-src="{{baseUrl}}{{fad.adDetailList[0].imageUrl}}" ng-click="goToAd(fad)" style="margin-bottom:10px; width:100% " />
+                <img ng-src="{{baseUrl}}{{fad.adDetailList[0].imageUrl}}" ng-click="goToAd(fad.id)" style="margin-bottom:10px; width:100% " />
             </a>
             <div class="item" ng-click="goDiscover()" style="text-align:center">
                 <a href="#" style="color:#ffd800">更多推荐 ></a>
