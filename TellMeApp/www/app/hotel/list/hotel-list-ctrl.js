@@ -22,6 +22,8 @@
         $scope.goBack = function () {
             $ionicHistory.goBack();
         }
+        $scope.rootMenuWidth = "auto";
+        $scope.childMenuWidth = "auto";
         var collectionSelected = false;
         //设置1级菜单选择事件
         function setSelectStyle(obj, id) {
@@ -65,6 +67,7 @@
                         var view = document.getElementById("list");
                         view.innerHTML = "";
                         var menus = data.rows;
+                        $scope.rootMenuWidth = (menus.length * 50) + "px";
                         if (menus != null && menus.length > 0) {
                             for (var i = 0; i < menus.length; i ++){
                                 var obj = menus[i];
@@ -264,6 +267,7 @@
         }
 
         ////页面初始加载
+        /*
         var myScroll;
         var length = document.getElementById("list").getElementsByTagName("li").length;		//导航li的数量，若从后台读取可不要本行
         var scroll_width = length * 80 + "px";
@@ -274,7 +278,7 @@
         var mySwiper1 = new Swiper('#header', {
             freeMode: true,
             slidesPerView: 'auto',
-        });
+        });*/
       
         //设置1级标题
         $scope.getRootMenu();
