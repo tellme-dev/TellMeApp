@@ -1,7 +1,7 @@
 ﻿angular.module('tellme')
     .controller('registerControll',
-     ['$scope', '$interval', '$ionicNavBarDelegate', '$ionicHistory', '$window', '$state', 'customerSer', 'commonSer',
-         function ($scope,$interval, $ionicNavBarDelegate, $ionicHistory, $window, $state,customerSer, commonSer) {
+     ['$scope', '$interval', '$ionicNavBarDelegate', '$ionicHistory', '$window', '$state', 'customerSer', 'commonSer', 'popUpSer',
+         function ($scope, $interval, $ionicNavBarDelegate, $ionicHistory, $window, $state, customerSer, commonSer, popUpSer) {
              $scope.registerData = {};
              $scope.verifyDisabled = false;
              $scope.verifyTips = '获取验证码';
@@ -77,41 +77,41 @@
         $scope.verifyTel = function () {
             var mobile = $scope.registerData.mobile;
             if (!checkMobile(mobile)) {
-                alert("请输入正确的电话号码！"); return;
+                popUpSer.showAlert("请输入正确的电话号码！");
+                return;
             }
             customerSer.verifyTel(mobile).then(
                 function (data) {
                     if (data.isSuccess) {
                         isSumit = true;
                         $scope.msg = "";
-                        console.log('该账号未注册');
+                        popUpSer.showAlert("该账号未注册！");
                         //跳转到登录成功界面
                     } else {
                         isSumit = false;
-                        alert('该账号已注册');
-                        console.log('该账号已注册');
+                        popUpSer.showAlert("该账号已注册！");
                        
                         //提示
                     }
                 },
                 function (data) {
-                    console.log("未知错误");
+                    popUpSer.showAlert("未知错误！");
                 }
             )
          }
         //注册
         $scope.register = function () {
             if ($scope.registerData.psd == "" || typeof ($scope.registerData.psd) == "undefined") {
-                alert("请输入密码！"); return;
+                popUpSer.showAlert("请输入密码！");return;
             }
             if ($scope.registerData.rpsd == "" || typeof ($scope.registerData.rpsd) == "undefined") {
-                alert("请再次输入密码！"); return;
+                popUpSer.showAlert("请输入密码！"); return;
             }
             if ($scope.registerData.psd != $scope.registerData.rpsd) {
-                alert("两次密码不一致！"); return;
+                popUpSer.showAlert("两次密码不一致！");return;
             }
             if ($scope.registerData.verifyCode == "" || typeof ($scope.registerData.verifyCode) == "undefined") {
-                alert("请输入验证码！"); return;
+                popUpSer.showAlert("请输入验证码！"); return;
             }
             if (isSumit) {
                 customerSer.register($scope.registerData).then(
@@ -123,13 +123,14 @@
                   } else {
                       $scope.stopCountDown();
                       $scope.resetCount();
+                      popUpSer.showAlert("注册失败！");
                       console.log('注册：注册失败');
                       //提示
 
                   }
               },
               function (data) {
-                  console.log("注册：未知错误");
+                  popUpSer.showAlert("未知错误！");
                   //提示
               }
               )
@@ -156,16 +157,22 @@
                }
                );
             } else {
-                alert('请填写正确的电话号码');
+                popUpSer.showAlert("请填写正确的电话号码");
             }
         }
         //确认修改电话
         $scope.editMobile = function () {
             if ($scope.registerData.psd == "" || typeof ($scope.registerData.psd) == "undefined") {
-                alert("请输入密码！"); return;
+                popUpSer.showAlert("请输入密码"); return;
+            }
+            if ($scope.registerData.rpsd == "" || typeof ($scope.registerData.rpsd) == "undefined") {
+                popUpSer.showAlert("请输入密码"); return;
+            }
+            if ($scope.registerData.psd != $scope.registerData.rpsd) {
+                popUpSer.showAlert("两次密码不一致"); return;
             }
             if ($scope.registerData.verifyCode == "" || typeof ($scope.registerData.verifyCode) == "undefined") {
-                alert("请输入验证码！"); return;
+                popUpSer.showAlert("请输入验证码"); return;
             }
             if (isSumit) {
                 $scope.registerData.customerId = window.localStorage['userId'];
