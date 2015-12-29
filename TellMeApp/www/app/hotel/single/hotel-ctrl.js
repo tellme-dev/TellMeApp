@@ -306,6 +306,7 @@
                 var promise = hotelSer.commentListByHotelItem(cvm.itemId, cvm.pageNo, cvm.pageSize);
                 promise.then(
                     function (data) {
+                        LoadingSvr.hide();
                         if (data.isSuccess) {
                             if (cvm.isInit) {
                                 $scope.comment = data.rows;
@@ -315,14 +316,13 @@
                                     $scope.comment.push(data.rows[i]);
                                 }
                             }
-                            var len = data.rows.length;
-                            if (len > pageNo) {
-                                moredata = true;
+                            var len = data.total;
+                            if (len > cvm.pageNo) {
+                                cvm.moredata = false;
                             } else {
-                                moredata = false;
+                                cvm.moredata = true;
                             }
                         }
-                        LoadingSvr.hide();
                         $scope.$broadcast('scroll.infiniteScrollComplete');
                     },
                     function (data) {

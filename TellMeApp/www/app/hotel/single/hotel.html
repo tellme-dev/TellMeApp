@@ -91,7 +91,7 @@
                         <!--点赞-->
                         <!--<i  ng-click="agreeBbs(detail.id)"   class="icon ion-thumbsup item-icon-right sqer-pl-tb" style="font-size:22px;"></i>-->
                     </a>
-                    <ion-infinite-scroll ng-if="cvm.moredata" on-infinite="cvm.loadMore()" distance="1%"></ion-infinite-scroll>
+                    <ion-infinite-scroll ng-if="!cvm.moredata" on-infinite="cvm.loadMore()" distance="1%"></ion-infinite-scroll>
                 </div>
             </div>
             <!--内容块-->
