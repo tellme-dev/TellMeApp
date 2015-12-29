@@ -15,7 +15,6 @@
                 $state.go('login', { pageName: 'customer' });
             } else {
                 $state.go('menu.checkin');
-            }
-            
+            }            
         }
     }])
