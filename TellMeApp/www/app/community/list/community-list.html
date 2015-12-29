@@ -28,8 +28,11 @@
             <div class="list card" ng-repeat="detail in vm.typeDetail">
                 <div class="item item-avatar sq-item-top" ng-click="toBbsDetail(detail.id)">
                     <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" err-src="images/head.png">
-                    <h2>{{detail.customer.name}}</h2>
-                    <p>{{detail.createTime|date:'yyyy-MM-dd'}}</p>
+                    <div class="sq-item-vit">
+                        <h2>{{detail.customer.name}}</h2>
+                        <p>{{detail.createTime|date:'yyyy-MM-dd'}}</p>
+                    </div>
+                    
                                 </div>
                 <div class="item item-body" ng-if="detail.bbsAttachUrls">
                     <p ng-click="toBbsDetail(detail.id)">

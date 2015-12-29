@@ -190,15 +190,19 @@
                  }
 
             //跳转到广告、主题详情
-            $scope.goDetail = function (targetType, targetId) {
-                if (targetType == 1) {//单个酒店 酒店ID
-                    console.log("单个酒店详情");
-                    //  $state.go('discover');
-                } else if (targetType == 2) {//酒店项目 itemid
-                    $state.go('hotelItem', { itemId: targetId });
-                } else if (targetType == 3) {//社区bbsid
-                    $state.go('bbs', { bbsId: targetId });
-                }
+            //$scope.goDetail = function (targetType, targetId) {
+            //    if (targetType == 1) {//单个酒店 酒店ID
+            //        console.log("单个酒店详情");
+            //        //  $state.go('discover');
+            //    } else if (targetType == 2) {//酒店项目 itemid
+            //        $state.go('hotelItem', { itemId: targetId });
+            //    } else if (targetType == 3) {//社区bbsid
+            //        $state.go('bbs', { bbsId: targetId });
+            //    }
+            //}
+            $scope.goToAd = function (adId) {
+                //param 根据target_type等于1（酒店）、2（服务项目）、3（社区）判断，传入参数target_id
+                $state.go('adList', { 'adId': adId });
             }
             //返回
             $scope.goBack = function () {
@@ -217,10 +221,6 @@
             //跳转到系统设置
             $scope.goSystem = function () {
                 $state.go('system');
-            }
-            //跳转到广告详情
-            $scope.goToAd = function (adId) {
-                $state.go('adList', {'adId':adId});
             }
             //跳转到评论
             $scope.goDiscuss = function () {

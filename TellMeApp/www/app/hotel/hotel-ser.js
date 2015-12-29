@@ -149,7 +149,7 @@
                 function (data, status, headers, config) {
                     deferred.reject(5);
                 });
-            return deferred.promise;
+            return deferred.promise;s
         }
         //获取指定酒店标签信息
         this.getRootItemTagByHotelId = function (hotelId) {
