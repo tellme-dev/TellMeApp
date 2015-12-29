@@ -109,6 +109,28 @@
                 });
             return deferred.promise;
         }
+        //点赞项目
+        this.saveComment = function (customerId, targetId, text) {
+            var url = baseUrl + 'app/hotel/saveHotelComment.do';
+            var getDataJSON = JSON.stringify({
+                customerId: customerId,
+                targetId: targetId,
+                text: text
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: getDataJSON }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
         //获取标签信息
         this.getItemInfo= function (itemTagId) {
             var url = baseUrl + 'app/menu/loadItemTag.do ';
@@ -156,6 +178,28 @@
             var getDataJSON = JSON.stringify({
                 itemTagId: itemTagId,
                 hotelId: hotelId
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: getDataJSON }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
+        //获取酒店项目评论列表
+        this.commentListByHotelItem = function (itemId, pageNo, pageSize) {
+            var url = baseUrl + 'app/hotel/commentListByHotelItem.do ';
+            var getDataJSON = JSON.stringify({
+                itemId: itemId,
+                pageNo: pageNo,
+                pageSize: pageSize
             });
             var deferred = $q.defer();
             $http({

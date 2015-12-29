@@ -37,6 +37,10 @@
                 for (var i = 0; i < itemDatas.length; i++) {
                     if (itemDatas[i].item.id == id) {
                         $scope.itemData = itemDatas[i];
+                        cvm.itemId = $scope.itemData.item.id;
+                        cvm.isInit = true;
+                        cvm.pageNo = 0;
+                        cvm.loadMore();
                         break;
                     }
                 }
@@ -111,6 +115,73 @@
                     console.log('其他');
                 }
                 );
+        }
+
+        $scope.commentIds = new Array();
+        $scope.comments = new Array();
+        $scope.comment = new Array();
+        $scope.showComment = function (id) {
+            collectionSelected = true;
+
+            /*
+             var customerId = 0;
+             if (typeof (window.localStorage['userTel']) != 'undefined') {
+                 customerId = window.localStorage['userId'];
+             }
+             if (customerId < 1) {
+                 $state.go('login', {});
+                 return;
+             }
+             */
+
+            if ($scope.commentIds[id]) {
+                $scope.commentIds[id] = false;
+            } else {
+                $scope.commentIds[id] = true;
+            }
+        }
+
+        //用户评论项目
+        $scope.saveComment = function (index, targetId) {
+            collectionSelected = true;
+            var customerId = 0;
+            if (typeof (window.localStorage['userTel']) != 'undefined') {
+                customerId = window.localStorage['userId'];
+            }
+            if (customerId < 1) {
+                $state.go('login', {});
+                return;
+            }
+
+            var content = $scope.comments[index];
+            if (typeof (content) == "undefined") {
+                popUpSer.showAlert("请输入评价内容");
+                return;
+            }
+            if (content.trim() == "") {
+                popUpSer.showAlert("请输入评价内容");
+                return;
+            }
+            var promise = hotelSer.saveComment(customerId, targetId, content);
+            promise.then(
+                function (data) {
+                    if (data.isSuccess) {
+                        //popUpSer.showAlert("评论成功");
+                        cvm.isInit = true;
+                        cvm.pageNo = 0;
+                        cvm.loadMore();
+                    } else {
+                        popUpSer.showAlert(data.msg);
+                    }
+                },
+                function (data) {
+                    console.log('其他');
+                }
+                );
+        }
+
+        $scope.cancelTurn = function () {
+            collectionSelected = true;
         }
 
         //获取1级标题
@@ -210,6 +281,45 @@
                                 }
                             } else {
                                 document.getElementById("child_menu_view").style.width = "82px";
+                            }
+                        }
+                        LoadingSvr.hide();
+                        $scope.$broadcast('scroll.infiniteScrollComplete');
+                    },
+                    function (data) {
+                        console.log('其他');
+                    }
+                    );
+            }
+        };
+
+        var cvm = $scope.cvm = {
+            itemId: 0,
+            isInit: false,
+            moredata: false,
+            typeDetail: [],
+            pageNo: 0,
+            pageSize: 10,
+            loadMore: function () {
+                LoadingSvr.show();
+                cvm.pageNo++;
+                var promise = hotelSer.commentListByHotelItem(cvm.itemId, cvm.pageNo, cvm.pageSize);
+                promise.then(
+                    function (data) {
+                        if (data.isSuccess) {
+                            if (cvm.isInit) {
+                                $scope.comment = data.rows;
+                                cvm.isInit = false;
+                            } else {
+                                for (var i = 0, len = data.rows.length; i < len; i++) {
+                                    $scope.comment.push(data.rows[i]);
+                                }
+                            }
+                            var len = data.rows.length;
+                            if (len > pageNo) {
+                                moredata = true;
+                            } else {
+                                moredata = false;
                             }
                         }
                         LoadingSvr.hide();
