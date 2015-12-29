@@ -21,7 +21,6 @@
                 navigator.splashscreen.hide();
             }, 4000);
 
-            console.log(navigator.contacts);
         }
         document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -52,6 +51,7 @@
                 .state('menu.communityList', { url: '/communityList', views: { 'community-tab': { templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' } } })
                 //入住
                 .state('menu.checkin', { url: '/checkin', views: { 'checkin-tab': { templateUrl: 'app/checkin/center/center.html', controller: 'checkinCenterControll' } } })
+                
 
             //个人中心
             .state('customer', { cache: false, url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
@@ -91,6 +91,7 @@
 
             .state('rcu', { url: '/rcu?roomId', templateUrl: 'app/checkin/rcu/rcu.html', controller: 'rcuControll' })
             .state('choose', { url: '/choose?item', templateUrl: 'app/checkin/choose/choose.html', controller: 'chooseControll' })
+            .state('nocheckin', { url: '/nocheckin', templateUrl: 'app/checkin/nocheck/nocheckin.html', controller: 'noCheckinControll' })
             ;
             var appLaunchCount = window.localStorage.getItem('launchCount');
             //需要进行页面测试，则修改下面的路由即可

@@ -23,7 +23,7 @@
             return deferred.promise;
         }
         //查看用户是否有入住信息
-        this.getCheckinInfo = function (customerId,regionId) {
+        this.getCheckinInfo = function (customerId, regionId) {
             var url = baseUrl + 'app/occupancy/loadHotelByOccupancyInfo.do';
             var deferred = $q.defer();
             $http({
@@ -52,7 +52,7 @@
                 url: url,
                 data: {
                     roomInfo: JSON.stringify({
-                        roomId:roomId
+                        roomId: roomId
                     })
                 }
             }).success(
@@ -65,31 +65,31 @@
             return deferred.promise;
         }
         //发送操作设别的指令
-        this.sendOrder = function (sid, uid, deviceName, chageInfo) {
-            var url = baseUrl + 'app/rcu/sendACOrder.do';
-            var deferred = $q.defer();
-            $http({
-                method: 'post',
-                url: url,
-                data: {
-                    lampOrder: JSON.stringify({
-                        src: 'app',
-                        dst: 'rcu',
-                        type: 'csts',
-                        sid: sid,
-                        uid: uid,
-                        deviceName: {
-                            chageInfo
-                            }
-                            })
-                }
-            }).success(
-                function (data, status, headers, config) {
-                    deferred.resolve(data);
-                }).error(
-                function (data, status, headers, config) {
-                    deferred.reject(data);
-                });
-            return deferred.promise;
-        }
-    }])
+        //this.sendOrder = function (sid, uid, deviceName, chageInfo) {
+        //    var url = baseUrl + 'app/rcu/sendACOrder.do';
+        //    var deferred = $q.defer();
+        //    $http({
+        //        method: 'post',
+        //        url: url,
+        //        data: {
+        //            lampOrder: JSON.stringify({
+        //                src: 'app',
+        //                dst: 'rcu',
+        //                type: 'csts',
+        //                sid: sid,
+        //                uid: uid,
+        //                deviceName: {
+        //                    chageInfo
+        //                    }
+        //                    })
+        //        }
+        //    }).success(
+        //        function (data, status, headers, config) {
+        //            deferred.resolve(data);
+        //        }).error(
+        //        function (data, status, headers, config) {
+        //            deferred.reject(data);
+        //        });
+        //    return deferred.promise;
+        //}
+    }]);
