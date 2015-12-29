@@ -31,14 +31,14 @@
 
             $stateProvider
             //test
-            .state('test', { url: '/test', templateUrl: 'app/test/test.html', controller: 'testControll', abstract: true })
+            .state('test', { url: '/test', templateUrl: 'app/test/test.html', controller: 'testControll' })
             //首次启动页面
             .state('start', { url: '/start', templateUrl: 'app/start/start.html', controller: 'startControll' })
             //menu
             .state('menu', { url: '/menu', templateUrl: 'app/menu.html', controller: 'menuControll' })
                 //首页
                 //.state('menu.home', { url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
-                .state('menu.home', { url: '/home', views: { 'home-tab': { templateUrl: 'app/home/home.html', controller: 'homeControll' } } })
+                .state('menu.home', {cache:false, url: '/home', views: { 'home-tab': { templateUrl: 'app/home/home.html', controller: 'homeControll' } } })
 
                   //.state('menu.home.banner',{url:'/banner',views:{'home-banner':{templateUrl:'app/home/banner/banner.html',controller:'bannerControll'}}})
                   //.state('menu.home.swiper',{url:'/swiper',views:{'home-swiper':{templateUrl:'app/home/swiper/swiper.html',controller:'swiperControll'}}})
