@@ -110,6 +110,10 @@ angular.module('tellme')
         $scope.goToLocation = function () {
             $state.go('location');
         }
+            //跳转到搜索页面
+            $scope.goToSearch = function () {
+                $state.go('willSearch');
+            }
         /*跳转“个人信息页面”*/
         $scope.goToCustomer = function () {
             if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel'] == "") {//如果用户未登录跳转到登录页面
@@ -118,6 +122,10 @@ angular.module('tellme')
             $state.go('customer');
         }
             
+        }
+        //推荐更多
+        $scope.goDiscover = function () {
+            $state.go('menu.discoverList');
         }
         //跳转到搜索页面
         $scope.goToSearch = function () {

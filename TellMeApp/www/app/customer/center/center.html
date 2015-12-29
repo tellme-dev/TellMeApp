@@ -112,11 +112,11 @@
                 </div>
                 <!--酒店列表-->
                 <!--主题、广告-->
-                <div ng-click="goDetail(browse.advertisement.target_type,browse.advertisement.target_id)" ng-if="browse.type==2" class="xq-cont" style="margin-bottom:10px;">
+                <div ng-click="goToAd(browse.advertisement.id)" ng-if="browse.type==2" class="xq-cont" style="margin-bottom:10px;">
                     <a><img ng-src="{{host}}{{browse.advertisement.imgUrl}}" err-src="images/failed.png"/></a>
-                    <p class="zxx_text_overflow-2">
+                    <!--<p class="zxx_text_overflow-2">
                         {{browse.advertisement.text}}
-                    </p>
+                    </p>-->
                 </div>
                 <!--主题、广告-->
                 <!--bbs-->
