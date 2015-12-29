@@ -8,7 +8,7 @@
                 <!--内容块-->
                 <ul class="zt-cont">
                     <li ng-repeat="adDetail in adInfo.adDetailList">
-                        <a href="#" ng-click="goToTarget()"><img src="{{baseUrl}}{{adDetail.imageUrl}}" /></a>
+                        <a href="{{adInfo.targetContent}}" ng-click="goToTarget()"><img src="{{baseUrl}}{{adDetail.imageUrl}}" /></a>
                     </li>
                     <!--<li><a href="#">{{adDetail.text}}</a></li>-->
                 </ul>

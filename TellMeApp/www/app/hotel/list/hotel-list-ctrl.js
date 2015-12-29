@@ -198,11 +198,12 @@
                 }
                 );
         }
-
-        //用户评论项目
-        $scope.saveComment = function (targetId) {
+        $scope.commentIds = new Array();
+        $scope.comments = new Array();
+        $scope.showComment = function (id) {
             collectionSelected = true;
-            alert(targetId);
+
+            /*
             var customerId = 0;
             if (typeof (window.localStorage['userTel']) != 'undefined') {
                 customerId = window.localStorage['userId'];
@@ -211,7 +212,54 @@
                 $state.go('login', {});
                 return;
             }
+            */
+
+            if ($scope.commentIds[id]) {
+                $scope.commentIds[id] = false;
+            } else {
+                $scope.commentIds[id] = true;
+            }
+        }
+
+        //用户评论项目
+        $scope.saveComment = function (index, targetId) {
+            collectionSelected = true;
+            var customerId = 0;
+            if (typeof (window.localStorage['userTel']) != 'undefined') {
+                customerId = window.localStorage['userId'];
+            }
+            if (customerId < 1) {
+                $state.go('login', {});
+                return;
+            }
+
+            var content = $scope.comments[index];
+            if (typeof (content) == "undefined") {
+                popUpSer.showAlert("请输入评价内容");
+                return;
+            }
+            if (content.trim() == "") {
+                popUpSer.showAlert("请输入评价内容");
+                return;
+            }
             
+            var promise = hotelSer.saveComment(customerId, targetId, content);
+            promise.then(
+                function (data) {
+                    if (data.isSuccess) {
+                        popUpSer.showAlert("评论成功");
+                    } else {
+                        popUpSer.showAlert(data.msg);
+                    }
+                },
+                function (data) {
+                    console.log('其他');
+                }
+                );
+        }
+
+        $scope.cancelTurn = function () {
+            collectionSelected = true;
         }
 
         ////页面初始加载

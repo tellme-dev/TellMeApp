@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-.controller('adListControll', ['$scope','$state', '$window', '$stateParams', '$ionicHistory', 'appConfig','LoadingSvr','adSer','commonSer','tellmeActionSheet',
-       function ($scope, $state, $window, $stateParams, $ionicHistory, appConfig,LoadingSvr, adSer, commonSer, tellmeActionSheet) {
+.controller('adListControll', ['$scope','$state', '$window', '$stateParams', '$ionicHistory', 'appConfig','popUpSer','LoadingSvr','adSer','commonSer','tellmeActionSheet',
+       function ($scope, $state, $window, $stateParams, $ionicHistory, appConfig, popUpSer,LoadingSvr, adSer, commonSer, tellmeActionSheet) {
            $scope.baseUrl = appConfig.server.getUrl();
            var adId = $stateParams.adId;
            
@@ -28,7 +28,6 @@
                //    $state.go('bbs', { 'bbsId': targetId });
                //}
                if (targetType == 4) {
-                   //url
                }
            }
            //加载广告信息
@@ -40,7 +39,6 @@
                                    LoadingSvr.hide();
                                    console.log('加載成功');
                                } else {
-                                   alert(data.msg);
                                    console.log(data.msg);
                                }
                            },
@@ -68,7 +66,7 @@
                } else if (shareResult == 1) {
                    commonSer.saveShare(detail.id);
                } else {
-                   alert('分享出现其他错误');
+                   popUpSer.showAlert('分享出现其他错误');
                }
            }
 
@@ -119,7 +117,7 @@
                                    //再重新加载一次
                                    console.log('收藏成功');
                                } else {
-                                   alert(data.msg);
+                                   popUpSer.showAlert(data.msg);
                                    console.log(data.msg);
                                }
                            },
