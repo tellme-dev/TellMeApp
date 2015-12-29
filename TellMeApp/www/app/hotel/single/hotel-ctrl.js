@@ -10,6 +10,7 @@
         var itemDatas = null;
         //服务器地址
         $scope.host = hotelSer.hostUrl;
+        $scope.rootMenuWidth = "auto";
 
         var _MENU_SELECTED_ITEM = null;
         var _CHILD_MENU_SELECTED_ITEM = null;
@@ -193,6 +194,7 @@
                         var view = document.getElementById("list");
                         view.innerHTML = "";
                         var menus = data.rows;
+                        $scope.rootMenuWidth = (menus.length * 50) + "px";
                         if (menus != null && menus.length > 0) {
                             for (var i = 0; i < menus.length; i++) {
                                 var obj = menus[i];
