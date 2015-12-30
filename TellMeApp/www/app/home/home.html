@@ -11,7 +11,7 @@
 
     <ion-content>
         <!-- <ion-refresher> 下拉刷新指令  -->
-        <ion-refresher pulling-text="下拉刷新" on-refresh="vm.doRefresh()"></ion-refresher>
+        <!--<ion-refresher pulling-text="下拉刷新" on-refresh="vm.doRefresh()"></ion-refresher>-->
 
         <ion-slide-box on-slide-changed="slideHasChanged($index)" does-continue="true" auto-play="true" ng-if="adData">
             <ion-slide ng-repeat="ad in adData" repeat-done="repeatDone()" style="height:150px;">

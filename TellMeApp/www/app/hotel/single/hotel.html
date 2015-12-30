@@ -60,16 +60,16 @@
                     </div>
 
                     <div class="item tabs tabs-secondary tabs-icon-left">
-                        <a class="tab-item jd-tab-itemer" href="#" ng-click="showComment($index)">
+                        <a class="tab-item jd-tab-itemer" href="javascript:void(0)" ng-click="showComment($index)">
                             <i class="icon ion-chatbox"></i>
                         </a>
-                        <a class="tab-item jd-tab-itemer" href="#" ng-click="share(itemData.item.name, itemData.item.text, itemData.details[0].imageUrl)">
+                        <a class="tab-item jd-tab-itemer" href="javascript:void(0)" ng-click="share(itemData.item.name, itemData.item.text, itemData.details[0].imageUrl)">
                             <i class="icon ion-share"></i>
                         </a>
-                        <a class="tab-item jd-tab-itemer" href="#" ng-click="savePraise(itemData.item.id)">
+                        <a class="tab-item jd-tab-itemer" href="javascript:void(0)" ng-click="savePraise(itemData.item.id)">
                             <i class="icon ion-thumbsup"></i>
                         </a>
-                        <a class="tab-item jd-tab-itemer" href="#" ng-click="saveCollection(itemData.item.id)">
+                        <a class="tab-item jd-tab-itemer" href="javascript:void(0)" ng-click="saveCollection(itemData.item.id)">
                             <i class="icon ion-android-favorite"></i>
                         </a>
                     </div>
@@ -84,7 +84,7 @@
                             </button>
                         </div>
                     </div>
-                    <a ng-repeat="detail in comment" class="item item-icon-left item-icon-right item-avatar" href="#">
+                    <a ng-repeat="detail in comment" class="item item-icon-left item-icon-right item-avatar" href="javascript:void(0)">
                         <img ng-src="{{host}}{{detail.customerPhoto}}" err-src="images/head.png">
                         <h2>{{detail.customerName}}</h2>
                         <p>{{detail.text}}</p>
