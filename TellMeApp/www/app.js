@@ -21,7 +21,6 @@
                 navigator.splashscreen.hide();
             }, 4000);
 
-            console.log(navigator.contacts);
         }
         document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -32,14 +31,14 @@
 
             $stateProvider
             //test
-            .state('test', { url: '/test', templateUrl: 'app/test/test.html', controller: 'testControll', abstract: true })
+            .state('test', { url: '/test', templateUrl: 'app/test/test.html', controller: 'testControll' })
             //首次启动页面
             .state('start', { url: '/start', templateUrl: 'app/start/start.html', controller: 'startControll' })
             //menu
             .state('menu', { url: '/menu', templateUrl: 'app/menu.html', controller: 'menuControll' })
                 //首页
                 //.state('menu.home', { url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
-                .state('menu.home', { url: '/home', views: { 'home-tab': { templateUrl: 'app/home/home.html', controller: 'homeControll' } } })
+                .state('menu.home', {cache:false, url: '/home', views: { 'home-tab': { templateUrl: 'app/home/home.html', controller: 'homeControll' } } })
 
                   //.state('menu.home.banner',{url:'/banner',views:{'home-banner':{templateUrl:'app/home/banner/banner.html',controller:'bannerControll'}}})
                   //.state('menu.home.swiper',{url:'/swiper',views:{'home-swiper':{templateUrl:'app/home/swiper/swiper.html',controller:'swiperControll'}}})
@@ -52,6 +51,7 @@
                 .state('menu.communityList', { url: '/communityList', views: { 'community-tab': { templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' } } })
                 //入住
                 .state('menu.checkin', { url: '/checkin', views: { 'checkin-tab': { templateUrl: 'app/checkin/center/center.html', controller: 'checkinCenterControll' } } })
+                
 
             //个人中心
             .state('customer', { cache: true, url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
@@ -91,6 +91,11 @@
 
             .state('rcu', { url: '/rcu?roomId', templateUrl: 'app/checkin/rcu/rcu.html', controller: 'rcuControll' })
             .state('choose', { url: '/choose?item', templateUrl: 'app/checkin/choose/choose.html', controller: 'chooseControll' })
+            .state('nocheckin', { url: '/nocheckin', templateUrl: 'app/checkin/nocheck/nocheckin.html', controller: 'noCheckinControll' })
+            .state('ESuperMarket', { url: '/ESuperMarket?item', templateUrl: 'app/checkin/esupermarket/esupermarket.html', controller: 'eSupermarketControll' })
+            .state('traffic', { url: '/traffic', templateUrl: 'app/checkin/traffic/traffic.html', controller: 'trafficControll' })
+            .state('tv', { url: '/tv', templateUrl: 'app/checkin/tv/tv.html', controller: 'tvControll' })
+            .state('near', { url: '/near', templateUrl: 'app/checkin/near/near.html', controller: 'nearControll' })
             ;
             var appLaunchCount = window.localStorage.getItem('launchCount');
             //需要进行页面测试，则修改下面的路由即可

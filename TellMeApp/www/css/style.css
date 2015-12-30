@@ -18,6 +18,15 @@
 border:none
 }
 
+ .nav-conter ul li {
+    float:left;   height:42px; line-height:42px; width:50px;font-size:17px;text-align:center;
+}
+.li-but{
+    border-bottom:1px solid #9ac600
+}
+
+
+
 .jd-cont-col {
 float:right; background:#fff;
 }

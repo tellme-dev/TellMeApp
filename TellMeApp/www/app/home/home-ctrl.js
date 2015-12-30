@@ -1,7 +1,7 @@
 ﻿
 angular.module('tellme')
     .controller('homeControll', ['$scope', '$rootScope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', 'LoadingSvr', function ($scope,$rootScope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer, LoadingSvr) {
-
+        LoadingSvr.show();
         /*首页初始化*/
         var vm = $scope.vm = {
             moredata: false,
@@ -37,6 +37,7 @@ angular.module('tellme')
 
         //获取URL
         $scope.baseUrl = appConfig.server.getUrl();
+
         $rootScope.setCity = window.localStorage['currentcity'];
         $scope.$watch('setCity', function (newValue, oldValue) {
             $rootScope.setCity = newValue;
@@ -53,6 +54,7 @@ angular.module('tellme')
                                console.log("未获取数据！")
                            } else {
                                $scope.adData = data.rows;
+                               LoadingSvr.hide();
                            }
                        } else {
                            console.log("获取数据失败！" + data.msg)
