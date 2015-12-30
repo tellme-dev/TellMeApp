@@ -102,14 +102,15 @@
             }
         }
         $scope.goToTV = function () {
-            for (var i = 0; i < $scope.checkinHotel.itemVMs.length; i++) {
-                if ($scope.checkinHotel.itemVMs[i].itemTags && $scope.checkinHotel.itemVMs[i].itemTags.length > 0 && $scope.checkinHotel.itemVMs[i].itemTags[0].name == '互动电视') {
-                    $state.go('tv');
-                    break;
-                } else if (i == $scope.checkinHotel.itemVMs.length - 1) {
-                    popUpSer.showAlert('服务暂未开放');
-                }
-            }
+            $state.go('tv');
+            //for (var i = 0; i < $scope.checkinHotel.itemVMs.length; i++) {
+            //    if ($scope.checkinHotel.itemVMs[i].itemTags && $scope.checkinHotel.itemVMs[i].itemTags.length > 0 && $scope.checkinHotel.itemVMs[i].itemTags[0].name == '互动电视') {
+            //        $state.go('tv');
+            //        break;
+            //    } else if (i == $scope.checkinHotel.itemVMs.length - 1) {
+            //        popUpSer.showAlert('服务暂未开放');
+            //    }
+            //}
         }
         $scope.goToNear = function () {
             for (var i = 0; i < $scope.checkinHotel.itemVMs.length; i++) {
