@@ -188,7 +188,7 @@
                         }
                      }
                  }
-
+            vm.loadMore();
             //跳转到广告、主题详情
             //$scope.goDetail = function (targetType, targetId) {
             //    if (targetType == 1) {//单个酒店 酒店ID

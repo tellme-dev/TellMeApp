@@ -170,7 +170,7 @@
             <div ng-repeat="save in saveData">
                 <!--酒店列表-->
                 <div ng-if="save.type==1" class="list card item-mb xq-item">
-                    <div class="item item-body xq-item-cont">
+                    <div class="item item-body xq-item-cont" ng-click="goHotel(save.hotel.id)">
                         <a href=""><img class="full-image" ng-src="{{host}}{{save.hotel.imgUrl}}"></a>
                         <div class="xq-item-fl">
                             <ul class="xq-ul">
@@ -206,9 +206,9 @@
                 <!--主题、广告-->
                 <div ng-if="save.type==2" class="xq-cont" style="margin-bottom:10px;">
                     <a><img ng-src="{{host}}{{save.advertisement.imgUrl}}" ng-click="goToAd(save.advertisement.id)" err-src="images/failed.png" /></a>
-                    <!--<p class="zxx_text_overflow-2">
+                    <p class="zxx_text_overflow-2">
                         {{save.advertisement.text}}
-                    </p>-->
+                    </p>
                 </div>
                 <!--主题、广告-->
                 <!--bbs-->
