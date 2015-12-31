@@ -34,7 +34,8 @@
 
                     <div class="item item-body item-body-top">
                         <div ng-repeat="item in itemData.details">
-                            <img class="full-image" ng-src="{{host}}{{item.imageUrl}}">
+                            <img ng-show="!itemData.tagTransport" class="full-image" ng-src="{{host}}{{item.imageUrl}}">
+                            <div ng-show="itemData.tagTransport" id="positionMap" class="full-image"></div>
                             <div class="pad-cont">
 
                                 <div class="clear"></div>
