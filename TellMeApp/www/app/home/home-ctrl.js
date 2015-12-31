@@ -2,6 +2,19 @@
 angular.module('tellme')
     .controller('homeControll', ['$scope', '$rootScope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', 'LoadingSvr', function ($scope,$rootScope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer, LoadingSvr) {
         LoadingSvr.show();
+
+        $scope.swiper = {};
+
+        $scope.onReadySwiper = function (swiper) {
+
+            swiper.on('slideChangeStart', function () {
+                console.log('slide start');
+            });
+
+            swiper.on('onSlideChangeEnd', function () {
+                console.log('slide end');
+            });
+        };
         /*首页初始化*/
         var vm = $scope.vm = {
             moredata: false,
@@ -154,21 +167,4 @@ angular.module('tellme')
         $scope.repeatDone = function () {
             $ionicSlideBoxDelegate.update();
         }
-        angular.element(document).ready(function () {
-            var swiper = new Swiper('.swiper-container', {
-                loop: true,
-                pagination: '.swiper-pagination',
-                effect: 'coverflow',
-                grabCursor: true,
-                centeredSlides: true,
-                slidesPerView: 'auto',
-                coverflow: {
-                    rotate: 50,
-                    stretch: 0,
-                    depth: 100,
-                    modifier: 1,
-                    slideShadows: true
-                }
-            });
-        });
         }])
