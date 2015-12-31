@@ -35,9 +35,9 @@
                     
                                 </div>
                 <div class="item item-body" ng-if="detail.bbsAttachUrls">
-                    <p ng-click="toBbsDetail(detail.id)">
-                        <b ng-if="detail.title">#{{detail.title}}#</b>{{detail.text}}
-                    </p>
+                    <div ng-click="toBbsDetail(detail.id)">
+                        <div ng-if="detail.title">#{{detail.title}}#</div>{{detail.text}}
+                    </div>
                     <!--<div style="display:block;">
                     <ul class="grid" ng-click="goToImageBrowse(detail.bbsAttachUrls[0].bbsId)">
                         <li ng-repeat="imgUrl in detail.bbsAttachUrls">

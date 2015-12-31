@@ -8,6 +8,8 @@
         }
         $scope.call = function () {
             //拨打电话
-            //item.tel;
+            //
+            var tel = $scope.item.tel;
+            window.open('tel://' + tel);
         }
     }])

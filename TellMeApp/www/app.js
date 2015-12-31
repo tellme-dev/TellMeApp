@@ -31,21 +31,21 @@
 
             $stateProvider
             //test
-            .state('test', { url: '/test', templateUrl: 'app/test/test.html', controller: 'testControll', abstract: true })
+            .state('test', { url: '/test', templateUrl: 'app/test/test.html', controller: 'testControll' })
             //首次启动页面
             .state('start', { url: '/start', templateUrl: 'app/start/start.html', controller: 'startControll' })
             //menu
             .state('menu', { url: '/menu', templateUrl: 'app/menu.html', controller: 'menuControll' })
                 //首页
                 //.state('menu.home', { url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
-                .state('menu.home', { url: '/home', views: { 'home-tab': { templateUrl: 'app/home/home.html', controller: 'homeControll' } } })
+                .state('menu.home', {cache:false, url: '/home', views: { 'home-tab': { templateUrl: 'app/home/home.html', controller: 'homeControll' } } })
 
                   //.state('menu.home.banner',{url:'/banner',views:{'home-banner':{templateUrl:'app/home/banner/banner.html',controller:'bannerControll'}}})
                   //.state('menu.home.swiper',{url:'/swiper',views:{'home-swiper':{templateUrl:'app/home/swiper/swiper.html',controller:'swiperControll'}}})
                   //.state('menu.home.topic',{url:'/topic',views:{'home-topic':{templateUrl:'app/home/topic/topic.html',controller:'topicControll'}}})
                 //发现
                // .state('menu.discoverList', { cache: false, url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverListControll' })
-                 .state('menu.discoverList', { cache: false, url: '/discoverList', views: { 'discovery-tab': { templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverListControll' } } })
+                 .state('menu.discoverList', { cache: true, url: '/discoverList', views: { 'discovery-tab': { templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverListControll' } } })
                 // 社区
                 //.state('menu.communityList', { cache: false, url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
                 .state('menu.communityList', { url: '/communityList', views: { 'community-tab': { templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' } } })
@@ -54,7 +54,7 @@
                 
 
             //个人中心
-            .state('customer', { cache: false, url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
+            .state('customer', { cache: true, url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
             .state('login', { url: '/login?pageName', templateUrl: 'app/customer/login/login.html', controller: 'loginControll' })
             .state('register', { url: '/register', templateUrl: 'app/customer/register/register.html', controller: 'registerControll' })
           //个人中心 设置
@@ -92,6 +92,10 @@
             .state('rcu', { url: '/rcu?roomId', templateUrl: 'app/checkin/rcu/rcu.html', controller: 'rcuControll' })
             .state('choose', { url: '/choose?item', templateUrl: 'app/checkin/choose/choose.html', controller: 'chooseControll' })
             .state('nocheckin', { url: '/nocheckin', templateUrl: 'app/checkin/nocheck/nocheckin.html', controller: 'noCheckinControll' })
+            .state('ESuperMarket', { url: '/ESuperMarket?item', templateUrl: 'app/checkin/esupermarket/esupermarket.html', controller: 'eSupermarketControll' })
+            .state('traffic', { url: '/traffic', templateUrl: 'app/checkin/traffic/traffic.html', controller: 'trafficControll' })
+            .state('tv', { url: '/tv', templateUrl: 'app/checkin/tv/tv.html', controller: 'tvControll' })
+            .state('near', { url: '/near', templateUrl: 'app/checkin/near/near.html', controller: 'nearControll' })
             ;
             var appLaunchCount = window.localStorage.getItem('launchCount');
             //需要进行页面测试，则修改下面的路由即可

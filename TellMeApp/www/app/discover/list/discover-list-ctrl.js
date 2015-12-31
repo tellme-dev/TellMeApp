@@ -60,7 +60,7 @@
                 pageNo:0,
                 pageSize:10,
                 loadMore: function () {
-                    LoadingSvr.show();
+                 //   LoadingSvr.show();
                     vm.pageNo += 1;
                     var promise = discoverSer.getList(vm.pageNo,vm.pageSize).then(
                   function (data) {
@@ -78,7 +78,7 @@
                               vm.moredata = true;
                               vm.pageNo = 0;
                           }
-                          LoadingSvr.hide();
+                         // LoadingSvr.hide();
                       } else {
                           $scope.dataShow = false;
                           $scope.msgShow = true;

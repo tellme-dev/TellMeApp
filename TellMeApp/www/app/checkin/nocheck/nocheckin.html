@@ -1,0 +1,30 @@
+﻿<ion-view>
+    <ion-header-bar class="bar bar-header bar-dark">
+        <button class="button icon button-clear ion-ios-arrow-back " style="color:#444" ng-click="goBack()"></button>
+        <label ng-click="goToSearch()" class="item item-input" style="margin:0 auto; width:60%; background:#ffffff">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="text" placeholder="Search" disabled class="pad-top">
+        </label>
+
+        <button ng-click="goToCustomer()" class="button icon ion-android-person" style="border:none"></button>
+    </ion-header-bar>
+    <ion-content>
+        <div style="width:100%;background:#ffffff;padding-top:15px; padding-bottom:10px;">
+            <div style="width:100%; text-align:center;">
+                <img style="border-radius:50%; background:#ddd; margin:0 auto ;width:100px; height:100px" src="images/kittys_files/200_014.jpg" />
+            </div>
+            <div style="text-align:center; font-size:1.5em;margin-top:5px;">你还没有相关酒店入住信息</div>
+        </div>
+        <button style="border:none; background:darkseagreen; display:block;height:3em;width:100%;color:#fff">你附近的酒店</button>
+
+
+        <div class="list card" ng-if="nearHotels">
+            <div class="item item-avatar" ng-repeat="nearHotel in nearHotels">
+                <img src="images/xq-2.jpg" style="border-radius:0px">
+                <h2>{{nearHotel.name}}</h2>
+                <p>入住舒适度:{{nearHotel.score}}分</p>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

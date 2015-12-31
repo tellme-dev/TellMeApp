@@ -4,12 +4,7 @@
         //$scope.shareMessage = function () {
         //    window.plugins.socialsharing.share('Message only')
         //}
+        $scope.sportImages = [
+        {url:'images/a.png'},{url:'images/a.png'},{url:'images/a.png'}
+        ];
     }])
-.directive('hello', function () {
-    console.log("动态加载");
-    return {
-        restrict: 'AE',
-        template: '<span>Hi there</span>',
-        replace: true
-    };
-});

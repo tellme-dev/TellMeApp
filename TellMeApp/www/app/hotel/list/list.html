@@ -7,13 +7,17 @@
         </ion-header-bar>
         <!--导航-->
         <div class="bar bar-subheader">
-            <div id="wrapper">
-                <div id="scroller">
-                    <ul id="list">
-                        
-                    </ul>
-                </div>
-            </div>
+            
+            <ion-view title="Home" hide-nav-bar="true" style="padding-left:10px;">
+                <ion-scroll scrollbar-x="false" zooming="true" direction="x" style="width:90%;">
+                    <div class="nav-conter" style="width: {{rootMenuWidth}};">
+                        <ul id="list">
+                            
+                        </ul>
+                    </div>
+                </ion-scroll>
+            </ion-view>
+
 
             <div class="content padding has-header  jd-cont-col jd-has-header">
                 <i class="icon ion-chevron-down"></i>

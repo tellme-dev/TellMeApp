@@ -22,6 +22,8 @@
         $scope.goBack = function () {
             $ionicHistory.goBack();
         }
+        $scope.rootMenuWidth = "auto";
+        $scope.childMenuWidth = "auto";
         var collectionSelected = false;
         //设置1级菜单选择事件
         function setSelectStyle(obj, id) {
@@ -43,6 +45,7 @@
             //$scope.getItemList(1, id);
             selectId = id;
             vm.pageNo = 0;
+            vm.isInit = true;
             vm.loadMore();
         }
 
@@ -64,6 +67,7 @@
                         var view = document.getElementById("list");
                         view.innerHTML = "";
                         var menus = data.rows;
+                        $scope.rootMenuWidth = (menus.length * 50) + "px";
                         if (menus != null && menus.length > 0) {
                             for (var i = 0; i < menus.length; i ++){
                                 var obj = menus[i];
@@ -263,6 +267,7 @@
         }
 
         ////页面初始加载
+        /*
         var myScroll;
         var length = document.getElementById("list").getElementsByTagName("li").length;		//导航li的数量，若从后台读取可不要本行
         var scroll_width = length * 80 + "px";
@@ -273,12 +278,13 @@
         var mySwiper1 = new Swiper('#header', {
             freeMode: true,
             slidesPerView: 'auto',
-        });
+        });*/
       
         //设置1级标题
         $scope.getRootMenu();
 
         var vm = $scope.vm = {
+            isInit: false,
             moredata: false,
             typeDetail: [],
             pageNo: 0,
@@ -291,45 +297,53 @@
                         function (data) {
                             LoadingSvr.hide();
                             if (data.isSuccess) {
-                                var tempData = data.rows;
-                                if (typeof (param_itemId) == 'undefined' || param_itemId < 1) {
-                                    //克隆数据
-                                    var arr = new Array();
-                                    for (var bf = 0; bf < tempData.length; bf++) {
-                                        arr.push(tempData[bf]);
-                                    }
-                                    //游标缓存对象
-                                    var temp_index = {};
-                                    //内存置换缓存对象
-                                    var temp = {};
-                                    for (var i = 0; i < arr.length; i++) {
-                                        if (i == 0) {
-                                            if (arr[i].id == param_itemId) {
-                                                break;
-                                            } else {
-                                                temp_index = arr[i];
-                                            }
-                                        } else {
-                                            if (arr[i].id == param_itemId) {
-                                                arr[0] = arr[i];
-                                                arr[i] = temp_index;
-                                                break;
-                                            } else {
-                                                //没有找到指定数据需要还原数据
-                                                if (i == arr.length - 1) {
-                                                    arr = tempData;
+                                if (vm.isInit) {
+                                    var tempData = data.rows;
+                                    if (typeof (param_itemId) == 'undefined' || param_itemId < 1) {
+                                        //克隆数据
+                                        var arr = new Array();
+                                        for (var bf = 0; bf < tempData.length; bf++) {
+                                            arr.push(tempData[bf]);
+                                        }
+                                        //游标缓存对象
+                                        var temp_index = {};
+                                        //内存置换缓存对象
+                                        var temp = {};
+                                        for (var i = 0; i < arr.length; i++) {
+                                            if (i == 0) {
+                                                if (arr[i].id == param_itemId) {
+                                                    break;
                                                 } else {
-                                                    temp = arr[i];
+                                                    temp_index = arr[i];
+                                                }
+                                            } else {
+                                                if (arr[i].id == param_itemId) {
+                                                    arr[0] = arr[i];
                                                     arr[i] = temp_index;
-                                                    temp_index = temp;
+                                                    break;
+                                                } else {
+                                                    //没有找到指定数据需要还原数据
+                                                    if (i == arr.length - 1) {
+                                                        arr = tempData;
+                                                    } else {
+                                                        temp = arr[i];
+                                                        arr[i] = temp_index;
+                                                        temp_index = temp;
+                                                    }
                                                 }
                                             }
                                         }
+                                        tempData = arr;
                                     }
-                                    tempData = arr;
-                                }
 
-                                $scope.list = tempData;
+                                    $scope.list = tempData;
+                                    vm.isInit = false;
+                                } else {
+                                    for (var i = 0; i < data.rows.length; i++) {
+                                        $scope.list.push(data.rows[i]);
+                                    }
+                                }
+                                
                                 var total = data.total;
                                 if (total > vm.pageNo) {
                                     vm.moredata = false;

@@ -3,9 +3,25 @@
         //初始化"主卧","客卧","客厅"按钮的背景图片
         $scope.initRoomcfgImage = function (index, roomcfg) {
             if (index == 0) {
-                roomcfg.imageurl = roomcfg.name+'.jpg';
+                if (roomcfg.name =='主卧') {
+                    roomcfg.imageurl = 'hostroom.jpg';
+                } else if (roomcfg.name == '客厅') {
+                    roomcfg.imageurl = 'livingroom.jpg';
+                } else if (roomcfg.name == '客卧') {
+                    roomcfg.imageurl = 'guardroom.jpg';
+                } else {
+                    roomcfg.imageurl = 'hostroom.jpg';
+                }
             } else {
-                roomcfg.imageurl = roomcfg.name+'_1.png';
+                if (roomcfg.name == '主卧') {
+                    roomcfg.imageurl = 'hostroom_1.png';
+                } else if (roomcfg.name == '客厅') {
+                    roomcfg.imageurl = 'livingroom_1.png';
+                } else if (roomcfg.name == '客卧') {
+                    roomcfg.imageurl = 'guardroom_1.png';
+                } else {
+                    roomcfg.imageurl = 'hostroom_1.png';
+                }
             }
             
         }
@@ -15,9 +31,25 @@
             $scope.initRoomTab($scope.room);
             for (var i = 0; i < $scope.roomcfgs.length; i++) {
                 if (index == i) {
-                    $scope.roomcfgs[i].imageurl  = $scope.roomcfgs[i].name+'.jpg';
+                    if ($scope.roomcfgs[i].name == '主卧') {
+                        $scope.roomcfgs[i].imageurl = 'hostroom.jpg';
+                    } else if ($scope.roomcfgs[i].name == '客厅') {
+                        $scope.roomcfgs[i].imageurl = 'livingroom.jpg';
+                    } else if ($scope.roomcfgs[i].name == '客卧') {
+                        $scope.roomcfgs[i].imageurl = 'guardroom.jpg';
+                    } else {
+                        $scope.roomcfgs[i].imageurl = 'hostroom.jpg';
+                    }
                 } else {
-                    $scope.roomcfgs[i].imageurl = $scope.roomcfgs[i].name + '_1.png';
+                    if ($scope.roomcfgs[i].name == '主卧') {
+                        $scope.roomcfgs[i].imageurl = 'hostroom_1.png';
+                    } else if ($scope.roomcfgs[i].name == '客厅') {
+                        $scope.roomcfgs[i].imageurl = 'livingroom_1.png';
+                    } else if ($scope.roomcfgs[i].name == '客卧') {
+                        $scope.roomcfgs[i].imageurl = 'guardroom_1.png';
+                    } else {
+                        $scope.roomcfgs[i].imageurl = 'hostroom_1.png';
+                    }
                 }
             }
         }

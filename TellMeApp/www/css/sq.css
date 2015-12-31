@@ -34,10 +34,10 @@
     float:left; margin-top:13px;
     }
         .sq-item-vit h2 {
-        font-family:'微软雅黑'; font-size:1em;margin-bottom:0px;
+        font-family:'微软雅黑'; font-size:16px;margin-bottom:0px;
         }
         .sq-item-vit p{
-           font-family:'微软雅黑'; font-size:0.8em
+           font-family:'微软雅黑'; 
         }
     .sq-item-min {
     float:right; margin-top:18px;
@@ -64,7 +64,7 @@
  top:35px;
 }
 .sqer-item-fl {
-    padding:0px 10px; height:auto; font-family:'微软雅黑'; color:#474747; font-size:1em;height:auto; overflow-y:hidden;
+    padding:0px 10px; height:auto; font-family:'微软雅黑'; color:#474747; font-size:16px;height:auto; overflow-y:hidden;
 }
 .sqer-but {
 border:none;background:#fff;
@@ -175,7 +175,7 @@ float:right;
 }
 
 .button-col {
-font-size:0.75em;text-align:center; border:1px solid #ddd; border-left:1px solid #fff; background:#fff;
+text-align:center; border:1px solid #ddd; border-left:1px solid #fff; background:#fff;
 border-bottom:2px solid #fff;
 }
 .button-col-clock {
@@ -322,7 +322,7 @@ padding:10px 10px;
 
 /*话题*/
 .ht-button {
-color:#99c600; border-radius:3px; background:#fff;border:1px solid #99c600; font-size:0.8em;
+color:#99c600; border-radius:3px; background:#fff;border:1px solid #99c600; font-size:1.2em;
 }
 .ht-ti {
 margin-top:10px;
@@ -394,7 +394,7 @@ padding:0px 10px; width:100%
     width:49px; height:49px; border-radius:6px; background:#ddd;
 }
 .pl-text-s {
-    width:60%; margin-left:10px; font-family:'微软雅黑'; margin-top:3px; font-size:0.85em; display:block;
+    width:60%; margin-left:10px; font-family:'微软雅黑'; margin-top:3px; font-size:1.2em; display:block;
 }
 .pl-text-ser {
     width:75%
@@ -417,7 +417,7 @@ padding:0px 10px; width:100%
         width:15px;
     }
     .pl-hf-button .fr {
-        color:#848484;font-size:0.85em; margin-left:3px;
+        color:#848484;font-size:1em; margin-left:3px;
     }
 
 .pl-esr {
@@ -427,7 +427,7 @@ padding:0px 10px; width:100%
         width:60px; height:60px; background:#fff;
     }
 .pl-esr-cont {
-    width:72%; margin-left:5px; font-family:'微软雅黑'; margin-top:8px; font-size:0.85em;
+    width:72%; margin-left:5px; font-family:'微软雅黑'; margin-top:8px; font-size:1em;
 }
     .pl-esr-cont span {
         margin-right:3px; color:#757575
@@ -441,7 +441,7 @@ padding:0px 10px; width:100%
 
 
     .zan-text-s {
-    width:27%; margin-left:5px; font-family:'微软雅黑'; margin-top:1px; font-size:0.85em; display:block;
+    width:27%; margin-left:5px; font-family:'微软雅黑'; margin-top:1px; font-size:1em; display:block;
 }
     .zan-text-s span {
         margin-right:0px; color:#757575;font-size:1.3em; font-family:'微软雅黑'; display:block;
@@ -463,7 +463,7 @@ padding:0px 10px; width:100%
         width:15px;
     }
     .zan-hf-button .fr {
-        color:#848484;font-size:0.85em; margin-left:3px;
+        color:#848484;font-size:1em; margin-left:3px;
     }
 
    /*定位*/
@@ -480,7 +480,7 @@ padding:0px 10px; width:100%
     margin-top:45px; padding:10px 10px;
 }
 .dw-ul {
-    font-size:0.9em
+    font-size:1em
 }
     .dw-ul .li-1 {
         color:#b1b1b1
@@ -496,7 +496,7 @@ padding:0px 10px; width:100%
         }
 
 .dw-tit-on {
-    color:#8b8b8b; padding:10px 0px; width:100%; border-bottom:3px solid #d9d9d9; font-family:'微软雅黑'; font-size:0.9em;
+    color:#8b8b8b; padding:10px 0px; width:100%; border-bottom:3px solid #d9d9d9; font-family:'微软雅黑'; font-size:1em;
 }
 .dw-row {
     padding:0px; margin-top:15px;
@@ -514,7 +514,7 @@ padding:0px 10px; width:100%
     width:100%; border-bottom:3px solid #d9d9d9; margin-top:15px
 }
 .dw-tit-to {
-    color:#8b8b8b; padding:10px 0px; width:100%; font-family:'微软雅黑';font-size:0.9em; margin-top:5px;
+    color:#8b8b8b; padding:10px 0px; width:100%; font-family:'微软雅黑';font-size:1em; margin-top:5px;
 }
 .dw-row-sr {
     padding:0px;
@@ -845,3 +845,32 @@ display:none;}
 .contact-text-bu {
     font-size:20px; color:#666; font-family:'黑体'; line-height:25px;text-align:center
 }
+/*互动电视*/
+       .tv-cont {
+            padding:0px; border-top:1px solid #ddd
+        }
+        .tv-cont-img {
+            width:100%; text-align:center;padding:20px;
+        }
+            .tv-cont-img img {
+                width:80%; height:130px;
+            }
+        .tv-tie {
+            width:100%; height:70px; text-align:center; line-height:70px; color:#666; border-bottom:1px solid #ddd; font-size:20px; font-family:"黑体"
+        }
+        .tv-button-cont {
+          background:#fff; color:#666; height:65px; border:none; border-bottom:1px solid #ddd;font-size:42px; color:#999;}
+        .tv-button-voice {  background:#fff; color:#666; height:65px; border:none; border-bottom:1px solid #ddd;font-size:42px; color:#999;}
+        .tv-button-voice:active { color:#6dcda5; }
+         .button-rig {
+            border-right:1px solid #ddd;
+        }
+        .tv-padd {
+            padding:0px; margin-top:0px;
+        }
+        .tv-ma-to {
+            margin-top:0px;
+        }
+        .tv-button {
+            width:100%; height:60px;background:#fff;border:none;font-size:20px;color:#999; border-bottom:1px solid #ddd;
+        }
