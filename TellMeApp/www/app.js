@@ -45,7 +45,7 @@
                   //.state('menu.home.topic',{url:'/topic',views:{'home-topic':{templateUrl:'app/home/topic/topic.html',controller:'topicControll'}}})
                 //发现
                // .state('menu.discoverList', { cache: false, url: '/discoverList', templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverListControll' })
-                 .state('menu.discoverList', { cache: false, url: '/discoverList', views: { 'discovery-tab': { templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverListControll' } } })
+                 .state('menu.discoverList', { cache: true, url: '/discoverList', views: { 'discovery-tab': { templateUrl: 'app/discover/list/discover-list.html', controller: 'discoverListControll' } } })
                 // 社区
                 //.state('menu.communityList', { cache: false, url: '/communityList', templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' })
                 .state('menu.communityList', { url: '/communityList', views: { 'community-tab': { templateUrl: 'app/community/list/community-list.html', controller: 'communityControll' } } })
@@ -54,7 +54,7 @@
                 
 
             //个人中心
-            .state('customer', { cache: false, url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
+            .state('customer', { cache: true, url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
             .state('login', { url: '/login?pageName', templateUrl: 'app/customer/login/login.html', controller: 'loginControll' })
             .state('register', { url: '/register', templateUrl: 'app/customer/register/register.html', controller: 'registerControll' })
           //个人中心 设置

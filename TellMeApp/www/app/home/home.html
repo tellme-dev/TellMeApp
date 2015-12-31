@@ -1,20 +1,24 @@
 ﻿<ion-view style="color:#fff; font-family:'微软雅黑';">
     <ion-header-bar class="bar bar-header item-input-inset bar-dark">
+        <!--<button id="cityName" class="button icon ion-ios-location" ng-click="goToLocation()" style="border:none">{{setCity}}</button>
+        <label ng-click="gotosearch()" class="item item-input" style="margin:0 auto; width:60%; background:#ffffff">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="text" placeholder="search" disabled class="pad-top">
+        </label>
+        <button ng-click="goToCustomer()" class="button icon ion-android-person" style="border:none"></button>-->
 
-        <button class="button icon-left ion-ios-location" ng-click="goToLocation()" style="border:none;padding-left:0px;">
-            {{setCity}}
-        </button>
-        <label ng-click="goToSearch()" class="item-input-wrapper">
+            <button class="button icon-left ion-ios-location"  ng-click="goToLocation()" style="border:none;padding-left:0px;">
+                {{setCity}}</button>
+                    <label ng-click="goToSearch()"  class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
             <input readonly type="search" placeholder="搜索">
         </label>
         <button ng-click="goToCustomer()" class="button button-clear ion-android-person"></button>
-
     </ion-header-bar>
 
     <ion-content>
         <!-- <ion-refresher> 下拉刷新指令  -->
-        <ion-refresher pulling-text="下拉刷新" on-refresh="vm.doRefresh()"></ion-refresher>
+        <!--<ion-refresher pulling-text="下拉刷新" on-refresh="vm.doRefresh()"></ion-refresher>-->
 
         <ion-slide-box on-slide-changed="slideHasChanged($index)" does-continue="true" auto-play="true" ng-if="adData">
             <ion-slide ng-repeat="ad in adData" repeat-done="repeatDone()" style="height:150px;">
@@ -23,25 +27,25 @@
         </ion-slide-box>
         <ks-swiper-container initial-slide="3" speed="2000" loop="true" show-nav-buttons="false" slides-per-view="auto" space-between="5" pagination-clickable="false" override-parameters="{effect: 'coverflow',coverflow: {rotate: 50,stretch: 0,depth: 100,modifier: 1,slideShadows : true}}" on-ready="onReadySwiper(swiper)">
             <ks-swiper-slide class="swiper-slide" ng-repeat="s in [1,2,3,4,5,6,7,8]">
-                <div class="row" style="padding-bottom:1px;font-family:'微软雅黑'; color:#474747; font-size:1.25em;">
-                    <div class="col col-100" style="line-height:30px;"><strong>酒店</strong></div>
-                </div>
-                <div class="row" style="padding-bottom:1px;">
-                    <div class="col col-50" style="padding:1px;">
-                        <img src="images/a.png" style="width:100%;" />
-                    </div>
-                    <div class="col col-50" style="padding:1px;">
-                        <img src="images/a.png" style="width:100%;" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col col-50" style="padding:1px;">
-                        <img src="images/a.png" style="width:100%;" />
-                    </div>
-                    <div class="col col-50" style="padding:1px;">
-                        <img src="images/a.png" style="width:100%;" />
-                    </div>
-                </div>
+                        <div class="row" style="padding-bottom:1px;font-family:'微软雅黑'; color:#474747; font-size:1.25em;">
+                            <div class="col col-100" style="line-height:30px;"><strong>酒店</strong></div>
+                        </div>
+                        <div class="row" style="padding-bottom:1px;">
+                            <div class="col col-50" style="padding:1px;">
+                                <img src="images/a.png" style="width:100%;" />
+                            </div>
+                            <div class="col col-50" style="padding:1px;">
+                                <img src="images/a.png" style="width:100%;" />
+                            </div>
+                            </div>
+                        <div class="row">
+                            <div class="col col-50" style="padding:1px;">
+                                <img src="images/a.png" style="width:100%;" />
+                            </div>
+                            <div class="col col-50" style="padding:1px;">
+                                <img src="images/a.png" style="width:100%;" />
+                            </div>
+                        </div>
             </ks-swiper-slide>
         </ks-swiper-container>
 

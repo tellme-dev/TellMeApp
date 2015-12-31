@@ -1,5 +1,48 @@
 ﻿<ion-view>
-    <ion-content>
-        互动电视
-    </ion-content>
+            <div class="bar bar-header item-input-inset sz-top" >
+                <button ng-click="goBack()" class="button icon button-clear ion-ios-arrow-back"></button>
+                <h1 class="title sz-top-text" style="font-family:'微软雅黑';color:#666">互动电视</h1>
+            </div>
+            <!--内容块-->
+            
+            <ion-content style="background:#fff">
+                <div style="margin-top:45px;">
+                    <div class="tv-cont-img">
+                        <img src="" style="background:#666" />
+                    </div>
+                    <div class="row tv-cont">
+                        <div class="col col-50 tv-tie button-rig">
+                            频道
+                        </div>
+                        <div class="col col-50 tv-tie">音量</div>
+                    </div>
+                    <div class="row tv-padd" style="margin-top:0px;">
+                        <div class="col col-50 button-rig tv-padd" >
+                            <div class="row tv-padd">
+                                <button class="col col-50 tv-button-voice button-rig">+</button>
+                                <button class="col col-50 tv-button-voice">-</button>
+                            </div>
+                            
+                        </div>
+                        <div class="col col-50 tv-padd" >
+                            <div class="row tv-padd">
+                                <button class="col col-50 tv-button-voice button-rig">+</button>
+                                <button class="col col-50 tv-button-voice">-</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<button class="tv-button">ON</button>-->
+                    <div class="style-cont-to2" style="text-align:center;">
+                        <label class="toggle toggle-balanced">
+                            <input type="checkbox">
+                            <div class="track no-track no-style2">
+                                <span class="fr no-style-span-l">OFF</span>
+                                <span class="fl no-style-span-r">ON</span>
+                                <div class="handle handle-re handle-style2"></div>
+                                <div class="clear"></div>
+                            </div>
+                        </label>
+                    </div>
+            </div>
+     </ion-content>
 </ion-view>

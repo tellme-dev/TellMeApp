@@ -35,7 +35,6 @@
                     }
                     );
                 $state.go('menu.checkin');
-            }
-            
+            }            
         }
     }])

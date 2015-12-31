@@ -5,6 +5,8 @@
   <author href="http://cordova.io" email="dev@cordova.apache.org">tellme dev</author>
   <content src="app.html" />
   <access origin="*" />
+
+  
   <vs:features />
   <preference name="SplashScreen" value="screen" />
   <preference name="AutoHideSplashScreen" value="false" />
