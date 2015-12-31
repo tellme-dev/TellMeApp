@@ -1,99 +1,80 @@
-﻿<ion-side-menus>
-    <ion-side-menu-content>
+﻿<ion-view>
+    <ion-header-bar class="bar bar-header bar-light ">
+        <button class="button icon ion-chevron-left jd-border-no" ng-click="goBack()"></button>
+    </ion-header-bar>
+    <!--导航-->
+    <div class="bar bar-subheader">
+        <div title="Home" hide-nav-bar="true" style="padding-left:10px;">
+            <ion-scroll scrollbar-x="false" zooming="true" direction="x" style="width:90%;">
+                <div class="nav-conter" style="width: {{rootMenuWidth}};">
+                    <ul id="list"></ul>
+                </div>
+            </ion-scroll>
+        </div>
 
-        <ion-header-bar class="bar bar-header bar-light ">
-            <button class="button icon ion-chevron-left jd-border-no" ng-click="goBack()"></button>
-            <h1 class="title">娱乐设施</h1>
-        </ion-header-bar>
-        <!--导航-->
-        <div class="bar bar-subheader">
-            
-            <ion-view title="Home" hide-nav-bar="true" style="padding-left:10px;">
-                <ion-scroll scrollbar-x="false" zooming="true" direction="x" style="width:90%;">
-                    <div class="nav-conter" style="width: {{rootMenuWidth}};">
-                        <ul id="list">
-                            
-                        </ul>
+        <div class="content padding has-header  jd-cont-col jd-has-header">
+            <i class="icon ion-chevron-down"></i>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <!--导航-->
+    <ion-content style="background-color:#ddd;">
+        <div class="cont-too">
+            <div title="Home" hide-nav-bar="true">
+                <ion-scroll zooming="true" direction="x" scrollbar-x="false" class="tu-cont-cont">
+                    <div class="tu-cont" id="child_menu_view">
                     </div>
                 </ion-scroll>
-            </ion-view>
-
-
-            <div class="content padding has-header  jd-cont-col jd-has-header">
-                <i class="icon ion-chevron-down"></i>
             </div>
-            <div class="clear"></div>
         </div>
-        <!--导航-->
-        <ion-content style="background-color:#ddd;">
-            <div class="cont-too">
-                <ion-view title="Home" hide-nav-bar="true">
-                    <ion-scroll zooming="true" direction="x" scrollbar-x="false" class="tu-cont-cont">
-                        <div class="tu-cont" id="child_menu_view">
-                            
-                            <!--<a class="swiper-container3-sws swiper-container3-border"><img src="images/xq-2.jpg" /><i>介绍</i></a>
-                            <a class="swiper-container3-sws "><img src="images/xq-3.jpg" /><i>房型</i></a>
-                            <a class="swiper-container3-sws"><img src="images/xq-4.jpg" /><i>交通</i></a>
-                            <a class="swiper-container3-sws"><img src="images/xq-5.jpg" /><i>周边</i></a>
-                            <a class="swiper-container3-sws"><img src="images/xq-2.jpg" /><i>美食</i></a>
-                            <a class="swiper-container3-sws"><img src="images/xq-3.jpg" /><i>游玩</i></a>-->
-                        </div>
-                    </ion-scroll>
-
-                </ion-view>
-            </div>
-            <!--内容块-->
-            <div class="content has-header jd-has-header jd-has-head">
-                <div ng-repeat="item in list">
-                    <div class="list card item-mb jd-item-mb" ng-click="toDetailPage(item.hotel.id, item.item.id)">
-                        <div class="item item-avatar">
-                            <img ng-src="{{host}}{{item.hotel.logo}}" />
-                            <h2  class="item-avatar-h2">{{item.hotel.name}}</h2>
-                        </div>
-
-                        <div class="item item-body item-body-top">
-                            <img class="full-image" ng-src="{{host}}{{item.itemDetail.imageUrl}}">
-                            <div class="pad-cont">
-                                <span class="p-te" style="font-family:'微软雅黑'; margin-top:5px;margin-bottom:0px;">{{item.item.name}}</span>
-                                <p style="margin-top:8px;font-size:0.84em">{{item.item.text}}</p>
-
-                            </div>
-                        </div>
-
-                        <div class="item tabs tabs-secondary tabs-icon-left">
-                            <a class="tab-item jd-tab-itemer" href="#" ng-click="showComment($index)">
-                                <i class="icon ion-chatbox"></i>
-                            </a>
-                            <a class="tab-item jd-tab-itemer" href="#" ng-click="share(item.item.name,item.item.text,item.itemDetail.imageUrl);">
-                                <i class="icon ion-share"></i>
-                            </a>
-                            <a class="tab-item jd-tab-itemer" href="#" ng-click="savePraise(item.item.id)">
-                                <i class="icon ion-thumbsup"></i>
-                            </a>
-                            <a class="tab-item jd-tab-itemer" href="#" ng-click="saveCollection(item.item.id)">
-                                <i class="icon ion-android-favorite"></i>
-                            </a>
-                        </div>
-                        
-                        <div class="item sq-show" ng-show="commentIds[$index]" ng-click="cancelTurn()">
-                            <div class="item-input-inset">
-                                <label class="item-input-wrapper">
-                                    <input type="text" placeholder="写点什么..." ng-model="comments[$index]" style="width:100%"/>
-                                </label>
-                                <button class="button button-small butt-op" ng-click="saveComment($index, item.item.id)" style="color:black;">
-                                    发送
-                                </button>
-                            </div>
-                        </div>
-
+        <!--内容块-->
+        <div class="content has-header jd-has-header jd-has-head">
+            <div ng-repeat="item in list">
+                <div class="list card item-mb jd-item-mb" ng-click="toDetailPage(item.hotel.id, item.item.id)">
+                    <div class="item item-avatar">
+                        <img ng-src="{{host}}{{item.hotel.logo}}" />
+                        <h2 class="item-avatar-h2">{{item.hotel.name}}</h2>
                     </div>
+
+                    <div class="item item-body item-body-top">
+                        <img class="full-image" ng-src="{{host}}{{item.itemDetail.imageUrl}}">
+                        <div class="pad-cont">
+                            <span class="p-te" style="font-family:'微软雅黑'; margin-top:5px;margin-bottom:0px;">{{item.item.name}}</span>
+                            <p style="margin-top:8px;font-size:0.84em">{{item.item.text}}</p>
+                        </div>
+                    </div>
+
+                    <div class="item tabs tabs-secondary tabs-icon-left">
+                        <a class="tab-item jd-tab-itemer" href="#" ng-click="showComment($index)">
+                            <i class="icon ion-chatbox"></i>
+                        </a>
+                        <a class="tab-item jd-tab-itemer" href="#" ng-click="share(item.item.name,item.item.text,item.itemDetail.imageUrl);">
+                            <i class="icon ion-share"></i>
+                        </a>
+                        <a class="tab-item jd-tab-itemer" href="#" ng-click="savePraise(item.item.id)">
+                            <i class="icon ion-thumbsup"></i>
+                        </a>
+                        <a class="tab-item jd-tab-itemer" href="#" ng-click="saveCollection(item.item.id)">
+                            <i class="icon ion-android-favorite"></i>
+                        </a>
+                    </div>
+
+                    <div class="item sq-show" ng-show="commentIds[$index]" ng-click="cancelTurn()">
+                        <div class="item-input-inset">
+                            <label class="item-input-wrapper">
+                                <input type="text" placeholder="写点什么..." ng-model="comments[$index]" style="width:100%" />
+                            </label>
+                            <button class="button button-small butt-op" ng-click="saveComment($index, item.item.id)" style="color:black;">
+                                发送
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
-                
             </div>
-            <!--内容块-->
-            <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
-        </ion-content>
 
-
-    </ion-side-menu-content>
-</ion-side-menus>
+        </div>
+        <!--内容块-->
+        <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>

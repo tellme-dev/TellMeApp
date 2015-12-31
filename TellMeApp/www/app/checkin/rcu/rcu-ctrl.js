@@ -92,8 +92,35 @@
         //获取房间的控制信息
         var parseExpression = function (expression) {
             var tab = angular.fromJson(expression);
+            //不同模式的灯需要为其添加一个拼音字段
+            if (tab.dtype == 'LT') {
+                for (var i = 0; i < tab.opers.length; i++) {
+                    if (tab.opers[i].tag == 'C') {
+                        for (var j = 0; j < tab.opers[i].labels.length; j++) {
+                            if (tab.opers[i].labels[j].label == '明亮模式') {
+                                tab.opers[i].labels[j].pinyin = 'mingliang';
+                                tab.opers[i].labels[j].color = '#6d6d6d';
+                            } else if (tab.opers[i].labels[j].label == '睡眠模式') {
+                                tab.opers[i].labels[j].pinyin = 'shuimian';
+                                tab.opers[i].labels[j].color = '#6d6d6d';
+                            } else if (tab.opers[i].labels[j].label == '浪漫模式') {
+                                tab.opers[i].labels[j].pinyin = 'langman';
+                                tab.opers[i].labels[j].color = '#6d6d6d';
+                            } else if (tab.opers[i].labels[j].label == '洗手模式') {
+                                tab.opers[i].labels[j].pinyin = 'xishou';
+                                tab.opers[i].labels[j].color = '#6d6d6d';
+                            } else if (tab.opers[i].labels[j].label == '泡浴模式') {
+                                tab.opers[i].labels[j].pinyin = 'paoyu';
+                                tab.opers[i].labels[j].color = '#6d6d6d';
+                            }
+                        }
+                    }
+                }
+                tab.isOn = '关';
+            }
             return tab;
         }
+
         var promise = checkinSer.getRcusInfo($scope.roomId);
         promise.then(
             function (data) {
@@ -129,127 +156,183 @@
             );
         $scope.chooseRoomCfg = 0;
 
-        //LR :living room 客厅灯
-        //$scope.tabs = [
-        //    { "text": "灯控" },
-        //    { "text": "空调" },
-        //    { "text": "窗帘" },
-        //    { "text": "服务" },
-        //];
-        //客厅 灯
-        $scope.lrLampBorder0 = '#00a99d';
-        $scope.lrBackGround0 = '#00a99d';
-        $scope.lrLampBorder1 = '#666';
-        $scope.lrBackGround1 = '#666';
-        $scope.lrLampBorder2 = '#666';
-        $scope.lrBackGround2 = '#666';
-        //卫生间 灯
-        $scope.toiletLampBorder0 = '#00a99d';
-        $scope.toiletBackGround0 = '#00a99d';
-        $scope.toiletLampBorder1 = '#666';
-        $scope.toiletBackGround1 = '#666';
-        //客厅 开关
-        $scope.lrBackgroundimage = 'url(images/kongtiaor-to.png)';
-        $scope.isLrSwitch = true;
-        //空调 开关
-        $scope.ConBackgroundimage = 'url(images/kongtiaor-to.png)';
-        $scope.isConSwitch = true;
-        //窗帘 开关
-        $scope.CurtainBackgroundimage = 'url(images/kongtiaor-to.png)';
-        $scope.isCurtainSwitch = true;
-        // 空调 温度
-        $scope.templature = 25;
-
         $scope.goBack = function () {
             $ionicHistory.goBack();
         }
-        var changeLRLampCss = function (index) {
-            if (index == 0) {
-                $scope.lrLampBorder0 = '#00a99d';
-                $scope.lrBackGround0 = '#00a99d';
-                $scope.lrLampBorder1 = '#666';
-                $scope.lrBackGround1 = '#666';
-                $scope.lrLampBorder2 = '#666';
-                $scope.lrBackGround2 = '#666';
-            } else if (index == 1) {
-                $scope.lrLampBorder1 = '#00a99d';
-                $scope.lrBackGround1 = '#00a99d';
-                $scope.lrLampBorder0 = '#666';
-                $scope.lrBackGround0 = '#666';
-                $scope.lrLampBorder2 = '#666';
-                $scope.lrBackGround2 = '#666';
+
+        $scope.changeLampColorMode = function (cfgItem, oper, labe) {
+            var order = {
+                src: 'app',
+                dst: 'rcu',
+                sid: $scope.room.serialId,
+                uid: window.localStorage['userId'],
+            };
+            var valueOn = 0;
+            var valueOff = 1;
+            if (cfgItem.isOn == '关') {
+                for(var i = 0;i<cfgItem.opers.length;i++){
+                    if(cfgItem.opers[i].tag =='S'){
+                        for(var j = 0;j<cfgItem.opers[i].labels.length;j++){
+                            if (cfgItem.opers[i].labels[j].label == '开') {
+                                valueOn = cfgItem.opers[i].labels[j].value;
+                            } else {
+                                valueOff = cfgItem.opers[i].labels[j].value;
+                            }
+                        }
+                    }
+                }
+                order[cfgItem.name] = {
+                    S: valueOn,
+                    C: labe.value
+                };
+            } else if (cfgItem.isOn == labe.label) {
+                order[cfgItem.name] = {
+                    S: valueOff
+                };
             } else {
-                $scope.lrLampBorder2 = '#00a99d';
-                $scope.lrBackGround2 = '#00a99d';
-                $scope.lrLampBorder1 = '#666';
-                $scope.lrBackGround1 = '#666';
-                $scope.lrLampBorder0 = '#666';
-                $scope.lrBackGround0 = '#666';
+                order[cfgItem.name] = {
+                    S: valueOn,
+                    C:labe.value
+                };
             }
-        }
-        $scope.changeLRLamp = function (index) {
-            changeLRLampCss(index);
-            //调用RCU指令改变客厅灯的模式
-        }
-        var changeToiletLampCss = function (index) {
-            if (index == 0) {
-                $scope.toiletLampBorder0 = '#00a99d';
-                $scope.toiletBackGround0 = '#00a99d';
-                $scope.toiletLampBorder1 = '#666';
-                $scope.toiletBackGround1 = '#666';
-            } else {
-                $scope.toiletLampBorder1 = '#00a99d';
-                $scope.toiletBackGround1 = '#00a99d';
-                $scope.toiletLampBorder0 = '#666';
-                $scope.toiletBackGround0 = '#666';
-            }
-        }
-        $scope.changeToiletLamp = function (index) {
-            changeToiletLampCss(index);
-            //调用RCU指令改变卫生间灯的模式
-        }
-        $scope.lrSwitch = function () {
-            if ($scope.isLrSwitch) {
-                $scope.lrBackgroundimage = 'url(images/kongtiaor-on.png)';
-                $scope.isLrSwitch = false;
-            } else {
-                $scope.lrBackgroundimage = 'url(images/kongtiaor-to.png)';
-                $scope.isLrSwitch = true;
-            }
-            //调用RCU指令改变客厅开关的模式
-        }
-        $scope.conSwitch = function () {
-            if ($scope.isConSwitch) {
-                $scope.conBackgroundimage = 'url(images/kongtiaor-on.png)';
-                $scope.isConSwitch = false;
-            } else {
-                $scope.conBackgroundimage = 'url(images/kongtiaor-to.png)';
-                $scope.isConSwitch = true;
-            }
-            //调用RCU指令改变空调开关的模式
-        }
-        $scope.curtainSwitch = function () {
-            if ($scope.isCurtainSwitch) {
-                $scope.curtainBackgroundimage = 'url(images/kongtiaor-on.png)';
-                $scope.isCurtainSwitch = false;
-            } else {
-                $scope.curtainBackgroundimage = 'url(images/kongtiaor-to.png)';
-                $scope.isCurtainSwitch = true;
-            }
-            //调用RCU指令改变窗帘开关的模式
+            //调用rcu服务改变灯的模式
+            var promise = checkinSer.sendOrder(order);
+            promise.then(
+                function (data) {
+                    if (data.isSuccess) {
+                        if (cfgItem.isOn == '关') {
+                            cfgItem.isOn == labe.label;
+                            labe.color = '#6dcda5';
+                        } else if (cfgItem.isOn == labe.label) {
+                            cfgItem.isOn == '关';
+                            labe.color = '#6d6d6d';
+                        } else {
+                            cfgItem.isOn == labe.label;
+                            for (var c = 0; c < oper.labels.length; c++) {
+                                oper.labels[c].color = '#6d6d6d';
+                            }
+                            labe.color = '#6dcda5';
+                        }
+                    } else {
+                        popUpSer.showAlert(data.msg);
+                    }
+                }, function (data) {
+                    popUpSer.showAlert(data.msg);
+                });
         }
 
+        $scope.powerOnOrOffAllLT = function () {
+            var order = {
+                src: 'app',
+                dst: 'rcu',
+                sid: $scope.room.serialId,
+                uid: window.localStorage['userId'],
+            };
+            var valueOff = 0;
+            for (var i = 0; i < cfgItem.opers.length; i++) {
+                if (cfgItem.opers[i].tag == 'S') {
+                    for (var j = 0; j < cfgItem.opers[i].labels.length; j++) {
+                        if (cfgItem.opers[i].labels[j].label == '开') {
+                        } else {
+                            valueOff = cfgItem.opers[i].labels[j].value;
+                        }
+                    }
+                }
+            }
+            order[cfgItem.name] = {
+                S: valueOff
+            };
+            //调用rcu服务改变灯的模式
+            var promise = checkinSer.sendOrder(order);
+            promise.then(
+                function (data) {
+                    if (data.isSuccess) {
+                        for (var i = 0; i < room.rcuCfgItems.length; i++) {
+                            if (room.rcuCfgItems[i].dtype == 'LT') {
+                                room.rcuCfgItems[i].isOn = '关';
+                                for (var j = 0; j < room.rcuCfgItems[i].opers.length; j++) {
+                                    if(room.rcuCfgItems[i].opers[j].tag == 'C') {
+                                        for(var c = 0; room.rcuCfgItems[i].opers[j].labels.length; c++) {
+                                            oom.rcuCfgItems[i].opers[j].labels[c].color = '#6d6d6d';
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    } else {
+                        popUpSer.showAlert(data.msg);
+                    }
+                }, function (data) {
+                    popUpSer.showAlert(data.msg);
+                });
+
+        }
         //改变空调温度
-        $scope.changeACTemplature = function (direction, cfgItem) {
+        $scope.changeACTemplature = function (cfgItem,oper, direction) {
+            var order = {
+                src: 'app',
+                dst: 'rcu',
+                sid: $scope.room.serialId,
+                uid: window.localStorage['userId'],
+            };
             if (direction == 1) {
-                cfgItem.templature += 1;
+                order[cfgItem.name] = {
+                    T: cfgItem.templature + oper.inv
+                    };
             } else {
-                cfgItem.templature -= 1;
+                order[cfgItem.name] = {
+                    T: cfgItem.templature - oper.inv
+                };
             }
-            //调用RCU指令改变空调温度的模式
+            //调用rcu服务改变空调温度
+            var promise = checkinSer.sendOrder(order);
+            promise.then(
+                function (data) {
+                    if (data.isSuccess) {
+                        if (direction == 1) {
+                            cfgItem.templature += oper.inv;
+                        } else {
+                            cfgItem.templature -= oper.inv;
+                        }
+                    } else {
+                        popUpSer.showAlert(data.msg);
+                    }
+                }, function (data) {
+                    popUpSer.showAlert(data.msg);
+                });
         }
-
-        $scope.switch = function (oper, tag) {
-            var order = '#@{src:"app",dst:"rcu",type:"csts",sid:"' + $scope.room.serialId + '",uid:"' + window.localStorage['userId'] + '",' + $scope.room.sn + ':{' + tag+':'+oper.value + '}}@#';
+        //开关空调
+        $scope.powerOnOrOffAC = function (cfgItem,oper, tag) {
+            var order = {
+                src: 'app',
+                dst: 'rcu',
+                sid: $scope.room.serialId,
+                uid: window.localStorage['userId'],
+            };
+            for(var i = 0;i<oper.labels.length;i++){
+                if(cfgItem.isOn !=oper.labels[i].label){
+                    order[cfgItem.name] = {
+                        S: oper.labels[i].value
+                    };
+                    break;
+                }
+            }
+            //调用rcu服务开关空调
+            var promise = checkinSer.sendOrder(order);
+            promise.then(
+                function (data) {
+                    if (data.isSuccess) {
+                        if (cfgItem.isOn == '开') {
+                            cfgItem.isOn == '关'
+                        } else {
+                            cfgItem.isOn == '开'
+                        }
+                    } else {
+                        popUpSer.showAlert(data.msg);
+                    }
+                }, function (data) {
+                    popUpSer.showAlert(data.msg);
+                });
         }
     }])

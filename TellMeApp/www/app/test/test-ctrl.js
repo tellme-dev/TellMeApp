@@ -1,10 +1,18 @@
 ﻿angular.module('tellme')
-    .controller('testControll', ['$scope', function ($scope) {
-        console.log("动态加载Controll");
-        //$scope.shareMessage = function () {
-        //    window.plugins.socialsharing.share('Message only')
-        //}
-        $scope.sportImages = [
-        {url:'images/a.png'},{url:'images/a.png'},{url:'images/a.png'}
-        ];
+    .controller('testControll', ['$scope','$state', function ($scope,$state) {
+        $scope.swiper = {};
+
+        $scope.onReadySwiper = function (swiper) {
+
+            swiper.on('slideChangeStart', function () {
+                console.log('slide start');
+            });
+
+            swiper.on('onSlideChangeEnd', function () {
+                console.log('slide end');
+            });
+        };
+        $scope.goBack = function () {
+            $state.go('menu');
+        }
     }])

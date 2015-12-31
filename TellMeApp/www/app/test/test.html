@@ -1,12 +1,19 @@
 ﻿<ion-view view-title="测试">
+    <ion-header-bar class="bar-stable">
+        <button class="button icon button-clear ion-ios-arrow-back " style="color:#444" ng-click="goBack()"></button>
+        <h1 class="title">Ionic Blank Starter</h1>
+    </ion-header-bar>
     <ion-content>
-        hello world
-        <ul rn-carousel class="image">
-            <li ng-repeat="image in sportImages">
-                <div class="layer">
-                    {{image.url}}
-                </div>
-            </li>
-        </ul>
-     </ion-content>
+        <ks-swiper-container initial-slide="3" speed="2000" loop="true" show-nav-buttons="false" slides-per-view="3" space-between="5" pagination-clickable="false" override-parameters="{effect: 'coverflow',coverflow: {rotate: 50,stretch: 0,depth: 100,modifier: 1,slideShadows : false}}" on-ready="onReadySwiper(swiper)">
+            <ks-swiper-slide class="swiper-slide" ng-repeat="s in [1,2,3,4,5,6,7,8]">
+                <img ng-src="images/a.png" width="100%">
+            </ks-swiper-slide>
+        </ks-swiper-container>
+
+        <ks-swiper-container initial-slide="3" speed="2000" loop="true" show-nav-buttons="false" slides-per-view="4" space-between="0" pagination-clickable="false" on-ready="onReadySwiper(swiper)">
+            <ks-swiper-slide class="swiper-slide" ng-repeat="s in [1,2,3,4,5,6,7,8]">
+                <img ng-src="images/a.png" width="100%">
+            </ks-swiper-slide>
+        </ks-swiper-container>
+    </ion-content>
 </ion-view>
