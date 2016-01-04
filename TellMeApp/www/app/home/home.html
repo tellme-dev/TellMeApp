@@ -1,12 +1,5 @@
 ﻿<ion-view style="color:#fff; font-family:'微软雅黑';">
     <ion-header-bar class="bar bar-header item-input-inset bar-dark">
-        <!--<button id="cityName" class="button icon ion-ios-location" ng-click="goToLocation()" style="border:none">{{setCity}}</button>
-        <label ng-click="gotosearch()" class="item item-input" style="margin:0 auto; width:60%; background:#ffffff">
-            <i class="icon ion-search placeholder-icon"></i>
-            <input type="text" placeholder="search" disabled class="pad-top">
-        </label>
-        <button ng-click="goToCustomer()" class="button icon ion-android-person" style="border:none"></button>-->
-
             <button class="button icon-left ion-ios-location"  ng-click="goToLocation()" style="border:none;padding-left:0px;">
                 {{setCity}}</button>
                     <label ng-click="goToSearch()"  class="item-input-wrapper">
@@ -25,27 +18,33 @@
                 <img ng-src="{{baseUrl}}{{ad.adDetailList[0].imageUrl}}" ng-click="goToAd(ad.id)" style="width:100%;height:100%;" />
             </ion-slide>
         </ion-slide-box>
-        <ks-swiper-container initial-slide="3" speed="2000" loop="true" show-nav-buttons="false" slides-per-view="auto" space-between="5" pagination-clickable="false" override-parameters="{effect: 'coverflow',coverflow: {rotate: 50,stretch: 0,depth: 100,modifier: 1,slideShadows : true}}" on-ready="onReadySwiper(swiper)">
+        <ks-swiper-container  speed="2000" loop="true" show-nav-buttons="false" slides-per-view="3" pagination-clickable="false" override-parameters="{effect: 'coverflow',coverflow: {rotate: 50,stretch: 0,depth: 100,modifier: 1,slideShadows : true}}" on-ready="onReadySwiper(swiper)">
             <ks-swiper-slide class="swiper-slide" ng-repeat="s in [1,2,3,4,5,6,7,8]">
-                        <div class="row" style="padding-bottom:1px;font-family:'微软雅黑'; color:#474747; font-size:1.25em;">
-                            <div class="col col-100" style="line-height:30px;"><strong>酒店</strong></div>
+                <div ng-click="goToHotelList()">
+                    <div class="row" style="text-align:center;padding-bottom:1px;font-family:'微软雅黑'; color:#474747; font-size:1.25em;">
+                        <div class="col col-100" style="line-height:30px;"><strong>酒店{{s}}</strong></div>
+                    </div>
+                    <div class="row" style="padding-bottom:1px;">
+                        <div class="col col-50" style="padding:1px;">
+                            <!--<img ng-src="{{baseUrl}}{{swiper.hotelItems[0].imageUrl}}" style="width:100%;" />-->
+                            <img src="images/a.png" style="width:100%;height:100%;" />
                         </div>
-                        <div class="row" style="padding-bottom:1px;">
-                            <div class="col col-50" style="padding:1px;">
-                                <img src="images/a.png" style="width:100%;" />
-                            </div>
-                            <div class="col col-50" style="padding:1px;">
-                                <img src="images/a.png" style="width:100%;" />
-                            </div>
-                            </div>
-                        <div class="row">
-                            <div class="col col-50" style="padding:1px;">
-                                <img src="images/a.png" style="width:100%;" />
-                            </div>
-                            <div class="col col-50" style="padding:1px;">
-                                <img src="images/a.png" style="width:100%;" />
-                            </div>
+                        <div class="col col-50" style="padding:1px;">
+                            <!--<img ng-src="{{baseUrl}}{{swiper.hotelItems[1].imageUrl}}" style="width:100%;" />-->
+                            <img src="images/a.png" style="width:100%;height:100%;" />
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-50" style="padding:1px;">
+                            <!--<img ng-src="{{baseUrl}}{{swiper.hotelItems[2].imageUrl}}" style="width:100%;" />-->
+                            <img src="images/a.png" style="width:100%;height:100%;" />
+                        </div>
+                        <div class="col col-50" style="padding:1px;">
+                            <!--<img ng-src="{{baseUrl}}{{swiper.hotelItems[3].imageUrl}}" style="width:100%;" />-->
+                            <img src="images/a.png" style="width:100%;height:100%;" />
+                        </div>
+                    </div>
+                </div>
             </ks-swiper-slide>
         </ks-swiper-container>
 
