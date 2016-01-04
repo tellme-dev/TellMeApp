@@ -12,6 +12,11 @@
         $scope.host = hotelSer.hostUrl;
         $scope.rootMenuWidth = "auto";
 
+        //第一次加载是否执行
+        //评论数据会在获取数据前执行N次loadMore
+        //设置该字段主要是为了在真正获取数据时才去获取数据，而不让其自动调用N次loadMore
+        var _comment_data_first_load = false;
+
         var _MENU_SELECTED_ITEM = null;
         var _CHILD_MENU_SELECTED_ITEM = null;
         //设置1级菜单选择事件
@@ -41,6 +46,9 @@
                         cvm.itemId = $scope.itemData.item.id;
                         cvm.isInit = true;
                         cvm.pageNo = 0;
+                        if (!_comment_data_first_load) {
+                            _comment_data_first_load = true;
+                        }
                         cvm.loadMore();
                         break;
                     }
@@ -303,6 +311,9 @@
             pageNo: 0,
             pageSize: 10,
             loadMore: function () {
+                if (!_comment_data_first_load) {
+                    return;
+                }
                 LoadingSvr.show();
                 cvm.pageNo++;
                 var promise = hotelSer.commentListByHotelItem(cvm.itemId, cvm.pageNo, cvm.pageSize);
@@ -326,6 +337,7 @@
                             }
                         }
                         $scope.$broadcast('scroll.infiniteScrollComplete');
+                        $scope.initMap();
                     },
                     function (data) {
                         console.log('其他');
@@ -333,4 +345,30 @@
                     );
             }
         };
+
+        var _map_init = false
+        var map;
+        $scope.initMap = function () {
+            if (!_map_init) {
+                if (document.getElementById("positionMap") != null) {
+                    map = new AMap.Map("positionMap", {
+                        resizeEnable: true,
+                        zoom: 13
+                    });
+                }
+            }
+            if ($scope.itemData.tagTransport) {
+                map.clearMap();
+                var lng = $scope.itemData.hotel.longitude;
+                var lat = $scope.itemData.hotel.latitude;
+                var lna = new AMap.LngLat(lng, lat);
+                var marker = new AMap.Marker({ map: map, position: lna, title: $scope.itemData.hotel.name });
+                //marker.setAnimation("AMAP_ANIMATION_BOUNCE");
+                //var px = new AMap.Pixel(0,-24);
+                //marker.setLabel({ content: $scope.itemData.hotel.name, offset: px });
+                //new AMap.Marker({ map: map, position: lna, content: $scope.itemData.hotel.name });
+                map.panTo(lna);
+
+            }
+        }
     }]);

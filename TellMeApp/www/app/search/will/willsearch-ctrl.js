@@ -74,7 +74,7 @@
         }
 
         $scope.goToHotelInfo = function (hotelId) {
-            $state.go('hotel', { hotelId: hotelId });
+            $state.go('hotel', { hotelId: hotelId, rootTagId:1 });
         }
         $scope.goToBbsInfo = function (bbsId) {
             $state.go('bbs', { bbsId: bbsId });

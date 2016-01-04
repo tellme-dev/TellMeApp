@@ -1,31 +1,30 @@
 ﻿<ion-view>
         <ion-header-bar class="bar bar-header bar-light ">
             <button class="button icon ion-chevron-left jd-border-no" ng-click="goBack()"></button>
-            <h1 class="title">娱乐设施</h1>
         </ion-header-bar>
         <!--导航-->
         <div class="bar bar-subheader">
             
-            <ion-view title="Home" hide-nav-bar="true" style="padding-left:10px;">
+            <div title="Home" hide-nav-bar="true" style="padding-left:10px;">
                 <ion-scroll scrollbar-x="false" zooming="true" direction="x" style="width:90%;">
                     <div class="nav-conter" style="width: {{rootMenuWidth}};">
                         <ul id="list"></ul>
                     </div>
                 </ion-scroll>
-            </ion-view>
+            </div>
             <div class="clear"></div>
         </div>
         <!--导航-->
         <ion-content style="background-color:#ddd;">
             <div class="cont-too">
-                <ion-view title="Home" hide-nav-bar="true">
+                <div title="Home" hide-nav-bar="true">
                     <ion-scroll zooming="true" direction="x" scrollbar-x="false" class="tu-cont-cont">
                         <div class="tu-cont" id="child_menu_view">
                             
                         </div>
                     </ion-scroll>
 
-                </ion-view>
+                </div>
             </div>
             <!--内容块-->
             <div class="content has-header jd-has-header jd-has-head">
@@ -34,7 +33,8 @@
 
                     <div class="item item-body item-body-top">
                         <div ng-repeat="item in itemData.details">
-                            <img class="full-image" ng-src="{{host}}{{item.imageUrl}}">
+                            <img ng-show="!itemData.tagTransport" class="full-image" ng-src="{{host}}{{item.imageUrl}}">
+                            <div ng-show="itemData.tagTransport" id="positionMap" class="full-image"></div>
                             <div class="pad-cont">
 
                                 <div class="clear"></div>

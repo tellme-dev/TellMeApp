@@ -221,7 +221,7 @@ angular.module('tellme')
 				moredata: false,
 				typeDetail: [],
 				pageNo: 0,
-				pageSize:5,
+				pageSize:10,
 				loadMore: function () {
 					LoadingSvr.show();
 					vm.pageNo += 1;

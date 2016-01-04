@@ -1,0 +1,14 @@
+﻿<div class="carousel-container" ng-show="show">
+    <div class="carousel-close" ng-click="close()"><i class="ion-close"></i></div>
+    <div class="carousel">
+
+        <ul class="carousel-list" on-swipe-right="nextSlide()" on-swipe-left="prevSlide()">
+            <li class="carousel-image" ng-repeat="oneImage in images" style="{{imageStyle()}}">
+                <img ng-src="{{oneImage}}">
+            </li>
+        </ul>
+
+        <div class="carousel-arrow-left" ng-click="prevSlide();"><i class="ion-arrow-left-a"></i></div>
+        <div class="carousel-arrow-right" ng-click="nextSlide();"><i class="ion-arrow-right-a"></i></div>
+    </div>
+</div>

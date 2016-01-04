@@ -2,6 +2,32 @@
 angular.module('tellme')
     .controller('homeControll', ['$scope', '$rootScope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', 'LoadingSvr', function ($scope,$rootScope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer, LoadingSvr) {
         LoadingSvr.show();
+
+        $scope.swiper = {
+        };
+
+        $scope.onReadySwiper = function (swiper) {
+            //swiper.on('onProgress', function () {
+            //    for (var i = 0; i < swiper.slides.length; i++) {
+            //        var slide = swiper.slides[i];
+            //        var progress = slide.progress;
+            //        scale = 1 - Math.min(Math.abs(progress * 0.2), 1);
+
+            //        es = slide.style;
+            //        es.opacity = 1 - Math.min(Math.abs(progress / 2), 1);
+            //        es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = 'translate3d(0px,0,' + (-Math.abs(progress * 150)) + 'px)';
+
+            //    }
+            //});
+
+            //swiper.on('onSetTransition', function () {
+            //alert('onSetTransition');
+            //    for (var i = 0; i < swiper.slides.length; i++) {
+            //        es = swiper.slides[i].style;
+            //        es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration = es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = speed + 'ms';
+            //    }
+            //});
+        };
         /*首页初始化*/
         var vm = $scope.vm = {
             moredata: false,
@@ -115,7 +141,7 @@ angular.module('tellme')
                        function (data) {
                            if (data.isSuccess) {
                                if (data.rows.length == 0) {
-                                   console.log("未获取数据！")
+                                   console.log("未获取数据！");
                                } else {
                                     $scope.swiperAdData = data.rows;
 
@@ -180,21 +206,5 @@ angular.module('tellme')
         $scope.repeatDone = function () {
             $ionicSlideBoxDelegate.update();
         }
-        angular.element(document).ready(function () {
-            var swiper = new Swiper('.swiper-container', {
-                loop: true,
-                pagination: '.swiper-pagination',
-                effect: 'coverflow',
-                grabCursor: true,
-                centeredSlides: true,
-                slidesPerView: 'auto',
-                coverflow: {
-                    rotate: 50,
-                    stretch: 0,
-                    depth: 100,
-                    modifier: 1,
-                    slideShadows: true
-                }
-            });
-        });
+
         }])
