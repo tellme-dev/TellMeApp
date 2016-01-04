@@ -30,7 +30,7 @@ angular.module('tellme')
         };
         /*首页初始化*/
         var vm = $scope.vm = {
-            moredata: false,
+            moredata: true,
             messages: [],
             pageNum:3,
             pagination: {
@@ -62,10 +62,13 @@ angular.module('tellme')
                                    console.log("未获取数据！")
                                } else {
                                    $scope.footAdData = data.rows;
-                                   if (data.rows.length == vm.pageNum) {
-                                       vm.moredata = true;
+                                   if (data.rows.length < vm.pageNum) {
+                                       vm.moredata = false;
+                                       vm.pageNum = 3;
+                                       console.log("无数据");
+                                   } else {
+                                       vm.pageNum += 5;
                                    }
-                                   vm.pageNum += 5;
                                }
                            } else {
                                console.log("获取数据失败！" + data.msg)
@@ -74,7 +77,6 @@ angular.module('tellme')
                        function (data) {
                            console.log('其他');
                        });
-                vm.moredata = true;
                 $scope.$broadcast('scroll.infiniteScrollComplete');
                 //})
             }
