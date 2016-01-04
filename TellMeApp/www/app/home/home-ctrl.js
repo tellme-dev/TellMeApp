@@ -115,7 +115,7 @@ angular.module('tellme')
                        function (data) {
                            if (data.isSuccess) {
                                if (data.rows.length == 0) {
-                                   console.log("未获取数据！")
+                                   console.log("未获取数据！");
                                } else {
                                     $scope.swiperAdData = data.rows;
 

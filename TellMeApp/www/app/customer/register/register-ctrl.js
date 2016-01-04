@@ -85,7 +85,6 @@
                     if (data.isSuccess) {
                         isSumit = true;
                         $scope.msg = "";
-                        popUpSer.showAlert("该账号未注册！");
                         //跳转到登录成功界面
                     } else {
                         isSumit = false;
