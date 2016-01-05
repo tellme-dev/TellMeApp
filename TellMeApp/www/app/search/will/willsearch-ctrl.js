@@ -28,11 +28,10 @@
         var promise = searchSer.getRecommandHotels();
         promise.then(
             function (data) {
-                if (data.isSuccess == true) {
+                if (typeof(data.rows)!='undefined') {
                     LoadingSvr.hide();
                     $scope.recommandHotels = data.rows;
                 } else {
-                    popUpSer.showAlert(data.msg);
                     console.log(data.msg);
                 }
             },

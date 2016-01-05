@@ -22,13 +22,13 @@
                    deferred.resolve(data);
                 }).error(
                 function (data, status, headers, config) {
-                    deferred.reject(5);
+                    deferred.reject(data);
                 });
             return deferred.promise;
         }
         //获取酒店滑动菜单
         this.getSwiperAd=function(){
-            var url = baseUrl + 'app/menu/loadMenuList.do ';
+            var url = baseUrl + 'app/menu/loadSwiperList.do ';
             var deferred = $q.defer();
             $http({
                 method: 'post',
@@ -38,7 +38,7 @@
                     deferred.resolve(data);
                 }).error(
                 function (data, status, headers, config) {
-                    deferred.reject(5);
+                    deferred.reject(data);
                 });
             return deferred.promise;
         }

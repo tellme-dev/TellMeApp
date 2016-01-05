@@ -43,14 +43,14 @@
                     </div>
                 </ks-swiper-slide>
             </ks-swiper-container>
-            <div class="ma-b-10 cont-bor-box-shadow">
+            <div class="ma-b-10 cont-bor-box-shadow" ng-if="swiperAdData">
                 <div class="zt-cter row">
                     <div class="col-42 pa-l-r-10"><img src="images/liubai.png" style="width:90%" /></div>
                     <div class="col-58 pa-l-r-10 border-l fo-s14 font-f colo-6 zt-cter-text">预定住宿，乐享优惠。</div>
                 </div>
             </div>
             <div class="ma-b-10 zt-cont-no">
-                <div class="row">
+                <div class="row" ng-if="footAdData">
                     <div class="col col-42 zt-img pa-10">
                         <img ng-src="{{baseUrl}}{{footAdData[0].adDetailList[0].imageUrl}}" style="width:100%;height:100%" />
                     </div>
