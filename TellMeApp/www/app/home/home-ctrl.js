@@ -1,11 +1,9 @@
 ﻿
 angular.module('tellme')
-    .controller('homeControll', ['$scope', '$rootScope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', 'LoadingSvr', function ($scope,$rootScope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer, LoadingSvr) {
+    .controller('homeControll', ['$scope', '$rootScope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', 'LoadingSvr', function ($scope, $rootScope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer, LoadingSvr) {
         LoadingSvr.show();
-
         $scope.swiper = {
         };
-
         $scope.onReadySwiper = function (swiper) {
             //swiper.on('onProgress', function () {
             //    for (var i = 0; i < swiper.slides.length; i++) {
@@ -30,9 +28,9 @@ angular.module('tellme')
         };
         /*首页初始化*/
         var vm = $scope.vm = {
-            moredata: true,
+            moredata: false,
             messages: [],
-            pageNum:3,
+            pageNum: 3,
             pagination: {
                 perPage: 5,
                 currentPage: 1
@@ -46,8 +44,8 @@ angular.module('tellme')
                           if (data.rows.length == 0) {
                               console.log("未获取数据！")
                           }
-                       }
-                    }
+                      }
+                  }
                   );
                     $scope.$broadcast('scroll.refreshComplete');
                 }, 1000);
@@ -58,29 +56,28 @@ angular.module('tellme')
                 homeSer.getFootAdd(vm.pageNum).then(
                     function (data) {
                         if (data.isSuccess) {
-                               if (data.rows.length == 0) {
-                                   console.log("未获取数据！")
-                               } else {
-                                   $scope.footAdData = data.rows;
-                                   if (data.rows.length < vm.pageNum) {
-                                       vm.moredata = false;
-                                       vm.pageNum = 3;
-                                       console.log("无数据");
-                                   } else {
-                                       vm.pageNum += 5;
-                                   }
-                               }
-                           } else {
-                               console.log("获取数据失败！" + data.msg)
-                           }
-                       },
+                            if (data.rows.length == 0) {
+                                console.log("未获取数据！")
+                            } else {
+                                $scope.footAdData = data.rows;
+                                if (data.rows.length < vm.pageNum) {
+                                    vm.moredata = false;
+                                    vm.pageNum = 3;
+                                    console.log("无数据");
+                                } else {
+                                    vm.pageNum += 5;
+                                }
+                            }
+                        } else {
+                            console.log("获取数据失败！" + data.msg)
+                        }
+                    },
                        function (data) {
                            console.log('其他');
                        });
                 $scope.$broadcast('scroll.infiniteScrollComplete');
             }
         }
-        //vm.loadMore();
 
         //获取URL
         $scope.baseUrl = appConfig.server.getUrl();
@@ -90,27 +87,27 @@ angular.module('tellme')
             $rootScope.setCity = newValue;
             console.log("newValue:" + newValue + ",oldValue:" + oldValue);
         });
-       //获取城市定位
+        //获取城市定位
         //广告（头部广告、底部专栏）动态加载
         ////获取头部广告信息
-            var promise = homeSer.getAdd();
-            promise.then(
-                   function (data) {
-                       if (data.isSuccess) {
-                           if (data.rows.length == 0) {
-                               console.log("未获取数据！")
-                           } else {
-                               $scope.adData = data.rows;
-                               LoadingSvr.hide();
-                           }
+        var promise = homeSer.getAdd();
+        promise.then(
+               function (data) {
+                   if (data.isSuccess) {
+                       if (data.rows.length == 0) {
+                           console.log("未获取数据！")
                        } else {
-                           console.log("获取数据失败！" + data.msg)
+                           $scope.adData = data.rows;
+                           LoadingSvr.hide();
                        }
-                   },
-                   function (data) {
-                       console.log('其他');
+                   } else {
+                       console.log("获取数据失败！" + data.msg)
                    }
-                   );
+               },
+               function (data) {
+                   console.log('其他');
+               }
+               );
         //////获取底部广告
         //    $scope.getFootAd = function (num) {
         //        if (num == null || num == "") {
@@ -136,27 +133,27 @@ angular.module('tellme')
         //    }
         //    $scope.getFootAd();
 
-            //获取酒店滑动菜单
+        //获取酒店滑动菜单
         var promise = homeSer.getSwiperAd();
-                promise.then(
-                       function (data) {
-                           if (data.isSuccess) {
-                               if (data.rows.length == 0) {
-                                   console.log("未获取数据！");
-                               } else {
-                                    $scope.swiperAdData = data.rows;
+        promise.then(
+               function (data) {
+                   if (data.isSuccess) {
+                       if (data.rows.length == 0) {
+                           console.log("未获取数据！");
+                       } else {
+                           $scope.swiperAdData = data.rows;
 
-                               }
-
-                           } else {
-                       console.log("获取数据失败！" + data.msg);
-                           }
-
-                       },
-                       function (data) {
-                           console.log('其他');
                        }
-                     );
+
+                   } else {
+                       console.log("获取数据失败！" + data.msg);
+                   }
+
+               },
+               function (data) {
+                   console.log('其他');
+               }
+             );
 
         //加载用户头像
 
@@ -165,18 +162,18 @@ angular.module('tellme')
         $scope.goToLocation = function () {
             $state.go('location');
         }
-            //跳转到搜索页面
-            $scope.goToSearch = function () {
-                $state.go('willSearch');
-            }
+        //跳转到搜索页面
+        $scope.goToSearch = function () {
+            $state.go('willSearch');
+        }
         /*跳转“个人信息页面”*/
         $scope.goToCustomer = function () {
             if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel'] == "") {//如果用户未登录跳转到登录页面
                 $state.go('login', { pageName: 'customer' });
             } else {
-            $state.go('customer');
-        }
-            
+                $state.go('customer');
+            }
+
         }
         //推荐更多
         $scope.goDiscover = function () {
@@ -192,7 +189,7 @@ angular.module('tellme')
         }
         /*（点击菜单项）跳转“酒店列表”*/
         $scope.goToHotelList = function (param) {
-            $state.go('hotelList', { itemTagId:param});
+            $state.go('hotelList', { itemTagId: param });
         }
         //（点击头部广告）跳转“具体广告”图片展示
         $scope.goToAd = function (adId) {
@@ -208,4 +205,4 @@ angular.module('tellme')
             $ionicSlideBoxDelegate.update();
         }
 
-        }])
+    }])
