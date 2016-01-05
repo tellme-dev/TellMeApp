@@ -78,7 +78,8 @@
             }
         }
         $scope.goToItemInfo = function (hotelItemId) {
-            $state.go('hotelItem', { itemId:hotelItemId});
+            //$state.go('hotelItem', { itemId: hotelItemId });
+            $state.go('hotel', { hotelId: $scope.checkinHotel.id, rootTagId: 1, itemId: hotelItemId });
         }
         $scope.goToESuperMarket = function () {
             for (var i = 0; i < $scope.checkinHotel.itemVMs.length; i++) {
@@ -93,7 +94,7 @@
         $scope.goToTraffic = function () {
             for (var i = 0; i < $scope.checkinHotel.itemVMs.length; i++) {
                 if ($scope.checkinHotel.itemVMs[i].itemTags && $scope.checkinHotel.itemVMs[i].itemTags.length > 0 && $scope.checkinHotel.itemVMs[i].itemTags[0].name == '交通') {
-                    $state.go('hotelItem', { itemId: $scope.checkinHotel.itemVMs[i].id });
+                    $state.go('hotel', { hotelId: $scope.checkinHotel.id,rootTagId:1, itemId: $scope.checkinHotel.itemVMs[i].id });//hotelId&rootTagId&itemId
                     //$state.go('traffic');
                     break;
                 } else if (i == $scope.checkinHotel.itemVMs.length - 1) {
