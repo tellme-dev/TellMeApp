@@ -81,7 +81,7 @@
                                 view.appendChild(item);
                                 new MenuItem(item, obj.itemTagId);
                                 //初始化选中
-                                if (typeof (param_tagId) == 'undefined' || param_tagId > 0) {
+                                if (typeof (param_tagId) != 'undefined' && param_tagId > 0) {
                                     if (param_tagId == obj.itemTagId) {
                                         setSelectStyle(item, obj.itemTagId);
                                     }
@@ -121,7 +121,7 @@
                                 view.appendChild(a);
                                 new ChildMenuItem(a, menu.itemTagId);
                                 //初始化选中
-                                if (typeof (param_tagChildId) == 'undefined' || param_tagChildId > 0) {
+                                if (typeof (param_tagChildId) != 'undefined' && param_tagChildId > 0) {
                                     if (param_tagChildId == menu.itemTagId) {
                                         setChildSelectStyle(a, menu.itemTagId);
                                     }
