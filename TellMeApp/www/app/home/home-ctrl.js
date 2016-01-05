@@ -54,7 +54,7 @@ angular.module('tellme')
             },
             //加载更多
             loadMore: function () {
-                console.log("上拉加载数据。")
+                esconsole.log("上拉加载数据。")
                 homeSer.getFootAdd(vm.pageNum).then(
                     function (data) {
                         if (data.isSuccess) {
@@ -78,10 +78,9 @@ angular.module('tellme')
                            console.log('其他');
                        });
                 $scope.$broadcast('scroll.infiniteScrollComplete');
-                //})
             }
         }
-        vm.loadMore();
+        //vm.loadMore();
 
         //获取URL
         $scope.baseUrl = appConfig.server.getUrl();
