@@ -1,6 +1,7 @@
 ﻿angular.module('tellme')
     .controller('hotelListControll', ['$scope', '$window', '$stateParams', '$state','$ionicHistory', 'hotelSer', 'LoadingSvr', 'popUpSer', 'tellmeActionSheet', function ($scope, $window, $stateParams, $state,$ionicHistory, hotelSer, LoadingSvr, popUpSer, tellmeActionSheet) {
-        var param_tagId = $stateParams.itemTagId;
+        var param_tagId = $stateParams.itemTagRootId;
+        var param_tagChildId = $stateParams.itemTagChildId;
         var param_itemId = $stateParams.itemId;
 
         var _MENU_SELECTED_ITEM = null;
@@ -15,6 +16,8 @@
         $scope.list = null;
         //二级菜单图片数据
         $scope.menus = null;
+        $scope.itemListEmpty = false;
+        $scope.loadListerrMsg = "";
         //服务器地址
         $scope.host = hotelSer.hostUrl;
         //后退
@@ -46,6 +49,8 @@
             selectId = id;
             vm.pageNo = 0;
             vm.isInit = true;
+            $scope.itemListEmpty = false;
+            $scope.loadListerrMsg = "";
             vm.loadMore();
         }
 
@@ -76,7 +81,7 @@
                                 view.appendChild(item);
                                 new MenuItem(item, obj.itemTagId);
                                 //初始化选中
-                                if (param_tagId > 0) {
+                                if (typeof (param_tagId) == 'undefined' || param_tagId > 0) {
                                     if (param_tagId == obj.itemTagId) {
                                         setSelectStyle(item, obj.itemTagId);
                                     }
@@ -115,8 +120,15 @@
                                 a.innerHTML = "<img src=\"" + $scope.host + menu.defaultImageUrl + "\" /><i>" + menu.name + "</i>";
                                 view.appendChild(a);
                                 new ChildMenuItem(a, menu.itemTagId);
-                                if (i == 0) {
-                                    setChildSelectStyle(a, menu.itemTagId);
+                                //初始化选中
+                                if (typeof (param_tagChildId) == 'undefined' || param_tagChildId > 0) {
+                                    if (param_tagChildId == menu.itemTagId) {
+                                        setChildSelectStyle(a, menu.itemTagId);
+                                    }
+                                } else {
+                                    if (i == 0) {
+                                        setChildSelectStyle(a, menu.itemTagId);
+                                    }
                                 }
                             }
                         } else {
@@ -337,13 +349,17 @@
                                     }
 
                                     $scope.list = tempData;
+                                    if ($scope.list.length < 1) {
+                                        $scope.itemListEmpty = true;
+                                        $scope.loadListerrMsg = "没有找到相关数据";
+                                    }
                                     vm.isInit = false;
                                 } else {
                                     for (var i = 0; i < data.rows.length; i++) {
                                         $scope.list.push(data.rows[i]);
                                     }
                                 }
-                                
+
                                 var total = data.total;
                                 if (total > vm.pageNo) {
                                     vm.moredata = false;
@@ -351,6 +367,11 @@
                                     vm.moredata = true;
                                 }
                                 $scope.$broadcast('scroll.infiniteScrollComplete');
+                            } else {
+                                if (vm.isInit) {
+                                    $scope.itemListEmpty = true;
+                                    $scope.loadListerrMsg = "服务器查询错误";
+                                }
                             }
                         }
 
