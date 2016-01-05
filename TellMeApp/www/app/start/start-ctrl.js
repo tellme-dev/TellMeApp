@@ -2,7 +2,8 @@
     .controller('startControll', ['$scope', '$state', '$ionicSlideBoxDelegate', '$ionicHistory', 'appConfig', 'tellMeMapSvr', 'commonSer', function ($scope, $state, $ionicSlideBoxDelegate, $ionicHistory, appConfig, tellMeMapSvr, commonSer) {
         $scope.baseUrl = appConfig.server.getUrl();
 
-        tellMeMapSvr.updateCurrentcity();
+        // tellMeMapSvr.updateCurrentcity();
+        tellMeMapSvr.getDistrict();
         commonSer.updateRegionInfo();
 
         $scope.startImages = [
