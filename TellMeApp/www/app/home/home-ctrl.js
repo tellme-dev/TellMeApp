@@ -28,11 +28,13 @@ angular.module('tellme')
             //    }
             //});
         };
+        var _comment_data_first_load = false;
+        
         /*首页初始化*/
         var vm = $scope.vm = {
             moredata: true,
             messages: [],
-            pageNum:3,
+            pageNum:3,//要显示的广告数量
             pagination: {
                 perPage: 5,
                 currentPage: 1
@@ -54,7 +56,12 @@ angular.module('tellme')
             },
             //加载更多
             loadMore: function () {
-                esconsole.log("上拉加载数据。")
+                alert("aaa");
+                console.log("上拉加载数据。")
+                if (!_comment_data_first_load) {
+                    _comment_data_first_load = true;//每回要加载两次第二次才让进入
+                    reutrn;
+                }
                 homeSer.getFootAdd(vm.pageNum).then(
                     function (data) {
                         if (data.isSuccess) {
@@ -65,7 +72,7 @@ angular.module('tellme')
                                    if (data.rows.length < vm.pageNum) {
                                        vm.moredata = false;
                                        vm.pageNum = 3;
-                                       console.log("无数据");
+                                       console.log("停止使用刷新");
                                    } else {
                                        vm.pageNum += 5;
                                    }
@@ -80,7 +87,6 @@ angular.module('tellme')
                 $scope.$broadcast('scroll.infiniteScrollComplete');
             }
         }
-        //vm.loadMore();
 
         //获取URL
         $scope.baseUrl = appConfig.server.getUrl();
@@ -111,30 +117,30 @@ angular.module('tellme')
                        console.log('其他');
                    }
                    );
-        //////获取底部广告
-        //    $scope.getFootAd = function (num) {
-        //        if (num == null || num == "") {
-        //            num = 3;
-        //        }
-        //        var promise = homeSer.getFootAdd(num);
-        //        promise.then(
-        //               function (data) {
-        //                   if (data.isSuccess) {
-        //                       if (data.rows.length == 0) {
-        //                           console.log("未获取数据！")
-        //                       } else {
-        //                           $scope.footAdData = data.rows;
-        //                       }
-        //                   } else {
-        //                       console.log("获取数据失败！" + data.msg)
-        //                   }
-        //               },
-        //               function (data) {
-        //                   console.log('其他');
-        //               }
-        //                   );
-        //    }
-        //    $scope.getFootAd();
+        ////获取底部广告
+            $scope.getFootAd = function (num) {
+                if (num == null || num == "") {
+                    num = 3;
+                }
+                var promise = homeSer.getFootAdd(num);
+                promise.then(
+                       function (data) {
+                           if (data.isSuccess) {
+                               if (data.rows.length == 0) {
+                                   console.log("未获取数据！")
+                               } else {
+                                   $scope.footAdData = data.rows;
+                               }
+                           } else {
+                               console.log("获取数据失败！" + data.msg)
+                           }
+                       },
+                       function (data) {
+                           console.log('其他');
+                       }
+                           );
+            }
+            $scope.getFootAd();
 
             //获取酒店滑动菜单
         var promise = homeSer.getSwiperAd();
