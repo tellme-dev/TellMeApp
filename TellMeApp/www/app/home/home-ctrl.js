@@ -109,11 +109,11 @@ angular.module('tellme')
                            LoadingSvr.hide();
                        }
                    } else {
-                       console.log("获取数据失败！" + data.msg)
+                       console.log(data.msg)
                    }
                },
                function (data) {
-                   console.log('其他');
+                   console.log('获取数据失败！');
                }
                );
         ////获取底部广告

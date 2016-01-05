@@ -14,7 +14,6 @@
             <!--banner-->
             <ion-slide-box class="inde-cont-cont" on-slide-changed="slideHasChanged($index)" show-pager="false" does-continue="true" auto-play="true">
                 <ion-slide ng-repeat="ad in adData" repeat-done="repeatDone()" style="height:150px;" ng-if="adData">
-                    <img src="images/banner1.jpg" class="box blue" />
                     <img ng-src="{{baseUrl}}{{ad.adDetailList[0].imageUrl}}" ng-click="goToAd(ad.id)" class="box blue" />
                 </ion-slide>
             </ion-slide-box>
@@ -82,16 +81,6 @@
                             <div class="fr font-f fo-s12 colo-9"><i class="ion-heart fo-s14 ma-r-5" style="color:#eb5d54; "></i>已有20人参与</div>
                             <div class="clear"></div>
                         </div>
-
-                        <!--<div class="ma-to-10">
-                            <div class="ma-b-10 ix-img-cont">
-                                <img src="images/zt-11.jpg" style="width:100%; height:100%" />
-                            </div>
-                            <span class="fl font-f fo-s12 colo-6">专题描述：不一样的专题，让你体验不一样的专题...</span>
-                            <div class="fr font-f fo-s12 colo-9"><i class="ion-heart fo-s14 ma-r-5" style="color:#eb5d54; "></i>已有20人参与</div>
-                            <div class="clear"></div>
-                        </div>-->
-
                     </div>
                 </div>
             </div>
