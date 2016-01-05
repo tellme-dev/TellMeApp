@@ -45,7 +45,6 @@
 
         //获取底部广告
         this.getFootAdd = function (adNum) {
-            console.log("1111");
             var url = baseUrl + 'app/ad/getAdList.do';
             var addDataJSON = JSON.stringify({
                 banner: 'down',
@@ -61,7 +60,7 @@
                     deferred.resolve(data);
                 }).error(
                 function (data, status, headers, config) {
-                    deferred.reject(5);
+                    deferred.reject(data);
                 });
             return deferred.promise;
         }

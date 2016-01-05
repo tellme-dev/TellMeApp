@@ -28,7 +28,7 @@ angular.module('tellme')
         };
         /*首页初始化*/
         var vm = $scope.vm = {
-            moredata: false,
+            moredata: true,
             messages: [],
             pageNum: 3,
             pagination: {
@@ -42,7 +42,7 @@ angular.module('tellme')
                   function (data) {
                       if (data.isSuccess) {
                           if (data.rows.length == 0) {
-                              console.log("未获取数据！")
+                              console.log("未获取数据！");
                           }
                       }
                   }
@@ -52,23 +52,28 @@ angular.module('tellme')
             },
             //加载更多
             loadMore: function () {
-                console.log("上拉加载数据。")
                 homeSer.getFootAdd(vm.pageNum).then(
                     function (data) {
                         if (data.isSuccess) {
-                            if (data.rows.length == 0) {
-                                console.log("未获取数据！")
+                            if (typeof(data.rows) =='undefined'||data.rows.length == 0) {
+                                vm.moredata = false;
+                                vm.pageNum = 3;
+                                console.log("没有更多数据了");
+                                //提示
                             } else {
                                 $scope.footAdData = data.rows;
                                 if (data.rows.length < vm.pageNum) {
                                     vm.moredata = false;
                                     vm.pageNum = 3;
-                                    console.log("无数据");
+                                    console.log("没有更多数据了");
+                                    //提示
                                 } else {
+                                    vm.moredata = false;
                                     vm.pageNum += 5;
                                 }
                             }
                         } else {
+                            vm.moredata = false;
                             console.log("获取数据失败！" + data.msg)
                         }
                     },
@@ -188,9 +193,12 @@ angular.module('tellme')
             $state.go('hotelList', { 'itemTagId': id });
         }
         /*（点击菜单项）跳转“酒店列表”*/
-        $scope.goToHotelList = function (param) {
-            $state.go('hotelList', { itemTagId: param });
+        $scope.goToItemList = function (rootId,childId,itemId) {
+            $state.go('hotelList', { itemTagRootId: rootId, childId: childId, itemId: itemId });
         }
+        //$scope.goToHotelList = function (param) {
+        //    $state.go('hotelList', { itemTagId: param });
+        //}
         //（点击头部广告）跳转“具体广告”图片展示
         $scope.goToAd = function (adId) {
             //param 根据target_type等于1（酒店）、2（服务项目）、3（社区）判断，传入参数target_id
