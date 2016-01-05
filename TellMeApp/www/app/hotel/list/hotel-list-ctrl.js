@@ -1,5 +1,5 @@
 ﻿angular.module('tellme')
-    .controller('hotelListControll', ['$scope', '$window', '$stateParams', '$state', 'hotelSer', 'LoadingSvr', 'popUpSer', 'tellmeActionSheet', function ($scope, $window, $stateParams, $state, hotelSer, LoadingSvr, popUpSer, tellmeActionSheet) {
+    .controller('hotelListControll', ['$scope', '$window', '$stateParams', '$state','$ionicHistory', 'hotelSer', 'LoadingSvr', 'popUpSer', 'tellmeActionSheet', function ($scope, $window, $stateParams, $state,$ionicHistory, hotelSer, LoadingSvr, popUpSer, tellmeActionSheet) {
         var param_tagId = $stateParams.itemTagId;
         var param_itemId = $stateParams.itemId;
 
