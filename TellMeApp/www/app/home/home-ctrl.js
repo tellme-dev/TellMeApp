@@ -30,7 +30,7 @@ angular.module('tellme')
         };
         /*首页初始化*/
         var vm = $scope.vm = {
-            moredata: false,
+            moredata: true,
             messages: [],
             pageNum:3,
             pagination: {
@@ -54,7 +54,7 @@ angular.module('tellme')
             },
             //加载更多
             loadMore: function () {
-                console.log("上拉加载数据。")
+                esconsole.log("上拉加载数据。")
                 homeSer.getFootAdd(vm.pageNum).then(
                     function (data) {
                         if (data.isSuccess) {
@@ -62,10 +62,13 @@ angular.module('tellme')
                                    console.log("未获取数据！")
                                } else {
                                    $scope.footAdData = data.rows;
-                                   if (data.rows.length == vm.pageNum) {
-                                       vm.moredata = true;
+                                   if (data.rows.length < vm.pageNum) {
+                                       vm.moredata = false;
+                                       vm.pageNum = 3;
+                                       console.log("无数据");
+                                   } else {
+                                       vm.pageNum += 5;
                                    }
-                                   vm.pageNum += 5;
                                }
                            } else {
                                console.log("获取数据失败！" + data.msg)
@@ -74,12 +77,10 @@ angular.module('tellme')
                        function (data) {
                            console.log('其他');
                        });
-                vm.moredata = true;
                 $scope.$broadcast('scroll.infiniteScrollComplete');
-                //})
             }
         }
-        vm.loadMore();
+        //vm.loadMore();
 
         //获取URL
         $scope.baseUrl = appConfig.server.getUrl();
