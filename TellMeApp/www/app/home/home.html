@@ -53,14 +53,14 @@
             <div class="ma-b-10 zt-cont-no">
                 <div class="row">
                     <div class="col col-42 zt-img pa-10">
-                        <img src="images/zt-6.jpg" style="width:100%;height:100%" />
+                        <img ng-src="{{baseUrl}}{{footAdData[0].adDetailList[0].imageUrl}}" style="width:100%;height:100%" />
                     </div>
                     <div class="col col-58 zt-img border-r pa-0">
                         <div class="pa-10 border-b zt-w-h">
-                            <img src="images/zt-7.jpg" style="width:100%;height:100%" />
+                            <img ng-src="{{baseUrl}}{{footAdData[1].adDetailList[0].imageUrl}}" style="width:100%;height:100%" />
                         </div>
                         <div class="pa-10 zt-w-h">
-                            <img src="images/zt-8.jpg" style="width:100%; height:100%" />
+                            <img ng-src="{{baseUrl}}{{footAdData[2].adDetailList[0].imageUrl}}" style="width:100%; height:100%" />
                         </div>
                     </div>
                 </div>
@@ -74,23 +74,23 @@
                                 <li class="fo-s12 colo-9 text-ce">不一样的专题，让你体验不一样的生活</li>
                             </ul>
                         </div>
-                        <div class="ma-to-10">
+                        <div class="ma-to-10" ng-repeat="item in footAdData" ng-if="$index>2" ng-click="test($index)">
                             <div class="ma-b-10 ix-img-cont">
-                                <img src="images/zt-10.jpg" style="width:100%; height:100%" />
+                                <img ng-src="{{baseUrl}}{{item.adDetailList[0].imageUrl}}" style="width:100%; height:100%" />
                             </div>
-                            <span class="fl font-f fo-s12 colo-6">专题描述：不一样的专题，让你体验不一样的专题...</span>
+                            <span class="fl font-f fo-s12 colo-6">{{item.adDetailList[0].text}}</span>
                             <div class="fr font-f fo-s12 colo-9"><i class="ion-heart fo-s14 ma-r-5" style="color:#eb5d54; "></i>已有20人参与</div>
                             <div class="clear"></div>
                         </div>
 
-                        <div class="ma-to-10">
+                        <!--<div class="ma-to-10">
                             <div class="ma-b-10 ix-img-cont">
                                 <img src="images/zt-11.jpg" style="width:100%; height:100%" />
                             </div>
                             <span class="fl font-f fo-s12 colo-6">专题描述：不一样的专题，让你体验不一样的专题...</span>
                             <div class="fr font-f fo-s12 colo-9"><i class="ion-heart fo-s14 ma-r-5" style="color:#eb5d54; "></i>已有20人参与</div>
                             <div class="clear"></div>
-                        </div>
+                        </div>-->
 
                     </div>
                 </div>
