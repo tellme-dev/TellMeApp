@@ -108,6 +108,7 @@ angular.module('tellme')
                            } else {
                                $scope.adData = data.rows;
                                LoadingSvr.hide();
+                               console.log(data.msg)
                            }
                        } else {
                            console.log("获取数据失败！" + data.msg)
@@ -142,7 +143,7 @@ angular.module('tellme')
             }
             $scope.getFootAd();
 
-            //获取酒店滑动菜单
+        //获取酒店滑动菜单
         var promise = homeSer.getSwiperAd();
                 promise.then(
                        function (data) {
@@ -155,7 +156,7 @@ angular.module('tellme')
                                }
 
                            } else {
-                       console.log("获取数据失败！" + data.msg);
+                               console.log("获取数据失败！" + data.msg);
                            }
 
                        },
