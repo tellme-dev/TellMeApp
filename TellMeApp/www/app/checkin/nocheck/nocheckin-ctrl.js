@@ -21,7 +21,7 @@
             $state.go('willSearch');
         }
 
-        var promise = checkinSer.getCheckinInfo(window.localStorage['userId'], window.localStorage['regionCode']);//6
+        var promise = checkinSer.getCheckinInfo(window.localStorage['userId'], window.localStorage['adcode']);//6
         promise.then(
             function (data) {
                 if (data.isSuccess) {

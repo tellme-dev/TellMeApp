@@ -5,7 +5,7 @@
         $scope.hasCheckIn = false;
         
         LoadingSvr.show();
-        var promise1 = checkinSer.getCheckinInfo(window.localStorage['userId'], window.localStorage['regionCode']);//6
+        var promise1 = checkinSer.getCheckinInfo(window.localStorage['userId'], window.localStorage['adcode']);//6
         promise1.then(
             function (data) {
                 if (data.isSuccess) {
