@@ -19,7 +19,7 @@
 
 
         <div class="list card" ng-if="nearHotels">
-            <div class="item item-avatar" ng-repeat="nearHotel in nearHotels">
+            <div class="item item-avatar" ng-repeat="nearHotel in nearHotels" ng-click="goToHotel(nearHotel)">
                 <img src="images/xq-2.jpg" style="border-radius:0px">
                 <h2>{{nearHotel.name}}</h2>
                 <p>入住舒适度:{{nearHotel.score}}分</p>

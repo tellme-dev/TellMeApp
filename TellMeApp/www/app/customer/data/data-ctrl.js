@@ -2,8 +2,6 @@
     .controller('dataControll', ['$scope', '$state','$q', '$window', '$ionicHistory','appConfig', '$ionicActionSheet','popUpSer', 'cameraSvr', 'fileTransferSvr', 'LoadingSvr', 'customerSer',
         function ($scope, $state,$q, $window, $ionicHistory,appConfig, $ionicActionSheet,popUpSer, cameraSvr, fileTransferSvr, LoadingSvr, customerSer) {
             $scope.baseUrl = appConfig.server.getUrl();
-            var now = new Date();
-            var mill = now.getTime();//getTime() 方法可返回距 1970 年 1 月 1 日之间的毫秒数。
             
             $scope.customerInfo = {};//存放客户信息
             //返回前页
@@ -99,6 +97,8 @@
                 }
                 function cSuccess(imgURI) {
                     LoadingSvr.show();
+                    var now = new Date();
+                    var mill = now.getTime();//getTime() 方法可返回距 1970 年 1 月 1 日之间的毫秒数。
                     var customerId = window.localStorage['userId'];
                     var fileName = customerId + '_' + mill + Math.floor(Math.random() * 9999 + 1000)+'.jpg';
                     /*上传图片*/

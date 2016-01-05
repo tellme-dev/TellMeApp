@@ -52,13 +52,14 @@
                             extensions: "all"
                         });
                         geocoder.getAddress(lnglatXY, function (status, result) {
-                            alert("经纬度：" + lnglatXY);
+                          //  alert("经纬度：" + lnglatXY);
                             if (status === 'complete' && result.info === 'OK') {
                                 var address = result.regeocode.formattedAddress; //返回地址描述
                                 var cityInfo = result.regeocode.addressComponent;
                                 var str = "省：" + cityInfo.province + ",市：" + cityInfo.city + ",区：" + cityInfo.district + ",code:" + cityInfo.adcode;
                                 console.log("定位信息：" + str + "    " + address);
-                                aler("定位信息：" + str + "    " + address);
+                                  aler("定位信息：" + str + "    " + address);
+                                window.localStorage['currentcity'] = cityInfo.city;
                                 window.localStorage['adcode'] = cityInfo.adcode;
                               //  document.getElementById("result").innerHTML = str + "    " + address;
                             }

@@ -16,7 +16,7 @@
                 <ul  ng-show="dataShow"  class="zt-cont">
                     <li ng-repeat="data in vm.list" ng-click="goToAd(data.id)">
                         <a href="#">
-                            <img ng-src="{{baseUrl}}{{data.adDetailList[0].imageUrl}}" ng-show="data.adDetailList.length"/>
+                            <img ng-src="{{baseUrl}}{{data.adDetailList[0].imageUrl}}"/><!--ng-show="data.adDetailList.length"-->
                         </a>
                     </li>
                 </ul>

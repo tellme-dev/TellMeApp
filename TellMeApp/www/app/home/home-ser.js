@@ -10,7 +10,7 @@
             var url = baseUrl + 'app/ad/getAdList.do';
             var addDataJSON = JSON.stringify({
                 banner:'top',
-                adNum:2
+                adNum:225
             });
             var deferred = $q.defer();
             $http({
@@ -44,11 +44,11 @@
         }
 
         //获取底部广告
-        this.getFootAdd = function () {
+        this.getFootAdd = function (adNum) {
             var url = baseUrl + 'app/ad/getAdList.do';
             var addDataJSON = JSON.stringify({
                 banner: 'down',
-                adNum: 3
+                adNum: adNum
             });
             var deferred = $q.defer();
             $http({

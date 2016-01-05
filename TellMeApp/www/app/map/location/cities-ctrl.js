@@ -58,7 +58,8 @@
         }
         //GPS
         $scope.updateCity = function () {
-            tellMeMapSvr.updateCurrentcity();
+            // tellMeMapSvr.updateCurrentcity();
+            tellMeMapSvr.getDistrict();
             $scope.currentCity = window.localStorage['currentcity'];
         }
 

@@ -65,7 +65,7 @@
      }
   }
   }
-}
+        }
 
 /*¹þ¹þ*/
 .device {
@@ -74,12 +74,12 @@
   margin: 10px auto;
   height: 250px;
 }
-.swiper-container {
-  width: 100%;
+        .swiper-container {
+            width: 100%;
   color: #fff;
   text-align: center;
-}
-.swiper-slide {
+        }
+        .swiper-slide {
   height: 100%;
   /*opacity: 0.4;
   -webkit-transition: 300ms;
@@ -92,4 +92,4 @@
   -ms-transform: scale(0);
   -o-transform: scale(0);
   transform: scale(0);*/
-}
+        }
