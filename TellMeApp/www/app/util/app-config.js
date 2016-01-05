@@ -12,7 +12,7 @@ angular.module('tellme')
         */
         server: {
             address: 'http://112.74.209.133',
-            //address: 'http://192.168.1.101',
+          //  address: 'http://192.168.1.104',
             name: 'tellme',
             //name: 'TellMeMgr',
             port: '8080',
