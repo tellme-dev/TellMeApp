@@ -160,9 +160,6 @@ angular.module('tellme')
                }
              );
 
-        //加载用户头像
-
-
         /*跳转“定位页面”*/
         $scope.goToLocation = function () {
             $state.go('location');
@@ -170,15 +167,6 @@ angular.module('tellme')
         //跳转到搜索页面
         $scope.goToSearch = function () {
             $state.go('willSearch');
-        }
-        /*跳转“个人信息页面”*/
-        $scope.goToCustomer = function () {
-            if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel'] == "") {//如果用户未登录跳转到登录页面
-                $state.go('login', { pageName: 'customer' });
-            } else {
-                $state.go('customer');
-            }
-
         }
         //推荐更多
         $scope.goDiscover = function () {
