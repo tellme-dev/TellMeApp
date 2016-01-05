@@ -56,6 +56,7 @@
                         slidesPerColumn: $scope.slidesPerColumn || 1,
                         spaceBetween: $scope.spaceBetween || 0,
                         direction: $scope.direction || 'horizontal',
+                        watchSlidesProgress:true,
                         loop: $scope.loop || false,
                         initialSlide: $scope.initialSlide || 0,
                         showNavButtons: false

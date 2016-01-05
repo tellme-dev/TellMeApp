@@ -3,22 +3,36 @@ angular.module('tellme')
     .controller('homeControll', ['$scope', '$rootScope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', 'LoadingSvr', function ($scope,$rootScope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer, LoadingSvr) {
         LoadingSvr.show();
 
-        $scope.swiper = {};
+        $scope.swiper = {
+        };
 
         $scope.onReadySwiper = function (swiper) {
+            //swiper.on('onProgress', function () {
+            //    for (var i = 0; i < swiper.slides.length; i++) {
+            //        var slide = swiper.slides[i];
+            //        var progress = slide.progress;
+            //        scale = 1 - Math.min(Math.abs(progress * 0.2), 1);
 
-            swiper.on('slideChangeStart', function () {
-                console.log('slide start');
-            });
+            //        es = slide.style;
+            //        es.opacity = 1 - Math.min(Math.abs(progress / 2), 1);
+            //        es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = 'translate3d(0px,0,' + (-Math.abs(progress * 150)) + 'px)';
 
-            swiper.on('onSlideChangeEnd', function () {
-                console.log('slide end');
-            });
+            //    }
+            //});
+
+            //swiper.on('onSetTransition', function () {
+            //alert('onSetTransition');
+            //    for (var i = 0; i < swiper.slides.length; i++) {
+            //        es = swiper.slides[i].style;
+            //        es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration = es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = speed + 'ms';
+            //    }
+            //});
         };
         /*首页初始化*/
         var vm = $scope.vm = {
-            moredata: false,
+            moredata: true,
             messages: [],
+            pageNum:3,
             pagination: {
                 perPage: 5,
                 currentPage: 1
@@ -40,13 +54,33 @@ angular.module('tellme')
             },
             //加载更多
             loadMore: function () {
-                   console.log("上拉加载数据。")
-                   vm.moredata = true;
-                   $scope.$broadcast('scroll.infiniteScrollComplete');
-                   
-                //})
+                esconsole.log("上拉加载数据。")
+                homeSer.getFootAdd(vm.pageNum).then(
+                    function (data) {
+                        if (data.isSuccess) {
+                               if (data.rows.length == 0) {
+                                   console.log("未获取数据！")
+                               } else {
+                                   $scope.footAdData = data.rows;
+                                   if (data.rows.length < vm.pageNum) {
+                                       vm.moredata = false;
+                                       vm.pageNum = 3;
+                                       console.log("无数据");
+                                   } else {
+                                       vm.pageNum += 5;
+                                   }
+                               }
+                           } else {
+                               console.log("获取数据失败！" + data.msg)
+                           }
+                       },
+                       function (data) {
+                           console.log('其他');
+                       });
+                $scope.$broadcast('scroll.infiniteScrollComplete');
             }
         }
+        //vm.loadMore();
 
         //获取URL
         $scope.baseUrl = appConfig.server.getUrl();
@@ -77,32 +111,38 @@ angular.module('tellme')
                        console.log('其他');
                    }
                    );
-        ////获取底部广告
-            var promise = homeSer.getFootAdd();
-            promise.then(
-                   function (data) {
-                       if (data.isSuccess) {
-                           if (data.rows.length == 0) {
-                               console.log("未获取数据！")
-                           } else {
-                               $scope.footAdData = data.rows;
-                           }
-                       } else {
-                           console.log("获取数据失败！" + data.msg)
-                       }
-                   },
-                   function (data) {
-                       console.log('其他');
-                   }
-                       );
+        //////获取底部广告
+        //    $scope.getFootAd = function (num) {
+        //        if (num == null || num == "") {
+        //            num = 3;
+        //        }
+        //        var promise = homeSer.getFootAdd(num);
+        //        promise.then(
+        //               function (data) {
+        //                   if (data.isSuccess) {
+        //                       if (data.rows.length == 0) {
+        //                           console.log("未获取数据！")
+        //                       } else {
+        //                           $scope.footAdData = data.rows;
+        //                       }
+        //                   } else {
+        //                       console.log("获取数据失败！" + data.msg)
+        //                   }
+        //               },
+        //               function (data) {
+        //                   console.log('其他');
+        //               }
+        //                   );
+        //    }
+        //    $scope.getFootAd();
 
-            //获取广告滑动菜单
+            //获取酒店滑动菜单
         var promise = homeSer.getSwiperAd();
                 promise.then(
                        function (data) {
                            if (data.isSuccess) {
                                if (data.rows.length == 0) {
-                                   console.log("未获取数据！")
+                                   console.log("未获取数据！");
                                } else {
                                     $scope.swiperAdData = data.rows;
 
@@ -167,4 +207,5 @@ angular.module('tellme')
         $scope.repeatDone = function () {
             $ionicSlideBoxDelegate.update();
         }
+
         }])
