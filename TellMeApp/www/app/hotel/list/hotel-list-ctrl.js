@@ -1,6 +1,7 @@
 ﻿angular.module('tellme')
     .controller('hotelListControll', ['$scope', '$window', '$stateParams', '$state','$ionicHistory', 'hotelSer', 'LoadingSvr', 'popUpSer', 'tellmeActionSheet', function ($scope, $window, $stateParams, $state,$ionicHistory, hotelSer, LoadingSvr, popUpSer, tellmeActionSheet) {
-        var param_tagId = $stateParams.itemTagId;
+        var param_tagId = $stateParams.itemTagRootId;
+        var param_tagChildId = $stateParams.itemTagChildId;
         var param_itemId = $stateParams.itemId;
 
         var _MENU_SELECTED_ITEM = null;
@@ -80,7 +81,7 @@
                                 view.appendChild(item);
                                 new MenuItem(item, obj.itemTagId);
                                 //初始化选中
-                                if (param_tagId > 0) {
+                                if (typeof (param_tagId) == 'undefined' || param_tagId > 0) {
                                     if (param_tagId == obj.itemTagId) {
                                         setSelectStyle(item, obj.itemTagId);
                                     }
@@ -119,8 +120,15 @@
                                 a.innerHTML = "<img src=\"" + $scope.host + menu.defaultImageUrl + "\" /><i>" + menu.name + "</i>";
                                 view.appendChild(a);
                                 new ChildMenuItem(a, menu.itemTagId);
-                                if (i == 0) {
-                                    setChildSelectStyle(a, menu.itemTagId);
+                                //初始化选中
+                                if (typeof (param_tagChildId) == 'undefined' || param_tagChildId > 0) {
+                                    if (param_tagChildId == menu.itemTagId) {
+                                        setChildSelectStyle(a, menu.itemTagId);
+                                    }
+                                } else {
+                                    if (i == 0) {
+                                        setChildSelectStyle(a, menu.itemTagId);
+                                    }
                                 }
                             }
                         } else {
