@@ -15,6 +15,8 @@
         $scope.list = null;
         //二级菜单图片数据
         $scope.menus = null;
+        $scope.itemListEmpty = false;
+        $scope.loadListerrMsg = "";
         //服务器地址
         $scope.host = hotelSer.hostUrl;
         //后退
@@ -46,6 +48,8 @@
             selectId = id;
             vm.pageNo = 0;
             vm.isInit = true;
+            $scope.itemListEmpty = false;
+            $scope.loadListerrMsg = "";
             vm.loadMore();
         }
 
@@ -337,13 +341,17 @@
                                     }
 
                                     $scope.list = tempData;
+                                    if ($scope.list.length < 1) {
+                                        $scope.itemListEmpty = true;
+                                        $scope.loadListerrMsg = "没有找到相关数据";
+                                    }
                                     vm.isInit = false;
                                 } else {
                                     for (var i = 0; i < data.rows.length; i++) {
                                         $scope.list.push(data.rows[i]);
                                     }
                                 }
-                                
+
                                 var total = data.total;
                                 if (total > vm.pageNo) {
                                     vm.moredata = false;
@@ -351,6 +359,11 @@
                                     vm.moredata = true;
                                 }
                                 $scope.$broadcast('scroll.infiniteScrollComplete');
+                            } else {
+                                if (vm.isInit) {
+                                    $scope.itemListEmpty = true;
+                                    $scope.loadListerrMsg = "服务器查询错误";
+                                }
                             }
                         }
 
