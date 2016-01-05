@@ -14,7 +14,7 @@
             if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel'] == "") {//如果用户未登录，跳转到登录页面
                 $state.go('login', { pageName: 'customer' });
             } else {
-                var promise = checkinSer.getCheckinInfo(window.localStorage['userId'], window.localStorage['regionCode']);
+                var promise = checkinSer.getCheckinInfo(window.localStorage['userId'], window.localStorage['adcode']);
                 promise.then(
                     function (data) {
                         if (data.isSuccess) {
@@ -34,7 +34,7 @@
                         popUpSer.showAlert('查询入住信息异常');
                     }
                     );
-                $state.go('menu.checkin');
-            }            
+            }
         }
-    }])
+
+   }])

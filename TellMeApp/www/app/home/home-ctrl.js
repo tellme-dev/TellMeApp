@@ -54,7 +54,7 @@ angular.module('tellme')
             },
             //加载更多
             loadMore: function () {
-                esconsole.log("上拉加载数据。")
+                console.log("上拉加载数据。")
                 homeSer.getFootAdd(vm.pageNum).then(
                     function (data) {
                         if (data.isSuccess) {
