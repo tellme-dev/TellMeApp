@@ -9,8 +9,8 @@
             <div class="pl-cont" ng-repeat="data in  vm.listData">
                 <div class="pl-cont-s">
                     <div>
-                        <img  ng-if="data.customer==null" class="fl pl-img-toux" ng-src="{{url}}{{customer.photoUrl}}" />
-                        <img ng-if="data.customer!=null" class="fl pl-img-toux" ng-src="{{url}}{{data.customer.photoUrl}}" />
+                        <img  ng-if="data.customer==null" class="fl pl-img-toux"  err-src="images/head.png" ng-src="{{url}}{{customer.photoUrl}}" />
+                        <img ng-if="data.customer!=null" class="fl pl-img-toux" ng-src="{{url}}{{data.customer.photoUrl}}"  err-src="images/head.png" />
                         <div ng-if="data.customer==null" class="fl zan-text-s">
                             <span class="zan-span" style="font-family:'微软雅黑';">{{customer.name}}</span>
                             <i>{{data.from.createTime | date:'yyyy-MM-dd HH:mm'}}</i>
@@ -26,7 +26,7 @@
                         <div class="clear"></div>
                     </div>
                     <a href="#" class="pl-esr">
-                        <img class="fl" ng-src="{{url}}{{customer.photoUrl}}" />
+                        <img class="fl" ng-src="{{url}}{{customer.photoUrl}}"  err-src="images/head.png" />
                         <div class="fl pl-esr-cont"><span>{{customer.name}} ：</span><b class="zxx_text_overflow_3">{{data.to.text}}</b></div>
                         <div class="clear"></div>
                     </a>
