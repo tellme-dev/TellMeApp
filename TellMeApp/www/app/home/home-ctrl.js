@@ -58,7 +58,7 @@ angular.module('tellme')
                             if (typeof(data.rows) =='undefined'||data.rows.length == 0) {
                                 vm.moredata = false;
                                 vm.pageNum = 3;
-                                console.log("没有更多数据了");
+                                console.log("没有数据");
                                 //提示
                             } else {
                                 $scope.footAdData = data.rows;
@@ -100,7 +100,7 @@ angular.module('tellme')
                function (data) {
                    if (data.isSuccess) {
                        if (data.rows.length == 0) {
-                           console.log("未获取数据！")
+                           console.log("获取数据为空！")
                        } else {
                            $scope.adData = data.rows;
                            LoadingSvr.hide();
