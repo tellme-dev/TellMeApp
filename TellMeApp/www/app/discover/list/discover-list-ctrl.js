@@ -25,10 +25,6 @@
                 //    $state.go('bbs', { bbsId: targetId });
                 //}
              }
-            /*跳转“个人信息页面”*/
-            $scope.goToCustomer = function () {
-                $state.go('customer');
-            }
             //跳转到搜索页面
             $scope.goToSearch = function () {
                 $state.go('willSearch');

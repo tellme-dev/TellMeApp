@@ -22,7 +22,7 @@
                    deferred.resolve(data);
                 }).error(
                 function (data, status, headers, config) {
-                    deferred.reject(5);
+                    deferred.reject(data);
                 });
             return deferred.promise;
         }
@@ -38,7 +38,7 @@
                     deferred.resolve(data);
                 }).error(
                 function (data, status, headers, config) {
-                    deferred.reject(5);
+                    deferred.reject(data);
                 });
             return deferred.promise;
         }
