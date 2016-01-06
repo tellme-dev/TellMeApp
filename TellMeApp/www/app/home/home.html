@@ -18,26 +18,30 @@
                 </ion-slide>
             </ion-slide-box>
             <!--banner-->
-            <ks-swiper-container speed="2000" loop="true" show-nav-buttons="false" slides-per-view="3" pagination-clickable="false" override-parameters="{effect: 'coverflow',coverflow: {rotate: 50,stretch: 0,depth: 100,modifier: 1,slideShadows : true}}" on-ready="onReadySwiper(swiper)">
-                <ks-swiper-slide class="swiper-slide" ng-repeat="swiper in swiperAdData">
+            <ks-swiper-container speed ="3000" loop="true" show-nav-buttons="false" autoplay="false"  pagination-clickable="false" override-parameters="{effect: 'coverflow',coverflow: {rotate: 50,stretch: 0,depth: 100,modifier: 1,slideShadows : true}}" on-ready="onReadySwiper(swiper)">
+                <ks-swiper-slide class="swiper-slide" ng-repeat="swiperItem in swiperAdData">
                     <div>
                         <div class="row" style="text-align:center;padding-bottom:1px;font-family:'微软雅黑'; color:#474747; font-size:1.25em;">
-                            <div class="col col-100" style="line-height:30px;"><strong>{{swiper.name}}</strong></div>
+                            <div class="col col-100" style="line-height:30px;"><strong>{{swiperItem.name}}</strong></div>
                         </div>
                         <div class="row" style="padding-bottom:1px;">
-                            <div class="col col-50" style="padding:1px;" ng-click="goToItemList(swiper.hotelItems[0].itemId,swiper.hotelItems[0].itemTagId)">
-                                <img ng-src="{{baseUrl}}{{swiper.hotelItems[0].imageUrl}}" style="width:100%;" />
+                            <div class="col col-50" style="padding:1px;" ng-click="goToItemList(swiperItem.hotelItems[0].itemId,swiperItem.hotelItems[0].itemTagId)">
+                                <!--<img ng-src="{{baseUrl}}{{swiperItem.hotelItems[0].imageUrl}}" style="width:100%;" />-->
+                                <img src="images/a.png" style="width:100%;" />
                             </div>
-                            <div class="col col-50" style="padding:1px;" ng-click="goToItemList(swiper.hotelItems[1].itemId,swiper.hotelItems[1].itemTagId)">
-                                <img ng-src="{{baseUrl}}{{swiper.hotelItems[1].imageUrl}}" style="width:100%;" />
+                            <div class="col col-50" style="padding:1px;" ng-click="goToItemList(swiperItem.hotelItems[1].itemId,swiperItem.hotelItems[1].itemTagId)">
+                                <!--<img ng-src="{{baseUrl}}{{swiperItem.hotelItems[1].imageUrl}}" style="width:100%;" />-->
+                                <img src="images/a.png" style="width:100%;" />
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col col-50" style="padding:1px;" ng-click="goToItemList(swiper.hotelItems[2].itemId,swiper.hotelItems[2].itemTagId)">
-                                <img ng-src="{{baseUrl}}{{swiper.hotelItems[2].imageUrl}}" style="width:100%;" />
+                            <div class="col col-50" style="padding:1px;" ng-click="goToItemList(swiperItem.hotelItems[2].itemId,swiperItem.hotelItems[2].itemTagId)">
+                                <!--<img ng-src="{{baseUrl}}{{swiperItem.hotelItems[2].imageUrl}}" style="width:100%;" />-->
+                                <img src="images/a.png" style="width:100%;" />
                             </div>
-                            <div class="col col-50" style="padding:1px;" ng-click="goToItemList(swiper.hotelItems[3].itemId,swiper.hotelItems[3].itemTagId)">
-                                <img ng-src="{{baseUrl}}{{swiper.hotelItems[3].imageUrl}}" style="width:100%;" />
+                            <div class="col col-50" style="padding:1px;" ng-click="goToItemList(swiperItem.hotelItems[3].itemId,swiperItem.hotelItems[3].itemTagId)">
+                                <!--<img ng-src="{{baseUrl}}{{swiperItem.hotelItems[3].imageUrl}}" style="width:100%;" />-->
+                                <img src="images/a.png" style="width:100%;" />
                             </div>
                         </div>
                     </div>
