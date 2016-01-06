@@ -138,6 +138,8 @@
                        //提示
                    }
                    )
+                 } else {
+
                  }
              }
              /*获取短信验证码服务*/
@@ -158,6 +160,7 @@
                     },
                     function (data) {
                         console.log("未知错误");
+                        popUpSer.showAlert("未知错误");
                     }
                     );
                  } else {
