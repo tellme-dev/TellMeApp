@@ -48,14 +48,15 @@
                        );
 
            // 分享
-           $scope.share = function (detail) {
+           $scope.share = function () {
                var args = {};
+               var adinfo = $scope.adInfo;
                //args.url = "";
-               args.title = detail.title;
-               args.description = detail.text;
-               args.text = detail.text;
-               var imgs = typeof (detail.bbsAttachUrls) === 'undefined' ? undefined : [];
-               angular.forEach(detail.bbsAttachUrls, function (de, index) {
+               args.title = adinfo.name;
+               args.description = adinfo.adDetailList[0].text;
+               args.text = adinfo.adDetailList[0].text;
+               var imgs = typeof (adinfo.adDetailList[0].imageUrl) == 'undefined' ? undefined : [];
+               angular.forEach(adinfo.adDetailList[0].imageUrl, function (de, index) {
                    imgs[index] = $scope.baseUrl + de.attachUrl;
                });
                args.imageUrl = imgs;
@@ -84,10 +85,11 @@
                        .then(
                            function (data) {
                                if (data.isSuccess) {
-                                   //再重新加载一次
+                                   //页面上的次数更新 或者再重新加载一次
+                                   $scope.adInfo.agreeCount += 1;
                                    console.log("点赞成功");
                                } else {
-                                   console.log(data.msg);
+                                   popUpSer.showAlert(data.msg);
                                }
                            },
                            function (data) {
@@ -114,7 +116,8 @@
                        .then(
                            function (data) {
                                if (data.isSuccess) {
-                                   //再重新加载一次
+                                   //页面上的次数更新 或者再重新加载一次
+                                   $scope.adInfo.collectionCount += 1;
                                    console.log('收藏成功');
                                } else {
                                    popUpSer.showAlert(data.msg);
