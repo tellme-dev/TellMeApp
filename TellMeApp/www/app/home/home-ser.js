@@ -28,7 +28,7 @@
         }
         //获取酒店滑动菜单
         this.getSwiperAd=function(){
-            var url = baseUrl + 'app/menu/loadSwiperList.do ';
+            var url = baseUrl + 'app/menu/loadMenuList.do ';
             var deferred = $q.defer();
             $http({
                 method: 'post',

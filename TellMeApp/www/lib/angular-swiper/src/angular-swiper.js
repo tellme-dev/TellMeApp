@@ -52,14 +52,16 @@
 
                     // directive defaults
                     var params = {
-                        slidesPerView: $scope.slidesPerView || 1,
+                        slidesPerView:1.5,
                         slidesPerColumn: $scope.slidesPerColumn || 1,
-                        spaceBetween: $scope.spaceBetween || 0,
+                        spaceBetween: $scope.spaceBetween || 10,
                         direction: $scope.direction || 'horizontal',
-                        watchSlidesProgress:true,
                         loop: $scope.loop || false,
                         initialSlide: $scope.initialSlide || 0,
-                        showNavButtons: false
+                        showNavButtons: false,
+                        autoHeight:false,
+                        watchSlidesProgress: true,
+                        centeredSlides: true
                     };
 
                     if($scope.autoplay === true){
