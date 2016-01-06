@@ -123,13 +123,13 @@ angular.module('tellme')
                                    $scope.footAdData = data.rows;
                                }
                            } else {
-                               console.log("获取数据失败！" + data.msg)
-                           }
-                       },
-                       function (data) {
-                           console.log('其他');
-                       }
-                           );
+                       console.log("获取数据失败！" + data.msg)
+                   }
+               },
+               function (data) {
+                   console.log('其他');
+               }
+               );
             }
             $scope.getFootAd();
 
@@ -162,6 +162,15 @@ angular.module('tellme')
         //跳转到搜索页面
         $scope.goToSearch = function () {
             $state.go('willSearch');
+        }
+        /*跳转“个人信息页面”*/
+        $scope.goToCustomer = function () {
+            if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel'] == "") {//如果用户未登录跳转到登录页面
+                $state.go('login', { pageName: 'customer' });
+            } else {
+                $state.go('customer');
+            }
+
         }
         //推荐更多
         $scope.goDiscover = function () {

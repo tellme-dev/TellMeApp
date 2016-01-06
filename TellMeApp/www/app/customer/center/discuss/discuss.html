@@ -9,13 +9,13 @@
             <div ng-repeat="discuss in vm.listData" class="pl-cont">
                 <div class="pl-cont-s">
                     <div ng-click="goBBs(discuss.post.id)" ng-if="discuss.post.customerId==customer.id" href="#" class="pl-esr">
-                        <img class="fl" ng-src="{{baseUrl}}{{customer.photoUrl}}" />
+                        <img class="fl"  err-src="images/head.png" ng-src="{{baseUrl}}{{customer.photoUrl}}" />
                         <div class="fl pl-esr-cont"><span>{{customer.name}} ：</span><b class="zxx_text_overflow_3">{{discuss.post.text}}</b></div>
                      
                          <div class="clear"></div>
                     </div>
                     <div ng-click="goBBs(discuss.post.id)" ng-if="discuss.post.customerId!=customer.id" href="#" class="pl-esr">
-                        <img class="fl" ng-src="{{baseUrl}}{{discuss.post.customer.photoUrl}}" />
+                        <img class="fl"  err-src="images/head.png" ng-src="{{baseUrl}}{{discuss.post.customer.photoUrl}}" />
                         <div class="fl pl-esr-cont"><span>{{discuss.post.customer.name}} ：</span>
                         <b class="zxx_text_overflow_3">{{discuss.post.text}}</b></div>
                         <!--<button class="fr pl-hf-button"><img src="images/hf.png" class="fl" />
@@ -23,7 +23,7 @@
                         <div class="clear"></div>
                     </div>
                     <div ng-repeat="dicList in discuss.dynamics" style="margin-top:5px;margin-left:5px;">
-                        <img class="fl pl-img-toux" ng-src="{{baseUrl}}{{dicList.customer.photoUrl}}" />
+                        <img class="fl pl-img-toux"  err-src="images/head.png" ng-src="{{baseUrl}}{{dicList.customer.photoUrl}}" />
                         <div class="fl pl-text-s pl-text-er"><span>{{dicList.customer.name}}</span>
                         <i>回复了你：</i> <b class="zxx_text_overflow_3">{{dicList.from.text}}</b></div>
                         <button  ng-click="goAnswer(dicList.from.id)" class="fr pl-hf-button"><img src="images/hf.png" class="fl" />
