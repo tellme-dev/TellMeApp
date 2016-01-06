@@ -7,7 +7,9 @@
         <div title="Home" hide-nav-bar="true">
             <ion-scroll scrollbar-x="false" zooming="true" direction="x" style="width:100%;">
                 <div class="nav-conter" style="width: {{rootMenuWidth}};">
-                    <ul id="list"></ul>
+                    <ul>
+                        <li ng-repeat="rootMenu in rootMenuArray" class="{{rootMenu.cName}}" ng-click="rootMuneSelected(rootMenu.index)">{{rootMenu.data.name}}</li>
+                    </ul>
                 </div>
             </ion-scroll>
         </div>
@@ -20,7 +22,10 @@
         <div class="cont-too">
             <div title="Home" hide-nav-bar="true">
                 <ion-scroll zooming="true" direction="x" scrollbar-x="false" class="tu-cont-cont">
-                    <div class="tu-cont" id="child_menu_view">
+                    <div class="tu-cont" style="width:{{childMenuWidth}}">
+                        <a ng-repeat="childMenu in childMenuArray" class="{{childMenu.cName}}" ng-click="childMuneSelected(childMenu.index)">
+                            <img ng-src="{{host}}{{childMenu.data.defaultImageUrl}}" /><i>{{childMenu.data.name}}</i>
+                        </a>
                     </div>
                 </ion-scroll>
             </div>

@@ -4,9 +4,6 @@
         var param_tagChildId = $stateParams.itemTagChildId;
         var param_itemId = $stateParams.itemId;
 
-        var _MENU_SELECTED_ITEM = null;
-        var _CHILD_MENU_SELECTED_ITEM = null;
-
         var pageSize = 5;
         var rootTagId = 0;
 
@@ -28,24 +25,41 @@
         $scope.rootMenuWidth = "auto";
         $scope.childMenuWidth = "auto";
         var collectionSelected = false;
+        //一级菜单数据
+        var rootMenuSelectIndex = -1;
+        $scope.rootMenuArray = new Array();
+        //2级菜单数据
+        var childMenuSelectIndex = -1;
+        $scope.childMenuArray = new Array();
         //设置1级菜单选择事件
-        function setSelectStyle(obj, id) {
-            if (_MENU_SELECTED_ITEM != null) {
-                _MENU_SELECTED_ITEM.className = "";
+        $scope.rootMuneSelected = function (index) {
+            if (rootMenuSelectIndex < 0) {
+                return;
             }
-            obj.className = "li-but";
-            _MENU_SELECTED_ITEM = obj;
-            rootTagId = id;
-            $scope.getChildMenu(id);
+            if (rootMenuSelectIndex == index) {
+                return;
+            }
+            $scope.rootMenuArray[rootMenuSelectIndex].cName = "";
+            $scope.rootMenuArray[index].cName = "li-but";
+            rootMenuSelectIndex = index;
+            rootTagId = $scope.rootMenuArray[index].data.itemTagId;
+            $scope.getChildMenu(rootTagId);
         }
 
-        function setChildSelectStyle(obj, id) {
-            if (_CHILD_MENU_SELECTED_ITEM != null) {
-                _CHILD_MENU_SELECTED_ITEM.className = "swiper-container3-sws";
+        $scope.childMuneSelected = function(index) {
+            if (childMenuSelectIndex < 0) {
+                return;
             }
-            obj.className = "swiper-container3-sws swiper-container3-border";
-            _CHILD_MENU_SELECTED_ITEM = obj;
-            //$scope.getItemList(1, id);
+            if (childMenuSelectIndex == index) {
+                return;
+            }
+            $scope.childMenuArray[childMenuSelectIndex].cName = "swiper-container3-sws";
+            $scope.childMenuArray[index].cName = "swiper-container3-sws swiper-container3-border";
+            childMenuSelectIndex = index;
+            setChildDataLoad($scope.childMenuArray[index].data.itemTagId);
+        }
+
+        function setChildDataLoad(id) {
             selectId = id;
             vm.pageNo = 0;
             vm.isInit = true;
@@ -69,27 +83,30 @@
             promise.then(
                 function (data) {
                     if (data.isSuccess) {
-                        var view = document.getElementById("list");
-                        view.innerHTML = "";
+                        $scope.rootMenuArray = [];
                         var menus = data.rows;
                         $scope.rootMenuWidth = (menus.length * 50) + "px";
                         if (menus != null && menus.length > 0) {
-                            for (var i = 0; i < menus.length; i ++){
+                            for (var i = 0; i < menus.length; i++) {
                                 var obj = menus[i];
-                                var item = document.createElement("li");
-                                item.innerHTML = obj.name;
-                                view.appendChild(item);
-                                new MenuItem(item, obj.itemTagId);
+                                var rmi = new RootMenuItem(i, obj, "");
+                                
                                 //初始化选中
                                 if (typeof (param_tagId) != 'undefined' && param_tagId > 0) {
                                     if (param_tagId == obj.itemTagId) {
-                                        setSelectStyle(item, obj.itemTagId);
+                                        rmi.cName = "li-but";
+                                        rootTagId = obj.itemTagId;
+                                        rootMenuSelectIndex = i;
                                     }
                                 } else {
                                     if (i == 0) {
-                                        setSelectStyle(item, obj.itemTagId);
+                                        rmi.cName = "li-but";
+                                        rootTagId = obj.itemTagId;
+                                        rootMenuSelectIndex = 0;
                                     }
                                 }
+                                $scope.rootMenuArray.push(rmi);
+                                $scope.getChildMenu(rootTagId);
                             }
                         }
                     }
@@ -106,30 +123,27 @@
             promise.then(
                 function (data) {
                     if (data.isSuccess) {
-                        //$scope.menus = data.rows;
+                        $scope.childMenuArray = [];
                         if (data.rows.length > 0) {
-                            //alert(data.rows.length);
-                            var view = document.getElementById("child_menu_view");
-                            view.style.width = (data.rows.length * 82) + "px";
-
-                            view.innerHTML = "";
-                            for (var i = 0; i < data.rows.length; i ++){
+                            $scope.childMenuWidth = (data.rows.length * 82) + "px";
+                            for (var i = 0; i < data.rows.length; i++) {
                                 var menu = data.rows[i];
-                                var a = document.createElement("a");
-                                a.className = "swiper-container3-sws";
-                                a.innerHTML = "<img src=\"" + $scope.host + menu.defaultImageUrl + "\" /><i>" + menu.name + "</i>";
-                                view.appendChild(a);
-                                new ChildMenuItem(a, menu.itemTagId);
+                                var rmi = new RootMenuItem(i, menu, "swiper-container3-sws");
                                 //初始化选中
                                 if (typeof (param_tagChildId) != 'undefined' && param_tagChildId > 0) {
                                     if (param_tagChildId == menu.itemTagId) {
-                                        setChildSelectStyle(a, menu.itemTagId);
+                                        rmi.cName = "swiper-container3-sws swiper-container3-border";
+                                        childMenuSelectIndex = i;
+                                        setChildDataLoad(menu.itemTagId);
                                     }
                                 } else {
                                     if (i == 0) {
-                                        setChildSelectStyle(a, menu.itemTagId);
+                                        rmi.cName = "swiper-container3-sws swiper-container3-border";
+                                        childMenuSelectIndex = 0;
+                                        setChildDataLoad(menu.itemTagId);
                                     }
                                 }
+                                $scope.childMenuArray.push(rmi);
                             }
                         } else {
                             document.getElementById("child_menu_view").style.width = "82px";
@@ -264,6 +278,7 @@
                 function (data) {
                     if (data.isSuccess) {
                         popUpSer.showAlert("评论成功");
+                        $scope.comments[index] = "";
                     } else {
                         popUpSer.showAlert(data.msg);
                     }
@@ -381,17 +396,10 @@
         };
 
         //Object
-        var MenuItem = function (object, id) {
-            //1级标题切换事件
-            object.onclick = function () {
-                setSelectStyle(object, id);
-            }
-        }
 
-        var ChildMenuItem = function (object, id) {
-            //2级标题切换事件
-            object.onclick = function () {
-                setChildSelectStyle(object, id);
-            }
+        var RootMenuItem = function (index, data, cName) {
+            this.index = index;
+            this.data = data;
+            this.cName = cName;
         }
     }]);
