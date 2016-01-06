@@ -191,6 +191,7 @@
                 function (data) {
                     if (data.isSuccess) {
                         //popUpSer.showAlert("评论成功");
+                        $scope.comments[index] = "";
                         cvm.isInit = true;
                         cvm.pageNo = 0;
                         cvm.loadMore();
