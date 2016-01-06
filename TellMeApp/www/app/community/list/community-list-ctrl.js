@@ -127,7 +127,7 @@ angular.module('tellme')
                 } else if (shareResult == 1) {
                     commonSer.saveShare(detail.id);
                 } else {
-                     popUpSer.showAlert('蠢货，分享出现其他错误');
+                     popUpSer.showAlert('分享出现其他错误');
                 }
 			}
 
@@ -148,7 +148,7 @@ angular.module('tellme')
 										vm.loadMore();
 										console.log("点赞成功");
 									} else {
-										console.log(data.msg);
+									    popUpSer.showAlert(data.msg);
 									}
 								},
 								function (data) {
@@ -179,7 +179,6 @@ angular.module('tellme')
 									console.log('收藏成功');
 								} else {
 									 popUpSer.showAlert(data.msg);
-									console.log(data.msg);
 								}
 							},
 							function (data) {

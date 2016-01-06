@@ -39,8 +39,12 @@
         };
         /*发帖*/
         $scope.saveBbs = function () {
+            if ($scope.bbsInfo.title == undefined) {
+                popUpSer.showAlert("请输入标题");
+                return;
+            }
             if ($scope.bbsInfo.text == undefined) {
-                popUpSer.showAlert("内容为空");
+                popUpSer.showAlert("请输入内容");
                 return;
             }
             bbsSer.saveBbs($scope.bbsInfo).then(
