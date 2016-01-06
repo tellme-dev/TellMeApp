@@ -19,7 +19,7 @@
        }
       
         //定位当前所在城市
-        this.updateCurrentcity = function(){
+       var  updateCurrentcity = function(){
             AMap.service(["AMap.CitySearch"], function () {
                 //实例化城市查询类
                 var citysearch = new AMap.CitySearch();
@@ -27,10 +27,29 @@
                     if (status === 'complete' && result.info === 'OK') {
                         if (result && result.city && result.bounds) {
                             cityinfo = result.city;
+                            var center = result.bounds.getCenter();
+                            var lat = center.lat;
+                            var lng = center.lng;
+                            var lnglatXY = [lng, lat]; //已知点坐标
                             window.localStorage['currentcity'] = cityinfo;
-                            //window.localStorage['regionId'] = 
-                            console.log('更新当前城市：' + cityinfo);
-                          // getCityDetail(cityinfo);
+                            AMap.service('AMap.Geocoder', function () {
+                                var geocoder = new AMap.Geocoder({
+                                    radius: 1000,
+                                    extensions: "all"
+                                });
+                                geocoder.getAddress(lnglatXY, function (status, result) {
+                                    //  alert("经纬度：" + lnglatXY);
+                                    if (status === 'complete' && result.info === 'OK') {
+                                        var address = result.regeocode.formattedAddress; //返回地址描述
+                                        var cityInfo = result.regeocode.addressComponent;
+                                        var str = "省：" + cityInfo.province + ",市：" + cityInfo.city + ",区：" + cityInfo.district + ",code:" + cityInfo.adcode;
+                                        console.log("定位信息：" + str + "    " + address);
+                                        window.localStorage['currentcity'] = cityInfo.city;
+                                        window.localStorage['adcode'] = cityInfo.adcode;
+                                        //  document.getElementById("result").innerHTML = str + "    " + address;
+                                    }
+                                });
+                            })
                         }
                     }
                 });
@@ -58,10 +77,12 @@
                                 var cityInfo = result.regeocode.addressComponent;
                                 var str = "省：" + cityInfo.province + ",市：" + cityInfo.city + ",区：" + cityInfo.district + ",code:" + cityInfo.adcode;
                                 console.log("定位信息：" + str + "    " + address);
-                                  aler("定位信息：" + str + "    " + address);
+                               // alert("定位信息：" + str + "    " + address);
                                 window.localStorage['currentcity'] = cityInfo.city;
                                 window.localStorage['adcode'] = cityInfo.adcode;
-                              //  document.getElementById("result").innerHTML = str + "    " + address;
+                                //  document.getElementById("result").innerHTML = str + "    " + address;
+                            } else {
+                               updateCurrentcity();
                             }
                         });
                     })

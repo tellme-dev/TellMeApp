@@ -4,6 +4,7 @@
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };
+            $scope.url = customerSer.host;
           //  $(".zxx_text_overflow_3").wordLimit(20);
               var customerId = 0;
                 if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel']==""){

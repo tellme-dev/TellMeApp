@@ -26,11 +26,15 @@ angular.module('tellme')
             //    }
             //});
         };
+        //测试
+        $scope.test = function(index){
+           alert(index)
+        }
         /*首页初始化*/
         var vm = $scope.vm = {
             moredata: true,
             messages: [],
-            pageNum: 3,
+            pageNum: 6,
             pagination: {
                 perPage: 5,
                 currentPage: 1
@@ -57,18 +61,17 @@ angular.module('tellme')
                         if (data.isSuccess) {
                             if (typeof(data.rows) =='undefined'||data.rows.length == 0) {
                                 vm.moredata = false;
-                                vm.pageNum = 3;
+                                vm.pageNum = 6;
                                 console.log("没有数据");
                                 //提示
                             } else {
                                 $scope.footAdData = data.rows;
                                 if (data.rows.length < vm.pageNum) {
                                     vm.moredata = false;
-                                    vm.pageNum = 3;
+                                    vm.pageNum = 6;
                                     console.log("没有更多数据了");
                                     //提示
                                 } else {
-                                    vm.moredata = false;
                                     vm.pageNum += 5;
                                 }
                             }
@@ -106,6 +109,28 @@ angular.module('tellme')
                            LoadingSvr.hide();
                        }
                    } else {
+                       console.log(data.msg)
+                   }
+               },
+               function (data) {
+                   console.log('获取数据失败！');
+               }
+               );
+        ////获取底部广告
+            $scope.getFootAd = function (num) {
+                if (num == null || num == "") {
+                    num = 6;
+                }
+                var promise = homeSer.getFootAdd(num);
+                promise.then(
+                       function (data) {
+                           if (data.isSuccess) {
+                               if (data.rows.length == 0) {
+                                   console.log("获取数据为空！")
+                               } else {
+                                   $scope.footAdData = data.rows;
+                               }
+                           } else {
                        console.log("获取数据失败！" + data.msg)
                    }
                },
@@ -113,30 +138,8 @@ angular.module('tellme')
                    console.log('其他');
                }
                );
-        //////获取底部广告
-        //    $scope.getFootAd = function (num) {
-        //        if (num == null || num == "") {
-        //            num = 3;
-        //        }
-        //        var promise = homeSer.getFootAdd(num);
-        //        promise.then(
-        //               function (data) {
-        //                   if (data.isSuccess) {
-        //                       if (data.rows.length == 0) {
-        //                           console.log("未获取数据！")
-        //                       } else {
-        //                           $scope.footAdData = data.rows;
-        //                       }
-        //                   } else {
-        //                       console.log("获取数据失败！" + data.msg)
-        //                   }
-        //               },
-        //               function (data) {
-        //                   console.log('其他');
-        //               }
-        //                   );
-        //    }
-        //    $scope.getFootAd();
+            }
+            $scope.getFootAd();
 
         //获取酒店滑动菜单
         var promise = homeSer.getSwiperAd();
@@ -159,9 +162,6 @@ angular.module('tellme')
                    console.log('其他');
                }
              );
-
-        //加载用户头像
-
 
         /*跳转“定位页面”*/
         $scope.goToLocation = function () {

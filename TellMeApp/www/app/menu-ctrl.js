@@ -3,6 +3,13 @@
         $scope.home = function () {
             $state.go('menu.home');
         }
+        $scope.customer = function () {
+            if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel'] == "") {//如果用户未登录跳转到登录页面
+                $state.go('login', { pageName: 'menu.customer' });
+            } else {
+                $state.go('menu.customer');
+            }
+        }
         $scope.discovery = function () {
             $state.go('menu.discoverList');
         }
