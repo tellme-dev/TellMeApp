@@ -1,12 +1,5 @@
 ﻿angular.module('tellme')
-    .controller('mapLocationControll', ['$scope', '$rootScope', '$ionicHistory', '$location', '$ionicScrollDelegate', 'tellMeMapSvr', 'commonSer', function ($scope, $rootScope, $ionicHistory, $location, $ionicScrollDelegate, tellMeMapSvr, commonSer) {
-        $scope.cancelBtnText = '取消';
-        $scope.hasInputSearchText = false;
-        $scope.currentCity = window.localStorage['currentcity'];
-        $scope.hotSearchCities = (window.localStorage['hotSearchCities'] === "") ? undefined : angular.fromJson(window.localStorage['hotSearchCities']);
-        $scope.historicCities = (window.localStorage['historicCities'] === "") ? undefined : angular.fromJson(window.localStorage['historicCities']);
-        $scope.regionlist = (window.localStorage['regionlist'] === "") ? undefined : angular.fromJson(window.localStorage['regionlist']);
-
+    .controller('mapLocationControll', ['$scope', '$rootScope', '$ionicHistory', '$location', '$ionicScrollDelegate', 'tellMeMapSvr', 'commonSer', 'LoadingSvr', function ($scope, $rootScope, $ionicHistory, $location, $ionicScrollDelegate, tellMeMapSvr, commonSer, LoadingSvr) {
         $scope.getRowArray = function (items) {
             var array = [];
             var count = 0;
@@ -28,38 +21,14 @@
             }
             return array;
         }
-
-        $scope.hotArray = (typeof ($scope.hotSearchCities) ==='undefined') ? undefined : $scope.getRowArray($scope.hotSearchCities);
-        $scope.historicArray = (typeof ($scope.historicCities) === 'undefined') ? undefined : $scope.getRowArray($scope.historicCities);
-        $scope.orderByAlpha = function (items) {
-            var orders = [];
-            var firstChar = items[0].firstChar;
-            var count = 0;
-            var i = 0;
-            var j = 0;
-            while (count < items.length) {
-                if (items[count].firstChar !== firstChar) {
-                    i++; j = 0;
-                    orders[i] = [];
-                    firstChar = items[count].firstChar;
-                } else {
-                    if (count == 0) {
-                        orders[i] = [];
-                    }
-                }
-                orders[i][j++] = items[count];
-                count++;
-            }
-            return orders;
-        }
-        $scope.orderRegionList = (typeof ($scope.regionlist) === 'undefined') ? undefined : $scope.orderByAlpha($scope.regionlist);
         $scope.goBack = function () {
             $ionicHistory.goBack();
         }
         //GPS
         $scope.updateCity = function () {
-            // tellMeMapSvr.updateCurrentcity();
+            LoadingSvr.show();
             tellMeMapSvr.getDistrict();
+            LoadingSvr.hide();
             $scope.currentCity = window.localStorage['currentcity'];
         }
 
@@ -81,7 +50,7 @@
             }
         }
         $scope.changeRegion = function (region, idName) {
-         //   alert("region：" + region + ",idName:" + idName);
+            //   alert("region：" + region + ",idName:" + idName);
             window.localStorage['currentcity'] = region.name;
             $scope.currentCity = region.name;
             $scope.searchText = '';
@@ -109,6 +78,50 @@
             items.splice(i, i + 1);
             return items;
         }
-     
+        $scope.orderByAlpha = function (items) {
+            var orders = [];
+            var firstChar = items[0].firstChar;
+            var count = 0;
+            var i = 0;
+            var j = 0;
+            while (count < items.length) {
+                if (items[count].firstChar !== firstChar) {
+                    i++; j = 0;
+                    orders[i] = [];
+                    firstChar = items[count].firstChar;
+                } else {
+                    if (count == 0) {
+                        orders[i] = [];
+                    }
+                }
+                orders[i][j++] = items[count];
+                count++;
+            }
+            return orders;
+        }
+
+        LoadingSvr.show();
+        commonSer.updateRegionInfo().then(
+            function (data) {
+                $scope.hotSearchCities = (window.localStorage['hotSearchCities'] === "") ? undefined : angular.fromJson(window.localStorage['hotSearchCities']);
+                $scope.historicCities = (window.localStorage['historicCities'] === "") ? undefined : angular.fromJson(window.localStorage['historicCities']);
+                $scope.regionlist = (window.localStorage['regionlist'] === "") ? undefined : angular.fromJson(window.localStorage['regionlist']);
+                $scope.hotArray = (typeof ($scope.hotSearchCities) === 'undefined') ? undefined : $scope.getRowArray($scope.hotSearchCities);
+                $scope.historicArray = (typeof ($scope.historicCities) === 'undefined') ? undefined : $scope.getRowArray($scope.historicCities);
+
+                $scope.orderRegionList = (typeof ($scope.regionlist) === 'undefined') ? undefined : $scope.orderByAlpha($scope.regionlist);
+                LoadingSvr.hide();
+            },
+            function (data) {
+                console.log('获取地域信息失败');
+            }
+            );
+
+        $scope.cancelBtnText = '取消';
+        $scope.hasInputSearchText = false;
+        $scope.currentCity = window.localStorage['currentcity'];
+
+
+    
     }])
  

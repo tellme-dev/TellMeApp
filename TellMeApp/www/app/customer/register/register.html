@@ -24,7 +24,7 @@
                         </label>
                         <label class="item item-input item-cont">
                             <span class="input-label input-color">验&nbsp;&nbsp;证&nbsp;&nbsp;码：</span>
-                            <input type="password"  ng-model="registerData.verifyCode" class="input-color" required>
+                            <input type="text"  ng-model="registerData.verifyCode" class="input-color" required>
                         </label>
                         <button class="butt-a butt-atop denglu-stylewe" style="background-color:{{sendMsgBackColor}};" ng-disabled="!verifyDisabled" ng-click="sendShortMessageCode()">{{verifyTips}}</button>
                         <div class="clear"></div>

@@ -12,9 +12,9 @@
     <ion-content>
         <div class="inde-cont">
             <!--banner-->
-            <ion-slide-box class="inde-cont-cont" on-slide-changed="slideHasChanged($index)" show-pager="false" does-continue="true" auto-play="true">
-                <ion-slide ng-repeat="ad in adData" repeat-done="repeatDone()" style="height:150px;" ng-if="adData">
-                    <img ng-src="{{baseUrl}}{{ad.adDetailList[0].imageUrl}}" ng-click="goToAd(ad.id)" class="box blue" />
+            <ion-slide-box class="inde-cont" on-slide-changed="slideHasChanged($index)" show-pager="false" does-continue="true" auto-play="true" ng-if="adData">
+                <ion-slide ng-repeat="ad in adData" repeat-done="repeatDone()" style="width:100%;">
+                    <img ng-src="{{baseUrl}}{{ad.adDetailList[0].imageUrl}}" ng-click="goToAd(ad.id)"style="width:100%;"/>
                 </ion-slide>
             </ion-slide-box>
             <!--banner-->
@@ -25,21 +25,21 @@
                             <div class="col col-100" style="line-height:30px;"><strong>{{swiperItem.name}}</strong></div>
                         </div>
                         <div class="row" style="padding-bottom:1px;">
-                            <div class="col col-50" style="padding:1px;" ng-click="goToItemList(swiperItem.hotelItems[0].itemId,swiperItem.hotelItems[0].itemTagId)">
+                            <div class="col col-50" style="padding:1px;height:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.hotelItems[0].itemId,swiperItem.hotelItems[0].itemTagId)">
                                 <!--<img ng-src="{{baseUrl}}{{swiperItem.hotelItems[0].imageUrl}}" style="width:100%;" />-->
-                                <img src="images/a.png" style="width:100%;" />
+                                <img src="images/alone.png" style="width:100%;" />
                             </div>
-                            <div class="col col-50" style="padding:1px;" ng-click="goToItemList(swiperItem.hotelItems[1].itemId,swiperItem.hotelItems[1].itemTagId)">
+                            <div class="col col-50" style="padding:1px;height:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.hotelItems[1].itemId,swiperItem.hotelItems[1].itemTagId)">
                                 <!--<img ng-src="{{baseUrl}}{{swiperItem.hotelItems[1].imageUrl}}" style="width:100%;" />-->
                                 <img src="images/a.png" style="width:100%;" />
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col col-50" style="padding:1px;" ng-click="goToItemList(swiperItem.hotelItems[2].itemId,swiperItem.hotelItems[2].itemTagId)">
+                            <div class="col col-50" style="padding:1px;height:90px; overflow-y:hidden" ng-click="goToItemList(swiperItem.hotelItems[2].itemId,swiperItem.hotelItems[2].itemTagId)">
                                 <!--<img ng-src="{{baseUrl}}{{swiperItem.hotelItems[2].imageUrl}}" style="width:100%;" />-->
                                 <img src="images/a.png" style="width:100%;" />
                             </div>
-                            <div class="col col-50" style="padding:1px;" ng-click="goToItemList(swiperItem.hotelItems[3].itemId,swiperItem.hotelItems[3].itemTagId)">
+                            <div class="col col-50" style="padding:1px;height:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.hotelItems[3].itemId,swiperItem.hotelItems[3].itemTagId)">
                                 <!--<img ng-src="{{baseUrl}}{{swiperItem.hotelItems[3].imageUrl}}" style="width:100%;" />-->
                                 <img src="images/a.png" style="width:100%;" />
                             </div>

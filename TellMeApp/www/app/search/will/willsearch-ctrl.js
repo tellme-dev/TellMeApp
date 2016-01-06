@@ -38,17 +38,28 @@
             function (data) {
                 popUpSer.showAlert("未知错误");
                 console.log('异常');
-            });
+            });	
+
+        var isString = function (value) { return typeof value == 'string'; };
+
+        var trim = function (value) {
+            if (!isString(value)) return value;
+
+            if (!String.prototype.trim) return value.replace(/^\s*/, '').replace(/\s*$/, '');
+
+            return String.prototype.trim.apply(value);
+        };
         //点击"取消"或者"搜索"按钮
         $scope.cancelOrsearch = function () {
-
+            var search = $scope.searchText.replace(/\s+/g, "");
             if (angular.equals($scope.cancelBtnText, '取消')) {
                 $ionicHistory.goBack();
             } else {
                 $scope.hasSearch = true;
                 LoadingSvr.show();
                 //调用接口进行查询
-                var promise1 = searchSer.fullTextSearchOfHotel($scope.searchText);
+
+                var promise1 = searchSer.fullTextSearchOfHotel(search);
                 promise1.then(
                     function (data) {
                         $scope.hasResultOfHotel = true;
@@ -58,7 +69,7 @@
                     function (data) {
                         $scope.hasResultOfHotel = false;
                     });
-                var promise2 = searchSer.fullTextSearchOfBbs($scope.searchText);
+                var promise2 = searchSer.fullTextSearchOfBbs(search);
                 promise2.then(
                     function (data) {
                         $scope.hasResultOfBbs = true;
