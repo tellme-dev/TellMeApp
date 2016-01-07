@@ -167,42 +167,4 @@
                      popUpSer.showAlert("请填写正确的电话号码");
                  }
              }
-             //确认修改电话
-             $scope.editMobile = function () {
-                 if ($scope.registerData.psd == "" || typeof ($scope.registerData.psd) == "undefined") {
-                     popUpSer.showAlert("请输入密码"); return;
-                 }
-                 if ($scope.registerData.rpsd == "" || typeof ($scope.registerData.rpsd) == "undefined") {
-                     popUpSer.showAlert("请输入密码"); return;
-                 }
-                 if ($scope.registerData.psd != $scope.registerData.rpsd) {
-                     popUpSer.showAlert("两次密码不一致"); return;
-                 }
-                 if ($scope.registerData.verifyCode == "" || typeof ($scope.registerData.verifyCode) == "undefined") {
-                     popUpSer.showAlert("请输入验证码"); return;
-                 }
-                 if (isSumit) {
-                     $scope.registerData.customerId = window.localStorage['userId'];
-                     customerSer.editMobile($scope.registerData).then(
-                     function (data) {
-                         if (data.isSuccess) {
-                             console.log('修改电话成功');
-                             $scope.stopCountDown();
-                             $ionicHistory.goBack();
-                         } else {
-                             $scope.stopCountDown();
-                             $scope.resetCount();
-                             console.log(data.msg);
-                             //提示
-                             alert(data.msg);
-
-                         }
-                     },
-                   function (data) {
-                       console.log("未知错误");
-                       //提示
-                   }
-                   )
-                 }
-             }
          }]);
