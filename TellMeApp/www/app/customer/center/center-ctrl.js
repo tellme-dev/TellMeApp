@@ -161,6 +161,10 @@
                                     }
                                     LoadingSvr.hide();
                                     $scope.$broadcast('scroll.infiniteScrollComplete');
+                                } else {
+                                    LoadingSvr.hide();
+                                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                                    vm.moredata = true;
                                 }
                             });
                     }
