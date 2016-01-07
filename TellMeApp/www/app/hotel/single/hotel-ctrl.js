@@ -273,7 +273,7 @@
                         if (data.isSuccess) {
                             $scope.childMenuArray = [];
                             if (data.rows.length > 0) {
-                                
+
                                 $scope.childMenuWidth = (data.rows.length * 82) + "px";
                                 itemDatas = data.rows;
                                 for (var i = 0; i < data.rows.length; i++) {
@@ -311,7 +311,7 @@
         var cvm = $scope.cvm = {
             itemId: 0,
             isInit: false,
-            moredata: false,
+            moredata: true,
             typeDetail: [],
             pageNo: 0,
             pageSize: 10,
