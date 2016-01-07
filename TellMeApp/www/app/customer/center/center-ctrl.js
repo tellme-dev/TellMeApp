@@ -69,7 +69,8 @@
                     promise.then(
                         function (data) {
                             if (data.isSuccess) {
-                                 vm.moredata = false,
+                                vm.moredata = false,
+                                   $scope.getCustomerInfo();
                                  vm.loadMore();
                                 console.log('删除成功！');
                             } else {
@@ -161,6 +162,10 @@
                                     }
                                     LoadingSvr.hide();
                                     $scope.$broadcast('scroll.infiniteScrollComplete');
+                                } else {
+                                    LoadingSvr.hide();
+                                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                                    vm.moredata = true;
                                 }
                             });
                     }

@@ -12,34 +12,34 @@
     <ion-content>
         <div class="inde-cont">
             <!--banner-->
-            <ion-slide-box class="inde-cont-cont" on-slide-changed="slideHasChanged($index)" show-pager="false" does-continue="true" auto-play="true">
-                <ion-slide ng-repeat="ad in adData" repeat-done="repeatDone()" style="height:150px;" ng-if="adData">
-                    <img ng-src="{{baseUrl}}{{ad.adDetailList[0].imageUrl}}" ng-click="goToAd(ad.id)" class="box blue" />
+            <ion-slide-box class="inde-cont" on-slide-changed="slideHasChanged($index)" show-pager="false" does-continue="true" auto-play="true" ng-if="adData">
+                <ion-slide ng-repeat="ad in adData" repeat-done="repeatDone()" style="width:100%;">
+                    <img ng-src="{{baseUrl}}{{ad.adDetailList[0].imageUrl}}" ng-click="goToAd(ad.id)" style="width:100%;" />
                 </ion-slide>
             </ion-slide-box>
             <!--banner-->
-            <ks-swiper-container speed ="3000" loop="true" show-nav-buttons="false" autoplay="false"  pagination-clickable="false" override-parameters="{effect: 'coverflow',coverflow: {rotate: 50,stretch: 0,depth: 100,modifier: 1,slideShadows : true}}" on-ready="onReadySwiper(swiper)">
+            <ks-swiper-container speed="3000" loop="true" show-nav-buttons="false" autoplay="false" pagination-clickable="false" override-parameters="{effect: 'coverflow',coverflow: {rotate: 50,stretch: 0,depth: 100,modifier: 1,slideShadows : true}}" on-ready="onReadySwiper(swiper)">
                 <ks-swiper-slide class="swiper-slide" ng-repeat="swiperItem in swiperAdData">
                     <div>
                         <div class="row" style="text-align:center;padding-bottom:1px;font-family:'微软雅黑'; color:#474747; font-size:1.25em;">
                             <div class="col col-100" style="line-height:30px;"><strong>{{swiperItem.name}}</strong></div>
                         </div>
                         <div class="row" style="padding-bottom:1px;">
-                            <div class="col col-50" style="padding:1px;" ng-click="goToItemList(swiperItem.hotelItems[0].itemId,swiperItem.hotelItems[0].itemTagId)">
+                            <div class="col col-50" style="padding:1px;height:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.hotelItems[0].itemId,swiperItem.hotelItems[0].itemTagId)">
                                 <!--<img ng-src="{{baseUrl}}{{swiperItem.hotelItems[0].imageUrl}}" style="width:100%;" />-->
-                                <img src="images/a.png" style="width:100%;" />
+                                <img src="images/alone.png" style="width:100%;" />
                             </div>
-                            <div class="col col-50" style="padding:1px;" ng-click="goToItemList(swiperItem.hotelItems[1].itemId,swiperItem.hotelItems[1].itemTagId)">
+                            <div class="col col-50" style="padding:1px;height:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.hotelItems[1].itemId,swiperItem.hotelItems[1].itemTagId)">
                                 <!--<img ng-src="{{baseUrl}}{{swiperItem.hotelItems[1].imageUrl}}" style="width:100%;" />-->
                                 <img src="images/a.png" style="width:100%;" />
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col col-50" style="padding:1px;" ng-click="goToItemList(swiperItem.hotelItems[2].itemId,swiperItem.hotelItems[2].itemTagId)">
+                            <div class="col col-50" style="padding:1px;height:90px; overflow-y:hidden" ng-click="goToItemList(swiperItem.hotelItems[2].itemId,swiperItem.hotelItems[2].itemTagId)">
                                 <!--<img ng-src="{{baseUrl}}{{swiperItem.hotelItems[2].imageUrl}}" style="width:100%;" />-->
                                 <img src="images/a.png" style="width:100%;" />
                             </div>
-                            <div class="col col-50" style="padding:1px;" ng-click="goToItemList(swiperItem.hotelItems[3].itemId,swiperItem.hotelItems[3].itemTagId)">
+                            <div class="col col-50" style="padding:1px;height:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.hotelItems[3].itemId,swiperItem.hotelItems[3].itemTagId)">
                                 <!--<img ng-src="{{baseUrl}}{{swiperItem.hotelItems[3].imageUrl}}" style="width:100%;" />-->
                                 <img src="images/a.png" style="width:100%;" />
                             </div>
@@ -47,14 +47,14 @@
                     </div>
                 </ks-swiper-slide>
             </ks-swiper-container>
-            <div class="ma-b-10 cont-bor-box-shadow" ng-if="swiperAdData">
+            <div class="ma-b-10 cont-bor-box-shadow" ng-if="footAdData.length>=3">
                 <div class="zt-cter row">
                     <div class="col-42 pa-l-r-10"><img src="images/liubai.png" style="width:90%" /></div>
                     <div class="col-58 pa-l-r-10 border-l fo-s14 font-f colo-6 zt-cter-text">预定住宿，乐享优惠。</div>
                 </div>
             </div>
             <div class="ma-b-10 zt-cont-no">
-                <div class="row" ng-if="footAdData">
+                <div class="row" ng-if="footAdData.length>=3">
                     <div class="col col-42 zt-img pa-10">
                         <img ng-src="{{baseUrl}}{{footAdData[0].adDetailList[0].imageUrl}}" ng-click="goToAd(footAdData[0].id)" style="width:100%;height:100%" />
                     </div>
@@ -68,7 +68,8 @@
                     </div>
                 </div>
             </div>
-            <div class="zt-cont">
+            <!-- 专题大于3个 -->
+            <div class="zt-cont" ng-if="footAdData.length>3">
                 <div class="card">
                     <div class="item item-text-wrap">
                         <div class="tit">
@@ -82,7 +83,28 @@
                                 <img ng-src="{{baseUrl}}{{item.adDetailList[0].imageUrl}}" ng-click="goToAd(item.id)" style="width:100%; height:100%" />
                             </div>
                             <span class="fl font-f fo-s12 colo-6">{{item.adDetailList[0].text}}</span>
-                            <div class="fr font-f fo-s12 colo-9"><i class="ion-heart fo-s14 ma-r-5" style="color:#eb5d54; "></i>已有20人参与</div>
+                            <div class="fr font-f fo-s12 colo-9"><i class="ion-heart fo-s14 ma-r-5" style="color:#eb5d54;"></i>已有20人参与</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 有专题但专题不足3个 -->
+            <div class="zt-cont" ng-if="footAdData.length<3&&footAdData.length>0">
+                <div class="card">
+                    <div class="item item-text-wrap" ng-if="footAdData.length<3&&footAdData.length>0">
+                        <div class="tit">
+                            <ul>
+                                <li class="fo-s18 ma-to-10 ma-b-5 colo-6">实时专题<i></i></li>
+                                <li class="fo-s12 colo-9 text-ce">不一样的专题，让你体验不一样的生活</li>
+                            </ul>
+                        </div>
+                        <div class="ma-to-10" ng-repeat="item in footAdData">
+                            <div class="ma-b-10 ix-img-cont">
+                                <img ng-src="{{baseUrl}}{{item.adDetailList[0].imageUrl}}" ng-click="goToAd(item.id)" style="width:100%; height:100%" />
+                            </div>
+                            <span class="fl font-f fo-s12 colo-6">{{item.adDetailList[0].text}}</span>
+                            <div class="fr font-f fo-s12 colo-9"><i class="ion-heart fo-s14 ma-r-5" style="color:#eb5d54;"></i>已有20人参与</div>
                             <div class="clear"></div>
                         </div>
                     </div>

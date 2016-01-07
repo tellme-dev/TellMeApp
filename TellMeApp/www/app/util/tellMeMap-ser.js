@@ -46,7 +46,6 @@
                                         console.log("定位信息：" + str + "    " + address);
                                         window.localStorage['currentcity'] = cityInfo.city;
                                         window.localStorage['adcode'] = cityInfo.adcode;
-                                        //  document.getElementById("result").innerHTML = str + "    " + address;
                                     }
                                 });
                             })
@@ -80,7 +79,6 @@
                                // alert("定位信息：" + str + "    " + address);
                                 window.localStorage['currentcity'] = cityInfo.city;
                                 window.localStorage['adcode'] = cityInfo.adcode;
-                                //  document.getElementById("result").innerHTML = str + "    " + address;
                             } else {
                                updateCurrentcity();
                             }

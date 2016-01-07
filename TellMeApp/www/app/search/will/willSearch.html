@@ -27,7 +27,7 @@
                 <div class="item item-divider a-border" ng-if="hasSearch">
                     <strong>相关酒店</strong>
                 </div>
-                <div class="list" style="padding:0px 10px;" ng-if="hasResultOfHotel">
+                <div class="list" style="padding:0px 10px;margin-bottom:0px;" ng-if="hasResultOfHotel">
                     <a class="item item-avatar a-border " href="#" ng-repeat="searchHotel in searchHotels" ng-click="goToHotelInfo(searchHotel.hotelId)">
                         <img ng-src="{{baseUrl}}{{searchHotel.imageUrl}}" style="left:0px;max-width:50px; max-height:50px; border-radius:0px; top:12px;">
                         <h2>{{searchHotel.name}}</h2>
@@ -37,9 +37,9 @@
                 <div class="item item-divider a-border" ng-if="hasSearch">
                     <strong>相关帖子</strong>
                 </div>
-                <div class="list" style="padding:0px 10px;margin-bottom:0px;" ng-if="hasResultOfBbs">
+                <div class="list" style="padding:0px 10px;" ng-if="hasResultOfBbs">
                     <div class="item item-avatar a-border "  ng-repeat="detail in searchBbss" ng-click="goToBbsInfo(detail.id)" style="padding-bottom:1px;padding-top:1px;">
-                        <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" style="left:0px;max-width:50px; max-height:50px; border-radius:0px; top:12px;" />
+                        <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}"  err-src="images/head.png" style="left:0px;max-width:50px; max-height:50px; border-radius:0px; top:12px;" />
                         <div class="item-body sq-item-cont">
                             <div class="sq-item-fl">
                                 <span style="background-color:aqua;">#<strong>{{detail.title}}</strong>#</span><br />
