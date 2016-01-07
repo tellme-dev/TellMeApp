@@ -18,7 +18,7 @@
         }
         //对搜索输入内容进行监视，用于切换按钮的显示内容
         $scope.$watch('searchText', function (newValue, oldValue) {
-            if (typeof (newValue) =='undefined' || angular.equals(newValue, '')) {
+            if (typeof (newValue) == 'undefined' || angular.equals(newValue, '')) {
                 $scope.cancelBtnText = '取消';
             } else {
                 $scope.cancelBtnText = '搜索';
@@ -28,7 +28,7 @@
         var promise = searchSer.getRecommandHotels();
         promise.then(
             function (data) {
-                if (typeof(data.rows)!='undefined') {
+                if (typeof (data.rows) != 'undefined') {
                     LoadingSvr.hide();
                     $scope.recommandHotels = data.rows;
                 } else {
@@ -38,7 +38,7 @@
             function (data) {
                 popUpSer.showAlert("未知错误");
                 console.log('异常');
-            });	
+            });
 
         var isString = function (value) { return typeof value == 'string'; };
 
@@ -51,10 +51,11 @@
         };
         //点击"取消"或者"搜索"按钮
         $scope.cancelOrsearch = function () {
-            var search = $scope.searchText.replace(/\s+/g, "");
+
             if (angular.equals($scope.cancelBtnText, '取消')) {
                 $ionicHistory.goBack();
             } else {
+                var search = $scope.searchText.replace(/\s+/g, "");
                 $scope.hasSearch = true;
                 LoadingSvr.show();
                 //调用接口进行查询
@@ -79,12 +80,12 @@
                     function (data) {
                         $scope.hasResultOfBbs = false;
                     });
-                
+
             }
         }
 
         $scope.goToHotelInfo = function (hotelId) {
-            $state.go('hotel', { hotelId: hotelId, rootTagId:1 });
+            $state.go('hotel', { hotelId: hotelId, rootTagId: 1 });
         }
         $scope.goToBbsInfo = function (bbsId) {
             $state.go('bbs', { bbsId: bbsId });
