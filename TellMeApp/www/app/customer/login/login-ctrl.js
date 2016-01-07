@@ -13,7 +13,7 @@
        //如果用户已登录表单自动填充
         $scope.loginData.username = window.localStorage['userTel'];
         $scope.loginData.password = window.localStorage['userPsd'];
-            //登录
+            //登录 
         $scope.login = function () {
             //验证
             //登录情况：1、成功；2、用户名不存在；3、密码错误；4、未知错误；5、服务连接不上

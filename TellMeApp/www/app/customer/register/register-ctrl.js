@@ -7,7 +7,7 @@
              $scope.verifyTips = '获取验证码';
              /*倒计时*/
              var count;
-             $scope.countInterval = 10;
+             $scope.countInterval = 120;
              /*倒计时*/
              $scope.countDown = function () {
                  // Don't start a new countDown if we are already countDowning
@@ -33,7 +33,7 @@
              }
              /*重置*/
              $scope.resetCount = function () {
-                 $scope.countInterval = 10;
+                 $scope.countInterval = 120;
                  $scope.verifyDisabled = true;
                  $scope.verifyTips = '获取验证码';
                  count = undefined;
