@@ -52,11 +52,11 @@
                 //入住
                 .state('menu.checkin', { url: '/checkin', views: { 'checkin-tab': { templateUrl: 'app/checkin/center/center.html', controller: 'checkinCenterControll' } } })
                 //个人中心
-                .state('menu.customer', { url: '/customer', views: { 'customer-tab': { templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' } } })
+                .state('menu.customer', { cache: false, url: '/customer', views: { 'customer-tab': { templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' } } })
 
             //个人中心
             //.state('customer', { cache: true, url: '/center', templateUrl: 'app/customer/center/center.html', controller: 'customerCenterControll' })
-            .state('login', { url: '/login?pageName', templateUrl: 'app/customer/login/login.html', controller: 'loginControll' })
+            .state('login', { cache: false, url: '/login?pageName', templateUrl: 'app/customer/login/login.html', controller: 'loginControll' })
             .state('register', { url: '/register', templateUrl: 'app/customer/register/register.html', controller: 'registerControll' })
           //个人中心 设置
             .state('system', { url: '/system', templateUrl: 'app/customer/system/system.html', controller: 'systemControll' })

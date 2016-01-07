@@ -7,7 +7,7 @@
              $scope.verifyTips = '获取验证码';
              /*倒计时*/
              var count;
-             $scope.countInterval = 10;
+             $scope.countInterval = 120;
              /*倒计时*/
              $scope.countDown = function () {
                  // Don't start a new countDown if we are already countDowning
@@ -33,7 +33,7 @@
              }
              /*重置*/
              $scope.resetCount = function () {
-                 $scope.countInterval = 10;
+                 $scope.countInterval = 120;
                  $scope.verifyDisabled = true;
                  $scope.verifyTips = '获取验证码';
                  count = undefined;
@@ -57,13 +57,13 @@
                      return false;
                  }
              }
-             $scope.$watch('registerData.mobile', function (newValue, oldValue) {
-                 if (checkMobile(newValue)) {
-                     $scope.verifyDisabled = true;
-                 } else {
-                     $scope.verifyDisabled = false;
-                 }
-             });
+             //$scope.$watch('registerData.mobile', function (newValue, oldValue) {
+             //    if (checkMobile(newValue)) {
+             //        $scope.verifyDisabled = true;
+             //    } else {
+             //        $scope.verifyDisabled = false;
+             //    }
+             //});
              $scope.$watch('verifyDisabled', function (newValue, oldValue) {
                  if (newValue == true) {
                      $scope.sendMsgBackColor = '#4ebcff';
@@ -80,31 +80,36 @@
                  //  $state.go('login');
                  $ionicHistory.goBack();
              };
-             var isSumit = true;//是否允许提交
+             var isSumit = false;//是否允许提交
              ////判断账号是否存在
              $scope.verifyTel = function () {
                  var mobile = $scope.registerData.mobile;
                  if (mobile != "" && typeof (mobile) != "undefined") {
                      if (!checkMobile(mobile)) {
                          isSumit = false;
+                         $scope.verifyDisabled = false;
                          popUpSer.showAlert("手机号码应为11位数字，以13/14/15/17/18开头");
                          return;
-                     }
-                     customerSer.verifyTel(mobile).then(
+                     } else { 
+                        
+                      customerSer.verifyTel(mobile).then(
                          function (data) {
                              if (data.isSuccess) {
                                  isSumit = true;
+                                 $scope.verifyDisabled = true;
                                  $scope.msg = "";
                                  //跳转到登录成功界面
                              } else {
                                  isSumit = false;
+                                 $scope.verifyDisabled = false;
                                  popUpSer.showAlert("该账号已注册,您可以直接登录！");
                              }
-                         },
+                          },
                          function (data) {
                              popUpSer.showAlert("未知错误！");
                          }
-                     )
+                       )
+                     }
                  }
              }
              //注册
