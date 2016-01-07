@@ -70,11 +70,12 @@
                 });
             return deferred.promise;
         }
-        //删除图片
-        this.deletePhoto = function (imageUrl) {
+        //删除图片 不发表点返回的时候也要删除
+        this.deletePhoto = function (param) {
             var url = baseUrl + 'app/bbs/deletePhoto.do';
             var jsonData = JSON.stringify({
-                fileUrl: imageUrl
+                fileUrl: param.imageUrl,
+                customerId:param.customerId
             });
             var deferred = $q.defer();
             $http({

@@ -138,7 +138,7 @@ angular.module('tellme')
 						var jsonData = JSON.stringify({
 							targetId: id,
 							praiseType: 0,
-							customerId: window.localStorage['userTel']
+							customerId: window.localStorage['userId']
 						});
 						//   var promise = communitySer.agreeBbs(jsonData).then
 						var promise = commonSer.saveAgree(jsonData)
