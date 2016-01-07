@@ -57,13 +57,13 @@
                      return false;
                  }
              }
-             $scope.$watch('registerData.mobile', function (newValue, oldValue) {
-                 if (checkMobile(newValue)) {
-                     $scope.verifyDisabled = true;
-                 } else {
-                     $scope.verifyDisabled = false;
-                 }
-             });
+             //$scope.$watch('registerData.mobile', function (newValue, oldValue) {
+             //    if (checkMobile(newValue)) {
+             //        $scope.verifyDisabled = true;
+             //    } else {
+             //        $scope.verifyDisabled = false;
+             //    }
+             //});
              $scope.$watch('verifyDisabled', function (newValue, oldValue) {
                  if (newValue == true) {
                      $scope.sendMsgBackColor = '#4ebcff';
@@ -80,31 +80,36 @@
                  //  $state.go('login');
                  $ionicHistory.goBack();
              };
-             var isSumit = true;//是否允许提交
+             var isSumit = false;//是否允许提交
              ////判断账号是否存在
              $scope.verifyTel = function () {
                  var mobile = $scope.registerData.mobile;
                  if (mobile != "" && typeof (mobile) != "undefined") {
                      if (!checkMobile(mobile)) {
                          isSumit = false;
+                         $scope.verifyDisabled = false;
                          popUpSer.showAlert("手机号码应为11位数字，以13/14/15/17/18开头");
                          return;
-                     }
-                     customerSer.verifyTel(mobile).then(
+                     } else { 
+                        
+                      customerSer.verifyTel(mobile).then(
                          function (data) {
                              if (data.isSuccess) {
                                  isSumit = true;
+                                 $scope.verifyDisabled = true;
                                  $scope.msg = "";
                                  //跳转到登录成功界面
                              } else {
                                  isSumit = false;
+                                 $scope.verifyDisabled = false;
                                  popUpSer.showAlert("该账号已注册,您可以直接登录！");
                              }
-                         },
+                          },
                          function (data) {
                              popUpSer.showAlert("未知错误！");
                          }
-                     )
+                       )
+                     }
                  }
              }
              //注册
