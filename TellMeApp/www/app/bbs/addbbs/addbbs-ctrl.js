@@ -4,14 +4,26 @@
         $scope.baseUrl = appConfig.server.getUrl();
         $scope.bbsInfo = {};
         $scope.bbsImages = [];
-        var now = new Date();
-        //var year = now.getFullYear();
-        //var month = (now.getMonth() + 1).toString();
-        //var day = (now.getDate()).toString();
-        var mill = now.getTime();//getTime() 方法可返回距 1970 年 1 月 1 日之间的毫秒数。
+        $scope.param = {};//删除照片是使用的参数
 
+        //返回
         $scope.goBack = function () {
             $ionicHistory.goBack();
+            //删除上传了未发表的照片
+            $scope.param.customerId = window.localStorage['userId'];
+            bbsSer.deletePhoto($scope.param).then(
+                function (data) {
+                    if (data.isSuccess) {
+                        console.log(data.msg);
+                    } else {
+                        //alert('');
+                        console.log(data.msg);
+                    }
+                },
+                function (data) {
+                    popUpSer.showAlert('未知错误');
+                }
+            )
         };
         $scope.show = function () {
 
@@ -71,14 +83,15 @@
             }
             function cSuccess(imgURI) {
                 LoadingSvr.show();
+                var now = new Date();
+                //var year = now.getFullYear();
+                //var month = (now.getMonth() + 1).toString();
+                //var day = (now.getDate()).toString();
+                var mill = now.getTime();//getTime() 方法可返回距 1970 年 1 月 1 日之间的毫秒数。
                 var customerId = window.localStorage['userId'];
                 var fileName = customerId + '_' + mill + Math.floor(Math.random() * 9999 + 1000) + '.jpg';
                 /*上传图片*/
                 $scope.uploadPhoto(imgURI, fileName);
-                //上传成功 将图片url放到对象中再放到数组中
-                //var image = {};
-                //image.imageUrl = "app/bbs/temp/" + fileName;
-                //$scope.bbsImages.push(image);
             }
             function cFail(message) {
                 console.log(message);
@@ -94,7 +107,8 @@
             function tSuccess(result) {
                 //上传成功 将图片url放到对象中再放到数组中
                 var image = {};
-                image.imageUrl = "app/bbs/temp/" + fileName;
+                var customerId = window.localStorage['userId'];
+                image.imageUrl = "app/bbs/temp/" + customerId +"/"+ fileName;
                 $scope.bbsImages.push(image);
 
                 LoadingSvr.hide();
@@ -118,10 +132,10 @@
             for (var i = 0; i < $scope.bbsImages.length; i++) {
                 if ($scope.bbsImages[i].imageUrl == imageUrl) {
                     $scope.bbsImages.splice(i,1);
-                    var a = 1;
                 }
             }
-            bbsSer.deletePhoto(imageUrl).then(
+            $scope.param.imageUrl = imageUrl;
+            bbsSer.deletePhoto($scope.param).then(
                 function (data) {
                     if (data.isSuccess) {
                         console.log(data.msg);
