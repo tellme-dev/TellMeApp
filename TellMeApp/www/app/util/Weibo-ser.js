@@ -36,8 +36,13 @@ angular.module('tellme')
 			LoadingSvr.goShare();
 			YCWeibo.shareToWeibo(function () {
 			    popUpSer.showAlert('分享成功');
-			}, function (failReason) {
-			    popUpSer.showAlert(failReason);
+			}, function (failReason,param) {
+			    if (failReason == 'sharefail') {
+			        popUpSer.showAlert('分享');
+			    } else {
+			        popUpSer.showAlert(failReason);
+			    }
+			    
 			}, args);
 			LoadingSvr.hide();
 		}

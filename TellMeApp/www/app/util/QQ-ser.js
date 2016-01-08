@@ -52,7 +52,7 @@ angular.module('tellme')
 			    popUpSer.showAlert('分享成功');
 			    return 1;
 			}, function (failReason) {
-			    popUpSer.showAlert(failReason);
+			    popUpSer.showAlert('取消分享');
 			    return 0;
 			}, args);
 			LoadingSvr.hide();
