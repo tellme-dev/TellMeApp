@@ -100,12 +100,12 @@ angular.module('tellme')
                            $scope.adData = data.rows;
                        }
                    } else {
-                       console.log(data.msg)
+                       console.log(data.msg);
                    }
                },
                function (data) {
                    console.log('获取数据失败！');
-               }
+                }
                );
         ////获取底部广告
             $scope.getFootAd = function (num) {
