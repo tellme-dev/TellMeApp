@@ -1,0 +1,7 @@
+﻿<div  ng-click="closeModal()">
+    <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="true" active-slide="activeSlide">
+        <ion-slide ng-repeat="image in allImages">
+            <img ng-src="{{baseUrl}}{{image.attachUrl}}" />
+        </ion-slide>
+    </ion-slide-box>
+</div>
