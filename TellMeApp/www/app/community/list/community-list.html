@@ -45,7 +45,7 @@
                         </li>
                     </ul>
                     </div>-->
-                    <div class="row" ng-click="goToImageBrowse(detail.bbsAttachUrls[0].bbsId)" ng-if="detail.bbsAttachUrls.length">
+                    <div class="row" ng-click="showImages(detail.bbsAttachUrls[0].bbsId)" ng-if="detail.bbsAttachUrls.length">
                         <div class="col col-padding">
                             <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" style="width:100%" err-src ="images/failed.png"/>
                         </div>

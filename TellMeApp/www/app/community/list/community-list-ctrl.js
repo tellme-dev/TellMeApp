@@ -1,7 +1,7 @@
 ﻿
 angular.module('tellme')
-	.controller('communityControll', ['$scope', '$window', '$state', '$ionicHistory', '$ionicLoading', 'communitySer', 'commonSer', 'appConfig', 'LoadingSvr', 'tellmeActionSheet', 'popUpSer',
-        function ($scope, $window, $state, $ionicHistory, $ionicLoading, communitySer, commonSer, appConfig, LoadingSvr, tellmeActionSheet, popUpSer) {
+	.controller('communityControll', ['$scope', '$window', '$state', '$ionicHistory', '$ionicLoading','$ionicModal', 'communitySer', 'commonSer', 'appConfig', 'LoadingSvr', 'tellmeActionSheet', 'popUpSer','bbsSer',
+        function ($scope, $window, $state, $ionicHistory, $ionicLoading,$ionicModal, communitySer, commonSer, appConfig, LoadingSvr, tellmeActionSheet, popUpSer,bbsSer) {
 			$scope.baseUrl = appConfig.server.getUrl();
 			/*返回前一个界面*/
 			$scope.$window = $window;
@@ -27,17 +27,43 @@ angular.module('tellme')
 			    }
 			}
             //跳转到图片浏览
-			$scope.goToImageBrowse = function (bbsId) {
+			$scope.showImages = function (bbsId) {
 			    //判断是否登录
 			    var isLogin = $scope.userIsLogin();
 			    if (isLogin) {
-			        $state.go('imageBrowse', {'bbsId':bbsId});
+			        //$state.go('imageBrowse', {'bbsId':bbsId});
+			        bbsSer.loadImageByBbsId(bbsId).then(
+                function (data) {
+                    console.log(data.msg);
+                    if (data.isSuccess) {
+                        $scope.bbsImage = data.rows;
+                        //$scope.activeSlide = index;
+                        $scope.showModal('app/bbs/image/imageBrowse.html');
+                    } else {
+                        console.log(data.msg);
+                    }
+                });
 			    } else {
 			        $state.go('login', {
 			            pageName: 'menu.communityList'
 			        });
 			    }
 			}
+
+            $scope.showModal = function (templateUrl) {
+                $ionicModal.fromTemplateUrl(templateUrl, {
+                   scope: $scope,
+                   animation: 'slide-in-up'
+                }).then(function (modal) {
+                   $scope.modal = modal;
+                   $scope.modal.show();
+                });
+            };
+            $scope.closeModal = function () {
+                $scope.modal.hide();
+                $scope.modal.remove()
+            };
+
 			$scope.globalVar = {};
 			$scope.globalVar.SelectedTag = 1; //选中分类标签索引
 			var initCategoryId = 1;
