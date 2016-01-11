@@ -1,8 +1,11 @@
 ﻿
 angular.module('tellme')
-	.controller('communityControll', ['$scope', '$window', '$state', '$ionicHistory', '$ionicLoading', 'communitySer', 'commonSer', 'appConfig', 'LoadingSvr', 'tellmeActionSheet', 'popUpSer',
-        function ($scope, $window, $state, $ionicHistory, $ionicLoading, communitySer, commonSer, appConfig, LoadingSvr, tellmeActionSheet, popUpSer) {
-			$scope.baseUrl = appConfig.server.getUrl();
+	.controller('communityControll', ['$scope', '$window', '$state', '$ionicHistory', '$ionicLoading', '$ionicModal', 'communitySer', 'commonSer', 'appConfig', 'LoadingSvr', 'tellmeActionSheet', 'popUpSer',
+        function ($scope, $window, $state, $ionicHistory, $ionicLoading,$ionicModal, communitySer, commonSer, appConfig, LoadingSvr, tellmeActionSheet, popUpSer) {
+            $scope.allImages = [
+                { attachUrl: 'images/a.png' }, { attachUrl: 'images/a.png' }, { attachUrl: 'images/a.png' }
+            ];
+            $scope.baseUrl = appConfig.server.getUrl();
 			/*返回前一个界面*/
 			$scope.$window = $window;
 			$scope.goBack = function () {
@@ -26,11 +29,34 @@ angular.module('tellme')
 			        });
 			    }
 			}
+
+			$scope.showImages = function (index, images) {
+			    //$scope.allImages = images;
+			    $scope.activeSlide = 0;
+			    $scope.showModal('image-popover.html');
+			}
+
+			$scope.showModal = function (templateUrl) {
+			    $ionicModal.fromTemplateUrl(templateUrl, {
+			        scope: $scope,
+			        animation: 'newspaper'
+			    }).then(function (modal) {
+			        $scope.modal = modal;
+			        $scope.modal.show();
+			    });
+			};
+
+            // Close the modal
+			$scope.closeModal = function () {
+			    $scope.modal.hide();
+			    $scope.modal.remove();
+			};
             //跳转到图片浏览
 			$scope.goToImageBrowse = function (bbsId) {
 			    //判断是否登录
 			    var isLogin = $scope.userIsLogin();
 			    if (isLogin) {
+
 			        $state.go('imageBrowse', {'bbsId':bbsId});
 			    } else {
 			        $state.go('login', {
