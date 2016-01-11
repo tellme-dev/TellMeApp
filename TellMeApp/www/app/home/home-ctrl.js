@@ -5,18 +5,18 @@ angular.module('tellme')
         $scope.swiper = {
         };
         $scope.onReadySwiper = function (swiper) {
-            swiper.on('onProgress', function () {
-                for (var i = 0; i < swiper.slides.length; i++) {
-                    var slide = swiper.slides[i];
-                    var progress = slide.progress;
-                    scale = 1 - Math.min(Math.abs(progress * 0.2), 1);
+            //swiper.on('onProgress', function () {
+            //    for (var i = 0; i < swiper.slides.length; i++) {
+            //        var slide = swiper.slides[i];
+            //        var progress = slide.progress;
+            //        scale = 1 - Math.min(Math.abs(progress * 0.2), 1);
 
-                    es = slide.style;
-                    es.opacity = 1 - Math.min(Math.abs(progress / 2), 1);
-                    es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = 'translate3d(0px,0,' + (-Math.abs(progress * 150)) + 'px)';
+            //        es = slide.style;
+            //        es.opacity = 1 - Math.min(Math.abs(progress / 2), 1);
+            //        es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = 'translate3d(0px,0,' + (-Math.abs(progress * 150)) + 'px)';
 
-                }
-            });
+            //    }
+            //});
         };
         //测试
         $scope.test = function(index){
@@ -98,15 +98,14 @@ angular.module('tellme')
                            console.log("获取数据为空！")
                        } else {
                            $scope.adData = data.rows;
-                           LoadingSvr.hide();
                        }
                    } else {
-                       console.log(data.msg)
+                       console.log(data.msg);
                    }
                },
                function (data) {
                    console.log('获取数据失败！');
-               }
+                }
                );
         ////获取底部广告
             $scope.getFootAd = function (num) {
@@ -140,9 +139,92 @@ angular.module('tellme')
                    if (data.isSuccess) {
                        if (data.rows.length == 0) {
                            console.log("未获取数据！");
-                       } else {
-                           $scope.swiperAdData = data.rows;
 
+                       } else {
+                           //$scope.swiperAdData = data.rows;
+                           $scope.swiperAdData = [
+                               {
+                                   name: '酒店',
+                                   itemTagId:1,
+                                   hotelItems: [
+                                       {itemId: undefined,itemTagId:undefined,imageUrl:""},
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" }
+                                   ]
+                               },
+                               {
+                                   name: '吃货',
+                                   itemTagId: 2,
+                                   hotelItems: [
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" }
+                                   ]
+                               },
+                               {
+                                   name: '闲人',
+                                   itemTagId: 3,
+                                   hotelItems: [
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" }
+                                   ]
+                               },
+                               {
+                                   name: '玩家',
+                                   itemTagId: 4,
+                                   hotelItems: [
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" }
+                                   ]
+                               },
+                               {
+                                   name: '睡客',
+                                   itemTagId: 5,
+                                   hotelItems: [
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" }
+                                   ]
+                               },
+                               {
+                                   name: '亲子',
+                                   itemTagId: 6,
+                                   hotelItems: [
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" }
+                                   ]
+                               },
+                               {
+                                   name: '智能控',
+                                   itemTagId: 7,
+                                   hotelItems: [
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" }
+                                   ]
+                               },
+                               {
+                                   name: '更多',
+                                   itemTagId: 8,
+                                   hotelItems: [
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" },
+                                       { itemId: undefined, itemTagId: undefined, imageUrl: "" }
+                                   ]
+                               }
+                           ];
+                           LoadingSvr.hide();
                        }
 
                    } else {

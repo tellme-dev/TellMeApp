@@ -43,7 +43,7 @@
                         <div class="item-body sq-item-cont">
                             <div class="sq-item-fl">
                                 <span style="background-color:aqua;">#<strong>{{detail.title}}</strong>#</span><br />
-                                {{detail.text|limitTo:textMaxLength}}
+                                {{detail.text| cut:true:100:' ...'}}
                                 <p ng-show="func.filterBbsText(detail.text)">……</p>
                             </div>
                             <div class="row">

@@ -9,45 +9,45 @@
         </div>
     </div>
 
-    <ion-content>
+    <ion-content style="background:#f1f2f4">
         <div class="inde-cont">
             <!--banner-->
             <ion-slide-box class="inde-cont" on-slide-changed="slideHasChanged($index)" show-pager="false" does-continue="true" auto-play="true" ng-if="adData">
                 <ion-slide ng-repeat="ad in adData" repeat-done="repeatDone()" style="width:100%;">
-                    <img ng-src="{{baseUrl}}{{ad.adDetailList[0].imageUrl}}" ng-click="goToAd(ad.id)" style="width:100%;" />
+                    <img ng-src="{{baseUrl}}{{ad.adDetailList[0].imageUrl}}" ng-click="goToAd(ad.id)" style="width:100%;" err-src="images/default/home/16-9.jpg" />
                 </ion-slide>
             </ion-slide-box>
             <!--banner-->
-            <ks-swiper-container speed="3000" loop="true" show-nav-buttons="false" autoplay="false" pagination-clickable="false" override-parameters="{effect: 'coverflow',coverflow: {rotate: 50,stretch: 0,depth: 100,modifier: 1,slideShadows : true}}" on-ready="onReadySwiper(swiper)">
+            <ks-swiper-container speed="3000" loop="true" show-nav-buttons="false" autoplay="false" pagination-clickable="false" override-parameters="{effect: 'coverflow',coverflow: {rotate: 50,stretch: 0,depth: 100,modifier: 1,slideShadows : false}}" on-ready="onReadySwiper(swiper)">
                 <ks-swiper-slide class="swiper-slide" ng-repeat="swiperItem in swiperAdData">
-                    <div>
+                    <div style="background-color:white;" class="cont-bor-box-shadow ">
                         <div class="row" style="text-align:center;padding-bottom:1px;font-family:'微软雅黑'; color:#474747; font-size:1.25em;">
                             <div class="col col-100" style="line-height:30px;"><strong>{{swiperItem.name}}</strong></div>
                         </div>
-                        <div class="row" style="padding-bottom:1px;">
-                            <div class="col col-50" style="padding:1px;height:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.hotelItems[0].itemId,swiperItem.hotelItems[0].itemTagId)">
-                                <!--<img ng-src="{{baseUrl}}{{swiperItem.hotelItems[0].imageUrl}}" style="width:100%;" />-->
-                                <img src="images/alone.png" style="width:100%;" />
+                        <div class="row" style="padding:1px;padding-bottom:0px;">
+                            <div class="col col-50" style="padding:0.5px;height:90px;width:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[0].itemId,swiperItem.hotelItems[0].itemTagId)">
+                                <img ng-src="{{baseUrl}}{{swiperItem.hotelItems[0].imageUrl}}" style="width:100%;" err-src="images/default/home/longPic.jpg" />
+                                
                             </div>
-                            <div class="col col-50" style="padding:1px;height:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.hotelItems[1].itemId,swiperItem.hotelItems[1].itemTagId)">
-                                <!--<img ng-src="{{baseUrl}}{{swiperItem.hotelItems[1].imageUrl}}" style="width:100%;" />-->
-                                <img src="images/a.png" style="width:100%;" />
+                            <div class="col col-50" style="padding:0.5px;height:90px;width:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[1].itemId,swiperItem.hotelItems[1].itemTagId)">
+                                <img ng-src="{{baseUrl}}{{swiperItem.hotelItems[1].imageUrl}}" style="width:100%;"err-src="images/default/home/longPic.jpg" />
+                                
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col col-50" style="padding:1px;height:90px; overflow-y:hidden" ng-click="goToItemList(swiperItem.hotelItems[2].itemId,swiperItem.hotelItems[2].itemTagId)">
-                                <!--<img ng-src="{{baseUrl}}{{swiperItem.hotelItems[2].imageUrl}}" style="width:100%;" />-->
-                                <img src="images/a.png" style="width:100%;" />
+                        <div class="row" style="padding:1px;padding-top:0px;margin-top:0px;">
+                            <div class="col col-50" style="padding:0.5px;height:90px;width:90px; overflow-y:hidden" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[2].itemId,swiperItem.hotelItems[2].itemTagId)">
+                                <img ng-src="{{baseUrl}}{{swiperItem.hotelItems[2].imageUrl}}" style="width:100%;" err-src="images/default/home/longPic.jpg" />
+                                
                             </div>
-                            <div class="col col-50" style="padding:1px;height:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.hotelItems[3].itemId,swiperItem.hotelItems[3].itemTagId)">
-                                <!--<img ng-src="{{baseUrl}}{{swiperItem.hotelItems[3].imageUrl}}" style="width:100%;" />-->
-                                <img src="images/a.png" style="width:100%;" />
+                            <div class="col col-50" style="padding:0.5px;height:90px;width:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[3].itemId,swiperItem.hotelItems[3].itemTagId)">
+                                <img ng-src="{{baseUrl}}{{swiperItem.hotelItems[3].imageUrl}}" style="width:100%;" err-src="images/default/home/longPic.jpg"/>
+                                
                             </div>
                         </div>
                     </div>
                 </ks-swiper-slide>
             </ks-swiper-container>
-            <div class="ma-b-10 cont-bor-box-shadow" ng-if="footAdData.length>=3">
+            <div class="ma-b-10 cont-bor-box-shadow" style="margin-top:3px;">
                 <div class="zt-cter row">
                     <div class="col-42 pa-l-r-10"><img src="images/liubai.png" style="width:90%" /></div>
                     <div class="col-58 pa-l-r-10 border-l fo-s14 font-f colo-6 zt-cter-text">预定住宿，乐享优惠。</div>

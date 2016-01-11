@@ -11,7 +11,7 @@
             <ion-content class="zt-conter" style="background-color:#ffffff;">
                 <!--内容块-->
                 <!--只显示每个广告第一张图-->
-                <ul  ng-show="dataShow"  class="zt-cont">
+                <ul  ng-show="dataShow"  class="zt-cont" style="margin-top:55px;">
                     <li ng-repeat="data in vm.list" ng-click="goToAd(data.id)">
                         <a href="#">
                             <img ng-src="{{baseUrl}}{{data.adDetailList[0].imageUrl}}"/><!--ng-show="data.adDetailList.length"-->

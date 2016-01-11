@@ -23,7 +23,7 @@ angular.module('tellme')
             */
 	    this.weChatShare = function (scene, id,args) {
 	        if (typeof Wechat === 'undefined') {
-	            alert('Wechat plugin is not installed.');
+	            alert('微信插件未安装.');
 	            return false;
 	        }
 

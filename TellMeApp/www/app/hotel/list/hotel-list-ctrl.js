@@ -39,11 +39,31 @@
             if (rootMenuSelectIndex == index) {
                 return;
             }
-            $scope.rootMenuArray[rootMenuSelectIndex].cName = "";
-            $scope.rootMenuArray[index].cName = "li-but";
+            cloneRefresh(index);
+            //$scope.rootMenuArray[rootMenuSelectIndex].cName = "";
+            //$scope.rootMenuArray[index].cName = "li-but";
             rootMenuSelectIndex = index;
             rootTagId = $scope.rootMenuArray[index].data.itemTagId;
             $scope.getChildMenu(rootTagId);
+        }
+
+        function cloneRefresh(index){
+            var temp = new Array();
+            var len = $scope.rootMenuArray.length;
+            for (var i = 0; i < len; i++) {
+                var rmi = $scope.rootMenuArray[i];
+                if (i == index) {
+                    rmi = new RootMenuItem(i, $scope.rootMenuArray[i].data, "li-but");
+                }
+                if (i == rootMenuSelectIndex) {
+                    rmi = new RootMenuItem(i, $scope.rootMenuArray[i].data, "");
+                }
+                //temp[i] = $scope.rootMenuArray[i];
+                temp.push(rmi);
+            }
+            $scope.rootMenuArray = [];
+            $scope.rootMenuArray = temp;
+            temp = null;
         }
 
         $scope.childMuneSelected = function(index) {

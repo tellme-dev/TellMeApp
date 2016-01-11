@@ -54,7 +54,7 @@
                     var params = {
                         slidesPerView:1.5,
                         slidesPerColumn: $scope.slidesPerColumn || 1,
-                        spaceBetween: $scope.spaceBetween || 10,
+                        spaceBetween: $scope.spaceBetween || 15,
                         direction: $scope.direction || 'horizontal',
                         loop: $scope.loop || false,
                         initialSlide: $scope.initialSlide || 0,
@@ -64,11 +64,11 @@
                         centeredSlides: true
                     };
 
-                    if($scope.autoplay === true){
-                        params = angular.extend({}, params, {
-                            autoplay: true
-                        });
-                    }
+                    //if($scope.autoplay === true){
+                    //    params = angular.extend({}, params, {
+                    //        autoplay: true
+                    //    });
+                    //}
 
                     if($scope.paginationIsActive === true){
                         params = angular.extend({}, params, {
@@ -77,10 +77,10 @@
                         });
                     }
 
-                    if ($scope.showNavButtons === true) {
-                        params.nextButton = '#nextButton-' + $scope.swiper_uuid;
-                        params.prevButton = '#prevButton-' + $scope.swiper_uuid;
-                    }
+                    //if ($scope.showNavButtons === true) {
+                    //    params.nextButton = '#nextButton-' + $scope.swiper_uuid;
+                    //    params.prevButton = '#prevButton-' + $scope.swiper_uuid;
+                    //}
 
                     if($scope.overrideParameters){
                         params = angular.extend({}, params, $scope.overrideParameters);
@@ -134,7 +134,7 @@
             restrict: 'E',
             require: '^ksSwiperContainer',
             transclude: true,
-            template: '<div ng-transclude></div>',
+            template: '<div ng-transclude style="width:180px;"></div>',
             replace: true,
             link: function(scope, element, attrs, containerController) {
                 if (scope.$last === true) {
