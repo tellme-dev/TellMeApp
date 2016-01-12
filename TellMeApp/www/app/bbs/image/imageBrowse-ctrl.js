@@ -19,6 +19,7 @@
 
                     }
                 });
+
             //$scope.repeatDone = function () {
             //    $ionicSlideBoxDelegate.update();
             //}

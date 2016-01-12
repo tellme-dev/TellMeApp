@@ -14,7 +14,7 @@ angular.module('tellme')
 			$scope.toBbsDetail = function (bbsId) {
 					$state.go('bbs', {bbsId: bbsId});
 				}
-				//跳转到发帖页面
+	        //跳转到发帖页面
 			$scope.toAddBbs = function () {
 			    //判断是否登录
 			    var isLogin = $scope.userIsLogin();

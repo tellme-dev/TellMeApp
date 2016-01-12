@@ -13,6 +13,18 @@
                     $ionicHistory.goBack();
                 }
             };
+            //跳转到发帖页面
+            $scope.toAddBbs = function () {
+                //判断是否登录
+                var isLogin = $scope.userIsLogin();
+                if (isLogin) {
+                    $state.go('addBbs');
+                } else {
+                    $state.go('login', {
+                        pageName: 'menu.communityList'
+                    });
+                }
+            }
         //跳转到图片浏览
         $scope.goToImageBrowse = function (bbsId) {
             //判断是否登录
@@ -48,11 +60,39 @@
                 }
                
             }
+
+            $scope.answered = {};//评论那一级的信息
+
+            //点击'回复' 临时存储评论用户名和评论的bbsid
+            $scope.toAnswer = function (bbsId, userName) {
+                $scope.answered.bbsId = bbsId;
+                $scope.answered.userName = userName;
+                //在评论框中显示“回复 XXX：”
+                $scope.globalVar.answerText = "回复 " + userName + "：";
+            }
+            
             //回主贴帖
             $scope.answerbbs = function (id,title) {
                 $scope.showAnswer = false;
-            var isLogin = $scope.userIsLogin();
-            var answerText = $scope.globalVar.answerText;
+                var isLogin = $scope.userIsLogin();
+                var answerText = $scope.globalVar.answerText;
+                var userName = $scope.answered.userName;//临时存储的用户名
+                //indexOf();//为0表示从首字符开始出现 -1表示没有出现过
+                /*条件成立则是回复评论*/
+                if (!answerText.indexOf("回复 " + userName + "：") && answerText != "回复 " + userName + "：" && answerText != undefined) {
+                    id = $scope.answered.bbsId;
+                    //分割出回复的内容
+                    var str = "回复 " + userName + "：";
+                    var answerText = answerText.split(str)[1];
+                } else {//不是回复则是评论，取楼主id
+                    id = $scope.bbs.id;
+                }
+                //没有写回复的内容
+                if (answerText == "回复 " + userName + "：" || answerText == undefined) {
+                    popUpSer.showAlert("请输入回复内容");
+                    return;
+                }
+
             if (answerText == "" || answerText == undefined) {
                  popUpSer.showAlert("请输入内容");
                 return;
@@ -66,7 +106,10 @@
               function (data) {
                   if (data.isSuccess) {
                       console.log('回帖成功');
-                      bbsSer.getBBs(id).then(
+                      /*清空输入框中的文字*/
+                      $scope.globalVar.answerText = "";
+                      /*更新楼主的评论次数等*/
+                      bbsSer.getBBs($scope.bbs.id).then(
                           function (data) {
                               if (data.isSuccess) {
                                   $scope.bbs = data.data;
@@ -74,9 +117,11 @@
                                   console.log(data.msg);
                               }
                           }
-                   );
-                   vm.pageNo = 0;
-                  vm.loadMore();
+                      );
+                      /*更新回复的内容*/
+                      vm.pageNo = 0;
+                      vm.loadMore();
+
                   } else {
                       console.log(data.msg);
                   }
@@ -216,7 +261,7 @@
                 moredata: false,
                 bbsDetail: [],
                 pageNo: 0,
-                pageSize: 10,
+                pageSize: 3,
                 loadMore: function () {//加载BBS回复内容详情
                 LoadingSvr.show();
                 vm.pageNo += 1;
