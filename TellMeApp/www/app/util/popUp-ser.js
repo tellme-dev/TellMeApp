@@ -69,12 +69,13 @@
         this.showAlert = function (msg) {
             var popUp = $ionicPopup.show(
                 {
-                    title: '提示',
-                    template: '<p style="color:black;">' + msg + '</p>',
+                    title: '<strong>提示</strong>',
+                    //subTitle:msg,
+                    template: '<center><p style="color:black;">' + msg + '</p></center>',
                     buttons: [
                         {
                             text: '确定',
-                            type: 'button-sure',
+                            type: 'button-positive',
                         }
                     ]
                 });

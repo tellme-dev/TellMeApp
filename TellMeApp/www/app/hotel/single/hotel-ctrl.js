@@ -85,10 +85,35 @@
                             _comment_data_first_load = true;
                         }
                         cvm.loadMore();
+                        $scope.saveBrowse(id);
                         break;
                     }
                 }
             }
+        }
+
+        //用户浏览项目
+        $scope.saveBrowse = function (targetId) {
+            var customerId = 0;
+            if (typeof (window.localStorage['userTel']) != 'undefined') {
+                customerId = window.localStorage['userId'];
+            }
+            if (customerId < 1) {
+                return;
+            }
+            var promise = hotelSer.saveBrowse(customerId, targetId);
+            promise.then(
+                function (data) {
+                    //if (data.isSuccess) {
+                    //    popUpSer.showAlert("浏览成功");
+                    //} else {
+                    //    popUpSer.showAlert(data.msg);
+                    //}
+                },
+                function (data) {
+                    console.log('其他');
+                }
+                );
         }
 
         //用户收藏项目
