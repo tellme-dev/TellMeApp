@@ -1,9 +1,13 @@
 ﻿<ion-view>
     <ion-header-bar class="bar bar-header bar-dark">
         <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
-        <label ng-click="goToSearch()" class="item item-input" style="margin:0 auto; width:60%; background:#ffffff">
+        <!--<label ng-click="goToSearch()" class="item item-input" style="margin:0 auto; width:60%; background:#ffffff">
             <i class="icon ion-search placeholder-icon"></i>
             <input type="text" placeholder="Search" disabled class="pad-top">
+        </label>-->
+        <label  ng-click="goToSearch()"  class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="搜索" style="height:21px; background:none">
         </label>
     </ion-header-bar>
     <ion-content>

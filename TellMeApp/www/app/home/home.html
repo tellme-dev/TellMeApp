@@ -26,8 +26,7 @@
                         </div>
                         <div class="row" style="padding:1px;padding-bottom:0px;">
                             <div class="col col-50" style="padding:0.5px;height:90px;width:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[0].itemId,swiperItem.hotelItems[0].itemTagId)">
-                                <img ng-src="{{baseUrl}}{{swiperItem.hotelItems[0].imageUrl}}" style="width:100%;" err-src="images/default/home/longPic.jpg" />
-                                
+                                <img ng-src="{{baseUrl}}{{swiperItem.hotelItems[0].imageUrl}}" style="width:100%;" err-src="images/default/home/longPic.jpg" />                              
                             </div>
                             <div class="col col-50" style="padding:0.5px;height:90px;width:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[1].itemId,swiperItem.hotelItems[1].itemTagId)">
                                 <img ng-src="{{baseUrl}}{{swiperItem.hotelItems[1].imageUrl}}" style="width:100%;"err-src="images/default/home/longPic.jpg" />
@@ -82,7 +81,7 @@
                             <div class="ma-b-10 ix-img-cont">
                                 <img ng-src="{{baseUrl}}{{item.adDetailList[0].imageUrl}}" ng-click="goToAd(item.id)" style="width:100%; height:100%" />
                             </div>
-                            <span class="fl font-f fo-s12 colo-6">{{item.adDetailList[0].text}}</span>
+                            <span class="fl font-f fo-s12 colo-6">{{item.adDetailList[0].text| cut:true:100:' ...'}}</span>
                             <div class="fr font-f fo-s12 colo-9"><i class="ion-heart fo-s14 ma-r-5" style="color:#eb5d54;"></i>已有20人参与</div>
                             <div class="clear"></div>
                         </div>
@@ -103,7 +102,7 @@
                             <div class="ma-b-10 ix-img-cont">
                                 <img ng-src="{{baseUrl}}{{item.adDetailList[0].imageUrl}}" ng-click="goToAd(item.id)" style="width:100%; height:100%" />
                             </div>
-                            <span class="fl font-f fo-s12 colo-6">{{item.adDetailList[0].text}}</span>
+                            <span class="fl font-f fo-s12 colo-6">{{item.adDetailList[0].text| cut:true:100:' ...'}}</span>
                             <div class="fr font-f fo-s12 colo-9"><i class="ion-heart fo-s14 ma-r-5" style="color:#eb5d54;"></i>已有20人参与</div>
                             <div class="clear"></div>
                         </div>
