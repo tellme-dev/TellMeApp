@@ -32,19 +32,19 @@
                         </div>
                         <!--bbs操作-->
                         <div  class="item tabs tabs-secondary tabs-icon-left sq-item-col">
-                            <a ng-click="showInput()" class="tab-item sq-tab-item clock-i"  style="border-bottom:2px solid #95c300">
+                            <a ng-click="showInput()" class="tab-item sq-tab-item clock-i" style="border-bottom:2px solid #95c300" href="javascript:void(0)">
                                 <i class="icon ion-chatbox"></i>
                                 {{bbs.answerCount}}
                             </a>
                             <!--分享-->
-                            <a class="tab-item sq-tab-item" ng-click="share(bbs)">
+                            <a class="tab-item sq-tab-item" ng-click="share(bbs)" href="javascript:void(0)">
                                 <i class="icon ion-share"></i>
                             </a>
-                            <a  ng-click="agreeBbs(bbs.id)" class="tab-item sq-tab-item" href="# ">
+                            <a  ng-click="agreeBbs(bbs.id)" class="tab-item sq-tab-item" href="javascript:void(0)">
                                 <i class="icon ion-thumbsup"></i>
                                 {{bbs.agreeCount}}
                             </a>
-                            <a ng-click="collectBbs(bbs.id)" class="tab-item sq-tab-item" href="#">
+                            <a ng-click="collectBbs(bbs.id)" class="tab-item sq-tab-item" href="javascript:void(0)">
                                 <i class="icon ion-android-favorite"></i>
                                 {{bbs.collectionCount}}
                             </a>
@@ -70,7 +70,7 @@
                                 评论（{{bbs.answerCount}}）
                             </div>
 
-                            <a ng-click="answerChildren(detail.id,detail.level)" ng-repeat="detail in vm.bbsDetail" class="item item-icon-left item-icon-right item-avatar" href="#">
+                            <a ng-click="answerChildren(detail.id,detail.level)" ng-repeat="detail in vm.bbsDetail" class="item item-icon-left item-icon-right item-avatar" href="javascript:void(0)">
                                 <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" err-src="images/head.png">
                                 <h2>{{detail.customer.name}}</h2>
                                 <p>{{detail.text}}</p>
