@@ -144,6 +144,7 @@
                                 }
                             }, function (data) {
                                 LoadingSvr.hide();
+                                vm.moredata = true;
                                 $scope.$broadcast('scroll.infiniteScrollComplete');
                                 console.log('其他');
                             });
@@ -165,6 +166,7 @@
                                     $scope.$broadcast('scroll.infiniteScrollComplete');
                                 } else {
                                     LoadingSvr.hide();
+                                      vm.moredata = true;
                                     $scope.$broadcast('scroll.infiniteScrollComplete');
                                     vm.moredata = true;
                                 }
@@ -188,6 +190,7 @@
                                 }
                             }, function (data) {
                                 LoadingSvr.hide();
+                                  vm.moredata = true;
                                 $scope.$broadcast('scroll.infiniteScrollComplete');
                                 console.log('其他');
                             });
