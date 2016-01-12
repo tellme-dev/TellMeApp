@@ -1,8 +1,9 @@
-﻿angular.module('tellme', ['ionic', 'FtActionSheet', 'tabSlideBox','ksSwiper'])
-    .run(['$ionicPlatform', '$rootScope', '$location', '$ionicPopup', '$ionicHistory', 'commonSer', function ($ionicPlatform, $rootScope, $location, $ionicPopup,$ionicHistory, commonSer) {
+﻿angular.module('tellme', ['ionic', 'FtActionSheet', 'tabSlideBox', 'ksSwiper'])
+    .run(['$ionicPlatform', '$rootScope', '$location', '$ionicPopup', '$ionicHistory', 'commonSer', function ($ionicPlatform, $rootScope, $location, $ionicPopup, $ionicHistory, commonSer) {
         $ionicPlatform.ready(function () {
             if (window.cordova && window.cordova.plugins.Keyboard) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+                cordova.plugins.Keyboard.disableScroll(true);
             }
             if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
@@ -72,6 +73,7 @@
     }])
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$ionicConfigProvider',
         function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
+            ionic.Platform.isFullScreen = true;
             $ionicConfigProvider.tabs.position('bottom');
             //禁止侧滑后退事件
             $ionicConfigProvider.views.swipeBackEnabled(false);
@@ -84,7 +86,7 @@
             .state('menu', { url: '/menu', templateUrl: 'app/menu.html', controller: 'menuControll' })
                 //首页
                 //.state('menu.home', { url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
-                .state('menu.home', {cache:false, url: '/home', views: { 'home-tab': { templateUrl: 'app/home/home.html', controller: 'homeControll' } } })
+                .state('menu.home', { cache: false, url: '/home', views: { 'home-tab': { templateUrl: 'app/home/home.html', controller: 'homeControll' } } })
 
                   //.state('menu.home.banner',{url:'/banner',views:{'home-banner':{templateUrl:'app/home/banner/banner.html',controller:'bannerControll'}}})
                   //.state('menu.home.swiper',{url:'/swiper',views:{'home-swiper':{templateUrl:'app/home/swiper/swiper.html',controller:'swiperControll'}}})

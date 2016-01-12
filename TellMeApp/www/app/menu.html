@@ -1,8 +1,12 @@
-﻿<ion-tabs class="tabs-dark tabs-icon-only">
+﻿<style>
+    tellme-discover:before {
+  content: "images/failed.png"; }
+</style>
+<ion-tabs class="tabs-dark tabs-icon-only">
     <ion-tab title="首页" ng-click="home()" href="#/menu/home" icon="ion-android-home">
         <ion-nav-view name="home-tab"></ion-nav-view>
     </ion-tab>
-    <ion-tab title="发现" ng-click="discovery()" href="#/menu/discoverList" icon="ion-social-chrome">
+    <ion-tab title="发现" ng-click="discovery()" href="#/menu/discoverList" icon="ion-social-chrome"><!--//ion-social-chrome-->
         <ion-nav-view name="discovery-tab"></ion-nav-view>
     </ion-tab>
     <ion-tab title="社区" ng-click="community()" href="#/menu/communityList" icon="ion-radio-waves">

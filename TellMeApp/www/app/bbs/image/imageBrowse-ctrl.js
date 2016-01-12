@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('imageBrowseControll', ['$scope', '$stateParams','$ionicHistory','$ionicSlideBoxDelegate','appConfig','bbsSer',
-        function ($scope, $stateParams,$ionicHistory, $ionicSlideBoxDelegate,appConfig, bbsSer) {
+    .controller('imageBrowseControll', ['$scope', '$stateParams', '$ionicHistory', '$ionicSlideBoxDelegate', '$ionicTabsDelegate', 'appConfig', 'bbsSer',
+        function ($scope, $stateParams, $ionicHistory, $ionicSlideBoxDelegate, $ionicTabsDelegate, appConfig, bbsSer) {
             $scope.baseUrl = appConfig.server.getUrl();
             var bbsId = $stateParams.bbsId;
             /*返回前一个界面*/
@@ -19,6 +19,7 @@
 
                     }
                 });
+
             //$scope.repeatDone = function () {
             //    $ionicSlideBoxDelegate.update();
             //}
