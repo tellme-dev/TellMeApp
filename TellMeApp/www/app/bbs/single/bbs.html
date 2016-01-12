@@ -17,7 +17,7 @@
         </div>
     </div>-->
     <ion-content style="background:#f1f2f4">
-        <div class="ma-to-88 pa-top-10">
+        <div class="ma-to-44 pa-top-10">
             <div class="card ma-b-10">
                 <div class="max-img">
                     <div class="item item-avatar">
@@ -95,15 +95,6 @@
                             </div>
                             <a class="community-pl ma-t-5" href="javascript:void(0)" style="font-family:黑体;">评论（<i>{{bbs.answerCount}}</i>）</a>
                         </div>
-                        <!--评论框-->
-                        <div class="list list-inset ma-to-10 border-style">
-                            <div class="item item-input pa-l-r-10" >
-                                <input id="answerbbs" type="text" ng-model="globalVar.answerText" placeholder="我也说一句">
-                                <span class="sq-span-style" ng-click="answerbbs(bbs.id,bbs.title)">
-                                    <i class="icon ion-android-more-horizontal sqfasong-style"></i>
-                                </span>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
@@ -111,5 +102,16 @@
         </div>
         <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite -->
         <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="10%"></ion-infinite-scroll>
+
     </ion-content>
+    <ion-footer-bar align-title="left">
+        <div class="list list-inset border-style" style="width:100%;">
+            <div class="item item-input pa-l-r-10">
+                <input id="answerbbs" type="text" ng-model="globalVar.answerText" placeholder="{{globalVar.answerPlaceHolder}}">
+                <span class="sq-span-style" ng-click="answerbbs(bbs.id,bbs.title)">
+                    <i class="icon ion-android-more-horizontal sqfasong-style"></i>
+                </span>
+            </div>
+        </div>
+    </ion-footer-bar>
 </ion-view>

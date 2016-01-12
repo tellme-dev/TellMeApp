@@ -10,9 +10,9 @@
     </div>
 
     <ion-content style="background:#f1f2f4">
-        <div class="inde-cont">
+        <div class="hzf-cont">
             <!--banner-->
-            <ion-slide-box class="inde-cont" on-slide-changed="slideHasChanged($index)" show-pager="true" does-continue="true" auto-play="true" ng-if="adData">
+            <ion-slide-box class="hzf-cont" on-slide-changed="slideHasChanged($index)" show-pager="true" does-continue="true" auto-play="true" ng-if="adData">
                 <ion-slide ng-repeat="ad in adData" repeat-done="repeatDone()" style="width:100%;">
                     <img ng-src="{{baseUrl}}{{ad.adDetailList[0].imageUrl}}" ng-click="goToAd(ad.id)" style="width:100%;" err-src="images/default/home/16-9.jpg" />
                 </ion-slide>
