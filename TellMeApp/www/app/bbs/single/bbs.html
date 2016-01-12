@@ -1,34 +1,97 @@
-﻿<ion-view view-title="单个论坛详情">
-
-            <div class="bar bar-dark bar-header">
+﻿<ion-view>
+    <div class="hear-button">
+        <div class="bar bar-header">
                 <button ng-click="goBack()" class="button icon ion-chevron-left sqer-but"></button>
-                <h1 class="title" style="font-family:微软雅黑;">{{bbs.categoryName}}</h1>
+            <h1 class="title font-f" style="font-family:黑体">{{bbs.categoryName}}</h1>
+            <button class="button pull-right ion-ios-plus-outline" ng-click="toAddBbs()"></button>
             </div>
-            <ion-content style="background-color:#ddd;">
-
-                <div class="content sq-hea sqer-hea">
-                    <div class="list card item-mb sq-item">
-                        <!--bbs内容-->
-                        <div href="#" class="item-avatar sq-item-top ">
-                            <img ng-src="{{baseUrl}}{{bbs.customer.photoUrl}}" err-src="images/head.png" class="sq-item-img" />
-                            <div class="sq-item-vit">
-                                <h2 style="font-family:微软雅黑;">{{bbs.customer.name}}</h2>
-                                <p>{{bbs.createTime}}</p>
-                            </div>
-                            <div class="sq-item-min">
-                                <span style="font-family:微软雅黑;">{{bbs.title}}</span>
-                            </div>
-                            <div class="clear"></div>
+    </div>
+    <!--<div class="bar bar-subheader cont-bor-box-shadow">
+        <div style="width:100%; height:100%; padding:0px 10px;">
+            <div class="row pa-0 sq-tab-button">
+                <button class="col acer">最新活动</button>
+                <button class="col">热门话题</button>
+                <button class="col">吐槽专区</button>
+                <button class="col border-r-no">达人推荐</button>
+            </div>
+        </div>
+    </div>-->
+    <ion-content style="background:#f1f2f4">
+        <div class="ma-to-88 pa-top-10">
+            <div class="card ma-b-10">
+                <div class="max-img">
+                    <div class="item item-avatar">
+                        <img ng-src="{{baseUrl}}{{bbs.customer.photoUrl}}" err-src="images/head.png" style="width:100px;" />
+                        <h2 style="font-family:黑体;">{{bbs.customer.name}}</h2>
+                        <p style="font-family:黑体;">{{bbs.createTime}}</p>
+                    </div>
+                </div>
+                <div class="text-bor">
+                    <div class="item item-text-wrap pa-0" style="font-family:黑体;">
+                        <div class="sq-item-fl pa-l-r-10 pa-bu-10 fo-s14">
+                            # {{bbs.title}} # {{bbs.text}}
                         </div>
-                        <!--bbs图片-->
-                        <div class="item-body sq-item-cont">
-                            <div class="sqer-item-fl" style="font-family:微软雅黑;">{{bbs.text}}</div>
-                            <div class="row">
-                                <div ng-repeat="image in bbs.bbsAttachUrls" class="col"  ng-click="goToImageBrowse(image.bbsId)">
-                                       <img href="#"  ng-src="{{baseUrl}}{{image.attachUrl}}" style="width:100%" err-src="images/failed.png"/>
+                        <!-- 一张图片 -->
+                        <div class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length == 1">
+                            <div class="sq-cont-img-div" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[0].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
+                        </div>
+                        <!-- 两张图片 -->
+                        <div class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length == 2">
+                            <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[0].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
+                            <div class="sq-cont-img-div" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[1].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
+                        </div>
+                        <!-- 三张或三张以上图片 第一排 -->
+                        <div class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length >= 3">
+                            <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[0].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
+                            <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[1].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
+                            <div class="sq-cont-img-div" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[2].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
+                        </div>
+                        <!-- 四张以上图片 第二排 -->
+                        <div class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length > 3">
+                            <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[3].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
+                            <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[4].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
+                            <div class="sq-cont-img-div" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[5].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-bor">
+                    <div class="item item-divider pa-10 back-f pa-to-0">
+                        <div class="row pa-0">
+                            <!-- 分享 -->
+                            <div ng-click="share(bbs)" class="col col-67 pa-0">
+                                <button class="ion-share sq-bu-button" style=""></button>
+                            </div>
+                            <div class="col col-33 pa-0">
+                                <div class="row pa-0">
+                                    <!-- 点赞 -->
+                                    <div ng-click="agreeBbs(bbs.id)" class="col col-50 pa-0">
+                                        <button class="ion-thumbsup sq-bu-button fr"></button>
+                                    </div>
+                                    <!-- 收藏 -->
+                                    <div ng-click="collectBbs(bbs.id)" class="col col-50 pa-0">
+                                        <button class="ion-android-star sq-bu-button fr"></button>
+                                    </div>
                                 </div>
                             </div>
-                           
+                        </div>
+                            </div>
+                    <!-- 评论、回复 -->
+                    <div class="pa-10 pa-to-0">
+                        <div class="ma-b-10">
+                            <div class="ma-b-5" ng-repeat="detail in vm.bbsDetail">
+                                <div class="community-pl-cont" style="font-family:黑体;">
+                                    <div class="fo-s14 fl" style="">
+                                       <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" err-src="images/head.png"><span>{{detail.customer.name}}</span>
+                            </div>
+                                    <a href="javascript:void(0);" class="fo-s14 fr" ng-click="toAnswer(detail.id,detail.customer.name)">回复</a>
+                            <div class="clear"></div>
+                        </div>
+                                <div class="community-pl-hf">
+                                    <span class="fo-s14  ma-l-3" style="font-family:'黑体';">{{detail.text}}</span>
+                                    <div style="font-family:'黑体';" ng-repeat="item in detail.children">
+                                       <span>{{item.customer.name}}</span> 回复 <span>{{detail.customer.name}}：</span>{{item.text}}
+                                </div>
+                            </div>
                         </div>
                         <!--bbs操作-->
                         <div  class="item tabs tabs-secondary tabs-icon-left sq-item-col">
@@ -49,25 +112,15 @@
                                 {{bbs.collectionCount}}
                             </a>
                         </div>
-
-                        <!--bbs操作-->
-                        <!--bbs内容-->
-                        <!--bbs回帖内容-->
-                        <div class="list">
                             <!--评论框-->
-                            <div ng-show="showAnswer" class="sq-show">
-                                <div class="item-input-inset ">
-                                    <label class="item-input-wrapper">
-                                        <input type="text" ng-model="globalVar.answerText" placeholder="写点什么..." style="width:100%">
-                                    </label>
-                                    <button ng-click="answerbbs(bbs.id,bbs.title)" class="button button-small butt-op">
-                                        发送
-                                    </button>
+                        <div class="list list-inset ma-to-10 border-style">
+                            <div class="item item-input pa-l-r-10" >
+                                <input id="answerbbs" type="text" ng-model="globalVar.answerText" placeholder="我也说一句">
+                                <span class="sq-span-style" ng-click="answerbbs(bbs.id,bbs.title)">
+                                    <i class="icon ion-android-more-horizontal sqfasong-style"></i>
+                                </span>
                                 </div>
                             </div>
-                            <!--评论框-->
-                            <div class="item item-divider sqer-pl" style="font-family:微软雅黑;">
-                                评论（{{bbs.answerCount}}）
                             </div>
 
                             <a ng-click="answerChildren(detail.id,detail.level)" ng-repeat="detail in vm.bbsDetail" class="item item-icon-left item-icon-right item-avatar" href="#">
@@ -78,10 +131,9 @@
                                 <!--<i  ng-click="agreeBbs(detail.id)"   class="icon ion-thumbsup item-icon-right sqer-pl-tb" style="font-size:22px;"></i>-->
                             </a>
                         </div>
-                        <!--bbs回帖内容-->
                     </div>
                 </div>
                 <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite --> 
-                <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
+        <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="10%"></ion-infinite-scroll>
             </ion-content>
 </ion-view>
