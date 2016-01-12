@@ -65,6 +65,29 @@
                 });
             return deferred.promise;
         }
+       
+        //浏览项目
+        this.saveBrowse = function (customerId, targetId) {
+            var url = baseUrl + 'app/customer/saveBrowseHistory.do';
+            var getDataJSON = JSON.stringify({
+                browseType: 1,
+                customerId: customerId,
+                targetId: targetId
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: getDataJSON }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
         //收藏项目
         this.saveCollection = function (customerId, targetId) {
             var url = baseUrl + 'app/customer/saveCollectionHistory.do';
