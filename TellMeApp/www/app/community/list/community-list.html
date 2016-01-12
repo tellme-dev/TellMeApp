@@ -4,113 +4,96 @@
     }
 
     .current {
-        border-bottom: 2px solid #99c600;
-    }
+      border-bottom: 2px solid #99c600;
+    } 
 </style>
 
 <ion-view>
-    <div class="bar bar-header bar-dark sq-top">
-        <h1 class="title">社区</h1>
-        <button class="button button-style" ng-click="toAddBbs()">发表</button>
-    </div>
-    <div class="tabs-striped tabs-top  tabs-color-active ">
-        <div class="tabs sq-tier" style="background-color:#f2f2f2;">
-            <a ng-click="gettypedetail(1,1)" class="tab-item" ng-class="{current:1==globalVar.SelectedTag}" href="javascript:void(0)" style="color:black;">最新活动</a>
-            <a ng-click="gettypedetail(2,2)" class="tab-item" ng-class="{current:2==globalVar.SelectedTag}" href="javascript:void(0)" style="color:black;">热门话题</a>
-            <a ng-click="gettypedetail(3,3)" class="tab-item" ng-class="{current:3==globalVar.SelectedTag}" href="javascript:void(0)" style="color:black;">吐槽专区</a>
-            <a ng-click="gettypedetail(4,4)" class="tab-item" ng-class="{current:4==globalVar.SelectedTag}" href="javascript:void(0)" style="color:black;">达人推荐</a>
+    <div class="hear-button">
+        <div class="bar bar-header">
+            <h1 class="title font-f" style="font-family:黑体">社区</h1>
+            <button ng-click="toAddBbs()" class="button pull-right ion-ios-plus-outline"></button>
         </div>
     </div>
-    <ion-content>
+    <div class="bar bar-subheader cont-bor-box-shadow">
+        <div style="width:100%; height:100%; padding:0px 10px;">
+            <div class="row pa-0 sq-tab-button">
+                <button ng-click="gettypedetail(1,1)" ng-class="{acer:1==globalVar.SelectedTag}" class="col">最新活动</button>
+                <button ng-click="gettypedetail(2,2)" ng-class="{acer:2==globalVar.SelectedTag}" class="col">热门话题</button>
+                <button ng-click="gettypedetail(3,3)" ng-class="{acer:3==globalVar.SelectedTag}" class="col">吐槽专区</button>
+                <button ng-click="gettypedetail(4,4)" ng-class="{acer:4==globalVar.SelectedTag}" class="col border-r-no">达人推荐</button>
+            </div>
+        </div>
+    </div>
+    <ion-content style="background:#f1f2f4">
         <ion-refresher pulling-text="" on-refresh="vm.loadMore()"></ion-refresher>
-        <!--内容块-->
-        <div ng-show="dataShow" class="content sq-hea">
-            <div class="list card" ng-repeat="detail in vm.typeDetail">
-                <div class="item item-avatar sq-item-top" ng-click="toBbsDetail(detail.id)">
-                    <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" err-src="images/head.png">
-                    <div class="sq-item-vit">
-                        <h2>{{detail.customer.name}}</h2>
-                        <p>{{detail.createTime|date:'yyyy-MM-dd'}}</p>
-                    </div>
+        <div ng-show="dataShow" class="ma-to-88 pa-top-10">
+            <div ng-repeat="detail in vm.typeDetail" class="card ma-b-10">
+                <div class="max-img">
+                    <div class="item item-avatar">
+                        <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" err-src="images/head.png" style="width:100px">
 
-                </div>
-                <div class="item item-body" ng-if="detail.bbsAttachUrls">
-                    <div ng-click="toBbsDetail(detail.id)">
-                        <div ng-if="detail.title">#{{detail.title}}#</div>{{detail.text}}
+                        <h2 style="font-family:黑体;">{{detail.customer.name}}</h2>
+                        <p style="font-family:黑体;">{{detail.createTime|date:'yyyy-MM-dd'}}</p>
+
                     </div>
-                    <!--<div style="display:block;">
-                    <ul class="grid" ng-click="goToImageBrowse(detail.bbsAttachUrls[0].bbsId)">
-                        <li ng-repeat="imgUrl in detail.bbsAttachUrls">
-                                <img ng-src="{{baseUrl}}{{imgUrl.attachUrl}}" alt="">
-                        </li>
-                    </ul>
-                    </div>-->
-                    <div class="row" ng-click="goToImageBrowse(detail.bbsAttachUrls[0].bbsId)" ng-if="detail.bbsAttachUrls.length">
-                        <div class="col col-padding">
-                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" style="width:100%" err-src="images/failed.png" />
+                </div>
+                <div class="text-bor" ng-if="detail.bbsAttachUrls">
+                    <div ng-click="toBbsDetail(detail.id)" class="item item-text-wrap pa-0" style="font-family:黑体;">
+                        <div class="sq-item-fl pa-l-r-10 pa-bu-10 colo-3 fo-s14">
+                            <div ng-if="detail.title">#{{detail.title}}#</div>{{detail.text}}
                         </div>
-                        <div class="col col-padding">
-                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}}" style="width:100%" err-src="images/failed.png" />
+                        <!-- 一张图片 -->
+                        <div class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length == 1">
+                            <div class="sq-cont-img-div" style="background:url({{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                         </div>
-                        <div class="col col-padding">
-                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[2].attachUrl}}" style="width:100%" err-src="images/failed.png" />
+                        <!-- 两张图片 -->
+                        <div class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length == 2">
+                            <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
+                            <div class="sq-cont-img-div" style="background:url({{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                         </div>
-                        <div class="col col-padding">
-                            <img href="#" ng-src="{{baseUrl}}{{detail.bbsAttachUrls[3].attachUrl}}" style="width:100%" err-src="images/failed.png" />
+                        <!-- 三张或三张以上图片 第一排 -->
+                        <div class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length >= 3">
+                            <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
+                            <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
+                            <div class="sq-cont-img-div" style="background:url({{baseUrl}}{{detail.bbsAttachUrls[2].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
+                        </div>
+                        <!-- 四张以上图片 第二排 -->
+                        <div class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length > 3">
+                            <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{detail.bbsAttachUrls[3].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
+                            <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{detail.bbsAttachUrls[4].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
+                            <div class="sq-cont-img-div" style="background:url({{baseUrl}}{{detail.bbsAttachUrls[5].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                         </div>
                     </div>
-                    <p ng-click="toBbsDetail(detail.id)">
-                        <a href="#" class="subdued">赞{{detail.agreeCount}}次</a>
-                        <a href="#" class="subdued">评论{{detail.answerCount}}次</a>
-                        <a href="#" class="subdued">收藏{{detail.collectionCount}}次</a>
-                    </p>
                 </div>
-                <div class="item tabs tabs-secondary tabs-icon-left" style="background-color:#f2f2f2;">
-                    <a class="tab-item" href="#" ng-click="agreeBbs(detail.id,detail.agreeCount)" style="color:black;">
-                        <i class="icon ion-thumbsup">
-                        </i>
-                        赞
-                    </a>
-                    <a class="tab-item" href="#" ng-click="share(detail)" style="color:black;">
-                        <i class="icon ion-share">
-                        </i>
-                        分享
-                    </a>
-                    <a class="tab-item" href="#" ng-click="collectBbs(detail.id,detail.collectionCount)" style="color:black;">
-                        <i class="icon ion-android-favorite">
-                        </i>
-                        收藏
-                    </a>
-                </div>
-                <div class="sq-show">
-                    <div class="item-input-inset">
-                        <label class="item-input-wrapper">
-                            <input type="text" id="bbs-{{detail.id}}" ng-model="detail.anstext" placeholder="写点什么..." style="width:100%">
-                        </label>
-                        <button ng-click="answerbbs($index,detail.id,detail.title)" class="button button-small butt-op" style="color:black;">
-                            发送
-                        </button>
+                <div class="text-bor">
+                    <div class="item item-divider pa-10 back-f pa-to-0">
+                        <div class="row pa-0">
+                            <!-- 分享 -->
+                            <div ng-click="share(detail)" class="col col-67 pa-0">
+                                <button class="ion-share sq-bu-button ba-co-4c"></button>
+                            </div>
+                            <div class="col col-33 pa-0">
+                                <div class="row pa-0">
+                                    <div class="row pa-0">
+                                        <!-- 点赞 -->
+                                        <div ng-click="agreeBbs(detail.id,detail.agreeCount)" class="col col-50 pa-0">
+                                            <button class="ion-thumbsup sq-bu-button ba-co-8a fr"></button>
+                                        </div>
+                                        <!-- 收藏 -->
+                                        <div ng-click="collectBbs(detail.id,detail.collectionCount)" class="col col-50 pa-0">
+                                            <button class="ion-android-star sq-bu-button fr"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
         <div ng-show="msgShow" style="text-align:center;margin-top:10px;"><h3>暂无数据,请稍后重试！</h3></div>
-        <!--内容块-->
         <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
-        <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
+        <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="10%"></ion-infinite-scroll>
     </ion-content>
-
 </ion-view>
-
-<script id="image-popover.html" type="text/ng-template">
-    <ion-modal-view>
-        <div class="modal image-modal transparent" ng-click="closeModal()">
-            <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="true" active-slide="activeSlide">
-                <ion-slide ng-repeat="image in allImages">
-                    <img ng-src="{{image.attachUrl}}" class="fullscreen-image" />
-                </ion-slide>
-            </ion-slide-box>
-        </div>
-    </ion-modal-view>
-</script>
