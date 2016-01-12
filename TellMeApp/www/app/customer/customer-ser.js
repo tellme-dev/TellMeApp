@@ -224,7 +224,7 @@
         }
         //获取个人中心动态点赞数据列表
         this.customerDynamicCount = function (customerId) {
-            var url = baseUrl + 'app/customer/getCustomerDynamicCount.do';
+            var url = baseUrl + 'app/customer/getCustomerNewDynamicCount.do';
             var getDataJSON = JSON.stringify({
                 customerId: customerId
             });

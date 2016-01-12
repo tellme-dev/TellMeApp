@@ -11,7 +11,7 @@
                 var districtSearch = new AMap.DistrictSearch(placeSearchOptions);
                 districtSearch.search(cityName, function (state, result) {
                     if (status === 'complete' && result.info === 'OK') {
-                        var cityInfo = result.districtList;
+                        var cityInfo = result.districtList;                 
                         alert("sfdsd:" + cityInfo);
                     }
                 })

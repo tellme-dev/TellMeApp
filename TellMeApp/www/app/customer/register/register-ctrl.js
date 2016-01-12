@@ -65,6 +65,8 @@
              //    }
              //});
              $scope.$watch('verifyDisabled', function (newValue, oldValue) {
+
+
                  if (newValue == true) {
                      $scope.sendMsgBackColor = '#4ebcff';
                  } else {
