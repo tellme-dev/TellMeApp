@@ -2,11 +2,11 @@
     .controller('discoverListControll', ['$scope', '$rootScope', '$window', '$state', '$ionicHistory', 'discoverSer', 'commonSer', 'LoadingSvr', 'appConfig',
         function ($scope,$rootScope, $window, $state, $ionicHistory, discoverSer, commonSer, LoadingSvr, appConfig) {
             // 获取当前位置
-            $rootScope.currentCity = window.localStorage['currentcity'];
-            $scope.$watch('setCity', function (newValue, oldValue) {
-                $rootScope.currentCity = newValue;
-                console.log("newValue:" + newValue + ",oldValue:" + oldValue);
-            });
+            //$rootScope.currentCity = window.localStorage['currentcity'];
+            //$scope.$watch('setCity', function (newValue, oldValue) {
+            //    $rootScope.currentCity = newValue;
+            //    console.log("newValue:" + newValue + ",oldValue:" + oldValue);
+            //});
             $scope.dataShow = false;
             $scope.msgShow = false;
             /*返回前一个界面*/
@@ -79,7 +79,10 @@
                           $scope.dataShow = false;
                           $scope.msgShow = true;
                       }
-                    }
+                  }, function (data) {
+                      vm.moredata = true;
+                      LoadingSvr.hide();
+                  }
                   );
                     $scope.$broadcast('scroll.infiniteScrollComplete');
                 }

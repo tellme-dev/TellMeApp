@@ -81,7 +81,8 @@
                             <div class="ma-b-5" ng-repeat="detail in vm.bbsDetail">
                                 <div class="community-pl-cont" style="font-family:黑体;">
                                     <div class="fo-s14 fl" style="">
-                                       <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" err-src="images/head.png"><span>{{detail.customer.name}}</span>
+                                       <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" err-src="images/head.png">
+                                        <span>{{detail.customer.name}}</span>
                                     </div>
                                     <a href="javascript:void(0);" class="fo-s14 fr" ng-click="toAnswer(detail.id,detail.customer.name)">回复</a>
                                     <div class="clear"></div>

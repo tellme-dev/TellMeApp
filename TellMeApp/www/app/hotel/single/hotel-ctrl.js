@@ -359,7 +359,7 @@
             moredata: true,
             typeDetail: [],
             pageNo: 0,
-            pageSize: 10,
+            pageSize: 20,
             loadMore: function () {
                 if (!_comment_data_first_load) {
                     return;
