@@ -14,6 +14,7 @@
         //二级菜单图片数据
         $scope.menus = null;
         $scope.itemListEmpty = false;
+        var needLoadItemData = false;
         $scope.loadListerrMsg = "";
         //服务器地址
         $scope.host = hotelSer.hostUrl;
@@ -53,7 +54,7 @@
             for (var i = 0; i < len; i++) {
                 var rmi = $scope.rootMenuArray[i];
                 if (i == index) {
-                    rmi = new RootMenuItem(i, $scope.rootMenuArray[i].data, "li-but");
+                    rmi = new RootMenuItem(i, $scope.rootMenuArray[i].data, "ctive");
                 }
                 if (i == rootMenuSelectIndex) {
                     rmi = new RootMenuItem(i, $scope.rootMenuArray[i].data, "");
@@ -73,13 +74,16 @@
             if (childMenuSelectIndex == index) {
                 return;
             }
-            $scope.childMenuArray[childMenuSelectIndex].cName = "swiper-container3-sws";
-            $scope.childMenuArray[index].cName = "swiper-container3-sws swiper-container3-border";
+            $scope.childMenuArray[childMenuSelectIndex].cName = "pa-0";
+            $scope.childMenuArray[index].cName = "pa-0 button-activ";
             childMenuSelectIndex = index;
             setChildDataLoad($scope.childMenuArray[index].data.itemTagId);
         }
 
         function setChildDataLoad(id) {
+            if (!needLoadItemData) {
+                needLoadItemData = true;
+            }
             selectId = id;
             vm.pageNo = 0;
             vm.isInit = true;
@@ -114,20 +118,20 @@
                                 //初始化选中
                                 if (typeof (param_tagId) != 'undefined' && param_tagId > 0) {
                                     if (param_tagId == obj.itemTagId) {
-                                        rmi.cName = "li-but";
+                                        rmi.cName = "ctive";
                                         rootTagId = obj.itemTagId;
                                         rootMenuSelectIndex = i;
                                     }
                                 } else {
                                     if (i == 0) {
-                                        rmi.cName = "li-but";
+                                        rmi.cName = "ctive";
                                         rootTagId = obj.itemTagId;
                                         rootMenuSelectIndex = 0;
                                     }
                                 }
                                 $scope.rootMenuArray.push(rmi);
-                                $scope.getChildMenu(rootTagId);
                             }
+                            $scope.getChildMenu(rootTagId);
                         }
                     }
                 },
@@ -148,17 +152,17 @@
                             $scope.childMenuWidth = (data.rows.length * 82) + "px";
                             for (var i = 0; i < data.rows.length; i++) {
                                 var menu = data.rows[i];
-                                var rmi = new RootMenuItem(i, menu, "swiper-container3-sws");
+                                var rmi = new RootMenuItem(i, menu, "pa-0");
                                 //初始化选中
                                 if (typeof (param_tagChildId) != 'undefined' && param_tagChildId > 0) {
                                     if (param_tagChildId == menu.itemTagId) {
-                                        rmi.cName = "swiper-container3-sws swiper-container3-border";
+                                        rmi.cName = "pa-0 button-activ";
                                         childMenuSelectIndex = i;
                                         setChildDataLoad(menu.itemTagId);
                                     }
                                 } else {
                                     if (i == 0) {
-                                        rmi.cName = "swiper-container3-sws swiper-container3-border";
+                                        rmi.cName = "pa-0 button-activ";
                                         childMenuSelectIndex = 0;
                                         setChildDataLoad(menu.itemTagId);
                                     }
@@ -337,6 +341,9 @@
             pageNo: 0,
             pageSize: 5,
             loadMore: function () {
+                if (!needLoadItemData) {
+                    return;
+                }
                 LoadingSvr.show();
                 vm.pageNo += 1;
                 var promise = hotelSer.getItemList(vm.pageNo, vm.pageSize, selectId)
