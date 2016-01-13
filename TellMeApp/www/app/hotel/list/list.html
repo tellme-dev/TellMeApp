@@ -76,16 +76,11 @@
                                 </div>
                             </div>
                             <div class="pa-l-r-10 ma-b-10" ng-click="cancelTurn()">
-                                <div class="pa-l-r-10" style="border:1px solid #dedede;height:36px;">
-                                    <input type="text" placeholder="我也说一句" class="fl" style="width:80%"/>
-                                    <button ng-click="saveComment($index, item.item.id)" class="icon ion-android-more-horizontal sqfasong-style fr" style="width:10%; border:1px solid #dedede; background:#fff; margin-top:7px;"></button>
-                                    <div class="clear"></div>
-                                    <!--<input type="text"   ng-model="comments[$index]" style="width:85%;" class="item-input fl">
-                                    <span class="sq-span-style fr"  style="width:15%;" >
-                                        <i  class="icon ion-android-more-horizontal sqfasong-style fr"></i>
-                                        <div class="clear"></div>
+                                <div class="item item-input pa-l-r-10">
+                                    <input type="text" placeholder="我也说一句" ng-model="comments[$index]">
+                                    <span class="sq-span-style" ng-click="saveComment($index, item.item.id)">
+                                        <i class="icon ion-android-more-horizontal sqfasong-style "></i>
                                     </span>
-                                    <div class="clear"></div>-->
                                 </div>
                             </div>
 
