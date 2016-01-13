@@ -11,8 +11,8 @@ angular.module('tellme')
         后台服务配置
         */
         server: {
-            address: 'http://112.74.209.133',
-            //address: 'http://192.168.1.112',
+            //address: 'http://112.74.209.133',
+            address: 'http://192.168.1.100',
             name: 'tellme',
             //name: 'TellMeMgr',
             port: '8080',

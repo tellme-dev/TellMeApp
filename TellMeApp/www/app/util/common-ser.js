@@ -121,7 +121,8 @@ angular.module('tellme')
             var deferred = $q.defer();
             var customerIdJson = JSON.stringify(
                 {
-                    customerId: window.localStorage['userId']
+                    customerId: window.localStorage['userId'],
+                    regionCode: window.localStorage['adcode']
                 });
             $http({
                 method: 'post',
