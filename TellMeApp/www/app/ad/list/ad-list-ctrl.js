@@ -9,12 +9,9 @@
            $scope.goBack = function () {
              $ionicHistory.goBack();
            };
-           /*
-              1:酒店,
-              2：项目标签(item_tag),
-              3:社区,
-              4：URL地址, 5:html页面
-           */
+           $scope.globalVar = {};
+           $scope.globalVar.answerText = "";//回帖内容
+           $scope.globalVar.answerPlaceHolder = '我也说一句';
            $scope.goToTarget = function () {
                var targetType = $scope.adInfo.targetType;
                var targetId = $scope.adInfo.targetId;
@@ -36,6 +33,7 @@
                            function (data) {
                                if (data.isSuccess) {
                                    $scope.adInfo = data.data;
+                                   $scope.adDetail=data.data.adDetailList;
                                    LoadingSvr.hide();
                                    console.log('加載成功');
                                } else {
@@ -46,7 +44,84 @@
                                console.log('其他');
                            }
                        );
+           //获取评论
+           $scope.getBBs=function(){
+           adSer.getAdBbs(adId).then(
+                       function (data) {
+                           if (data.isSuccess) {
+                               $scope.adBBs = data.rows;
+                               LoadingSvr.hide();
+                           } else {
+                               console.log(data.msg);
+                           }
+                       },
+                       function (data) {
+                           console.log('其他');
+                       }
+                   );
+           }
+           $scope.getBBs();
+           $scope.answered = {};//评论那一级的信息
+           //点击'回复' 临时存储评论用户名和评论的bbsid
+           $scope.toAnswer = function (bbsId, userName) {
+               $scope.answered.bbsId = bbsId;
+               $scope.answered.userName = userName;
+               //在评论框中显示“回复 XXX：”
+               //$scope.globalVar.answerText = "回复 " + userName + "：";
+               $scope.globalVar.answerPlaceHolder = "回复 " + userName + "：";
+           }
+           //回主贴帖
+           $scope.answerbbs = function () {
+               $scope.showAnswer = false;
+               var targetId = adId;//默认为回复
+               var parentId = 0;//默认为评论
+               var isLogin = $scope.userIsLogin();
+               var answerText = $scope.globalVar.answerText;
+               var userName = $scope.answered.userName;//临时存储的用户名
+               //indexOf();//为0表示从首字符开始出现 -1表示没有出现过
+               /*条件成立则是回复评论*/
+               if ($scope.globalVar.answerPlaceHolder != "我也说一句") {//回复
+                   parentId  = $scope.answered.bbsId;
+                   targetId = 0;
+                   var answerText = answerText;
+               } else {//评论，取Adid
+                   parentId = 0;
+                   targetId = adId;
+               }
 
+               if (answerText == "" || answerText == undefined) {
+                   popUpSer.showAlert("请输入内容");
+                   return;
+               }
+               if (isLogin) {//如果用户已经登录
+                   var jsonData = JSON.stringify({
+                       customerId: window.localStorage['userId'],
+                       parentId:parentId,
+                       targetId: targetId,
+                       text: answerText
+                   });
+                   var promise = adSer.saveAdAnswer(jsonData).then(
+                 function (data) {
+                     if (data.isSuccess) {
+                         console.log('回帖成功');
+                         /*清空输入框中的文字*/
+                         $scope.globalVar.answerText = "";
+                         $scope.globalVar.answerPlaceHolder = '我也说一句';
+                         /*更新回复的内容*/
+                         $scope.getBBs();
+                     } else {
+                         console.log(data.msg);
+                     }
+                 },
+                 function (data) {
+                     console.log('其他');
+                 }
+                 );
+               } else {
+                   $state.go('login', { pageName: 'menu.communityList' });
+               }
+
+           }
            // 分享
            $scope.share = function () {
                var args = {};
@@ -143,4 +218,6 @@
                    return true;
                }
            }
+         
+
 }]);

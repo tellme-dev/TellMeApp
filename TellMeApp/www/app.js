@@ -3,7 +3,7 @@
         $ionicPlatform.ready(function () {
             if (window.cordova && window.cordova.plugins.Keyboard) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-                cordova.plugins.Keyboard.disableScroll(true);
+                //cordova.plugins.Keyboard.disableScroll(true);
             }
             if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
@@ -36,9 +36,11 @@
             // Is there a page to go back to?  
             if ($location.path() == '/menu') {
                 showConfirm();
+                alert('menu');
             } else if ($ionicHistory.backView()) {
                 console.log('currentView:', $rootScope.$viewHistory.currentView);
                 // Go back in history  
+                alert('goback');
                 $ionicHistory.goback();
                 //$rootScope.$viewHistory.backView.go();
             } else {
@@ -73,7 +75,7 @@
     }])
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$ionicConfigProvider',
         function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
-            ionic.Platform.isFullScreen = true;
+//            ionic.Platform.isFullScreen = true;
             $ionicConfigProvider.tabs.position('bottom');
             //禁止侧滑后退事件
             $ionicConfigProvider.views.swipeBackEnabled(false);

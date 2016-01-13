@@ -79,7 +79,10 @@
                           $scope.dataShow = false;
                           $scope.msgShow = true;
                       }
-                    }
+                  }, function (data) {
+                      vm.moredata = true;
+                      LoadingSvr.hide();
+                  }
                   );
                     $scope.$broadcast('scroll.infiniteScrollComplete');
                 }
