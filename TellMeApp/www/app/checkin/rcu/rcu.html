@@ -19,7 +19,7 @@
                     </ion-scroll>
                 </div>
             </div>
-            <ion-slide-box on-slide-changed="slideHasChanged($index)" class="ke-ion-slide-box" show-pager="">
+            <ion-slide-box on-slide-changed="slideHasChanged($index)" class="ke-ion-slide-box" show-pager="false">
 
                 <ion-slide ng-show="room.tabs['LT']">
                     <div class="lamp-cont">
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="row lamp-cont-ner" ng-repeat="oper in cfgItem.opers" ng-if="oper.tag =='C'">
                                     <div class="row padding-0" ng-if="oper.labels.length ==3" style="margin-top:4px">
-                                        <div class="col border-d border-ri-none border-img" ng-repeat="labe in oper.labels" ng-click="changeLampColorMode(cfgItem,oper,labe)"><img ng-src="images/{{labe.pinyin}}.png" class="imger" style="background-color:{{labe.color}};width:100%;"/></div>
+                                        <div class="col border-d border-ri-none border-img" ng-repeat="labe in oper.labels" ng-click="changeLampColorMode(cfgItem,oper,labe)"><img ng-src="images/{{labe.pinyin}}.png" class="imger" style="background-color:{{labe.color}};width:100%;" /></div>
                                     </div>
                                     <div class="row padding-0" ng-if="oper.labels.length ==2" style="margin-top:4px">
                                         <div class="col border-d border-img2" ng-repeat="labe in oper.labels" ng-click="changeLampColorMode(cfgItem,oper,labe)"><img src="images/{{labe.pinyin}}.png" class="imger" style="width:78%;" /></div>
@@ -41,7 +41,7 @@
                                 <div class="clear"></div>
                             </div>
                         </div>
-                        <input type="button" value="ON" class="button-kg" style="height:60px;border-top:1px solid #ddd;" ng-click="powerOnOrOffAllLT()"/>
+                        <input type="button" value="ON" class="button-kg" style="height:60px;border-top:1px solid #ddd;" ng-click="powerOnOrOffAllLT()" />
                     </div>
                 </ion-slide>
 
@@ -51,7 +51,7 @@
                             <span style="font-family:'黑体';">{{cfgItem.templature}}<a>°</a></span>
                             <strong>{{cfgItem.name}}</strong>
                         </div>
-                        <div  ng-repeat="oper in cfgItem.opers">
+                        <div ng-repeat="oper in cfgItem.opers">
                             <div class="row padding-0" ng-show="oper.mode==2&&oper.tag =='T'">
                                 <button class="col conditioner-button-on" ng-click="changeACTemplature(cfgItem,oper,-1)"></button>
                                 <button class="col conditioner-button-to" ng-click="changeACTemplature(cfgItem,oper,1)"></button>
@@ -61,7 +61,7 @@
                                 <input type="range" name="volume" min="0" max="10" step="5" value="{{oper.windValue}}" class="input-ct">
                                 <i class="icon fs-ri"><img src="images/kontiao5.png" style="width:90%" /></i>
                             </div>
-                            <input type="button" value="ON" class="button-if" ng-click="powerOnOrOffAC(cfgItem,oper,'S')" ng-show="oper.mode==1&&oper.tag =='S'"/>
+                            <input type="button" value="ON" class="button-if" ng-click="powerOnOrOffAC(cfgItem,oper,'S')" ng-show="oper.mode==1&&oper.tag =='S'" />
                         </div>
 
                     </div>
@@ -78,7 +78,7 @@
                         <div class="row padding-0" style="margin-top:0px;">
                             <div class="col cou-col">
                                 <div class="style-cont-to2">
-                                    <label class="toggle toggle-balanced">
+                                    <div class="toggle toggle-balanced">
                                         <input type="checkbox">
                                         <div class="track no-track no-style2">
                                             <span class="fr no-style-span-l">ON</span>
@@ -86,12 +86,12 @@
                                             <div class="handle handle-re handle-style2"></div>
                                             <div class="clear"></div>
                                         </div>
-                                    </label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col cou-col">
                                 <div class="style-cont-to2">
-                                    <label class="toggle toggle-balanced">
+                                    <div class="toggle toggle-balanced">
                                         <input type="checkbox">
                                         <div class="track no-track no-style2">
                                             <span class="fr no-style-span-l">ON</span>
@@ -99,7 +99,7 @@
                                             <div class="handle handle-re handle-style2"></div>
                                             <div class="clear"></div>
                                         </div>
-                                    </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
