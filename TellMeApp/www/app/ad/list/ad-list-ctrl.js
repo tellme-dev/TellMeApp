@@ -70,6 +70,7 @@
                //$scope.globalVar.answerText = "回复 " + userName + "：";
                $scope.globalVar.answerPlaceHolder = "回复 " + userName + "：";
            }
+     
            //回主贴帖
            $scope.answerbbs = function () {
                $scope.showAnswer = false;
@@ -108,7 +109,7 @@
                          $scope.globalVar.answerText = "";
                          $scope.globalVar.answerPlaceHolder = '我也说一句';
                          /*更新回复的内容*/
-                         $scope.getBBs();
+                        $scope.getBBs();
                      } else {
                          console.log(data.msg);
                      }
