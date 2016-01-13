@@ -32,10 +32,10 @@
                                 </div>
                                 <div class="row lamp-cont-ner" ng-repeat="oper in cfgItem.opers" ng-if="oper.tag =='C'">
                                     <div class="row padding-0" ng-if="oper.labels.length ==3" style="margin-top:4px">
-                                        <div class="col border-d border-ri-none border-img" ng-repeat="labe in oper.labels" ng-click="changeLampColorMode(cfgItem,oper,labe)"><img ng-src="images/{{labe.pinyin}}.png" class="imger" style="background-color:{{labe.color}}" width="100%" /></div>
+                                        <div class="col border-d border-ri-none border-img" ng-repeat="labe in oper.labels" ng-click="changeLampColorMode(cfgItem,oper,labe)"><img ng-src="images/{{labe.pinyin}}.png" class="imger" style="background-color:{{labe.color}};width:100%;"/></div>
                                     </div>
                                     <div class="row padding-0" ng-if="oper.labels.length ==2" style="margin-top:4px">
-                                        <div class="col border-d border-img2" ng-repeat="labe in oper.labels" ng-click="changeLampColorMode(cfgItem,oper,labe)"><img src="images/{{labe.pinyin}}.png" class="imger" width="78%" /></div>
+                                        <div class="col border-d border-img2" ng-repeat="labe in oper.labels" ng-click="changeLampColorMode(cfgItem,oper,labe)"><img src="images/{{labe.pinyin}}.png" class="imger" style="width:78%;" /></div>
                                     </div>
                                 </div>
                                 <div class="clear"></div>

@@ -9,7 +9,7 @@ angular.module('tellme')
 	        var hideSheet = $ionicActionSheet.show({
 	            buttons: [
 					{
-					    text: template("QQ分享", "images/share/qq.png")
+					    text: template("QQ分享","images/share/qq.png")
 					},
 					//{
 					//    text: template("QQ空间", "images/share/space.png")
@@ -56,9 +56,27 @@ angular.module('tellme')
 	        return shareResult;
 	    }
 	    var template = function (shareToName,ShareToImgUrl) {
-	        var template = '<div class="item item-avatar"><img src="' + ShareToImgUrl + '"><h2>' + shareToName + '</h2></div>';
+	        var template = '<div class="item item-avatar"><img src="' + ShareToImgUrl + '"><p style="margin-top:10px;">' + shareToName + '</p></div>';
+	        //var template = '<div style="display:inline;"><div style="vertical-align:middle;"><img style="border-radius:50%;" src="' + ShareToImgUrl + '"></div>' + shareToName + '</div>  ';
 	        return template;
 
+	    }
+	    var anotherTemplate = function () {
+	        var template = '<div>\
+                    <div class="row">\
+                         <div class="col col-25 item item-avatar" ng-click="hello(1)"><img style="border:none;" src="images/share/space.png"></div>\
+                         <div class="col col-25 item item-avatar" ng-click="hello(1)"><img style="border:0" src="images/share/wechat.png"></div>\
+                         <div class="col col-25 item item-avatar" ng-click="hello(1)"><img style="border:0" src="images/share/circle.png"></div>\
+                         <div class="col col-25 item item-avatar" ng-click="hello(1)"><img style="border:0" src="images/share/weibo.png"></div>\
+                    </div>\
+                    <div class="row">\
+                         <div class="col col-25"><small>QQ分享</small></div>\
+                         <div class="col col-25"><small>微信好友</small></div>\
+                         <div class="col col-25"><small>朋友圈</small></div>\
+                         <div class="col col-25"><small>微博</small></div>\
+                    </div>\
+                </div>';
+	        return template;
 	    }
 
 	}])

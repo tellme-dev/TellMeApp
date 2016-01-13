@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="com.hotelmee.tellmeapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="zh-CN">
   <name>智慧酒店</name>
-  <description>A blank project that uses Apache Cordova to help you build an app that targets multiple mobile platforms: Android, iOS, Windows, and Windows Phone.</description>
+  <description>an app for providing information about hotels</description>
   <author href="http://cordova.io" email="dev@cordova.apache.org">tellme dev</author>
   <content src="app.html" />
   <access origin="*" />
   <vs:features />
-  <preference name="Fullscreen" value="true" />
+  <preference name="Fullscreen" value="False" />
   <preference name="SplashScreen" value="screen" />
   <preference name="AutoHideSplashScreen" value="false" />
   <preference name="SplashScreenDelay" value="4000" />

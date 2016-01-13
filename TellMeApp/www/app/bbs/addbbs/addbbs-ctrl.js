@@ -51,11 +51,11 @@
         };
         /*发帖*/
         $scope.saveBbs = function () {
-            if ($scope.bbsInfo.title == undefined) {
+            if ($scope.bbsInfo.title == undefined||$scope.bbsInfo.title == "") {
                 popUpSer.showAlert("请输入标题");
                 return;
             }
-            if ($scope.bbsInfo.text == undefined) {
+            if ($scope.bbsInfo.text == undefined || $scope.bbsInfo.text == "") {
                 popUpSer.showAlert("请输入内容");
                 return;
             }
