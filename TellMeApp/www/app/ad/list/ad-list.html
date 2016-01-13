@@ -1,16 +1,13 @@
-﻿<ion-view>
+﻿<!--<ion-view>
             <div class="bar bar-dark bar-header" style="border-bottom:1px solid #ddd;">
                 <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
                 <h1 class="title">{{adInfo.name}}</h1>
             </div>
-
             <ion-content>
-                <!--内容块-->
                 <ul class="zt-cont">
                     <li ng-repeat="adDetail in adInfo.adDetailList">
                         <a href="{{adInfo.targetContent}}" ng-click="goToTarget()"><img src="{{baseUrl}}{{adDetail.imageUrl}}" /></a>
                     </li>
-                    <!--<li><a href="#">{{adDetail.text}}</a></li>-->
                 </ul>
                 <div class="item tabs tabs-secondary tabs-icon-left" style="background-color:#f2f2f2;">
                     <a class="tab-item sq-tab-item" ng-click="share()">
@@ -26,5 +23,106 @@
                     </a>
                 </div>
             </ion-content>
+</ion-view>-->
+    <ion-view>
+    <div class="hear">
+        <div class="bar bar-header">
+            <button class="button button-clear ion-chevron-left" ng-click="goBack()"></button>
+            <h1 class="title font-f" style="font-family:黑体">{{adInfo.name}}</h1>
+        </div>
+    </div>
+    <ion-content style="background:#f1f2f4">
+        <div class="" style="margin-top:55px;">
+            <div class="cont-bor-box-shadow ma-b-10" style="background:#fff;">
+                <div class="fx-banner-top">
+                    <div class="tit titerto">
+                        <ul>
+                            <li class="fo-s16 ma-to-10 ma-b-5 colo-6" style="font-family:'黑体';">成都大酒店</li>
+                            <li class="fo-s12 colo-9 text-ce" style="font-family:'黑体';color:#50b9fd">婚礼专题</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="list">
+
+                    <div class="">
+                        <div class="ma-b-10  po-re">
+                            <div style="max-height:340px;overflow:hidden">
+                                <img src="images/2.jpg" width="100%" />
+                            </div>
+
+                            <div class="po-ab fx-opacity-cont">
+                                <div class="bu-lf">
+                                    <span class="fo-s14 col-ff" style="font-family:'黑体';">成都大酒店</span>
+                                    <p style="font-family:'黑体';font-size:12px;color:#fff; margin-bottom:0px;">
+                                        婚礼主题婚礼主题婚礼主题婚礼主题婚礼主题题婚礼主题婚礼主题题婚
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="po-ab" style="right:5px;bottom:5px; color:#fff;font-size:14px;">1/9</div>
+                        </div>
+                    </div>
+                    <div class="fx-cont-bottom">
+                        <!--底部操作-->
+                        <div class="item item-divider pa-10 back-f pa-to-0" style="border:none">
+                            <div class="row pa-0">
+                                <div class="col col-67 pa-0">
+                                    <button class="ion-share sq-bu-button" style=""></button>
+                                </div>
+                                <div class="col col-33 pa-0">
+                                    <div class="row pa-0">
+                                        <div class="col col-50 pa-0">
+                                            <button class="ion-thumbsup sq-bu-button fr"></button>
+                                        </div>
+                                        <div class="col col-50 pa-0">
+                                            <button class="ion-android-star sq-bu-button fr"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--评论-->
+                        <div class="pa-10 pa-to-0">
+                            <div class="ma-b-10">
+                                <div class="ma-b-5">
+                                    <div class="community-pl-cont" style="font-family:黑体;">
+                                        <div class="fo-s14 fl" style=""><img src="images/sq-t.png"><span>国际酒店</span></div>
+                                        <a href="javascript:void(0);" class="fo-s14 fr">回复</a>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="community-pl-hf">
+                                        <p  style="font-family:'黑体'; margin-top:3px;">这个我觉得真心不错，推荐！这个我觉得真心不错.</p>
+                                        <div style="font-family:'黑体';"><span>官方</span> 回复 <span>国际酒店：</span>是啊！</div>
+                                        <div style="font-family:'黑体';"><span>国际酒店</span> 回复 <span>官方：</span>还有什么其他的推荐么？</div>
+                                    </div>
+                                </div>
+                                <div class="ma-b-5">
+                                    <div class="community-pl-cont" style="font-family:黑体;">
+                                        <div class="fo-s14 fl" style=""><img src="images/sq-t.png"><span>国际酒店</span></div>
+                                        <a href="javascript:void(0);" class="fo-s14 fr">回复</a>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="community-pl-hf">
+                                        <span class="fo-s14  ma-l-3" style="font-family:'黑体';">推荐！这个我觉得真心不错.</span>
+
+                                    </div>
+                                </div>
+                                <a class="community-pl ma-t-5" href="javascript:void(0)" style="font-family:黑体;">评论（<i>2</i>）</a>
+                            </div>
+                            <div class="list list-inset ma-to-10 border-style">
+                                <label class="item item-input pa-l-r-10" style="border:none">
+                                    <input type="text" placeholder="我也说一句">
+                                    <span class="sq-span-style">
+                                        <i class="icon ion-android-more-horizontal sqfasong-style "></i>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
 
 </ion-view>
+    

@@ -1,4 +1,4 @@
-﻿<ion-view>
+﻿<!--<ion-view>
             <ion-header-bar class="bar bar-header item-input-inset bar-dark">
                 <button class="button icon-left ion-ios-location" ng-click="goToLocation()" style="border:none;padding-left:0px;">
                     {{currentCity}}
@@ -11,16 +11,33 @@
             <ion-content class="zt-conter" style="background-color:#ffffff;">
                 <!--内容块-->
                 <!--只显示每个广告第一张图-->
-                <ul  ng-show="dataShow"  class="zt-cont" style="margin-top:55px;">
+                <!--<ul  ng-show="dataShow"  class="zt-cont" style="margin-top:55px;">
                     <li ng-repeat="data in vm.list" ng-click="goToAd(data.id)">
                         <a href="#">
-                            <img ng-src="{{baseUrl}}{{data.adDetailList[0].imageUrl}}"/><!--ng-show="data.adDetailList.length"-->
+                            <img ng-src="{{baseUrl}}{{data.adDetailList[0].imageUrl}}"/>
                         </a>
                     </li>
                 </ul>
                 <div ng-show="msgShow" style="text-align:center;margin-top:40px;"><h3>暂无数据！</h3></div>
                 <!--内容块-->
-            </ion-content>
+           <!-- </ion-content>
     <!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
+    <!--<ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
+</ion-view>-->
+<ion-view>
+    <div class="hear">
+        <div class="bar bar-header">
+            <h1 class="title font-f" style="font-family:黑体">发现</h1>
+        </div>
+    </div>
+    <ion-content>
+        <div  ng-show="dataShow" class="inde-cont" style="margin-top:40px;">
+            <div ng-repeat="data in vm.list" ng-click="goToAd(data.id)"   style="border-bottom:2px solid #111;">
+                <img ng-src="{{baseUrl}}{{data.adDetailList[0].imageUrl}}" width="100%" />
+            </div>
+          
+        </div>
+        <div ng-show="msgShow" style="text-align:center;margin-top:40px;"><h3>暂无数据！</h3></div>
+    </ion-content>
     <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
 </ion-view>
