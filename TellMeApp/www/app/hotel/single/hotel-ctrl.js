@@ -46,7 +46,7 @@
             for (var i = 0; i < len; i++) {
                 var rmi = $scope.rootMenuArray[i];
                 if (i == index) {
-                    rmi = new RootMenuItem(i, $scope.rootMenuArray[i].data, "li-but");
+                    rmi = new RootMenuItem(i, $scope.rootMenuArray[i].data, "ctive");
                 }
                 if (i == rootMenuSelectIndex) {
                     rmi = new RootMenuItem(i, $scope.rootMenuArray[i].data, "");
@@ -66,8 +66,8 @@
             if (childMenuSelectIndex == index) {
                 return;
             }
-            $scope.childMenuArray[childMenuSelectIndex].cName = "swiper-container3-sws";
-            $scope.childMenuArray[index].cName = "swiper-container3-sws swiper-container3-border";
+            $scope.childMenuArray[childMenuSelectIndex].cName = "pa-0";
+            $scope.childMenuArray[index].cName = "pa-0 button-activ";
             childMenuSelectIndex = index;
             setItemData($scope.childMenuArray[index].data.item.id);
         }
@@ -187,7 +187,7 @@
         }
 
         $scope.commentIds = new Array();
-        $scope.comments = new Array();
+        $scope.comments = [""];
         $scope.comment = new Array();
         $scope.showComment = function (id) {
             collectionSelected = true;
@@ -211,7 +211,7 @@
         }
 
         //用户评论项目
-        $scope.saveComment = function (index, targetId) {
+        $scope.saveComment = function (targetId) {
             collectionSelected = true;
             var customerId = 0;
             if (typeof (window.localStorage['userTel']) != 'undefined') {
@@ -222,7 +222,7 @@
                 return;
             }
 
-            var content = $scope.comments[index];
+            var content = $scope.comments[0];
             if (typeof (content) == "undefined") {
                 popUpSer.showAlert("请输入评价内容");
                 return;
@@ -236,7 +236,7 @@
                 function (data) {
                     if (data.isSuccess) {
                         //popUpSer.showAlert("评论成功");
-                        $scope.comments[index] = "";
+                        $scope.comments[0] = "";
                         cvm.isInit = true;
                         cvm.pageNo = 0;
                         cvm.loadMore();
@@ -271,13 +271,13 @@
                                 //初始化选中
                                 if ($scope.rootTagId > 0) {
                                     if ($scope.rootTagId == obj.id) {
-                                        rmi.cName = "li-but";
+                                        rmi.cName = "ctive";
                                         rootMenuSelectIndex = i;
                                         $scope.getChildMenu(obj.id, true);
                                     }
                                 } else {
                                     if (i == 0) {
-                                        rmi.cName = "li-but";
+                                        rmi.cName = "ctive";
                                         rootMenuSelectIndex = 0;
                                         $scope.getChildMenu(obj.id, true);
                                     }
@@ -323,17 +323,17 @@
                                 itemDatas = data.rows;
                                 for (var i = 0; i < data.rows.length; i++) {
                                     var item = data.rows[i];
-                                    var rmi = new RootMenuItem(i, item, "swiper-container3-sws");
+                                    var rmi = new RootMenuItem(i, item, "pa-0");
                                     if ($scope.itemId > 0 && vm.isInit) {
                                         if ($scope.itemId == item.item.id) {
                                             childMenuSelectIndex = i;
-                                            rmi.cName = "swiper-container3-sws swiper-container3-border";
+                                            rmi.cName = "pa-0 button-activ";
                                             setItemData(item.item.id);
                                         }
                                     } else {
                                         if (i == 0) {
                                             childMenuSelectIndex = 0;
-                                            rmi.cName = "swiper-container3-sws swiper-container3-border";
+                                            rmi.cName = "pa-0 button-activ";
                                             setItemData(item.item.id);
                                         }
                                     }
