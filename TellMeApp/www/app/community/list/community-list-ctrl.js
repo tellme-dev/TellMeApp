@@ -39,17 +39,16 @@ angular.module('tellme')
 			    }
 			}
             //跳转到图片浏览
-			$scope.showImages = function (bbsId) {
+			$scope.showImages = function (index,bbsId) {
 			    //判断是否登录
 			    var isLogin = $scope.userIsLogin();
 			    if (isLogin) {
-			        //$state.go('imageBrowse', {'bbsId':bbsId});
 			        bbsSer.loadImageByBbsId(bbsId).then(
                 function (data) {
                     console.log(data.msg);
                     if (data.isSuccess) {
                         $scope.bbsImage = data.rows;
-                        //$scope.activeSlide = index;
+                        $scope.activeSlide = index;
                         $scope.showModal('app/bbs/image/imageBrowse.html');
                     } else {
                         console.log(data.msg);
