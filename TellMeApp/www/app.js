@@ -10,9 +10,17 @@
                 StatusBar.styleDefault();
             }
         });
+        window.addEventListener('native.keyboardshow', function () {
+            document.querySelector('div.tabs').style.display = 'none';
+            angular.element(document.querySelector('ion-content.has-tabs')).css('bottom', 0);
+        });
+        window.addEventListener('native.keyboardhide', function () {
+            var tabs = document.querySelectorAll('div.tabs');
+            angular.element(tabs[0]).css('display', '');
+        });
 
         //主页面显示退出提示框  
-        $ionicPlatform.registerBackButtonAction(function (e) {
+        /*$ionicPlatform.registerBackButtonAction(function (e) {
 
             e.preventDefault();
 
@@ -49,7 +57,7 @@
             }
 
             return false;
-        }, 101);
+        }, 101);*/
 
         var onDeviceReady = function () {
             //判断是否用户登录
@@ -82,6 +90,7 @@
             $stateProvider
             //test
             .state('test', { url: '/test', templateUrl: 'app/test/test.html', controller: 'testControll' })
+                .state('test.child', {cache:false, url: '/child', templateUrl: 'app/test/child/child.html', controller: 'childController' })
             //首次启动页面
             .state('start', { url: '/start', templateUrl: 'app/start/start.html', controller: 'startControll' })
             //menu
