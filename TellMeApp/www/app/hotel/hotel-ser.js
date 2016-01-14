@@ -132,13 +132,36 @@
                 });
             return deferred.promise;
         }
-        //点赞项目
+        //评论项目
         this.saveComment = function (customerId, targetId, text) {
             var url = baseUrl + 'app/hotel/saveHotelComment.do';
             var getDataJSON = JSON.stringify({
                 customerId: customerId,
                 targetId: targetId,
                 text: text
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: getDataJSON }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
+        //回复评论
+        this.saveReply = function (customerId, targetId, text, path) {
+            var url = baseUrl + 'app/hotel/saveHotelReply.do';
+            var getDataJSON = JSON.stringify({
+                customerId: customerId,
+                targetId: targetId,
+                text: text,
+                path: path
             });
             var deferred = $q.defer();
             $http({

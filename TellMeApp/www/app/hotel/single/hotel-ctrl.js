@@ -13,6 +13,11 @@
         $scope.rootMenuWidth = "auto";
         $scope.childMenuWidth = "auto";
 
+        $scope.comment_placeholder = "我也说一句";
+        var comment_type = 1;//1=评论 2=回复
+        var comment_toId = 0;
+        var comment_path = "";
+
         //第一次加载是否执行
         //评论数据会在获取数据前执行N次loadMore
         //设置该字段主要是为了在真正获取数据时才去获取数据，而不让其自动调用N次loadMore
@@ -210,6 +215,20 @@
             }
         }
 
+        $scope.setReplyComment = function (id, name) {
+            //document.getElementById("comment_input").focus();
+            comment_type = 2;
+            comment_toId = id;
+            $scope.comment_placeholder = "回复 " + name + ":";
+            //document.getElementById("comment_input").focus();
+           // $scope.inputFocus = true;
+        }
+        $scope.setReplyReplies = function (parentId, id, name) {
+            comment_type = 3;
+            comment_toId = id;
+            comment_path = parentId + "." + id;
+            $scope.comment_placeholder = "回复 " + name + ":";
+        }
         //用户评论项目
         $scope.saveComment = function (targetId) {
             collectionSelected = true;
@@ -225,13 +244,24 @@
             var content = $scope.comments[0];
             if (typeof (content) == "undefined") {
                 popUpSer.showAlert("请输入评价内容");
+                comment_type = 1;
+                $scope.comment_placeholder = "我也说一句";
                 return;
             }
             if (content.trim() == "") {
                 popUpSer.showAlert("请输入评价内容");
+                comment_type = 1;
+                $scope.comment_placeholder = "我也说一句";
                 return;
             }
-            var promise = hotelSer.saveComment(customerId, targetId, content);
+            var promise;
+            if (comment_type == 1) {
+                promise = hotelSer.saveComment(customerId, targetId, content);
+            } else if (comment_type == 2) {
+                promise = hotelSer.saveReply(customerId, comment_toId, content, targetId + "." + comment_toId);
+            } else {
+                promise = hotelSer.saveReply(customerId, comment_toId, content, targetId + "." + comment_path);
+            }
             promise.then(
                 function (data) {
                     if (data.isSuccess) {
@@ -243,9 +273,13 @@
                     } else {
                         popUpSer.showAlert(data.msg);
                     }
+                    comment_type = 1;
+                    $scope.comment_placeholder = "我也说一句";
                 },
                 function (data) {
                     console.log('其他');
+                    comment_type = 1;
+                    $scope.comment_placeholder = "我也说一句";
                 }
                 );
         }

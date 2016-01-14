@@ -2,7 +2,7 @@
     <ion-view>
         <div class="hear-button">
             <div class="bar bar-header">
-                <button class="button button-clear ion-chevron-left"></button>
+                <button class="button button-clear ion-chevron-left" ng-click="goBack()"></button>
                 <h1 class="title font-f" style="font-family:黑体">酒店详情</h1>
             </div>
             <div class="bar bar-subheader pa-0">
@@ -53,24 +53,31 @@
                     <div class="fx-cont-bottom">
                         <div class="pa-10 pa-to-0">
                             <div class="ma-b-10">
-                                <div class="ma-b-5" ng-repeat="detail in comment">
+                                <!--<div class="ma-b-5" ng-repeat="detail in comment">
                                     <div class="community-pl-cont" style="font-family:黑体;">
                                         <div class="fo-s14 fl" style=""><img ng-src="{{host}}{{detail.customerPhoto}}" err-src="images/head.png"><span>{{detail.customerName}}</span></div>
-                                        <a href="javascript:void(0);" class="fo-s14 fr">回复</a>
+                                        <a href="javascript:void(0);" ng-click="setReplyComment(detail.id, detail.customerName)" class="fo-s14 fr">回复</a>
                                         <div class="clear"></div>
                                     </div>
                                     <div class="community-pl-hf">
                                         <span class="fo-s14  ma-l-3" style="font-family:'黑体';">{{detail.text}}</span>
-                                        <!--<div style="font-family:'黑体';"><span>官方</span> 回复 <span>国际酒店：</span>是啊！</div>
-                                        <div style="font-family:'黑体';"><span>国际酒店</span> 回复 <span>官方：</span>还有什么其他的推荐么？</div>-->
+                                       
+                                    </div>
+                                </div>-->
+                                <div class="ma-b-5">
+                                    <a class="community-pl" href="javascript:void(0)" style="font-family:黑体;text-align:left;margin-bottom:10px;">评论（<i>{{comment.length}}</i>）</a>
+                                    <div class="community-pl-cont ma-b-10">
+                                        <div ng-repeat="detail in comment">
+                                            <div class="fo-s14" style="font-family:黑体;"><span>{{detail.comment.customerName}}:</span><b class="colo-3" style="font-family:'黑体';">{{detail.comment.text}}</b><a href="javascript:void(0);" class="fo-s14" ng-click="setReplyComment(detail.comment.id, detail.comment.customerName)">回复</a></div>
+                                            <div ng-repeat="reply in detail.replies" class="fo-s14" style="font-family:黑体;"><span>{{reply.customerName}}</span> 回复 <span>{{reply.toCustomerName}}:</span><b class="colo-3" style="font-family:'黑体';">{{reply.text}}</b><a href="javascript:void(0);" class="fo-s14" ng-click="setReplyReplies(detail.comment.id, reply.id, reply.customerName)">回复</a></div>
+                                        </div>
                                     </div>
                                 </div>
                                 <ion-infinite-scroll ng-if="!cvm.moredata" on-infinite="cvm.loadMore()" distance="1%"></ion-infinite-scroll>
-                                <a class="community-pl ma-t-5" href="javascript:void(0)" style="font-family:黑体;">评论（<i>{{comment.length}}</i>）</a>
                             </div>
                             <div class="list list-inset ma-to-10 border-style">
                                 <div class="item item-input pa-l-r-10" style="border:none">
-                                    <input type="text" placeholder="我也说一句" ng-model="comments[0]">
+                                    <input id="comment_input" type="text" placeholder="{{comment_placeholder}}" ng-model="comments[0]">
                                     <span class="sq-span-style" ng-click="saveComment(itemData.item.id)">
                                         <i class="icon ion-android-more-horizontal sqfasong-style "></i>
                                     </span>
