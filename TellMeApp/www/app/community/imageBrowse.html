@@ -1,7 +1,27 @@
-﻿<ion-view>
-    <ion-slide-box class="slide-box">
-        <ion-slide ng-repeat="image in images" style="background-color:#444444" ng-click="closeModal()">
-            <img class="slide-box__image" ng-src="{{baseUrl}}{{image.attachUrl}}" />
+﻿<style>
+  .tellme-slide-box{
+  height: 100%;
+  text-align: center;
+}
+
+.tellme-slider-slide:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-left: -0.3em;
+}
+
+.tellme-slide-box-image{
+  vertical-align: middle;
+  max-height: calc(100% - 88px);
+  max-width: 100%;
+}
+</style>
+<ion-view>
+    <ion-slide-box class="tellme-slide-box">
+        <ion-slide class="tellme-slider-slide" ng-repeat="image in images" style="background-color:#444444" ng-click="closeModal()">
+            <img class="tellme-slide-box-image" ng-src="{{baseUrl}}{{image.attachUrl}}" />
         </ion-slide>
     </ion-slide-box>
 </ion-view>
