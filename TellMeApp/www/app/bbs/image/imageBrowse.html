@@ -1,48 +1,7 @@
-﻿<style>
-    /*.tellme-imageContainner {
-        background: #ffa url(images/piex.gif) repeat center;
-        height:100%;
-        float: left;
-        border: solid 1px #666;
-        vertical-align: middle;
-					width: 100%;元素的宽度
-					height:100%;元素的高度
-					position: absolute;
-					top: 100px;值的大小等于元素高度的一半
-    }
-    .tellme-img {
-        display:table-cell;让元素以表格的单元素格形式渲染
-					vertical-align: middle;使用元素的垂直对齐*/
-    .fullscreen-image {
-    max-width: 100%;
-    max-height: 100%;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    overflow: auto;
-    position: fixed;
-    right: 0;
-    top: 0;
-}
-    /*.i-slide{
-        transform:inherit !important;
-    }*/
-</style>
-<!--<ion-view>
-    <ion-content style="background-color:#444444;">
-        <ion-slide-box on-slide-changed="slideHasChanged($index)" style="background-color:#444444;height:100%;" class="slidebox" auto-play="false" slide-interval="4000" delegate-handle="slideimgs" does-continue="false">
-            <ion-slide ng-repeat="image in bbsImage" ng-click="goBack()" style="height:100%;">
-                <div style="width:100%;height:100%;top:{{image}}">
-                    <img  ng-src="{{baseUrl}}{{image.attachUrl}}" alt="" style="width:100%; height:auto" err-src ="images/failed.png"/>
-                </div>
-            </ion-slide>
-        </ion-slide-box>
-    </ion-content>
-</ion-view>-->
-<div class="modal image-modal transparent" ng-click="closeModal()">
-    <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="true" active-slide="activeSlide">
-        <ion-slide ng-repeat="image in bbsImage" class="i-slide">
-                <img ng-src="{{baseUrl}}{{image.attachUrl}}" class="fullscreen-image" err-src ="images/failed.png"/>
+﻿<ion-view>
+    <ion-slide-box class="slide-box">
+        <ion-slide ng-repeat="image in images" style="background-color:#444444" ng-click="closeModal()">
+            <img class="slide-box__image" ng-src="{{baseUrl}}{{image.attachUrl}}" />
         </ion-slide>
     </ion-slide-box>
-</div>
+</ion-view>

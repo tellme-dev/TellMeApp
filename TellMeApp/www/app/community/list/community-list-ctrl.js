@@ -47,7 +47,7 @@ angular.module('tellme')
                 function (data) {
                     console.log(data.msg);
                     if (data.isSuccess) {
-                        $scope.bbsImage = data.rows;
+                        $scope.images = data.rows;
                         $scope.activeSlide = index;
                         $scope.showModal('app/bbs/image/imageBrowse.html');
                     } else {
