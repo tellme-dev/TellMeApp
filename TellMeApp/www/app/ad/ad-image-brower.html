@@ -1,0 +1,35 @@
+﻿<style>
+    .tellme-slide-box {
+        height: 100%;
+        text-align: center;
+    }
+
+    .tellme-slider-slide:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-left: -0.3em;
+    }
+
+    .tellme-slide-box-image {
+        vertical-align: middle;
+        max-height: calc(100% - 88px);
+        max-width: 100%;
+    }
+</style>
+<ion-view>
+    <ion-slide-box class="tellme-slide-box">
+        <ion-slide class="tellme-slider-slide" ng-repeat="item in adDetail" style="background-color:#444444" ng-click="closeModal()">
+            <img class="tellme-slide-box-image" ng-click="" ng-src="{{baseUrl}}{{item.imageUrl}}"/>
+            <div class="po-ab fx-opacity-cont">
+                <div class="bu-lf">
+                    <span class="fo-s14 col-ff" style="font-family:'黑体';">{{adInfo.name}}</span>
+                    <p style="font-family:'黑体';font-size:12px;color:#fff; margin-bottom:0px;">
+                        {{item.text}}
+                    </p>
+                </div>
+            </div>
+        </ion-slide>
+    </ion-slide-box>
+</ion-view>
