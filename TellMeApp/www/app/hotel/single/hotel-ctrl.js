@@ -226,7 +226,7 @@
         $scope.setReplyReplies = function (parentId, id, name) {
             comment_type = 3;
             comment_toId = id;
-            comment_path = parentId + "." + id;
+            comment_path = parentId+"";
             $scope.comment_placeholder = "回复 " + name + ":";
         }
         //用户评论项目

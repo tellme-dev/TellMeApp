@@ -39,27 +39,27 @@
                     </div>
                 </div>
                 <div class="text-bor" ng-if="detail.bbsAttachUrls">
-                    <div ng-click="toBbsDetail(detail.id)" class="item item-text-wrap pa-0" style="font-family:黑体;">
-                        <div class="sq-item-fl pa-l-r-10 pa-bu-10 colo-3 fo-s14">
+                    <div class="item item-text-wrap pa-0" style="font-family:黑体;">
+                        <div ng-click="toBbsDetail(detail.id)" class="sq-item-fl pa-l-r-10 pa-bu-10 colo-3 fo-s14">
                             <div ng-if="detail.title">#{{detail.title}}#</div>{{detail.text}}
                         </div>
                         <!-- 一张图片 -->
-                        <div class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length == 1">
+                        <div ng-click="showImages(1,detail.id)" class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length == 1">
                             <div class="sq-cont-img-div" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" image-lazy-background-image="true" image-lazy-loader="lines" style="background-size:cover; background-position:center" err-src="images/failed.png"></div>
                         </div>
                         <!-- 两张图片 -->
-                        <div class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length == 2">
+                        <div ng-click="showImages(1,detail.id)" class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length == 2">
                             <div class="sq-cont-img-div ma-r-5" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" image-lazy-background-image="true" image-lazy-loader="lines" style="background-size:cover; background-position:center" err-src="images/failed.png"></div>
                             <div class="sq-cont-img-div" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}}" image-lazy-background-image="true" image-lazy-loader="lines" style="background-size:cover; background-position:center" err-src="images/failed.png"></div>
                         </div>
                         <!-- 三张或三张以上图片 第一排 -->
-                        <div class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length >= 3">
+                        <div ng-click="showImages(1,detail.id)" class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length >= 3">
                             <div class="sq-cont-img-div ma-r-5" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" image-lazy-background-image="true"  image-lazy-loader="lines" style="background-size:cover; background-position:center" err-src="images/failed.png"></div>
                             <div class="sq-cont-img-div ma-r-5" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}}" image-lazy-background-image="true" image-lazy-loader="lines" style="background-size:cover; background-position:center" err-src="images/failed.png"></div>
                             <div class="sq-cont-img-div" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[2].attachUrl}}" image-lazy-background-image="true" image-lazy-loader="lines" style="background-size:cover; background-position:center" err-src="images/failed.png"></div>
                         </div>
                         <!-- 四张以上图片 第二排 -->
-                        <div class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length > 3">
+                        <div ng-click="showImages(1,detail.id)" class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length > 3">
                             <div class="sq-cont-img-div ma-r-5" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" image-lazy-background-image="true" image-lazy-loader="lines" style="background-size:cover; background-position:center" err-src="images/failed.png"></div>
                             <div class="sq-cont-img-div ma-r-5" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}}" image-lazy-background-image="true" image-lazy-loader="lines" style="background-size:cover; background-position:center" err-src="images/failed.png"></div>
                             <div class="sq-cont-img-div" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[2].attachUrl}}" image-lazy-background-image="true" image-lazy-loader="lines" style="background-size:cover; background-position:center" err-src="images/failed.png"></div>
