@@ -5,10 +5,10 @@
             <h1 class="title font-f" style="font-family:黑体">发现</h1>
         </div>
     </div>
-    <ion-content>
+    <ion-content lazy-scroll>
         <div  ng-show="dataShow" class="inde-cont" style="margin-top:40px;">
             <div ng-repeat="data in vm.list" ng-click="goToAd(data.id)"   style="border-bottom:2px solid #111;">
-                <img ng-src="{{baseUrl}}{{data.adDetailList[0].imageUrl}}" width="100%" />
+                <img image-lazy-src="{{baseUrl}}{{data.adDetailList[0].imageUrl}}" image-lazy-loader="lines" style="width:100%;" />
             </div>
           
         </div>
