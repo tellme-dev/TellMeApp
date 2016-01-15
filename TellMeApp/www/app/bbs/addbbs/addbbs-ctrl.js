@@ -82,7 +82,7 @@
                 cameraSvr.getPhoto(30, cSuccess, cFail);
             }
             function cSuccess(imgURI) {
-                LoadingSvr.show();
+                LoadingSvr.load();
                 var now = new Date();
                 //var year = now.getFullYear();
                 //var month = (now.getMonth() + 1).toString();

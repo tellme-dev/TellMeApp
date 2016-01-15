@@ -295,3 +295,10 @@ a {
        position:absolute;top:0px; right:10px; margin-top:0px; color:#2d5c9a
     }
  /*评论*/
+     /*个人信息-常住酒店*/
+.delete-style {
+     top:10px; right:10px; width:25px; height:25px;border:none;background:url(../images/delete1.png)no-repeat;background-size:100%;
+}
+    .delete-style:active {
+        top:10px; right:10px; width:25px; height:25px;border:none;background:url(../images/delete2.png)no-repeat;background-size:100%;
+}

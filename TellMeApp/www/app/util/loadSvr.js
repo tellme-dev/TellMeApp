@@ -8,6 +8,14 @@
             $ionicLoading.hide();
         }, 1000);
     }
+    this.load = function () {
+        $ionicLoading.show({
+            template: '图片正在上传'
+        });
+        $timeout(function () {
+            $ionicLoading.hide();
+        }, 20000);
+    }
     this.hide = function () {
         $ionicLoading.hide();
     }
