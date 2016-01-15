@@ -1,4 +1,4 @@
-﻿angular.module('tellme', ['ionic', 'FtActionSheet', 'tabSlideBox', 'ksSwiper'])
+﻿angular.module('tellme', ['ionic', 'FtActionSheet', 'tabSlideBox', 'ksSwiper', 'ionicLazyLoad'])
     .run(['$ionicPlatform', '$rootScope', '$location', '$ionicPopup', '$ionicHistory', 'commonSer', function ($ionicPlatform, $rootScope, $location, $ionicPopup, $ionicHistory, commonSer) {
         $ionicPlatform.ready(function () {
             if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -10,9 +10,17 @@
                 StatusBar.styleDefault();
             }
         });
+        window.addEventListener('native.keyboardshow', function () {
+            document.querySelector('div.tabs').style.display = 'none';
+            angular.element(document.querySelector('ion-content.has-tabs')).css('bottom', 0);
+        });
+        window.addEventListener('native.keyboardhide', function () {
+            var tabs = document.querySelectorAll('div.tabs');
+            angular.element(tabs[0]).css('display', '');
+        });
 
         //主页面显示退出提示框  
-        $ionicPlatform.registerBackButtonAction(function (e) {
+        /*$ionicPlatform.registerBackButtonAction(function (e) {
 
             e.preventDefault();
 
@@ -49,7 +57,7 @@
             }
 
             return false;
-        }, 101);
+        }, 101);*/
 
         var onDeviceReady = function () {
             //判断是否用户登录
@@ -82,6 +90,7 @@
             $stateProvider
             //test
             .state('test', { url: '/test', templateUrl: 'app/test/test.html', controller: 'testControll' })
+                .state('test.child', {cache:false, url: '/child', templateUrl: 'app/test/child/child.html', controller: 'childController' })
             //首次启动页面
             .state('start', { url: '/start', templateUrl: 'app/start/start.html', controller: 'startControll' })
             //menu
@@ -113,7 +122,7 @@
             .state('feedback', { url: '/feedback', templateUrl: 'app/customer/feedback/feedback.html', controller: 'feedbackControll' })
             .state('about', { url: '/about', templateUrl: 'app/customer/about/about.html', controller: 'aboutControll' })
             .state('data', { cache: false, url: '/data', templateUrl: 'app/customer/data/data.html', controller: 'dataControll' })
-            .state('editMobile', { url: '/editMobile', templateUrl: 'app/customer/data/edit-mobile.html', controller: 'registerControll' })
+            .state('editMobile', { url: '/editMobile', templateUrl: 'app/customer/data/edit-mobile.html', controller: 'editMobileControll' })
             .state('discuss', { url: '/discuss', templateUrl: 'app/customer/center/discuss/discuss.html', controller: 'discussControll' })
             .state('agree', { url: '/agree', templateUrl: 'app/customer/center/agree/agree.html', controller: 'agreeControll' })
             .state('answerBbs', { url: '/answerBbs?bbsId', templateUrl: 'app/customer/center/answerBbs/answerBbs.html', controller: 'answerBbsControll' })
@@ -126,7 +135,7 @@
             .state('bbsList', { url: '/bbsList', templateUrl: 'app/bbs/list/bbs-list.html', controller: 'bbsListControll' })
             .state('bbs', { cache: false, url: '/bbs?bbsId', templateUrl: 'app/bbs/single/bbs.html', controller: 'bbsControll' })
             .state('addBbs', { cache: false, url: '/addBbs', templateUrl: 'app/bbs/addbbs/addbbs.html', controller: 'addBbsControll' })
-            .state('imageBrowse', { url: '/imageBrowse?bbsId', templateUrl: 'app/bbs/image/imageBrowse.html', controller: 'imageBrowseControll' })
+            //.state('imageBrowse', { url: '/imageBrowse?bbsId', templateUrl: 'app/bbs/image/imageBrowse.html', controller: 'imageBrowseControll' })
 
             //酒店
              .state('hotelList', { url: '/hotelList?itemTagRootId&itemTagChildId&itemId', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })

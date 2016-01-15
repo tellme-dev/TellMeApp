@@ -32,22 +32,22 @@
                             # {{bbs.title}} # {{bbs.text}}
                         </div>
                         <!-- 一张图片 -->
-                        <div class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length == 1">
+                        <div ng-click="showImages(1,bbs.id)" class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length == 1">
                             <div class="sq-cont-img-div" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[0].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                         </div>
                         <!-- 两张图片 -->
-                        <div class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length == 2">
+                        <div ng-click="showImages(1,bbs.id)" class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length == 2">
                             <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[0].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                             <div class="sq-cont-img-div" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[1].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                         </div>
                         <!-- 三张或三张以上图片 第一排 -->
-                        <div class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length >= 3">
+                        <div ng-click="showImages(1,bbs.id)" class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length >= 3">
                             <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[0].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                             <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[1].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                             <div class="sq-cont-img-div" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[2].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                         </div>
                         <!-- 四张以上图片 第二排 -->
-                        <div class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length > 3">
+                        <div ng-click="showImages(1,bbs.id)" class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length > 3">
                             <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[3].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                             <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[4].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                             <div class="sq-cont-img-div" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[5].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
@@ -78,23 +78,19 @@
                     <!-- 评论、回复 -->
                     <div class="pa-10 pa-to-0">
                         <div class="ma-b-10">
+                            <a class="community-pl ma-t-5" href="javascript:void(0)" style="font-family:黑体;">评论（<i>{{bbs.answerCount}}</i>）</a>
                             <div class="ma-b-5" ng-repeat="detail in vm.bbsDetail">
-                                <div class="community-pl-cont po-re" style="font-family:黑体;">
-                                    <div class="fo-s14 fl" style="">
-                                       <img ng-src="{{baseUrl}}{{detail.customer.photoUrl}}" err-src="images/head.png">
-                                        <span>{{detail.customer.name}}</span>
+                                <div class="community-pl-cont ma-b-10">
+                                    <div class="fo-s14" style="font-family:黑体;">
+                                        <span>{{detail.customer.name}}:</span><b class="colo-3" style="font-family:'黑体';">{{detail.text}}</b>
+                                        <a href="javascript:void(0);" class="fo-s14 fr" ng-click="toAnswer(detail.id,detail.customer.name)">回复</a>
                                     </div>
-                                    <a href="javascript:void(0);" class="fo-s14 fr" ng-click="toAnswer(detail.id,detail.customer.name)">回复</a>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="community-pl-hf">
-                                    <span class="fo-s14  ma-l-3" style="font-family:'黑体';">{{detail.text}}</span>
-                                    <div style="font-family:'黑体';" ng-repeat="item in detail.children">
-                                       <span>{{item.customer.name}}</span> 回复 <span>{{detail.customer.name}}：</span>{{item.text}}
+                                    <div class="fo-s14" style="font-family:黑体;" ng-repeat="item in detail.children">
+                                        <span>{{item.customer.name}}</span> 回复 <span>{{detail.customer.name}}:</span>
+                                        <b class="colo-3" style="font-family:'黑体';">{{item.text}}</b>
                                     </div>
                                 </div>
                             </div>
-                            <a class="community-pl ma-t-5" href="javascript:void(0)" style="font-family:黑体;">评论（<i>{{bbs.answerCount}}</i>）</a>
                         </div>
                     </div>
 
@@ -108,7 +104,7 @@
     <ion-footer-bar align-title="left">
         <div class="list list-inset border-style" style="width:100%;">
             <div class="item item-input pa-l-r-10">
-                <input id="answerbbs" type="text" ng-model="globalVar.answerText" ng-focus placeholder="{{globalVar.answerPlaceHolder}}">
+                <input id="answerbbs" type="text" ng-model="globalVar.answerText" placeholder="{{globalVar.answerPlaceHolder}}" auto-focus-when="autoFocus">
                 <span class="sq-span-style" ng-click="answerbbs(bbs.id,bbs.title)">
                     <i class="icon ion-android-more-horizontal sqfasong-style"></i>
                 </span>

@@ -1,6 +1,7 @@
 ﻿angular.module('tellme')
- .controller('bbsControll', ['$scope', '$ionicHistory', '$state', '$stateParams', '$ionicHistory', '$window', 'bbsSer', 'communitySer', 'commonSer', 'tellmeActionSheet', 'appConfig', 'LoadingSvr', 'popUpSer',
-        function ($scope, $ionicHistory, $state, $stateParams, $ionicHistory, $window, bbsSer, communitySer, commonSer, tellmeActionSheet, appConfig, LoadingSvr, popUpSer) {
+ .controller('bbsControll', ['$scope', '$ionicHistory', '$state', '$stateParams', '$ionicHistory', '$window', '$ionicModal', 'bbsSer', 'communitySer', 'commonSer', 'tellmeActionSheet', 'appConfig', 'LoadingSvr', 'popUpSer',
+        function ($scope, $ionicHistory, $state, $stateParams, $ionicHistory, $window,$ionicModal, bbsSer, communitySer, commonSer, tellmeActionSheet, appConfig, LoadingSvr, popUpSer) {
+            $scope.autoFocus = false;
             $scope.baseUrl = appConfig.server.getUrl();
             var bbsId = $stateParams.bbsId;
             // $state.go('login', {pageName: 'communityList'});
@@ -26,17 +27,44 @@
                 }
             }
             //跳转到图片浏览
-            $scope.goToImageBrowse = function (bbsId) {
+            $scope.showImages = function (index, bbsId) {
                 //判断是否登录
                 var isLogin = $scope.userIsLogin();
                 if (isLogin) {
-                    $state.go('imageBrowse', { 'bbsId': bbsId });
+                    bbsSer.loadImageByBbsId(bbsId).then(
+                function (data) {
+                    console.log(data.msg);
+                    if (data.isSuccess) {
+                        $scope.images = data.rows;
+                        $scope.activeSlide = index;
+                        $scope.showModal('app/community/imageBrowse.html');
+                    } else {
+                        console.log(data.msg);
+                    }
+                });
                 } else {
                     $state.go('login', {
                         pageName: 'menu.communityList'
                     });
                 }
             }
+            /********* Modal start***************/
+            $scope.showModal = function (templateUrl) {
+                $ionicModal.fromTemplateUrl(templateUrl, {
+                    scope: $scope,
+                    animation: 'slide-in-up'
+                }).then(function (modal) {
+                    $scope.modal = modal;
+                    $scope.modal.show();
+                });
+            };
+            $scope.closeModal = function () {
+                $scope.modal.hide();
+                $scope.modal.remove()
+            };
+            /********* Modal  end ***************/
+
+
             $scope.globalVar = {};
             $scope.globalVar.answerText = "";//回帖内容
             $scope.globalVar.answerPlaceHolder = '我也说一句';
@@ -71,10 +99,13 @@
                 //在评论框中显示“回复 XXX：”
                 //$scope.globalVar.answerText = "回复 " + userName + "：";
                 $scope.globalVar.answerPlaceHolder = "回复 " + userName + "：";
+                $scope.autoFocus = true;
             }
 
             //回主贴帖
             $scope.answerbbs = function (id, title) {
+                $scope.autoFocus = false;
+
                 $scope.showAnswer = false;
                 var isLogin = $scope.userIsLogin();
                 var answerText = $scope.globalVar.answerText;

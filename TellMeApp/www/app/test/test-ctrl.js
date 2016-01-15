@@ -12,6 +12,12 @@
                 console.log('slide end');
             });
         };
+        $scope.tabs = {
+        };
+        $scope.tabs['i'] = {name:'hzf'};
+        $scope.tabs['you'] = {name:'you'};
+        $scope.tabs['he'] = {name:'he'};
+        $scope.tabs['she'] = {name:'she'};
         $scope.goBack = function () {
             $state.go('menu');
         }

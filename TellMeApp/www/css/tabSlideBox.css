@@ -1,14 +1,14 @@
-.tabbed-slidebox .slider {
+.tellme .slider {
     height: 100%;
 }
-.tabbed-slidebox.btm .slider {
+.tellme.btm .slider {
     margin-bottom: -50px;
 }
-.tabbed-slidebox .slider-slides {
+.tellme .slider-slides {
     width: 100%;
 }
 
-.tabbed-slidebox .slider-slide {
+.tellme .slider-slide {
     padding-top: 0px;
     color: #000;
     background-color:#fff;
@@ -16,21 +16,33 @@
     font-weight: 300;
 }
 
-.tabbed-slidebox .tsb-icons {
+.tellme .tsb-icons {
+    text-align: center;
+    margin: 10px 0;
+    position: relative;
+	background-color:#fff;
+}
+.tellme-scroll-tsb-icons {
     text-align: center;
     margin: 10px 0;
     position: relative;
 	background-color:#fff;
 }
 
-.tabbed-slidebox .tsb-ic-wrp {
+.tellme .tsb-ic-wrp {
+    display: flex;
+    position: relative;
+	-webkit-transition: -webkit-transform 0.3s; /* For Safari 3.1 to 6.0 */
+	-webkit-transform:translate3d(0,0,0);
+}
+.tellme-scroll-tsb-ic-wrp {
     display: flex;
     position: relative;
 	-webkit-transition: -webkit-transform 0.3s; /* For Safari 3.1 to 6.0 */
 	-webkit-transform:translate3d(0,0,0);
 }
 
-.tabbed-slidebox .tsb-icons a {
+.tellme .tsb-icons a {
     display: inline-block;
     width: 54px;
     font-size: 2.5em;
@@ -38,13 +50,13 @@
 	-webkit-transform:translate3d(0,8px,0);
 }
 
-.tabbed-slidebox .tabbed-slidebox {
+.tellme .tabbed-slidebox {
     position: relative;
     height: 100%;
     overflow: hidden;
 }
 
-.tabbed-slidebox .tsb-icons:after {
+.tellme .tsb-icons:after {
     width: 0;
     height: 0;
     border-style: solid;
@@ -61,6 +73,7 @@
   	white-space: nowrap;
 	margin:0 auto;
 }
+
 .tsb-hscroll.scroll-view .scroll-bar{
 	visibility:hidden;
 }
@@ -68,7 +81,7 @@
 	-webkit-transition: -webkit-transform 0.3s; /* For Safari 3.1 to 6.0 */
 }
 
-.tabbed-slidebox .tsb-icons .scroll a{
+.tellme .tsb-icons .scroll a{
 	width:45px;
     height:73px;
 	font-size: 1em;
@@ -82,7 +95,27 @@
     background-position:top center;
     
 }
-.tabbed-slidebox .tsb-icons .scroll a.active {
+.tellme-scroll-tsb-icons a{
+    	width:45px;
+    height:73px;
+	font-size: 1em;
+	line-height:8em;
+	text-decoration: none;
+    text-align:center;
+	margin: 0 10px;
+	border-bottom: 3px solid transparent;
+    background:url(../images/ke_1.png) no-repeat center 100%;
+    background-size:auto 60%;
+    background-position:top center;
+}
+    .tellme-scroll-tsb-icons a.active {
+        	font-size: 1em;
+    background:url(../images/ke_05.png) no-repeat center 100%;
+    background-size:auto 60%;
+    background-position:top center;
+    color:#6dcda5;
+    }
+.tellme .tsb-icons .scroll a.active {
 	font-size: 1em;
     background:url(../images/ke_05.png) no-repeat center 100%;
     background-size:auto 60%;
@@ -90,6 +123,6 @@
     color:#6dcda5;
 }
 
-.tabbed-slidebox .tsb-icons a.active {
+.tellme .tsb-icons a.active {
 }
 

@@ -8,21 +8,22 @@
             <button class="ke-col-rde fl" ng-repeat="roomcfg in roomcfgs"><img ng-init="initRoomcfgImage($index,roomcfg)" ng-src="images/{{roomcfg.imageurl}}" ng-click="changeRoomcfg($index,roomcfg)" /><p>{{roomcfg.name}}</p></button>
             <div class="clear"></div>
         </div>
-        <tab-slide-box tab="0">
+
+        <div class="tellme">
             <div class="tsb-icons">
                 <div class="tsb-ic-wrp" style="height:80px;">
                     <ion-scroll direction="x" class="tsb-hscroll">
-                        <a href="javascript:;" class="{{tab.icon}} active" on-finish-render="test()" ng-show="room.tabs['LT']"><span>{{room.tabs['LT'].tabName}}</span></a>
-                        <a href="javascript:;" class="{{tab.icon}}" on-finish-render="test()" ng-show="room.tabs['AC']"><span>{{room.tabs['AC'].tabName}}</span></a>
-                        <a href="javascript:;" class="{{tab.icon}}" on-finish-render="test()" ng-show="room.tabs['CT']"><span>{{room.tabs['CT'].tabName}}</span></a>
-                        <a href="javascript:;" class="{{tab.icon}}" on-finish-render="test()" ng-show="room.tabs['SV']"><span>{{room.tabs['SV'].tabName}}</span></a>
+                        <a ng-class="t.isActive" ng-repeat="t in roomTabs" ng-click="changeAnotherSlide(t,roomTabs)">
+                            <span>{{t.name}}</span>
+                        </a>
                     </ion-scroll>
                 </div>
             </div>
-            <ion-slide-box on-slide-changed="slideHasChanged($index)" class="ke-ion-slide-box" show-pager="false">
-
-                <ion-slide ng-show="room.tabs['LT']">
-                    <div class="lamp-cont">
+        </div>
+        <div ng-repeat="room in roomcfgs" ng-if="room.index == roomIndex" >
+            <ion-slide-box on-slide-changed="slideHasChanged($index, room)" ng-if="room"  show-pager="false">
+                <ion-slide ng-repeat="t in room.tabs" repeat-done="repeatDone()">
+                    <div class="lamp-cont" ng-show="t.dtype=='LT'">
                         <div class="lamp_cont-img"></div>
 
                         <div ng-if="room" style="width:100%;">
@@ -43,33 +44,29 @@
                         </div>
                         <input type="button" value="ON" class="button-kg" style="height:60px;border-top:1px solid #ddd;" ng-click="powerOnOrOffAllLT()" />
                     </div>
-                </ion-slide>
-
-                <ion-slide ng-show="room.tabs['AC']">
-                    <div ng-repeat="cfgItem in room.rcuCfgItems" ng-show="cfgItem.dtype=='AC'">
-                        <div class="conditioner-top-cont">
-                            <span style="font-family:'黑体';">{{cfgItem.templature}}<a>°</a></span>
-                            <strong>{{cfgItem.name}}</strong>
-                        </div>
-                        <div ng-repeat="oper in cfgItem.opers">
-                            <div class="row padding-0" ng-show="oper.mode==2&&oper.tag =='T'">
-                                <button class="col conditioner-button-on" ng-click="changeACTemplature(cfgItem,oper,-1)"></button>
-                                <button class="col conditioner-button-to" ng-click="changeACTemplature(cfgItem,oper,1)"></button>
+                    <div ng-show="t.dtype=='AC'">
+                        <div ng-repeat="cfgItem in room.rcuCfgItems" ng-show="cfgItem.dtype=='AC'">
+                            <div class="conditioner-top-cont">
+                                <span style="font-family:'黑体';">{{cfgItem.templature}}<a>°</a></span>
+                                <strong>{{cfgItem.name}}</strong>
                             </div>
-                            <div class="range range-balanced" style="border-bottom:1px solid #ddd; height:65px;" ng-show="oper.mode==1&&oper.tag =='F'">
-                                <i class="icon fs-le"><img src="images/kontiao5.png" style="width:70%" /></i>
-                                <input type="range" name="volume" min="0" max="10" step="5" value="{{oper.windValue}}" class="input-ct">
-                                <i class="icon fs-ri"><img src="images/kontiao5.png" style="width:90%" /></i>
+                            <div ng-repeat="oper in cfgItem.opers">
+                                <div class="row padding-0" ng-show="oper.mode==2&&oper.tag =='T'">
+                                    <button class="col conditioner-button-on" ng-click="changeACTemplature(cfgItem,oper,-1)"></button>
+                                    <button class="col conditioner-button-to" ng-click="changeACTemplature(cfgItem,oper,1)"></button>
+                                </div>
+                                <div class="range range-balanced" style="border-bottom:1px solid #ddd; height:65px;" ng-show="oper.mode==1&&oper.tag =='F'">
+                                    <i class="icon fs-le"><img src="images/kontiao5.png" style="width:70%" /></i>
+                                    <input type="range" name="volume" min="0" max="10" step="5" value="{{oper.windValue}}" class="input-ct">
+                                    <i class="icon fs-ri"><img src="images/kontiao5.png" style="width:90%" /></i>
+                                </div>
+                                <input type="button" value="ON" class="button-if" ng-click="powerOnOrOffAC(cfgItem,oper,'S')" ng-show="oper.mode==1&&oper.tag =='S'" />
                             </div>
-                            <input type="button" value="ON" class="button-if" ng-click="powerOnOrOffAC(cfgItem,oper,'S')" ng-show="oper.mode==1&&oper.tag =='S'" />
-                        </div>
 
+                        </div>
                     </div>
-
-                </ion-slide>
-
-                <ion-slide ng-show="room.tabs['CT']">
-                    <div class="style-cont">
+                    
+                    <div class="style-cont" ng-show="t.dtype=='CT'">
                         <div class="cou-images"></div>
                         <div class="row padding-0">
                             <button class="col cou-button-on">窗帘</button>
@@ -105,10 +102,8 @@
                         </div>
                         <input type="button" value="ON" class="button-if2" />
                     </div>
-                </ion-slide>
 
-                <ion-slide ng-show="room.tabs['SV']">
-                    <div class="style-cont" ng-if="room">
+                    <div class="style-cont" ng-show="t.dtype=='SV'">
                         <div class="service-img"></div>
                         <div class="button-bar">
                             <button class="col service-button" ng-click="changeSVMode()">勿打扰</button>
@@ -118,6 +113,6 @@
                     </div>
                 </ion-slide>
             </ion-slide-box>
-        </tab-slide-box>
+        </div>
     </ion-content>
 </ion-view>

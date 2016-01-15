@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-.controller('adListControll', ['$scope','$state', '$window', '$stateParams', '$ionicHistory', 'appConfig','popUpSer','LoadingSvr','adSer','commonSer','tellmeActionSheet',
-       function ($scope, $state, $window, $stateParams, $ionicHistory, appConfig, popUpSer,LoadingSvr, adSer, commonSer, tellmeActionSheet) {
+.controller('adListControll', ['$scope','$state', '$window', '$stateParams', '$ionicHistory','$ionicModal', 'appConfig','popUpSer','LoadingSvr','adSer','commonSer','tellmeActionSheet',
+       function ($scope, $state, $window, $stateParams, $ionicHistory,$ionicModal, appConfig, popUpSer,LoadingSvr, adSer, commonSer, tellmeActionSheet) {
            $scope.baseUrl = appConfig.server.getUrl();
            var adId = $stateParams.adId;
            
@@ -219,6 +219,26 @@
                    return true;
                }
            }
-         
 
+           //跳转到图片浏览
+           $scope.showImages = function (index) {
+                $scope.activeSlide = index;
+                $scope.showModal('app/ad/ad-image-brower.html');
+           }
+           /********* Modal start***************/
+           $scope.showModal = function (templateUrl) {
+               $ionicModal.fromTemplateUrl(templateUrl, {
+                   scope: $scope,
+                   animation: 'slide-in-up'
+               }).then(function (modal) {
+                   $scope.modal = modal;
+                   $scope.modal.show();
+               });
+           };
+           $scope.closeModal = function () {
+               $scope.modal.hide();
+               $scope.modal.remove()
+           };
+           /********* Modal  end ***************/
+         
 }]);
