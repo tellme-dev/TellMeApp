@@ -32,22 +32,22 @@
                             # {{bbs.title}} # {{bbs.text}}
                         </div>
                         <!-- 一张图片 -->
-                        <div class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length == 1">
+                        <div ng-click="showImages(1,bbs.id)" class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length == 1">
                             <div class="sq-cont-img-div" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[0].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                         </div>
                         <!-- 两张图片 -->
-                        <div class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length == 2">
+                        <div ng-click="showImages(1,bbs.id)" class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length == 2">
                             <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[0].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                             <div class="sq-cont-img-div" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[1].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                         </div>
                         <!-- 三张或三张以上图片 第一排 -->
-                        <div class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length >= 3">
+                        <div ng-click="showImages(1,bbs.id)" class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length >= 3">
                             <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[0].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                             <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[1].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                             <div class="sq-cont-img-div" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[2].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                         </div>
                         <!-- 四张以上图片 第二排 -->
-                        <div class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length > 3">
+                        <div ng-click="showImages(1,bbs.id)" class="sq-cont-img1 ma-b-10" ng-if="bbs.bbsAttachUrls.length > 3">
                             <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[3].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                             <div class="sq-cont-img-div ma-r-5" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[4].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>
                             <div class="sq-cont-img-div" style="background:url({{baseUrl}}{{bbs.bbsAttachUrls[5].attachUrl}})no-repeat;background-size:cover; background-position:center" err-src="images/failed.png"></div>

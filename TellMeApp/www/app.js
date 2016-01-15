@@ -1,4 +1,4 @@
-﻿angular.module('tellme', ['ionic', 'FtActionSheet', 'tabSlideBox', 'ksSwiper'])
+﻿angular.module('tellme', ['ionic', 'FtActionSheet', 'tabSlideBox', 'ksSwiper', 'ionicLazyLoad'])
     .run(['$ionicPlatform', '$rootScope', '$location', '$ionicPopup', '$ionicHistory', 'commonSer', function ($ionicPlatform, $rootScope, $location, $ionicPopup, $ionicHistory, commonSer) {
         $ionicPlatform.ready(function () {
             if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -160,7 +160,7 @@
             var appLaunchCount = window.localStorage.getItem('launchCount');
             //需要进行页面测试，则修改下面的路由即可
             if (appLaunchCount) {
-                $urlRouterProvider.otherwise('/menu/communityList');
+                $urlRouterProvider.otherwise('/menu');
             } else {
                 $urlRouterProvider.otherwise('/start');
             }

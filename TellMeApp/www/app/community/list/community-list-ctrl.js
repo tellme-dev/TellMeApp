@@ -26,18 +26,7 @@ angular.module('tellme')
 			        });
 			    }
 			}
-			$scope.goToImageBrowse = function (bbsId) {
-			    //判断是否登录
-			    var isLogin = $scope.userIsLogin();
-			    if (isLogin) {
-
-			        $state.go('imageBrowse', { 'bbsId': bbsId });
-			    } else {
-			        $state.go('login', {
-			            pageName: 'menu.communityList'
-			        });
-			    }
-			}
+            
             //跳转到图片浏览
 			$scope.showImages = function (index,bbsId) {
 			    //判断是否登录
@@ -49,7 +38,7 @@ angular.module('tellme')
                     if (data.isSuccess) {
                         $scope.images = data.rows;
                         $scope.activeSlide = index;
-                        $scope.showModal('app/bbs/image/imageBrowse.html');
+                        $scope.showModal('app/community/imageBrowse.html');
                     } else {
                         console.log(data.msg);
                     }
@@ -60,7 +49,7 @@ angular.module('tellme')
 			        });
 			    }
 			}
-
+            /********* Modal start***************/
             $scope.showModal = function (templateUrl) {
                 $ionicModal.fromTemplateUrl(templateUrl, {
                    scope: $scope,
@@ -74,6 +63,8 @@ angular.module('tellme')
                 $scope.modal.hide();
                 $scope.modal.remove()
             };
+            /********* Modal  end ***************/
+
 
 			$scope.globalVar = {};
 			$scope.globalVar.SelectedTag = 1; //选中分类标签索引

@@ -32,7 +32,7 @@
                     <div class="">
                         <div  class="ma-b-10  po-re">
                             <div  style="max-height:340px;overflow:hidden">
-                                <img src="{{baseUrl}}{{adDetail[0].imageUrl}}" width="100%" />
+                                <img ng-click="showImages(1,detail.id)" src="{{baseUrl}}{{adDetail[0].imageUrl}}" width="100%" />
                             </div>
                             <div class="po-ab fx-opacity-cont">
                                 <div class="bu-lf">
@@ -70,7 +70,8 @@
                         <!--评论-->
                         <div class="pa-10 pa-to-0">
                             <div class="ma-b-10">
-                                <a class="community-pl" href="javascript:void(0)" style="font-family:黑体;text-align:left;margin-bottom:10px;">评论（<i>2</i>）</a>
+                                <a class="community-pl" href="javascript:void(0)" style="font-family:黑体;text-align:left;margin-bottom:10px;">
+                                评论（<i>{{adInfo.answerCount}}</i>）</a>
                                 <div class="ma-b-5" ng-repeat="detail in adBBs">
                                     <div class="community-pl-cont ma-b-10">
                                         <div class="fo-s14" style="font-family:黑体;">
@@ -99,7 +100,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+      
       </ion-content>
 </ion-view>
     

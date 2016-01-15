@@ -9,12 +9,12 @@
         </div>
     </div>
 
-    <ion-content style="background:#f1f2f4">
+    <ion-content style="background:#f1f2f4" lazy-scroll>
         <div class="hzf-cont">
             <!--banner-->
             <ion-slide-box class="hzf-cont" on-slide-changed="slideHasChanged($index)" show-pager="true" does-continue="true" auto-play="true" ng-if="adData">
                 <ion-slide ng-repeat="ad in adData" repeat-done="repeatDone()" style="width:100%;">
-                    <img ng-src="{{baseUrl}}{{ad.adDetailList[0].imageUrl}}" ng-click="goToAd(ad.id)" style="width:100%;" err-src="images/default/home/16-9.jpg" />
+                    <img image-lazy-src="{{baseUrl}}{{ad.adDetailList[0].imageUrl}}" ng-click="goToAd(ad.id)" style="width:100%;" err-src="images/default/home/16-9.jpg" />
                 </ion-slide>
             </ion-slide-box>
             <!--banner-->
@@ -26,20 +26,20 @@
                         </div>
                         <div class="row" style="padding:1px;padding-bottom:0px;">
                             <div class="col col-50" style="padding:0.5px;height:90px;width:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[0].itemId,swiperItem.hotelItems[0].itemTagId)">
-                                <img ng-src="{{baseUrl}}{{swiperItem.hotelItems[0].imageUrl}}" style="width:100%;" err-src="images/default/home/longPic.jpg" />                              
+                                <img image-lazy-src="{{baseUrl}}{{swiperItem.hotelItems[0].imageUrl}}" style="width:100%;" err-src="images/default/home/longPic.jpg" />                              
                             </div>
                             <div class="col col-50" style="padding:0.5px;height:90px;width:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[1].itemId,swiperItem.hotelItems[1].itemTagId)">
-                                <img ng-src="{{baseUrl}}{{swiperItem.hotelItems[1].imageUrl}}" style="width:100%;"err-src="images/default/home/longPic.jpg" />
+                                <img image-lazy-src="{{baseUrl}}{{swiperItem.hotelItems[1].imageUrl}}" style="width:100%;"err-src="images/default/home/longPic.jpg" />
                                 
                             </div>
                         </div>
                         <div class="row" style="padding:1px;padding-top:0px;margin-top:0px;">
                             <div class="col col-50" style="padding:0.5px;height:90px;width:90px; overflow-y:hidden" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[2].itemId,swiperItem.hotelItems[2].itemTagId)">
-                                <img ng-src="{{baseUrl}}{{swiperItem.hotelItems[2].imageUrl}}" style="width:100%;" err-src="images/default/home/longPic.jpg" />
+                                <img image-lazy-src="{{baseUrl}}{{swiperItem.hotelItems[2].imageUrl}}" style="width:100%;" err-src="images/default/home/longPic.jpg" />
                                 
                             </div>
                             <div class="col col-50" style="padding:0.5px;height:90px;width:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[3].itemId,swiperItem.hotelItems[3].itemTagId)">
-                                <img ng-src="{{baseUrl}}{{swiperItem.hotelItems[3].imageUrl}}" style="width:100%;" err-src="images/default/home/longPic.jpg"/>
+                                <img image-lazy-src="{{baseUrl}}{{swiperItem.hotelItems[3].imageUrl}}" style="width:100%;" err-src="images/default/home/longPic.jpg"/>
                                 
                             </div>
                         </div>
@@ -48,21 +48,21 @@
             </ks-swiper-container>
             <div class="ma-b-10 cont-bor-box-shadow" style="margin-top:3px;">
                 <div class="zt-cter row">
-                    <div class="col-42 pa-l-r-10"><img src="images/liubai.png" style="width:90%" /></div>
+                    <div class="col-42 pa-l-r-10"><img image-lazy-src="images/liubai.png" style="width:90%" /></div>
                     <div class="col-58 pa-l-r-10 border-l fo-s14 font-f colo-6 zt-cter-text">预定住宿，乐享优惠。</div>
                 </div>
             </div>
             <div class="ma-b-10 zt-cont-no">
                 <div class="row" ng-if="footAdData.length>=3">
                     <div class="col col-42 zt-img pa-10">
-                        <img ng-src="{{baseUrl}}{{footAdData[0].adDetailList[0].imageUrl}}" ng-click="goToAd(footAdData[0].id)" style="width:100%;height:100%" />
+                        <img image-lazy-src="{{baseUrl}}{{footAdData[0].adDetailList[0].imageUrl}}" ng-click="goToAd(footAdData[0].id)" style="width:100%;height:100%" />
                     </div>
                     <div class="col col-58 zt-img border-r pa-0">
                         <div class="pa-10 border-b zt-w-h">
-                            <img ng-src="{{baseUrl}}{{footAdData[1].adDetailList[0].imageUrl}}" ng-click="goToAd(footAdData[1].id)" style="width:100%;height:100%" />
+                            <img image-lazy-src="{{baseUrl}}{{footAdData[1].adDetailList[0].imageUrl}}" ng-click="goToAd(footAdData[1].id)" style="width:100%;height:100%" />
                         </div>
                         <div class="pa-10 zt-w-h">
-                            <img ng-src="{{baseUrl}}{{footAdData[2].adDetailList[0].imageUrl}}" ng-click="goToAd(footAdData[2].id)" style="width:100%; height:100%" />
+                            <img image-lazy-src="{{baseUrl}}{{footAdData[2].adDetailList[0].imageUrl}}" ng-click="goToAd(footAdData[2].id)" style="width:100%; height:100%" />
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                         </div>
                         <div class="ma-to-10" ng-repeat="item in footAdData" ng-if="$index>2">
                             <div class="ma-b-10 ix-img-cont">
-                                <img ng-src="{{baseUrl}}{{item.adDetailList[0].imageUrl}}" ng-click="goToAd(item.id)" style="width:100%; height:100%" />
+                                <img image-lazy-src="{{baseUrl}}{{item.adDetailList[0].imageUrl}}" image-lazy-loader="lines" ng-click="goToAd(item.id)" style="width:100%; height:100%" />
                             </div>
                             <span class="fl font-f fo-s12 colo-6">{{item.adDetailList[0].text| cut:true:100:' ...'}}</span>
                             <div class="fr font-f fo-s12 colo-9"><i class="ion-heart fo-s14 ma-r-5" style="color:#eb5d54;"></i>已有20人参与</div>
@@ -100,7 +100,7 @@
                         </div>
                         <div class="ma-to-10" ng-repeat="item in footAdData">
                             <div class="ma-b-10 ix-img-cont">
-                                <img ng-src="{{baseUrl}}{{item.adDetailList[0].imageUrl}}" ng-click="goToAd(item.id)" style="width:100%; height:100%" />
+                                <img image-lazy-src="{{baseUrl}}{{item.adDetailList[0].imageUrl}}" image-lazy-loader="lines" ng-click="goToAd(item.id)" style="width:100%; height:100%" />
                             </div>
                             <span class="fl font-f fo-s12 colo-6">{{item.adDetailList[0].text| cut:true:100:' ...'}}</span>
                             <div class="fr font-f fo-s12 colo-9"><i class="ion-heart fo-s14 ma-r-5" style="color:#eb5d54;"></i>已有20人参与</div>
