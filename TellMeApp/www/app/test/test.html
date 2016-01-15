@@ -4,13 +4,8 @@
         <h1 class="title">Ionic Blank Starter</h1>
     </ion-header-bar>
     <ion-content>
-        hello world
-        <ul rn-carousel class="image">
-            <li ng-repeat="image in sportImages">
-                <div class="layer">
-                    {{image.url}}
-                </div>
-            </li>
-        </ul>
+        <div class="button-bar">
+            <button class="col" ng-click="change(s)" ng-repeat="s in tabs">{{s.name}}</button>
+        </div>
      </ion-content>
 </ion-view>
