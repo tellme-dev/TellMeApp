@@ -45,7 +45,8 @@
                             <div class="item item-avatar po-re">
                                 <img ng-src="{{host}}{{hotel.logo}}" err-src="images/failed.png">
                                 <h2 style="color:#4cb4fb; font-family:黑体; font-size:16px; ">{{hotel.name}}</h2>
-                                <button class="fo-s24 delete-style po-ab"></button>
+                                <!--<button class="fo-s24 delete-style po-ab">删除
+                                    </button>-->
                             </div>
                             <div class="item item-body" style="padding:10px; padding-top:0px;">
                                 <p style="margin:0px; font-size:12px; font-family:黑体">
@@ -61,7 +62,7 @@
                  <div ng-repeat="browse in browseData">
                      <!--酒店列表-->
                      <div  ng-if="browse.type==1" class="Lately-Hotel">
-                         <div class="cont-bor-box-shadow ma-b-10 pa-top-10 " style="background:#fff;">
+                         <div ng-click="goHotel(browse.hotel.id)" class="cont-bor-box-shadow ma-b-10 pa-top-10 " style="background:#fff;">
                              <div class="grogshop-images">
                                  <img ng-src="{{host}}{{browse.hotel.imgUrl}}" err-src="images/failed.png" width="100%" />
                              </div>
@@ -101,7 +102,7 @@
                                      <button class="fo-s24 delete-style po-ab"></button>
                                  </div>
                              </div>
-                             <div class="text-bor">
+                             <div ng-click="goBBS(browse.bbs.id)" class="text-bor">
                                  <div class="item item-text-wrap pa-0" style="font-family:黑体;">
                                      <div class="sq-item-fl pa-l-r-10 pa-bu-10 colo-3 fo-s14">
                                          # {{browse.bbs.title}} # {{browse.bbs.text}}
@@ -120,8 +121,8 @@
             <div ng-show="3==selectedIndex">
                 <div ng-repeat="save in saveData">
                     <!--酒店列表-->
-                    <div ng-if="save.type==1" class="Lately-Hotel">
-                        <div class="cont-bor-box-shadow ma-b-10 pa-top-10 " style="background:#fff;">
+                    <div ng-if="save.type==1" ng-click="goHotel(save.hotel.id)" class="Lately-Hotel">
+                        <div  class="cont-bor-box-shadow ma-b-10 pa-top-10 " style="background:#fff;">
                             <div class="grogshop-images">
                                 <img ng-src="{{host}}{{save.hotel.imgUrl}}" err-src="images/failed.png" width="100%" />
                             </div>
@@ -161,7 +162,7 @@
                                     <button class="fo-s24 delete-style po-ab"></button>
                                 </div>
                             </div>
-                            <div class="text-bor">
+                            <div ng-click="goBBS(save.bbs.id)" class="text-bor">
                                 <div class="item item-text-wrap pa-0" style="font-family:黑体;">
                                     <div class="sq-item-fl pa-l-r-10 pa-bu-10 colo-3 fo-s14">
                                         # {{save.bbs.title}} # {{save.bbs.text}}
@@ -187,7 +188,7 @@
                             <button class="fo-s24 delete-style po-ab" ng-click="deleteCustomerTopic(topic.id)"></button>
                         </div>
                     </div>
-                    <div class="text-bor">
+                    <div  ng-click="goBBS(topic.id)"  class="text-bor">
                         <div class="item item-text-wrap pa-0" style="overflow-x:hidden;">
                             <div class="sq-item-fl pa-l-r-10 pa-bu-10 colo-3 fo-s14" style="font-family:黑体;">
                                 # {{topic.title}} # @ {{topic.text}}
@@ -202,9 +203,21 @@
                 </div>
             </div>
             <!--动态-->
-            <div ng-show="5==selectedIndex" >
-               暂无数据
+            <div ng-show="5==selectedIndex" style="padding:10px 10px; position:relative;margin-top:58px;">
+                <div style="background:#fff;">
+                    <a class="item item-avatar" href="#" ng-click="goDiscuss()">
+                        <img src="images/05--_03.png">
+                        <i style="width:1.125em; height:1.125em;border-radius:50%; background:#ff0000;text-align:center;line-height:1.125em;position:absolute; color:#fff;display:inline-block;left:40px; top:15px;">{{DynamicCount.countComments}}</i>
+                        <h2 style="line-height:40px;">评论<i class="fr ion-ios-arrow-forward" style="margin-top:12px;color:#9ac600"></i></h2>
+                    </a>
+                    <a class="item item-avatar" href="#" ng-click="goAgree()">
+                        <img src="images/05--_06.png">
+                        <i style="width:1.125em; height:1.125em;border-radius:50%; background:#ff0000;text-align:center;line-height:1.125em;position:absolute; color:#fff;display:inline-block;left:40px; top:15px;">{{DynamicCount.countPraise}}</i>
+                        <h2 style="line-height:40px;">赞 <i class="fr ion-ios-arrow-forward" style="margin-top:12px;color:#9ac600"></i></h2>
+                    </a>
+                </div>
             </div>
     </div>
+    <ion-infinite-scroll ng-if="!vm.moredata" on-infinite="vm.loadMore()" distance="1%"></ion-infinite-scroll>
 </ion-content>
 </ion-view>
