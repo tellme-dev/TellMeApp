@@ -1,6 +1,7 @@
 ﻿angular.module('tellme')
  .controller('bbsControll', ['$scope', '$ionicHistory', '$state', '$stateParams', '$ionicHistory', '$window', 'bbsSer', 'communitySer', 'commonSer', 'tellmeActionSheet', 'appConfig', 'LoadingSvr', 'popUpSer',
         function ($scope, $ionicHistory, $state, $stateParams, $ionicHistory, $window, bbsSer, communitySer, commonSer, tellmeActionSheet, appConfig, LoadingSvr, popUpSer) {
+            $scope.autoFocus = false;
             $scope.baseUrl = appConfig.server.getUrl();
             var bbsId = $stateParams.bbsId;
             // $state.go('login', {pageName: 'communityList'});
@@ -71,10 +72,13 @@
                 //在评论框中显示“回复 XXX：”
                 //$scope.globalVar.answerText = "回复 " + userName + "：";
                 $scope.globalVar.answerPlaceHolder = "回复 " + userName + "：";
+                $scope.autoFocus = true;
             }
 
             //回主贴帖
             $scope.answerbbs = function (id, title) {
+                $scope.autoFocus = false;
+
                 $scope.showAnswer = false;
                 var isLogin = $scope.userIsLogin();
                 var answerText = $scope.globalVar.answerText;
