@@ -125,7 +125,7 @@
             .state('editMobile', { url: '/editMobile', templateUrl: 'app/customer/data/edit-mobile.html', controller: 'editMobileControll' })
             .state('discuss', { url: '/discuss', templateUrl: 'app/customer/center/discuss/discuss.html', controller: 'discussControll' })
             .state('agree', { url: '/agree', templateUrl: 'app/customer/center/agree/agree.html', controller: 'agreeControll' })
-            .state('answerBbs', { url: '/answerBbs?bbsId', templateUrl: 'app/customer/center/answerBbs/answerBbs.html', controller: 'answerBbsControll' })
+            .state('answerBbs', { url: '/answerBbs?bbsId&targetType&path', templateUrl: 'app/customer/center/answerBbs/answerBbs.html', controller: 'answerBbsControll' })
             //定位
             .state('location', { cache: false, url: '/location', templateUrl: 'app/map/location/cities.html', controller: 'mapLocationControll' })//mapLocationControll
             .state('map', { url: '/map', templateUrl: 'app/map/map/map.html', controller: 'mapControll' })
