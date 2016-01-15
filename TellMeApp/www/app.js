@@ -1,4 +1,4 @@
-﻿angular.module('tellme', ['ionic', 'FtActionSheet', 'tabSlideBox', 'ksSwiper'])
+﻿angular.module('tellme', ['ionic', 'FtActionSheet', 'tabSlideBox', 'ksSwiper', 'ionicLazyLoad'])
     .run(['$ionicPlatform', '$rootScope', '$location', '$ionicPopup', '$ionicHistory', 'commonSer', function ($ionicPlatform, $rootScope, $location, $ionicPopup, $ionicHistory, commonSer) {
         $ionicPlatform.ready(function () {
             if (window.cordova && window.cordova.plugins.Keyboard) {
