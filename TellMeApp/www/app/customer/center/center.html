@@ -26,11 +26,11 @@
             <!--个人信息-->
             <a  href="javascript:void(0)" class="list" style="margin-bottom:10px; background:#fff;display:block;">
                 <div class="grogshop-text">
-                    <div class="item item-avatar po-ab">
+                    <div class="item item-avatar po-ab" ng-click="goSystem()">
                         <img ng-src="{{host}}{{customer.photoUrl}}" err-src="images/head.png" style="border-radius:50%">
                         <h2 style="font-family:黑体; font-size:16px; ">{{customer.mobile}}</h2>
                         <p style="font-family:黑体;">{{customer.name}}</p>
-                        <i ng-click="goSystem()" class="ion-chevron-right po-ab" style="top:29px;right:15px;color:#cccccc"></i>
+                        <i class="ion-chevron-right po-ab" style="top:29px;right:15px;color:#cccccc"></i>
                     </div>
                 </div>
             </a>

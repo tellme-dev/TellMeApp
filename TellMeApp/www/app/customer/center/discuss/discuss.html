@@ -26,7 +26,7 @@
                         <img class="fl pl-img-toux"  err-src="images/head.png" ng-src="{{baseUrl}}{{dicList.customer.photoUrl}}" />
                         <div class="fl pl-text-s pl-text-er"><span>{{dicList.customer.name}}</span>
                         <i>回复了你：</i> <b class="zxx_text_overflow_3">{{dicList.from.text}}</b></div>
-                        <button  ng-click="goAnswer(dicList.from.id)" class="fr pl-hf-button"><img src="images/hf.png" class="fl" />
+                        <button  ng-click="goAnswer(dicList.from.id,vm.listData.targetType,dicList.from.path)" class="fr pl-hf-button"><img src="images/hf.png" class="fl" />
                         <div class="fr">回复</div></button>
                         <div class="clear"></div>
                     </div>

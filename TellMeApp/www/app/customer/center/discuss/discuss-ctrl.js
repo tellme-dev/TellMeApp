@@ -32,8 +32,8 @@
                     );
             }
             $scope.getCustomerInfo();
-            $scope.goAnswer = function (bbsId) {
-                $state.go('answerBbs', { bbsId: bbsId });
+            $scope.goAnswer = function (bbsId,targetType,path) {
+                $state.go('answerBbs', { bbsId: bbsId,targetType:targetType,path:path });
             }
             $scope.goBBs = function (bbsId) {
                 $state.go('bbs', { bbsId: bbsId });
