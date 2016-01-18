@@ -34,6 +34,7 @@ angular.module('tellme')
             //下拉刷新
             doRefresh: function () {
                 $timeout(function () {
+                    //获取头部广告
                     homeSer.getAdd().then(
                   function (data) {
                       if (data.isSuccess) {
@@ -45,6 +46,26 @@ angular.module('tellme')
                   );
                     $scope.$broadcast('scroll.refreshComplete');
                 }, 1000);
+                ////获取底部广告
+                $scope.getFootAd();
+                //获取酒店滚动菜单
+                homeSer.getSwiperAd().then(
+                       function (data) {
+                           if (data.isSuccess) {
+                               if (data.rows.length == 0) {
+                                   console.log("未获取数据！");
+                               } else {
+                                   $scope.swiperAdData = data.rows;
+                                   LoadingSvr.hide();
+                               }
+                           } else {
+                               console.log("获取数据失败！" + data.msg);
+                           }
+                       },
+                       function (data) {
+                           console.log('其他');
+                       }
+                     );
             },
             //加载更多
             loadMore: function () {

@@ -62,8 +62,8 @@
                  <div ng-repeat="browse in browseData">
                      <!--酒店列表-->
                      <div  ng-if="browse.type==1" class="Lately-Hotel">
-                         <div ng-click="goHotel(browse.hotel.id)" class="cont-bor-box-shadow ma-b-10 pa-top-10 " style="background:#fff;">
-                             <div class="grogshop-images">
+                         <div  class="cont-bor-box-shadow ma-b-10 pa-top-10 " style="background:#fff;">
+                             <div  class="grogshop-images">
                                  <img ng-src="{{host}}{{browse.hotel.imgUrl}}" err-src="images/failed.png" width="100%" />
                              </div>
                              <div class="list ma-b-10">
@@ -71,9 +71,9 @@
                                      <div class="item item-avatar po-re">
                                          <img ng-src="{{host}}{{browse.hotel.logo}}" err-src="images/failed.png">
                                          <h2 style="color:#4cb4fb; font-family:黑体; font-size:16px;margin-top:13px;">{{browse.hotel.name}}</h2>
-                                         <button class="fo-s24 delete-style po-ab"></button>
+                                         <button ng-click="deleteBrowsData(browse.hotel.id)" class="fo-s24 delete-style po-ab"></button>
                                      </div>
-                                     <div class="item item-body" style="padding:10px; padding-top:0px;">
+                                     <div ng-click="goHotel(browse.id)" class="item item-body" style="padding:10px; padding-top:0px;">
                                          <p style="margin:0px; font-size:12px; font-family:黑体">
                                              {{browse.hotel.text}}
                                          </p>
@@ -86,7 +86,7 @@
                      <div ng-click="goToAd(browse.advertisement.id)" ng-if="browse.type==2" class="Lately-special">
                          <div class="ma-b-10 po-re" style="border-bottom:2px solid #111;">
                              <img ng-src="{{host}}{{browse.advertisement.imgUrl}}" err-src="images/failed.png" width="100%" />
-                             <button class="fo-s24 delete-style po-ab"></button>
+                             <button ng-click="deleteBrowsData(browse.id)" class="fo-s24 delete-style po-ab"></button>
                          </div>
 
                      </div>
@@ -99,7 +99,7 @@
 
                                      <h2 style="font-family:黑体;">{{browse.bbs.customer.name}}</h2>
                                      <p style="font-family:黑体;">{{browse.bbs.createTime}}</p>
-                                     <button class="fo-s24 delete-style po-ab"></button>
+                                     <button ng-click="deleteBrowsData(browse.id)" class="fo-s24 delete-style po-ab"></button>
                                  </div>
                              </div>
                              <div ng-click="goBBS(browse.bbs.id)" class="text-bor">
@@ -107,7 +107,7 @@
                                      <div class="sq-item-fl pa-l-r-10 pa-bu-10 colo-3 fo-s14">
                                          # {{browse.bbs.title}} # {{browse.bbs.text}}
                                      </div>
-                                     <div class="sq-cont-img1 ma-b-10">
+                                     <div ng-if="browse.bbs.bbsAttachUrls" class="sq-cont-img1 ma-b-10">
                                          <div ng-repeat="img in  browse.bbs.bbsAttachUrls" class="sq-cont-img-div" style="background:url({{host}}{{img.attachUrl}})no-repeat;background-size:cover; background-position:center"></div>
                                      </div>
                                  </div>
@@ -121,7 +121,7 @@
             <div ng-show="3==selectedIndex">
                 <div ng-repeat="save in saveData">
                     <!--酒店列表-->
-                    <div ng-if="save.type==1" ng-click="goHotel(save.hotel.id)" class="Lately-Hotel">
+                    <div ng-if="save.type==1" class="Lately-Hotel">
                         <div  class="cont-bor-box-shadow ma-b-10 pa-top-10 " style="background:#fff;">
                             <div class="grogshop-images">
                                 <img ng-src="{{host}}{{save.hotel.imgUrl}}" err-src="images/failed.png" width="100%" />
@@ -131,9 +131,9 @@
                                     <div class="item item-avatar po-re">
                                         <img ng-src="{{host}}{{save.hotel.logo}}" err-src="images/failed.png">
                                         <h2 style="color:#4cb4fb; font-family:黑体; font-size:16px;margin-top:13px;">{{save.hotel.name}}</h2>
-                                        <button class="fo-s24 delete-style po-ab"></button>
+                                        <button ng-click="deleteCollectionData(save.id)" class="fo-s24 delete-style po-ab"></button>
                                     </div>
-                                    <div class="item item-body" style="padding:10px; padding-top:0px;">
+                                    <div  ng-click="goHotel(save.hotel.id)" class="item item-body" style="padding:10px; padding-top:0px;">
                                         <p style="margin:0px; font-size:12px; font-family:黑体">
                                             {{save.hotel.text}}
                                         </p>
@@ -146,7 +146,7 @@
                     <div ng-click="goToAd(save.advertisement.id)" ng-if="save.type==2" class="Lately-special">
                         <div class="ma-b-10 po-re" style="border-bottom:2px solid #111;">
                             <img ng-src="{{host}}{{save.advertisement.imgUrl}}" err-src="images/failed.png" width="100%" />
-                            <button class="fo-s24 delete-style po-ab"></button>
+                            <button  ng-click="deleteCollectionData(save.id)" class="fo-s24 delete-style po-ab"></button>
                         </div>
 
                     </div>
@@ -159,7 +159,7 @@
 
                                     <h2 style="font-family:黑体;">{{save.bbs.customer.name}}</h2>
                                     <p style="font-family:黑体;">{{save.bbs.createTime}}</p>
-                                    <button class="fo-s24 delete-style po-ab"></button>
+                                    <button ng-click="deleteCollectionData(save.id)" class="fo-s24 delete-style po-ab"></button>
                                 </div>
                             </div>
                             <div ng-click="goBBS(save.bbs.id)" class="text-bor">
@@ -167,7 +167,7 @@
                                     <div class="sq-item-fl pa-l-r-10 pa-bu-10 colo-3 fo-s14">
                                         # {{save.bbs.title}} # {{save.bbs.text}}
                                     </div>
-                                    <div class="sq-cont-img1 ma-b-10">
+                                    <div ng-if="save.bbs.bbsAttachUrls" class="sq-cont-img1 ma-b-10">
                                         <div ng-repeat="img in  save.bbs.bbsAttachUrls" class="sq-cont-img-div" style="background:url({{host}}{{img.attachUrl}})no-repeat;background-size:cover; background-position:center"></div>
                                     </div>
                                 </div>
@@ -194,9 +194,8 @@
                                 # {{topic.title}} # @ {{topic.text}}
                             </div>
                             <div class="sq-cont-img3">
-                                <div class="sq-cont-img-div ma-r-5" style="background:url(images/14-7.jpg)no-repeat;background-size:cover; background-position:center"></div>
-                                <div class="sq-cont-img-div ma-r-5" style="background:url(images/sq-1.jpg.)no-repeat;background-size:cover; background-position:center"></div>
-                                <div class="sq-cont-img-div" style="background:url(images/14-7-1.jpg)no-repeat;background-size:cover; background-position:center"></div>
+                                <div ng-repeat="img in topic.bbsAttachUrls " class="sq-cont-img-div ma-r-5" style="background:url({{host}}{{img.topic}})no-repeat;background-size:cover; background-position:center"></div>
+                               
                             </div>
                         </div>
                     </div>
