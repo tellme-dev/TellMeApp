@@ -301,7 +301,6 @@
             promise.then(
                 function (data) {
                     if (data.isSuccess) {
-                        popUpSer.showAlert("评论成功");
                         $scope.comments[index] = "";
                     } else {
                         popUpSer.showAlert(data.msg);

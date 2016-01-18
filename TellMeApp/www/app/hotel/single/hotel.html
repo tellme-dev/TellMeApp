@@ -41,7 +41,7 @@
                         <div ng-repeat="item in itemData.details">
                             <span class="fo-s16 ma-b-10  pa-l-r-10 pa-top-10 colo-3" style="font-family:'黑体'; display:block;">{{itemData.item.name}}</span>
                             <img ng-show="!itemData.tagTransport" ng-src="{{host}}{{item.imageUrl}}" width="100%" />
-                            <div ng-show="itemData.tagTransport" id="positionMap" width="100%"></div>
+                            <div ng-show="itemData.tagTransport" id="positionMap" width="100%" style="height: 300px;"></div>
                             <div class="pa-top-10  pa-l-r-10">
                                 <p class="fo-s14 pa-bo-10 colo-6 xq-p-style" style="font-family:黑体;">
                                    {{item.note}}
