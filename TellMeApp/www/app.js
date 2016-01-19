@@ -20,7 +20,7 @@
         });
 
         //主页面显示退出提示框  
-        /*$ionicPlatform.registerBackButtonAction(function (e) {
+        $ionicPlatform.registerBackButtonAction(function (e) {
 
             e.preventDefault();
 
@@ -57,7 +57,7 @@
             }
 
             return false;
-        }, 101);*/
+        }, 101);
 
         var onDeviceReady = function () {
             //判断是否用户登录
