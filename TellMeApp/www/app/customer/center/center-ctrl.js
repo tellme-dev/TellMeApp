@@ -210,10 +210,16 @@
                                     $scope.$broadcast('scroll.infiniteScrollComplete');
                                 } else {
                                     LoadingSvr.hide();
-                                      vm.moredata = true;
+                                    vm.moredata = true;
                                     $scope.$broadcast('scroll.infiniteScrollComplete');
                                     vm.moredata = true;
                                 }
+                            }
+                            , function (data) {
+                                LoadingSvr.hide();
+                                vm.moredata = true;
+                                $scope.$broadcast('scroll.infiniteScrollComplete');
+                                console.log('其他');
                             });
                     }
                     else if ($scope.selectedIndex == 4) {   //话题消息

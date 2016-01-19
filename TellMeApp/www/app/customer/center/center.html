@@ -71,7 +71,7 @@
                                      <div class="item item-avatar po-re">
                                          <img ng-src="{{host}}{{browse.hotel.logo}}" err-src="images/failed.png">
                                          <h2 style="color:#4cb4fb; font-family:黑体; font-size:16px;margin-top:13px;">{{browse.hotel.name}}</h2>
-                                         <button ng-click="deleteBrowsData(browse.hotel.id)" class="fo-s24 delete-style po-ab"></button>
+                                         <button ng-click="deleteBrowsData(browse.id)" class="fo-s24 delete-style po-ab"></button>
                                      </div>
                                      <div ng-click="goHotel(browse.id)" class="item item-body" style="padding:10px; padding-top:0px;">
                                          <p style="margin:0px; font-size:12px; font-family:黑体">
@@ -83,12 +83,11 @@
                          </div>
                      </div>
                      <!--广告-->
-                     <div ng-click="goToAd(browse.advertisement.id)" ng-if="browse.type==2" class="Lately-special">
-                         <div class="ma-b-10 po-re" style="border-bottom:2px solid #111;">
+                     <div ng-click="goToAd(browse.advertisement.id)" ng-if="browse.type==2" class="Lately-special  po-re">
+                         <div class="ma-b-10" style="border-bottom:2px solid #111;">
                              <img ng-src="{{host}}{{browse.advertisement.imgUrl}}" err-src="images/failed.png" width="100%" />
-                             <button ng-click="deleteBrowsData(browse.id)" class="fo-s24 delete-style po-ab"></button>
                          </div>
-
+                         <button ng-click="deleteBrowsData(browse.id)" class="fo-s24 delete-style po-ab"></button>
                      </div>
                      <!--BBS-->
                      <div  ng-if="browse.type==3" class="Lately-Community">
@@ -143,12 +142,11 @@
                         </div>
                     </div>
                     <!--广告-->
-                    <div ng-click="goToAd(save.advertisement.id)" ng-if="save.type==2" class="Lately-special">
-                        <div class="ma-b-10 po-re" style="border-bottom:2px solid #111;">
+                    <div ng-click="goToAd(save.advertisement.id)" ng-if="save.type==2" class="Lately-special po-re">
+                        <div class="ma-b-10" style="border-bottom:2px solid #111;">
                             <img ng-src="{{host}}{{save.advertisement.imgUrl}}" err-src="images/failed.png" width="100%" />
-                            <button  ng-click="deleteCollectionData(save.id)" class="fo-s24 delete-style po-ab"></button>
                         </div>
-
+                        <button ng-click="deleteCollectionData(save.id)" class="fo-s24 delete-style po-ab"></button>
                     </div>
                     <!--BBS-->
                     <div ng-if="save.type==3" class="Lately-Community">
