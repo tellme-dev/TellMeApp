@@ -109,7 +109,7 @@
                     if (data.isSuccess) {
                         $scope.rootMenuArray = [];
                         var menus = data.rows;
-                        $scope.rootMenuWidth = (menus.length * 50) + "px";
+                        $scope.rootMenuWidth = (menus.length * 60) + "px";
                         if (menus != null && menus.length > 0) {
                             for (var i = 0; i < menus.length; i++) {
                                 var obj = menus[i];
