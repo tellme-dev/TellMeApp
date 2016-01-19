@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('systemControll', ['$scope', '$ionicHistory', '$state', 'customerSer',
-        function ($scope, $ionicHistory, $state, customerSer) {
+    .controller('systemControll', ['$scope', '$ionicHistory', '$state', 'popUpSer', 'customerSer',
+        function ($scope, $ionicHistory, $state,popUpSer, customerSer) {
             $scope.goBack = function () {
                 $ionicHistory.goBack();
             };
@@ -17,14 +17,20 @@
                 $state.go('about');
             }
             //退出
-
+            
             $scope.loginOut = function () {
-                window.localStorage['userTel'] ="";
-                window.localStorage['userPsd'] = "";
-                window.localStorage['userId'] = "";
-                //window.lolocalStorage.setItem('userTel',"");
-                //window.lolocalStorage.setItem('userPsd',"");
-                //window.lolocalStorage.setItem('userId',"");
-                $state.go('menu.home');
+                popUpSer.confirmExit("确定退出登录？").then(
+                    function (r) {
+                        if (r) {
+                            window.localStorage['userTel'] ="";
+                            window.localStorage['userPsd'] = "";
+                            window.localStorage['userId'] = "";
+                           //window.lolocalStorage.setItem('userTel',"");
+                           //window.lolocalStorage.setItem('userPsd',"");
+                           //window.lolocalStorage.setItem('userId',"");
+                           $state.go('menu.home');
+                        }else{
+                        }
+                    });
             }
         }]);
