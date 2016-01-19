@@ -11,18 +11,18 @@ angular.module('tellme')
 					{
 					    text: template("QQ分享","images/share/qq.png")
 					},
-					//{
-					//    text: template("QQ空间", "images/share/space.png")
-					//},
+					{
+					    text: template("QQ空间", "images/share/space.png")
+					},
                     {
                         text: template("微信好友", "images/share/wechat.png")
                     },
                     {
                         text: template("朋友圈", "images/share/circle.png")
-                    },
-                    {
-                        text: template("微博", "images/share/weibo.png")
                     }
+                    //{
+                    //    text: template("微博", "images/share/weibo.png")
+                    //}
 
 	            ],
 	            titleText: '分享至',
@@ -32,18 +32,18 @@ angular.module('tellme')
 	                    case 0://QQ分享
 	                        shareResult = QQSer.share(_args);
 	                        break;
-	                    //case 1://QQ空间
-	                    //    shareResult = QQSer.shareToQZone(_args);
-	                    //    break;
-	                    case 1://微信好友
+	                    case 1://QQ空间
+	                        shareResult = QQSer.shareToQZone(_args);
+	                        break;
+	                    case 2://微信好友
 	                        var shareId = typeof (_args.imageUrl) === 'undefined' ? 'send-text' : 'send-photo-local';
 	                        shareResult = WechatShareSer.weChatShare(0, shareId, _args);
 	                        break;
-	                    case 2://朋友圈
+	                    case 3://朋友圈
 	                        var shareId = typeof (_args.imageUrl) === 'undefined' ? 'send-text' : 'send-photo-local';
 	                        shareResult = WechatShareSer.weChatShare(1, shareId, _args);
 	                        break;
-	                    case 3://新浪微博
+	                    case 4://新浪微博
 	                        shareResult = WeiboSer.shareToWeibo(_args);
 	                        break;
 	                    default://退出
