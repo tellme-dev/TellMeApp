@@ -308,4 +308,44 @@
                 });
             return deferred.promise;
         }
+        //删除浏览记录
+        this.deleteBrowsData = function (browseId) {
+            var url = baseUrl + 'app/customer/deleteCustomerBrowse.do';
+            var dataJSON = JSON.stringify({
+                browseId: browseId
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: dataJSON }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
+        //删除收藏数据
+        this.deleteCollectionData = function (collectionId) {
+            var url = baseUrl + 'app/customer/deleteCustomerCollection.do';
+            var dataJSON = JSON.stringify({
+                collectionId: collectionId
+            });
+            var deferred = $q.defer();
+            $http({
+                method: 'post',
+                url: url,
+                data: { json: dataJSON }
+            }).success(
+                function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).error(
+                function (data, status, headers, config) {
+                    deferred.reject(5);
+                });
+            return deferred.promise;
+        }
     }]);

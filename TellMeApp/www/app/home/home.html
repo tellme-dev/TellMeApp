@@ -8,8 +8,10 @@
             <button class="button button-clear ion-ios-location" ng-click="goToLocation()"><i class="fo-s14 ma-l-5 colo-6 font-f">{{setCity}}</i></button>
         </div>
     </div>
-
+  
     <ion-content style="background:#f1f2f4" lazy-scroll>
+        <!-- <ion-refresher> 下拉刷新指令  -->
+        <ion-refresher pulling-text="下拉刷新" on-refresh="vm.doRefresh()"></ion-refresher>
         <div class="hzf-cont">
             <!--banner-->
             <ion-slide-box class="hzf-cont" on-slide-changed="slideHasChanged($index)" show-pager="true" does-continue="true" auto-play="true" ng-if="adData">

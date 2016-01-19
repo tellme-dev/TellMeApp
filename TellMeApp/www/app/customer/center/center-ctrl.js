@@ -84,6 +84,50 @@
                 }
               
             }
+            //删除浏览记录
+            $scope.deleteBrowsData = function (browseId) {
+                if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel'] == "") {
+                    $state.go('login', { pageName: 'customer' });
+                } else {
+                    var promise = customerSer.deleteBrowsData(browseId);
+                    promise.then(
+                        function (data) {
+                            if (data.isSuccess) {
+                                  vm.moredata = false,
+                                 vm.loadMore();
+                                console.log('删除成功！');
+                            } else {
+                                popUpSer.showAlert(data.msg);
+                            }
+                        },
+                        function (data) {
+                            console.log('其他');
+                        }
+                    );
+                }
+            }
+            //删除收藏数据
+            $scope.deleteCollectionData = function (collectionId) {
+                if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel'] == "") {
+                    $state.go('login', { pageName: 'customer' });
+                } else {
+                    var promise = customerSer.deleteCollectionData(collectionId);
+                    promise.then(
+                        function (data) {
+                            if (data.isSuccess) {
+                                vm.moredata = false,
+                                vm.loadMore();
+                                console.log('删除成功！');
+                            } else {
+                                popUpSer.showAlert(data.msg);
+                            }
+                        },
+                        function (data) {
+                            console.log('其他');
+                        }
+                    );
+                }
+            }
             $scope.selectedIndex = 1;
             $scope.showTabs = function (index) {
                 $scope.selectedIndex = index;
@@ -247,4 +291,5 @@
             $scope.goHotel = function (hotelId) {
                 $state.go('hotel', { hotelId: hotelId, rootTagId: 0, itemId: 0 });
             }
+            
     }]);
