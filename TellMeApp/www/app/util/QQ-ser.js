@@ -32,12 +32,12 @@ angular.module('tellme')
 			LoadingSvr.goShare();
 			YCQQ.shareToQQ(function () {
 			    popUpSer.showAlert('分享成功');
+                LoadingSvr.hide();
 			    return 1;
 			}, function (failReason) {
-			    //popUpSer.showAlert(failReason);
+			    popUpSer.showAlert(failReason);
 			    return 0;
 			}, args);
-			LoadingSvr.hide();
 		}
 
 		//QZone Share
@@ -50,12 +50,13 @@ angular.module('tellme')
     		LoadingSvr.goShare();
 			YCQQ.shareToQzone(function () {
 			    popUpSer.showAlert('分享成功');
+                LoadingSvr.hide();
 			    return 1;
 			}, function (failReason) {
 			    popUpSer.showAlert('取消分享');
 			    return 0;
 			}, args);
-			LoadingSvr.hide();
+			
 		}
 
 		//QQ Favorites

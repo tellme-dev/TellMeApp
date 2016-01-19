@@ -68,7 +68,7 @@
         }
         $scope.goToChoose = function () {
             for (var index = 0; index < $scope.checkinHotel.itemVMs.length; index++) {
-                if ($scope.checkinHotel.itemVMs[index].itemTags && $scope.checkinHotel.itemVMs[index].itemTags.length > 0 && $scope.checkinHotel.itemVMs[index].itemTags[0].name === '挑') {
+                if ($scope.checkinHotel.itemVMs[index].isUsed&&$scope.checkinHotel.itemVMs[index].itemTags && $scope.checkinHotel.itemVMs[index].itemTags.length > 0 && $scope.checkinHotel.itemVMs[index].itemTags[0].name === '挑') {
                     $state.go('choose', { item: JSON.stringify($scope.checkinHotel.itemVMs[index]) });
                     return false;
                 } else if (index == $scope.checkinHotel.itemVMs.length - 1) {
@@ -83,7 +83,7 @@
         }
         $scope.goToESuperMarket = function () {
             for (var i = 0; i < $scope.checkinHotel.itemVMs.length; i++) {
-                if ($scope.checkinHotel.itemVMs[i].itemTags && $scope.checkinHotel.itemVMs[i].itemTags.length > 0 && $scope.checkinHotel.itemVMs[i].itemTags[0].name == 'E房超市') {
+                if ($scope.checkinHotel.itemVMs[i].isUsed && $scope.checkinHotel.itemVMs[i].itemTags && $scope.checkinHotel.itemVMs[i].itemTags.length > 0 && $scope.checkinHotel.itemVMs[i].itemTags[0].name == 'E房超市') {
                     $state.go('ESuperMarket', { item: JSON.stringify($scope.checkinHotel.itemVMs[i]) });
                     break;
                 } else if (i == $scope.checkinHotel.itemVMs.length - 1) {
@@ -93,7 +93,7 @@
         }
         $scope.goToTraffic = function () {
             for (var i = 0; i < $scope.checkinHotel.itemVMs.length; i++) {
-                if ($scope.checkinHotel.itemVMs[i].itemTags && $scope.checkinHotel.itemVMs[i].itemTags.length > 0 && $scope.checkinHotel.itemVMs[i].itemTags[0].name == '交通') {
+                if ($scope.checkinHotel.itemVMs[i].isUsed && $scope.checkinHotel.itemVMs[i].itemTags && $scope.checkinHotel.itemVMs[i].itemTags.length > 0 && $scope.checkinHotel.itemVMs[i].itemTags[0].name == '交通') {
                     $state.go('hotel', { hotelId: $scope.checkinHotel.id,rootTagId:1, itemId: $scope.checkinHotel.itemVMs[i].id });//hotelId&rootTagId&itemId
                     //$state.go('traffic');
                     break;
@@ -115,9 +115,8 @@
         }
         $scope.goToNear = function () {
             for (var i = 0; i < $scope.checkinHotel.itemVMs.length; i++) {
-                if ($scope.checkinHotel.itemVMs[i].itemTags && $scope.checkinHotel.itemVMs[i].itemTags.length > 0 && $scope.checkinHotel.itemVMs[i].itemTags[0].name == '周边') {
-                    $state.go('hotelItem', { itemId: $scope.checkinHotel.itemVMs[i].id });
-                    //$state.go('near');
+                if ($scope.checkinHotel.itemVMs[i].isUsed && $scope.checkinHotel.itemVMs[i].itemTags && $scope.checkinHotel.itemVMs[i].itemTags.length > 0 && $scope.checkinHotel.itemVMs[i].itemTags[0].name == '周边') {
+                    $state.go('hotel', { hotelId: $scope.checkinHotel.id, rootTagId: 1, itemId: $scope.checkinHotel.itemVMs[i].id });
                     break;
                 } else if (i == $scope.checkinHotel.itemVMs.length - 1) {
                     popUpSer.showAlert('暂无周边信息');

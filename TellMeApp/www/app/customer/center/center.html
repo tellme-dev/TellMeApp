@@ -38,7 +38,7 @@
             <div  ng-show="1==selectedIndex" class="cont-bor-box-shadow ma-b-10 pa-top-10" style="background:#fff;">
                 <div ng-repeat="hotel in hotels" ng-click="goHotel(hotel.id)">
                     <div class="grogshop-images">
-                        <img ng-src="{{host}}{{hotel.imgUrl}}" err-src="images/failed.png" width="100%" />
+                        <img ng-src="{{host}}{{hotel.imgUrl}}" err-src="images/failed.png" style="width:100%;" />
                     </div>
                     <div class="list ma-b-10">
                         <div class="grogshop-text">
@@ -64,7 +64,7 @@
                      <div  ng-if="browse.type==1" class="Lately-Hotel">
                          <div  class="cont-bor-box-shadow ma-b-10 pa-top-10 " style="background:#fff;">
                              <div  class="grogshop-images">
-                                 <img ng-src="{{host}}{{browse.hotel.imgUrl}}" err-src="images/failed.png" width="100%" />
+                                 <img ng-src="{{host}}{{browse.hotel.imgUrl}}" err-src="images/failed.png" style="width:100%;" />
                              </div>
                              <div class="list ma-b-10">
                                  <div class="grogshop-text">
@@ -85,7 +85,7 @@
                      <!--广告-->
                      <div ng-click="goToAd(browse.advertisement.id)" ng-if="browse.type==2" class="Lately-special  po-re">
                          <div class="ma-b-10" style="border-bottom:2px solid #111;">
-                             <img ng-src="{{host}}{{browse.advertisement.imgUrl}}" err-src="images/failed.png" width="100%" />
+                             <img ng-src="{{host}}{{browse.advertisement.imgUrl}}" err-src="images/failed.png" style="width:100%;" />
                          </div>
                          <button ng-click="deleteBrowsData(browse.id)" class="fo-s24 delete-style po-ab"></button>
                      </div>
@@ -123,7 +123,7 @@
                     <div ng-if="save.type==1" class="Lately-Hotel">
                         <div  class="cont-bor-box-shadow ma-b-10 pa-top-10 " style="background:#fff;">
                             <div class="grogshop-images">
-                                <img ng-src="{{host}}{{save.hotel.imgUrl}}" err-src="images/failed.png" width="100%" />
+                                <img ng-src="{{host}}{{save.hotel.imgUrl}}" err-src="images/failed.png" style="width:100%;" />
                             </div>
                             <div class="list ma-b-10">
                                 <div class="grogshop-text">
