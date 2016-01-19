@@ -17,7 +17,7 @@
                         },
                         {
                             text: '确定',
-                            type: 'button-sure',
+                            type: 'button-positive',
                             onTap: function (e) {
                                 tabOn = 1;
                             }

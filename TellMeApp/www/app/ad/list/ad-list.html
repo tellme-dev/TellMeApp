@@ -38,7 +38,7 @@
                                 <div class="bu-lf">
                                     <span class="fo-s14 col-ff" style="font-family:'黑体';">{{adInfo.name}}</span>
                                     <p style="font-family:'黑体';font-size:12px;color:#fff; margin-bottom:0px;">
-                                       {{adDetail[0].text}}
+                                       {{adDetail[0].text| cut:true:50:' ...'}}
                                     </p>
                                 </div>
                             </div>
