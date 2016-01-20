@@ -282,17 +282,20 @@ a {
              color:#fff
         }
  /*评论*/
+.pa-r-30 {
+    padding-right:30px;
+}
     .community-pl-cont span {
         color:#2d5c9a
     }
         .community-pl-cont div  {
-             width:100%;position:relative;padding-right:40px;
+             width:100%;position:relative;
         }
             .community-pl-cont div b {
                 font-weight:normal;
             }
     .community-pl-cont a {
-       position:absolute;top:0px; right:-40px; margin-top:0px; color:#2d5c9a
+       position:absolute;top:0px; right:0px; margin-top:0px; color:#2d5c9a
     }
  /*评论*/
      /*个人信息-常住酒店*/
