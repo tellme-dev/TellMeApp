@@ -10,9 +10,9 @@
             </ion-content>
 </ion-view>-->
     <ion-view>
-    <div class="hear">
+    <div class="hear-button">
         <div class="bar bar-header">
-            <button class="button button-clear ion-chevron-left" ng-click="goBack()"></button>
+            <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
             <h1 class="title font-f" style="font-family:黑体">广告详情</h1>
         </div>
     </div>
@@ -74,7 +74,7 @@
                                 评论（<i>{{adInfo.answerCount}}</i>）</a>
                                 <div class="ma-b-5" ng-repeat="detail in adBBs">
                                     <div class="community-pl-cont ma-b-10">
-                                        <div class="fo-s14" style="font-family:黑体;">
+                                        <div class="fo-s14 pa-r-30" style="font-family:黑体;">
                                         <span>{{detail.customer.name}}:</span><b class="colo-3" style="font-family:'黑体';">{{detail.text}}</b>
                                         <a  ng-click="toAnswer(detail.id,detail.customer.name)" href="javascript:void(0);" class="fo-s14">回复</a>
                                         </div>
