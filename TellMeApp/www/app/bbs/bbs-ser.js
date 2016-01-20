@@ -48,6 +48,7 @@
             var url = baseUrl + 'app/bbs/saveBbs.do';
             var jsonData = JSON.stringify({
                 id: 0,
+                uuid:bbsInfo.uuid,
                 customerId: window.localStorage['userId'],
                 bbsType: 1,
                 postType: 0,
@@ -75,7 +76,7 @@
             var url = baseUrl + 'app/bbs/deletePhoto.do';
             var jsonData = JSON.stringify({
                 fileUrl: param.imageUrl,
-                customerId:param.customerId
+                uuid:param.uuid
             });
             var deferred = $q.defer();
             $http({

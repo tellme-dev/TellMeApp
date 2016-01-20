@@ -5,12 +5,13 @@
         $scope.bbsInfo = {};
         $scope.bbsImages = [];
         $scope.param = {};//删除照片是使用的参数
-
+      
+        var uuid = Math.floor(Math.random() * 9999 + 1000);//进入页面生成随机数作文件夹名称
         //返回
         $scope.goBack = function () {
             $ionicHistory.goBack();
             //删除上传了未发表的照片
-            $scope.param.customerId = window.localStorage['userId'];
+            $scope.param.uuid = uuid;
             bbsSer.deletePhoto($scope.param).then(
                 function (data) {
                     if (data.isSuccess) {
@@ -59,6 +60,7 @@
                 popUpSer.showAlert("请输入内容");
                 return;
             }
+            $scope.bbsInfo.uuid = uuid;
             bbsSer.saveBbs($scope.bbsInfo).then(
                 function (data) {
                     if (data.isSuccess) {
@@ -77,9 +79,9 @@
         /*调用相机：type=0 ，相册中选择：type=1*/
         $scope.takePhoto = function (type) {
             if (type == 0) {
-                cameraSvr.takePhoto(30, cSuccess, cFail);
+                cameraSvr.takePhoto(20, cSuccess, cFail);
             } else {
-                cameraSvr.getPhoto(30, cSuccess, cFail);
+                cameraSvr.getPhoto(20, cSuccess, cFail);
             }
             function cSuccess(imgURI) {
                 LoadingSvr.load();
@@ -88,8 +90,8 @@
                 //var month = (now.getMonth() + 1).toString();
                 //var day = (now.getDate()).toString();
                 var mill = now.getTime();//getTime() 方法可返回距 1970 年 1 月 1 日之间的毫秒数。
-                var customerId = window.localStorage['userId'];
-                var fileName = customerId + '_' + mill + Math.floor(Math.random() * 9999 + 1000) + '.jpg';
+                var fileName = uuid + '_' + mill + Math.floor(Math.random() * 9999 + 1000) + '.jpg';
+
                 /*上传图片*/
                 $scope.uploadPhoto(imgURI, fileName);
             }
@@ -107,8 +109,7 @@
             function tSuccess(result) {
                 //上传成功 将图片url放到对象中再放到数组中
                 var image = {};
-                var customerId = window.localStorage['userId'];
-                image.imageUrl = "app/bbs/temp/" + customerId +"/"+ fileName;
+                image.imageUrl = "app/bbs/temp/" + uuid +"/"+ fileName;
                 $scope.bbsImages.push(image);
 
                 LoadingSvr.hide();
