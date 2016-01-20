@@ -139,10 +139,10 @@ a {
             border:1px solid #fff; background:none;color:#333; font-family:ºÚÌå; font-size:14px; height:100%;margin-right:10px; margin-top:1px;
 }
         .grogshop-nav ul li .ctive{
-            color:#fd9534; border-bottom-color:#fd9534
+            color:#4cb4fb; border-bottom-color:#4cb4fb
 }
             .grogshop-nav ul li button:active {
-                color:#fd9534; border-bottom-color:#fd9534
+                color:#4cb4fb; border-bottom-color:#4cb4fb
 }
 
         .grogshop-top-nav {
@@ -204,13 +204,13 @@ a {
   }
   
 .ba-col-fe {
-    background:#fe918e;
+    background:#333;
 }
 .ba-co-8a {
-    background:#8ad925;
+    background:#333;
 }
 .ba-co-4c {
-    background:#4cb4fb;
+    background:#333;
 
 }
 .grogshop-images {
@@ -248,13 +248,13 @@ a {
     display:block; border-bottom:1px solid #dedede
 }
 .i-button-style1 {
-    margin-right:5px;font-size:16px;color:#8ad925;opacity:0.6
+    margin-right:5px;font-size:16px;color:#333;opacity:0.6
 }
 .i-button-style2 {
-    margin-right:5px;font-size:16px;color:#4cb4fb;opacity:0.6
+    margin-right:5px;font-size:16px;color:#333;opacity:0.6
 }
 .i-button-style3 {
-    margin-right:5px;font-size:16px;color:#fe918e;opacity:0.6
+    margin-right:5px;font-size:16px;color:#333;opacity:0.6
 }
 .button-cont-style a:active i{
     opacity:1

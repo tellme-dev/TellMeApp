@@ -28,7 +28,7 @@
                             <div class="grogshop-nav-nav" style="width: {{childMenuWidth}};">
                                 <ul>
                                     
-                                    <li ng-repeat="childMenu in childMenuArray"><button class="{{childMenu.cName}}" style="border:none" ng-click="childMuneSelected(childMenu.index)"><img ng-src="{{host}}{{childMenu.data.itemDetail.imageUrl}}" width="100%" height="100%" /><i>{{childMenu.data.item.name}}</i></button></li>
+                                    <li ng-repeat="childMenu in childMenuArray"><button class="{{childMenu.cName}}" style="border:none; height:61px; overflow:hidden;" ng-click="childMuneSelected(childMenu.index)"><img ng-src="{{host}}{{childMenu.data.itemDetail.imageUrl}}" style="width:100%; height: 100%;" /><i>{{childMenu.data.item.name}}</i></button></li>
                                     
                                     <div class="clear"></div>
                                 </ul>
