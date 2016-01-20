@@ -22,7 +22,7 @@
             <!--banner-->
             <ks-swiper-container speed="3000" loop="true" show-nav-buttons="false" autoplay="false" pagination-clickable="false" override-parameters="{effect: 'coverflow',coverflow: {rotate: 50,stretch: 0,depth: 100,modifier: 1,slideShadows : false}}" on-ready="onReadySwiper(swiper)">
                 <ks-swiper-slide class="swiper-slide" ng-repeat="swiperItem in swiperAdData">
-                    <div style="background-color:white;" class="cont-bor-box-shadow ">
+                    <div style="background-color:white; margin-bottom:10px; margin-top:10px;" class="cont-bor-box-shadow ">
                         <div class="row" style="text-align:center;padding-bottom:1px;font-family:'微软雅黑'; color:#474747; font-size:1.25em;">
                             <div class="col col-100" style="line-height:30px;"><strong>{{swiperItem.name}}</strong></div>
                         </div>
@@ -54,12 +54,12 @@
                     </div>
                 </ks-swiper-slide>
             </ks-swiper-container>
-            <div class="ma-b-10 cont-bor-box-shadow" style="margin-top:3px;">
+            <!--<div class="ma-b-10 cont-bor-box-shadow" style="margin-top:3px;">
                 <div class="zt-cter row">
                     <div class="col-42 pa-l-r-10"><img image-lazy-src="images/liubai.png" style="width:90%" /></div>
                     <div class="col-58 pa-l-r-10 border-l fo-s14 font-f colo-6 zt-cter-text">预定住宿，乐享优惠。</div>
                 </div>
-            </div>
+            </div>-->
             <div class="ma-b-10 zt-cont-no">
                 <div class="row" ng-if="footAdData.length>=3">
                     <div class="col col-42 zt-img pa-10">
