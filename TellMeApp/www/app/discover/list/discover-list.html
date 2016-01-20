@@ -6,6 +6,8 @@
         </div>
     </div>
     <ion-content lazy-scroll>
+        <!-- <ion-refresher> 下拉刷新指令  -->
+        <ion-refresher pulling-text="下拉刷新" on-refresh="vm.doRefresh()"></ion-refresher>
         <div  ng-show="dataShow" class="inde-cont" style="margin-top:40px;">
             <div ng-repeat="data in vm.list" ng-click="goToAd(data.id)"   style="border-bottom:2px solid #111;">
                 <img image-lazy-src="{{baseUrl}}{{data.adDetailList[0].imageUrl}}" style="width:100%;" />
