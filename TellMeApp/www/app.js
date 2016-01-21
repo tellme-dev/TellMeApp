@@ -18,12 +18,7 @@
             var tabs = document.querySelectorAll('div.tabs');
             angular.element(tabs[0]).css('display', '');
         });
-
-        //主页面显示退出提示框  
         $ionicPlatform.registerBackButtonAction(function (e) {
-
-            e.preventDefault();
-
             function showConfirm() {
                 var confirmPopup = $ionicPopup.confirm({
                     title: '<strong>退出应用?</strong>',
@@ -40,24 +35,32 @@
                     }
                 });
             }
-
-            // Is there a page to go back to?  
-            if ($location.path() == '/menu') {
-                showConfirm();
-                alert('menu');
-            } else if ($ionicHistory.backView()) {
-                console.log('currentView:', $rootScope.$viewHistory.currentView);
-                // Go back in history  
-                alert('goback');
-                $ionicHistory.goback();
-                //$rootScope.$viewHistory.backView.go();
-            } else {
-                // This is the last page: Show confirmation popup  
-                showConfirm();
+            //判断处于哪个页面时双击退出
+            if ($location.path() == '/menu/home') {
+                if ($rootScope.backButtonPressedOnceToExit) {
+                    ionic.Platform.exitApp();
+                } else {
+                    $rootScope.backButtonPressedOnceToExit = true;
+                    showConfirm('再按一次退出系统');
+                    setTimeout(function () {
+                        $rootScope.backButtonPressedOnceToExit = false;
+                    }, 2000);
+                }
             }
-
+            else if ($ionicHistory.backView()) {
+                $ionicHistory.goBack();
+            } else {
+                $rootScope.backButtonPressedOnceToExit = true;
+                showConfirm('再按一次退出系统');
+                setTimeout(function () {
+                    $rootScope.backButtonPressedOnceToExit = false;
+                }, 2000);
+            }
+            e.preventDefault();
             return false;
         }, 101);
+        //主页面显示退出提示框  
+        
 
         var onDeviceReady = function () {
             //判断是否用户登录
@@ -97,7 +100,7 @@
             .state('menu', { url: '/menu', templateUrl: 'app/menu.html', controller: 'menuControll' })
                 //首页
                 //.state('menu.home', { url: '/home', templateUrl: 'app/home/home.html', controller: 'homeControll' })
-                .state('menu.home', { cache: false, url: '/home', views: { 'home-tab': { templateUrl: 'app/home/home.html', controller: 'homeControll' } } })
+                .state('menu.home', { url: '/home', views: { 'home-tab': { templateUrl: 'app/home/home.html', controller: 'homeControll' } } })
 
                   //.state('menu.home.banner',{url:'/banner',views:{'home-banner':{templateUrl:'app/home/banner/banner.html',controller:'bannerControll'}}})
                   //.state('menu.home.swiper',{url:'/swiper',views:{'home-swiper':{templateUrl:'app/home/swiper/swiper.html',controller:'swiperControll'}}})
