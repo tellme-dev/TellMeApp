@@ -57,11 +57,13 @@
                                     <div class="row pa-0">
                                         <!--点赞-->
                                         <div ng-click="agree()" class="col col-50 pa-0">
-                                            <button class="ion-thumbsup sq-bu-button fr"></button>
+                                            <button ng-if="!adInfo.isAgreed" class="ion-thumbsup sq-bu-button fr"></button>
+                                            <button ng-if="adInfo.isAgreed" class="ion-thumbsup sq-bu-button-agreed fr"></button>
                                         </div>
                                         <!--收藏-->
                                         <div ng-click="collect()" class="col col-50 pa-0">
-                                            <button class="ion-android-star sq-bu-button fr"></button>
+                                            <button ng-if="!adInfo.isCollected" class="ion-android-star sq-bu-button fr"></button>
+                                            <button ng-if="adInfo.isCollected" class="ion-android-star sq-bu-button-agreed fr"></button>
                                         </div>
                                     </div>
                                 </div>

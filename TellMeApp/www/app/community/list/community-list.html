@@ -26,7 +26,7 @@
         </div>
     </div>
     <ion-content style="background:#f1f2f4" lazy-scroll>
-        <ion-refresher pulling-text="" on-refresh="vm.loadMore()"></ion-refresher>
+        <ion-refresher pulling-text="" on-refresh="doRefresh()"></ion-refresher>
         <div ng-show="dataShow" class="ma-to-88 pa-top-10">
             <div ng-repeat="detail in vm.typeDetail" class="card ma-b-10">
                 <div class="max-img">
@@ -40,7 +40,7 @@
                 </div>
                 <div class="text-bor" ng-if="detail.bbsAttachUrls">
                     <div class="item item-text-wrap pa-0" style="font-family:黑体;">
-                        <div ng-click="toBbsDetail(detail.id)" class="sq-item-fl pa-l-r-10 ma-b-10 colo-3 fo-s14">
+                        <div ng-click="toBbsDetail(detail.id,detail.isAgreed,detail.isCollected)" class="sq-item-fl pa-l-r-10 ma-b-10 colo-3 fo-s14">
                             <div ng-if="detail.title">#{{detail.title}}#</div>{{detail.text}}
                         </div>
                         <!-- 一张图片 -->
@@ -79,11 +79,13 @@
                                     <div class="row pa-0">
                                         <!-- 点赞 -->
                                         <div ng-click="agreeBbs(detail.id,detail.agreeCount)" class="col col-50 pa-0">
-                                            <button class="ion-thumbsup sq-bu-button ba-co-8a fr"></button>
+                                            <button ng-if="!detail.isAgreed" class="ion-thumbsup sq-bu-button ba-co-8a fr"></button>
+                                            <button ng-if="detail.isAgreed" class="ion-thumbsup sq-bu-button-agreed ba-co-8a fr"></button>
                                         </div>
                                         <!-- 收藏 -->
                                         <div ng-click="collectBbs(detail.id,detail.collectionCount)" class="col col-50 pa-0">
-                                            <button class="ion-android-star sq-bu-button fr"></button>
+                                            <button ng-if="!detail.isCollected" class="ion-android-star sq-bu-button fr"></button>
+                                            <button ng-if="detail.isCollected" class="ion-android-star sq-bu-button-agreed fr"></button>
                                         </div>
                                     </div>
                                 </div>

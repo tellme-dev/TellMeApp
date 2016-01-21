@@ -135,7 +135,6 @@
             .state('bbsList', { url: '/bbsList', templateUrl: 'app/bbs/list/bbs-list.html', controller: 'bbsListControll' })
             .state('bbs', { cache: false, url: '/bbs?bbsId', templateUrl: 'app/bbs/single/bbs.html', controller: 'bbsControll' })
             .state('addBbs', { cache: false, url: '/addBbs', templateUrl: 'app/bbs/addbbs/addbbs.html', controller: 'addBbsControll' })
-            //.state('imageBrowse', { url: '/imageBrowse?bbsId', templateUrl: 'app/bbs/image/imageBrowse.html', controller: 'imageBrowseControll' })
 
             //酒店
              .state('hotelList', { url: '/hotelList?itemTagRootId&itemTagChildId&itemId', templateUrl: 'app/hotel/list/list.html', controller: 'hotelListControll' })

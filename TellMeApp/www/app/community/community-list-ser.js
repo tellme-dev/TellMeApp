@@ -19,11 +19,12 @@
         //    return deferred.promise;
         //}
         ////根据获取社区分类标签内容 categoryId分类标签ID
-        this.getTypeDetail = function (categoryId, pageNo,pageSize) {
+        this.getTypeDetail = function (categoryId, pageNo,pageSize,customerId) {
             var jsonData= JSON.stringify({
                 type: categoryId,
                 pageNo: pageNo,
-                pageSize: pageSize
+                pageSize: pageSize,
+                customerId:customerId
             });
             var url = baseUrl + 'app/bbs/loadBbsList.do';
             var deferred = $q.defer();

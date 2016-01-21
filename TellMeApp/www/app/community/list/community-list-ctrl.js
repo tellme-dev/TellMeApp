@@ -1,7 +1,7 @@
 ﻿
 angular.module('tellme')
-	.controller('communityControll', ['$scope', '$window', '$state', '$ionicHistory', '$ionicLoading','$ionicModal', 'communitySer', 'commonSer', 'appConfig', 'LoadingSvr', 'tellmeActionSheet', 'popUpSer','bbsSer',
-        function ($scope, $window, $state, $ionicHistory, $ionicLoading,$ionicModal, communitySer, commonSer, appConfig, LoadingSvr, tellmeActionSheet, popUpSer,bbsSer) {
+	.controller('communityControll', ['$scope', '$window', '$state', '$timeout', '$ionicHistory', '$ionicLoading', '$ionicModal', 'communitySer', 'commonSer', 'appConfig', 'LoadingSvr', 'tellmeActionSheet', 'popUpSer', 'bbsSer',
+        function ($scope, $window, $state, $timeout, $ionicHistory, $ionicLoading,$ionicModal, communitySer, commonSer, appConfig, LoadingSvr, tellmeActionSheet, popUpSer,bbsSer) {
 			$scope.baseUrl = appConfig.server.getUrl();
 			/*返回前一个界面*/
 			$scope.$window = $window;
@@ -11,8 +11,8 @@ angular.module('tellme')
 			$scope.dataShow = false;
 			$scope.msgShow = false;
 			//跳转到单个论坛详情
-			$scope.toBbsDetail = function (bbsId) {
-					$state.go('bbs', {bbsId: bbsId});
+			$scope.toBbsDetail = function (bbsId, isAgreed, isCollected) {
+			    $state.go('bbs', { bbsId: bbsId, isAgreed: isAgreed, isCollected: isCollected });
 				}
 				//跳转到发帖页面
 			$scope.toAddBbs = function () {
@@ -242,17 +242,28 @@ angular.module('tellme')
 						return true;
 					}
 			}
+            //下拉刷新
+            $scope.doRefresh = function () {
+                $timeout(function () {
+                    vm.loadMore();
+                    $scope.$broadcast('scroll.refreshComplete');
+                }, 1000);
+            }
 			//上拉加载更多
 			var vm = $scope.vm = {
 				categoryId: 1,
 				moredata: false,
 				typeDetail: [],
 				pageNo: 0,
-				pageSize:10,
+				pageSize: 10,
 				loadMore: function () {
 					LoadingSvr.show();
 					vm.pageNo += 1;
-					var promise = communitySer.getTypeDetail(vm.categoryId, vm.pageNo, vm.pageSize)
+					var customerId = window.localStorage['userId'];
+					if(customerId == undefined||customerId == ""){
+					    customerId = 0;
+					}
+					var promise = communitySer.getTypeDetail(vm.categoryId, vm.pageNo, vm.pageSize,customerId)
 						.then(
 							function (data) {
 								if (data.isSuccess) {
