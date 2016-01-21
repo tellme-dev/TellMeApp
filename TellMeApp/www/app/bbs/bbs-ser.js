@@ -2,10 +2,11 @@
     .service('bbsSer', ['$http', '$q', 'appConfig', function ($http, $q, appConfig) {
         var baseUrl = appConfig.server.getUrl();
         //获取单个BBS内容
-        this.getBBs = function (bbsId) {
+        this.getBBs = function (bbsId, customerId) {
             var url = baseUrl + 'app/bbs/loadBbs.do';
             var jsonData = JSON.stringify({
-                id: bbsId
+                id: bbsId,
+                customerId: customerId
             });
             var deferred = $q.defer();
             $http({
@@ -27,7 +28,7 @@
             var jsonData = JSON.stringify({
                 id: bbsId,
                 pageNo: pageNo,
-                pageSize:pageSize
+                pageSize: pageSize
             });
             var deferred = $q.defer();
             $http({

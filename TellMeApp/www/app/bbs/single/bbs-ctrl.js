@@ -5,14 +5,12 @@
             $scope.baseUrl = appConfig.server.getUrl();
             var bbsId = $stateParams.bbsId;
             // $state.go('login', {pageName: 'communityList'});
-
+            var customerId = window.localStorage['userId'];
+            if (customerId == "" || customerId == undefined) {
+                customerId = 0;
+            }
             $scope.goBack = function () {
-                //查看被回复的人如果是第二级，则要返回到前一级的回复页面
-                if ($scope.bbs.level == 2) {
-                    $scope.answerChildren($scope.bbs.parentId, 2);//获取上一级（父级）的被回复人的bbs信息及他的回复
-                } else {
-                    $ionicHistory.goBack();
-                }
+                $ionicHistory.goBack();
             };
             //跳转到发帖页面
             $scope.toAddBbs = function () {
@@ -71,7 +69,7 @@
             $scope.showAnswer = false;
 
             //获取单个Bbs详情
-            bbsSer.getBBs(bbsId).then(
+            bbsSer.getBBs(bbsId,customerId).then(
                 function (data) {
                     if (data.isSuccess) {
                         $scope.bbs = data.data;
@@ -136,7 +134,7 @@
                           $scope.globalVar.answerText = "";
                           $scope.globalVar.answerPlaceHolder = '我也说一句';
                           /*更新楼主的评论次数等*/
-                          bbsSer.getBBs($scope.bbs.id).then(
+                          bbsSer.getBBs($scope.bbs.id, customerId).then(
                               function (data) {
                                   if (data.isSuccess) {
                                       $scope.bbs = data.data;
@@ -181,7 +179,7 @@
                     var promise = commonSer.saveAgree(jsonData).then(
                       function (data) {
                           if (data.isSuccess) {
-                              bbsSer.getBBs(id).then(
+                              bbsSer.getBBs(id, customerId).then(
                               function (data) {
                                   if (data.isSuccess) {
                                       $scope.bbs = data.data;
@@ -216,7 +214,7 @@
                     var promise = commonSer.saveCollectionHistory(jsonData).then(
                    function (data) {
                        if (data.isSuccess) {
-                           bbsSer.getBBs(id).then(
+                           bbsSer.getBBs(id, customerId).then(
                              function (data) {
                                  if (data.isSuccess) {
                                      $scope.bbs = data.data;
@@ -270,7 +268,7 @@
                     return;
                 }
                 bbsId = id;
-                bbsSer.getBBs(id).then(
+                bbsSer.getBBs(id, customerId).then(
                           function (data) {
                               if (data.isSuccess) {
                                   $scope.bbs = data.data;

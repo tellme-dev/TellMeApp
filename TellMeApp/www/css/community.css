@@ -225,6 +225,9 @@ a {
             .sq-bu-button:active{
                color:#528eeb;
             }
+        .sq-bu-button-agreed {
+          border:1px solid #dedede;background:#fff; padding:3px 15px; font-size:20px;color:#528eeb; border-radius:5px;  
+        }
         .sq-span-style {
             padding-left:15px; border-left:1px solid #dedede
         }

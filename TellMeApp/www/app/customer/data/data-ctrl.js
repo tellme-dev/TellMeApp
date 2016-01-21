@@ -6,6 +6,7 @@
             $scope.customerInfo = {};//存放客户信息
             //返回前页
             $scope.goBack = function () {
+                //var views = $ionicHistory.viewHistory();
                 $ionicHistory.goBack();
             };
             //跳转到修改电话页面

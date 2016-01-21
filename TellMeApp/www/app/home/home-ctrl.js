@@ -1,6 +1,6 @@
 ﻿
 angular.module('tellme')
-    .controller('homeControll', ['$scope', '$rootScope', '$state', '$ionicSlideBoxDelegate', '$timeout', 'homeSer', 'appConfig', 'commonSer', 'LoadingSvr', function ($scope, $rootScope, $state, $ionicSlideBoxDelegate, $timeout, homeSer, appConfig, commonSer, LoadingSvr) {
+    .controller('homeControll', ['$scope', '$rootScope', '$state', '$ionicSlideBoxDelegate', '$timeout', '$ionicHistory', 'homeSer', 'appConfig', 'commonSer', 'LoadingSvr', function ($scope, $rootScope, $state, $ionicSlideBoxDelegate, $timeout,$ionicHistory, homeSer, appConfig, commonSer, LoadingSvr) {
         LoadingSvr.show();
         $scope.swiper = {
         };
@@ -303,5 +303,5 @@ angular.module('tellme')
         $scope.repeatDone = function () {
             $ionicSlideBoxDelegate.update();
         }
-
+        //var views = $ionicHistory.viewHistory();
     }])

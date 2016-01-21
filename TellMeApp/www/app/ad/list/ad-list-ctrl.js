@@ -3,7 +3,7 @@
        function ($scope, $state, $window, $stateParams, $ionicHistory,$ionicModal, appConfig, popUpSer,LoadingSvr, adSer, commonSer, tellmeActionSheet) {
            $scope.baseUrl = appConfig.server.getUrl();
            var adId = $stateParams.adId;
-           
+           LoadingSvr.show();
            /*返回前一个界面*/
         //$scope.$window = $window;
            $scope.goBack = function () {
@@ -28,8 +28,11 @@
                }
            }
            //加载广告信息
-           LoadingSvr.show();
-           adSer.loadAdInfo(adId).then(
+           var customerId = window.localStorage['userId'];
+           if(customerId == undefined||customerId == ""){
+               customerId = 0;
+           }
+           adSer.loadAdInfo(adId,customerId).then(
                            function (data) {
                                if (data.isSuccess) {
                                    $scope.adInfo = data.data;
@@ -44,6 +47,23 @@
                                console.log('其他');
                            }
                        );
+           $scope.loadAdInfo = function (adId, customerId) {
+               adSer.loadAdInfo(adId, customerId).then(
+                           function (data) {
+                               if (data.isSuccess) {
+                                   $scope.adInfo = data.data;
+                                   $scope.adDetail = data.data.adDetailList;
+                                   LoadingSvr.hide();
+                                   console.log('加載成功');
+                               } else {
+                                   console.log(data.msg);
+                               }
+                           },
+                           function (data) {
+                               console.log('其他');
+                           }
+                       );
+           }
            //获取评论
            $scope.getBBs=function(){
            adSer.getAdBbs(adId).then(
@@ -161,8 +181,10 @@
                        .then(
                            function (data) {
                                if (data.isSuccess) {
-                                   //页面上的次数更新 或者再重新加载一次
-                                   $scope.adInfo.agreeCount += 1;
+                                   //页面上的点赞更新 或者再重新加载一次
+                                   //$scope.adInfo.isAgreed = true;
+                                   LoadingSvr.show();
+                                   $scope.loadAdInfo(adId, customerId);
                                    console.log("点赞成功");
                                } else {
                                    popUpSer.showAlert(data.msg);
@@ -193,7 +215,9 @@
                            function (data) {
                                if (data.isSuccess) {
                                    //页面上的次数更新 或者再重新加载一次
-                                   $scope.adInfo.collectionCount += 1;
+                                   //$scope.adInfo.isCollected = true;
+                                   LoadingSvr.show();
+                                   $scope.loadAdInfo(adId, customerId);
                                    console.log('收藏成功');
                                } else {
                                    popUpSer.showAlert(data.msg);

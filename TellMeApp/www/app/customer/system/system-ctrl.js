@@ -2,14 +2,16 @@
     .controller('systemControll', ['$scope', '$ionicHistory', '$state', 'popUpSer', 'customerSer',
         function ($scope, $ionicHistory, $state,popUpSer, customerSer) {
             $scope.goBack = function () {
+                //var views = $ionicHistory.viewHistory();
                 $ionicHistory.goBack();
-            };
+            }
             //跳转到意见反馈
             $scope.goFeedback = function () {
                 $state.go('feedback');
             }
             //跳转到个人资料
             $scope.goData = function () {
+                //var views = $ionicHistory.viewHistory();
                 $state.go('data');
             }
             //跳转到关于

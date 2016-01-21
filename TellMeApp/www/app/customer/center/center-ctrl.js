@@ -279,6 +279,7 @@
             }
             //跳转到系统设置
             $scope.goSystem = function () {
+                //var views = $ionicHistory.viewHistory();
                 $state.go('system');
             }
             //跳转到评论
