@@ -1,8 +1,8 @@
 ﻿<ion-view viewtitle="搜索界面">
-    <div class="bar bar-dark bar-header item-input-inset" style="border-style:none">
+    <div class="bar bar-header item-input-inset" style="border-style:none">
         <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
-            <input type="search" ng-model="searchText" placeholder="搜索">
+            <input type="search" ng-model="searchText" placeholder="搜索" />
         </label>
         <button class="button  button-qx-col" ng-click="cancelOrsearch()">
             {{cancelBtnText}}
@@ -24,8 +24,8 @@
                 </div>
             </div>
             <div class="list">
-                <div class="item item-divider a-border" ng-if="hasSearch">
-                    <strong>相关酒店</strong>
+                <div class="item item-divider a-border" ng-if="hasResultOfHotel">
+                    <strong>酒店服务</strong>
                 </div>
                 <div class="list" style="padding:0px 10px;margin-bottom:0px;" ng-if="hasResultOfHotel">
                     <a class="item item-avatar a-border " href="#" ng-repeat="searchHotel in searchHotels" ng-click="goToHotelInfo(searchHotel.hotelId)">
@@ -34,7 +34,7 @@
                         <p>入住舒适度{{searchHotel.score}}分</p>
                     </a>
                 </div>
-                <div class="item item-divider a-border" ng-if="hasSearch">
+                <div class="item item-divider a-border" ng-if="hasResultOfBbs">
                     <strong>相关帖子</strong>
                 </div>
                 <div class="list" style="padding:0px 10px;" ng-if="hasResultOfBbs">
@@ -55,7 +55,7 @@
                     </div>
                 </div>
 
-                <div class="item item-divider a-border" ng-if="hasSearch">
+                <div class="item item-divider a-border" ng-if="false">
                     <strong>其他</strong>
                 </div>
             </div>

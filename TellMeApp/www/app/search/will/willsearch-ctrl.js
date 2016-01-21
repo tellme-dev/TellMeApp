@@ -3,6 +3,7 @@
         $scope.baseUrl = appConfig.server.getUrl();
         $scope.cancelBtnText = '取消';
         //是否进行搜索，进行页面的转换
+        
         $scope.hasSearch = false;
         $scope.hasResult = false;
         $scope.hasResultOfHotel = false;
@@ -63,8 +64,12 @@
                 var promise1 = searchSer.fullTextSearchOfHotel(search);
                 promise1.then(
                     function (data) {
-                        $scope.hasResultOfHotel = true;
                         $scope.searchHotels = data.rows;
+                        if (typeof ($scope.searchHotels) == 'undefined' || $scope.searchHotels.length == 0) {
+                            $scope.hasResultOfHotel = false;
+                        } else {
+                            $scope.hasResultOfHotel = true;
+                        }
                         LoadingSvr.hide();
                     },
                     function (data) {
@@ -73,8 +78,12 @@
                 var promise2 = searchSer.fullTextSearchOfBbs(search);
                 promise2.then(
                     function (data) {
-                        $scope.hasResultOfBbs = true;
                         $scope.searchBbss = data.rows;
+                        if (typeof ($scope.searchBbss) == 'undefined' || $scope.searchBbss.length == 0) {
+                            $scope.hasResultOfBbs = false;
+                        } else {
+                            $scope.hasResultOfBbs = true;
+                        }
                         LoadingSvr.hide();
                     },
                     function (data) {

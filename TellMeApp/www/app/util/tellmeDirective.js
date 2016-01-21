@@ -110,6 +110,7 @@
 .directive('autoFocusWhen', ['$log','$timeout', function($log, $timeout) {
     return {
         restrict: 'A',
+
         scope: {
             autoFocusWhen: '='
         },
@@ -130,3 +131,8 @@
         }
     };
 }])
+.directive('setFocus', function () {
+    return function (scope, element) {
+        element[0].focus();
+    };
+})
