@@ -16,29 +16,30 @@
                     </div>
                 </ion-scroll>
             </div>
-        </div>
-    </div>
-
-    <ion-content style="background:#f1f2f4" lazy-scroll>
-        <div class="ma-to-88 pa-top-10">
-
-            <div class="grogshop-top-nav ma-b-10 pa-l-r-10">
+            <div class="grogshop-top-nav pa-l-r-10" style="padding-bottom:10px; padding-top:10px;">
                 <div title="Home" hide-nav-bar="true">
                     <ion-scroll scrollbar-x="false" zooming="true" direction="x" style="width:100%;">
                         <div class="grogshop-nav-nav" style="width: {{childMenuWidth}};">
                             <ul>
                                 <li ng-repeat="childMenu in childMenuArray"><button class="{{childMenu.cName}}" ng-click="childMuneSelected(childMenu.index)" style="border:none "><img image-lazy-src="{{host}}{{childMenu.data.defaultImageUrl}}" image-lazy-loader="lines" style="width:100%;height:100%;" /><i>{{childMenu.data.name}}</i></button></li>
                                 <!--<li class="button-activ"><button class="pa-0" style="border:none"><img /><i>游泳馆</i></button></li>
-                                <li><button class="pa-0" style="border:none"><img /><i>健身房</i></button></li>
-                                <li><button class="pa-0" style="border:none"><img /><i>SPA</i></button></li>
-                                <li><button class="pa-0" style="border:none"><img /><i>温泉</i></button></li>
-                                <li><button class="pa-0"style="border:none"><img /><i>各类球场</i></button></li>-->
+                        <li><button class="pa-0" style="border:none"><img /><i>健身房</i></button></li>
+                        <li><button class="pa-0" style="border:none"><img /><i>SPA</i></button></li>
+                        <li><button class="pa-0" style="border:none"><img /><i>温泉</i></button></li>
+                        <li><button class="pa-0"style="border:none"><img /><i>各类球场</i></button></li>-->
                                 <div class="clear"></div>
                             </ul>
                         </div>
                     </ion-scroll>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <ion-content style="background:#f1f2f4" lazy-scroll>
+        <div class="ma-to-160 pa-top-10">
+
+            
             <div ng-if="itemListEmpty" align="center">
                 {{loadListerrMsg}}
             </div>

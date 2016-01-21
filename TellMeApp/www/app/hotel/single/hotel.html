@@ -17,12 +17,26 @@
                         </div>
                     </ion-scroll>
                 </div>
+                <div class="grogshop-top-nav pa-l-r-10" style="padding-bottom:10px; padding-top:10px;">
+                    <div title="Home" hide-nav-bar="true">
+                        <ion-scroll scrollbar-x="false" zooming="true" direction="x" style="width:100%;">
+                            <div class="grogshop-nav-nav" style="width: {{childMenuWidth}};">
+                                <ul>
+
+                                    <li ng-repeat="childMenu in childMenuArray"><button class="{{childMenu.cName}}" style="border:none; height:61px; overflow:hidden;" ng-click="childMuneSelected(childMenu.index)"><img ng-src="{{host}}{{childMenu.data.itemDetail.imageUrl}}" style="width:100%; height: 100%;" /><i>{{childMenu.data.item.name}}</i></button></li>
+
+                                    <div class="clear"></div>
+                                </ul>
+                            </div>
+                        </ion-scroll>
+                    </div>
+                </div>
             </div>
         </div>
 
         <ion-content style="background:#f1f2f4">
-            <div class="ma-to-88 pa-top-10 cont-bor-box-shadow" style="">
-                <div class="grogshop-top-nav ma-b-10 pa-l-r-10">
+            <div class=" cont-bor-box-shadow" style=" margin-top:150px;">
+                <!--<div class="grogshop-top-nav ma-b-10 pa-l-r-10">
                     <div title="Home" hide-nav-bar="true">
                         <ion-scroll scrollbar-x="false" zooming="true" direction="x" style="width:100%;">
                             <div class="grogshop-nav-nav" style="width: {{childMenuWidth}};">
@@ -35,7 +49,7 @@
                             </div>
                         </ion-scroll>
                     </div>
-                </div>
+                </div>-->
                 <div class="xq-cont-style">
                     <div class="pa-bo-10">
                         <div ng-repeat="item in itemData.details">
