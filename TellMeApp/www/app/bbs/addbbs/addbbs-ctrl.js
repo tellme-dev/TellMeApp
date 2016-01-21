@@ -109,7 +109,7 @@
             function tSuccess(result) {
                 //上传成功 将图片url放到对象中再放到数组中
                 var image = {};
-                image.imageUrl = "app/bbs/temp/" + uuid +"/"+ fileName;
+                image.imageUrl = "picture/app/bbs/temp/" + uuid +"/"+ fileName;
                 $scope.bbsImages.push(image);
 
                 LoadingSvr.hide();
