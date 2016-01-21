@@ -1,6 +1,6 @@
 ﻿angular.module('tellme')
-    .controller('discoverListControll', ['$scope', '$rootScope', '$window', '$state', '$ionicHistory', 'discoverSer', 'commonSer', 'LoadingSvr', 'appConfig',
-        function ($scope,$rootScope, $window, $state, $ionicHistory, discoverSer, commonSer, LoadingSvr, appConfig) {
+    .controller('discoverListControll', ['$scope', '$rootScope', '$window', '$state', '$timeout','$ionicHistory', 'discoverSer', 'commonSer', 'LoadingSvr', 'appConfig',
+        function ($scope,$rootScope, $window, $state,$timeout, $ionicHistory, discoverSer, commonSer, LoadingSvr, appConfig) {
             // 获取当前位置
             //$rootScope.currentCity = window.localStorage['currentcity'];
             //$scope.$watch('setCity', function (newValue, oldValue) {
@@ -54,7 +54,14 @@
                 moredata: false,
                 list: [],
                 pageNo:0,
-                pageSize:10,
+                pageSize: 10,
+                //下拉刷新
+                doRefresh: function () {
+                    $timeout(function () {
+                        vm.loadMore();
+                        $scope.$broadcast('scroll.refreshComplete');
+                    }, 1000);
+                },
                 loadMore: function () {
                     LoadingSvr.show();
                     vm.pageNo += 1;
@@ -76,6 +83,7 @@
                           }
                           LoadingSvr.hide();
                       } else {
+                          LoadingSvr.hide();
                           $scope.dataShow = false;
                           $scope.msgShow = true;
                       }

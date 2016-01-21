@@ -91,9 +91,9 @@
             /*调用相机：type=0 ，相册中选择：type=1*/
             $scope.takePhoto = function (type) {
                 if (type == 0) {
-                    cameraSvr.takePhoto(30, cSuccess, cFail);
+                    cameraSvr.takePhoto(20, cSuccess, cFail);
                 } else {
-                    cameraSvr.getPhoto(30, cSuccess, cFail);
+                    cameraSvr.getPhoto(20, cSuccess, cFail);
                 }
                 function cSuccess(imgURI) {
                     LoadingSvr.load();
@@ -103,7 +103,7 @@
                     var fileName = customerId + '_' + mill + Math.floor(Math.random() * 9999 + 1000)+'.jpg';
                     /*上传图片*/
                     $scope.uploadPhoto(imgURI, fileName);
-                    //$scope.image.imageUrl = 'app/head/' + fileName;
+                    //$scope.image.imageUrl = '/picture/app/head/' + fileName;
                 }
                 function cFail(message) {
                     console.log(message);
@@ -117,7 +117,7 @@
                    传输成功
                 */
                 function tSuccess(result) {
-                    $scope.customerInfo.photoUrl = "app/head/" + fileName;
+                    $scope.customerInfo.photoUrl = "/picture/app/head/" + fileName;
 
                     LoadingSvr.hide();
                     console.log(result);

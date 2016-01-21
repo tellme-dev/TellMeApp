@@ -66,6 +66,7 @@ angular.module('tellme')
                            console.log('其他');
                        }
                      );
+                $scope.$broadcast('scroll.refreshComplete');
             },
             //加载更多
             loadMore: function () {
