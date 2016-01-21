@@ -10,12 +10,7 @@
                 customerId = 0;
             }
             $scope.goBack = function () {
-                //查看被回复的人如果是第二级，则要返回到前一级的回复页面
-                if ($scope.bbs.level == 2) {
-                    $scope.answerChildren($scope.bbs.parentId, 2);//获取上一级（父级）的被回复人的bbs信息及他的回复
-                } else {
-                    $ionicHistory.goBack();
-                }
+                $ionicHistory.goBack();
             };
             //跳转到发帖页面
             $scope.toAddBbs = function () {

@@ -47,6 +47,23 @@
                                console.log('其他');
                            }
                        );
+           $scope.loadAdInfo = function (adId, customerId) {
+               adSer.loadAdInfo(adId, customerId).then(
+                           function (data) {
+                               if (data.isSuccess) {
+                                   $scope.adInfo = data.data;
+                                   $scope.adDetail = data.data.adDetailList;
+                                   LoadingSvr.hide();
+                                   console.log('加載成功');
+                               } else {
+                                   console.log(data.msg);
+                               }
+                           },
+                           function (data) {
+                               console.log('其他');
+                           }
+                       );
+           }
            //获取评论
            $scope.getBBs=function(){
            adSer.getAdBbs(adId).then(
@@ -165,8 +182,9 @@
                            function (data) {
                                if (data.isSuccess) {
                                    //页面上的点赞更新 或者再重新加载一次
-                                   $scope.adInfo.isAgreed = true;
-                                   $scope.adInfo.isCollected = true;
+                                   //$scope.adInfo.isAgreed = true;
+                                   LoadingSvr.show();
+                                   $scope.loadAdInfo(adId, customerId);
                                    console.log("点赞成功");
                                } else {
                                    popUpSer.showAlert(data.msg);
@@ -197,7 +215,9 @@
                            function (data) {
                                if (data.isSuccess) {
                                    //页面上的次数更新 或者再重新加载一次
-                                   $scope.adInfo.collectionCount += 1;
+                                   //$scope.adInfo.isCollected = true;
+                                   LoadingSvr.show();
+                                   $scope.loadAdInfo(adId, customerId);
                                    console.log('收藏成功');
                                } else {
                                    popUpSer.showAlert(data.msg);
