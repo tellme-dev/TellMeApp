@@ -49,6 +49,7 @@
                 $state.go('menu.communityList');
             }
             //    //下拉加载更多
+            var flag = false;
             var vm = $scope.vm = {
                 categoryId:1,
                 moredata: false,
@@ -63,23 +64,27 @@
                     }, 1000);
                 },
                 loadMore: function () {
+                    //if (flag == false) {
+                    //    flag = true;
+                    //    return;
+                    //}
                     LoadingSvr.show();
                     vm.pageNo += 1;
                     var promise = discoverSer.getList(vm.pageNo,vm.pageSize).then(
                   function (data) {
                       if (data.isSuccess) {
+                          vm.list = data.rows;
+                          var total = data.total;
+                          if (vm.pageNo * vm.pageSize > total || vm.pageNo * vm.pageSize == total) {
+                              vm.moredata = true;
+                              vm.pageNo = 0;
+                          }
                           if (data.total != 0) {
                               $scope.dataShow = true;
                               $scope.msgShow = false;
                           } else {
                               $scope.dataShow = false;
                               $scope.msgShow = true;
-                          }
-                          vm.list = data.rows;
-                          var total = data.total;
-                          if (vm.pageNo * vm.pageSize > total || vm.pageNo * vm.pageSize == total) {
-                              vm.moredata = true;
-                              vm.pageNo = 0;
                           }
                           LoadingSvr.hide();
                       } else {
