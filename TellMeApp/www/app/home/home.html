@@ -11,7 +11,7 @@
   
     <ion-content style="background:#f1f2f4" lazy-scroll>
         <!-- <ion-refresher> 下拉刷新指令  -->
-        <ion-refresher pulling-text="下拉刷新" on-refresh="vm.doRefresh()"></ion-refresher>
+        <!--<ion-refresher pulling-text="下拉刷新" on-refresh="vm.doRefresh()"></ion-refresher>-->
         <div class="hzf-cont">
             <!--banner-->
             <ion-slide-box class="hzf-cont" on-slide-changed="slideHasChanged($index)" show-pager="true" does-continue="true" auto-play="true" ng-if="adData">
@@ -60,7 +60,7 @@
                     <div class="col-58 pa-l-r-10 border-l fo-s14 font-f colo-6 zt-cter-text">预定住宿，乐享优惠。</div>
                 </div>
             </div>-->
-            <div class="ma-b-10 zt-cont-no">
+            <!--<div class="ma-b-10 zt-cont-no">
                 <div class="row" ng-if="footAdData.length>=3">
                     <div class="col col-42 zt-img pa-10">
                         <img image-lazy-src="{{baseUrl}}{{footAdData[0].adDetailList[0].imageUrl}}" ng-click="goToAd(footAdData[0].id)" style="width:100%;height:100%" />
@@ -74,9 +74,29 @@
                         </div>
                     </div>
                 </div>
+            </div>-->
+            <div class="zt-cont">
+                <div class="card">
+                    <div class="item item-text-wrap">
+                        <div class="tit">
+                            <ul>
+                                <li class="fo-s18 ma-to-10 ma-b-5 colo-6">实时专题<i></i></li>
+                                <li class="fo-s12 colo-9 text-ce">不一样的专题，让你体验不一样的生活</li>
+                            </ul>
+                        </div>
+                        <div class="ma-to-10" ng-repeat="item in footAdData">
+                            <div class="ma-b-10 ix-img-cont">
+                                <img image-lazy-src="{{baseUrl}}{{item.adDetailList[0].imageUrl}}" ng-click="goToAd(item.id)" style="width:100%; height:100%" />
+                            </div>
+                            <span class="fl font-f fo-s12 colo-6">{{item.adDetailList[0].text| cut:true:100:' ...'}}</span>
+                            <div class="fr font-f fo-s12 colo-9"><i class="ion-heart fo-s14 ma-r-5" style="color:#eb5d54;"></i>已有20人参与</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- 专题大于3个 -->
-            <div class="zt-cont" ng-if="footAdData.length>3">
+            <!--<div class="zt-cont" ng-if="footAdData.length>3">
                 <div class="card">
                     <div class="item item-text-wrap">
                         <div class="tit">
@@ -95,9 +115,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!-- 有专题但专题不足3个 -->
-            <div class="zt-cont" ng-if="footAdData.length<3&&footAdData.length>0">
+            <!--<div class="zt-cont" ng-if="footAdData.length<3&&footAdData.length>0">
                 <div class="card">
                     <div class="item item-text-wrap" ng-if="footAdData.length<3&&footAdData.length>0">
                         <div class="tit">
@@ -116,7 +136,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </ion-content>
     <ion-infinite-scroll ng-if="vm.moredata" on-infinite="vm.loadMore()" distance="10%"></ion-infinite-scroll>
