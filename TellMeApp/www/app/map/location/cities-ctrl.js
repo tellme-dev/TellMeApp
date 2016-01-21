@@ -30,6 +30,7 @@
             tellMeMapSvr.getDistrict();
             LoadingSvr.hide();
             $scope.currentCity = window.localStorage['currentcity'];
+            $rootScope.setCity = $scope.currentCity;
         }
 
         //对搜索输入内容进行监视，用于切换按钮的显示内容

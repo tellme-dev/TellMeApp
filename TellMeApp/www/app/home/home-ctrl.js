@@ -91,11 +91,18 @@ angular.module('tellme')
 
         //获取URL
         $scope.baseUrl = appConfig.server.getUrl();
+        if (typeof ($scope.setCity) == 'undefined' || $scope.setCity != window.localStorage['currentcity']) {
+            $scope.setCity = window.localStorage['currentcity'];
+        }
 
-        $rootScope.setCity = window.localStorage['currentcity'];
-        $scope.$watch('setCity', function (newValue, oldValue) {
-            $rootScope.setCity = newValue;
+        
+        $rootScope.$watch('setCity', function (newValue, oldValue) {
+            if (newValue == oldValue) {
+            } else {
+            $scope.setCity = newValue;
             console.log("newValue:" + newValue + ",oldValue:" + oldValue);
+            }
+            
         });
         //获取城市定位
         //广告（头部广告、底部专栏）动态加载
