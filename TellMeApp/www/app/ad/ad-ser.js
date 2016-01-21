@@ -2,9 +2,10 @@
     .service('adSer', ['$http', '$q', 'appConfig', function ($http, $q, appConfig) {
         var baseUrl = appConfig.server.getUrl();
         //根据Id获取广告信息
-        this.loadAdInfo = function (id) {
+        this.loadAdInfo = function (id, customerId) {
             var jsonData = JSON.stringify({
-                id: id
+                id: id,
+                customerId: customerId
             });
             var url = baseUrl + 'app/ad/loadAdById.do';
             var deferred = $q.defer();

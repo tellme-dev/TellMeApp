@@ -5,18 +5,6 @@ angular.module('tellme')
         $scope.swiper = {
         };
         $scope.onReadySwiper = function (swiper) {
-            //swiper.on('onProgress', function () {
-            //    for (var i = 0; i < swiper.slides.length; i++) {
-            //        var slide = swiper.slides[i];
-            //        var progress = slide.progress;
-            //        scale = 1 - Math.min(Math.abs(progress * 0.2), 1);
-
-            //        es = slide.style;
-            //        es.opacity = 1 - Math.min(Math.abs(progress / 2), 1);
-            //        es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = 'translate3d(0px,0,' + (-Math.abs(progress * 150)) + 'px)';
-
-            //    }
-            //});
         };
         //测试
         $scope.test = function(index){
