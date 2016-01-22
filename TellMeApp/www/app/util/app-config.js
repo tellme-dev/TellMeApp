@@ -18,7 +18,6 @@ angular.module('tellme')
             port: '8080',
             getUrl: function () {
                 return this.address + ':' + this.port + '/' + this.name + '/';
-
             }
         },
 

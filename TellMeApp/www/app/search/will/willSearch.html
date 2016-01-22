@@ -2,7 +2,7 @@
     <div class="bar bar-header item-input-inset" style="border-style:none">
         <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
-            <input type="search" ng-model="searchText" placeholder="搜索" />
+            <input type="search" id="searchInput" ng-model="searchText" placeholder="搜索" auto-focus-when="autoFocus"/>
         </label>
         <button class="button  button-qx-col" ng-click="cancelOrsearch()">
             {{cancelBtnText}}

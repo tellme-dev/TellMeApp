@@ -16,7 +16,7 @@
             <!--banner-->
             <ion-slide-box class="hzf-cont" on-slide-changed="slideHasChanged($index)" show-pager="true" does-continue="true" auto-play="true" ng-if="adData">
                 <ion-slide ng-repeat="ad in adData" repeat-done="repeatDone()" style="width:100%;">
-                    <img image-lazy-src="{{baseUrl}}{{ad.adDetailList[0].imageUrl}}" ng-click="goToAd(ad.id)" style="width:100%;" err-src="images/default/home/16-9.jpg" />
+                    <img ng-src="{{baseUrl}}{{ad.adDetailList[0].imageUrl}}" ng-click="goToAd(ad.id)" style="width:100%;" />
                 </ion-slide>
             </ion-slide-box>
             <!--banner-->
@@ -29,25 +29,20 @@
 
                         <div class="row" style="padding:1px;padding-bottom:0px;">
                             <div class="col col-50" style="padding:0.5px;height:90px;width:90px;overflow:hidden;" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[0].itemId,swiperItem.hotelItems[0].itemTagId)">
-                                <img image-lazy-src="{{baseUrl}}{{swiperItem.hotelItems[0].imageUrl}}" style="width:100%; height:100%" err-src="images/default/home/longPic.jpg" />                              
-                                
+                                <img image-lazy-src="{{baseUrl}}{{swiperItem.hotelItems[0].imageUrl}}" style="width:100%; height:100%" />                              
                             </div>
                             
                             <div class="col col-50" style="padding:0.5px;height:90px;width:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[1].itemId,swiperItem.hotelItems[1].itemTagId)">
-                                <img image-lazy-src="{{baseUrl}}{{swiperItem.hotelItems[1].imageUrl}}" style="width:100%;height:100%"err-src="images/default/home/longPic.jpg" />
-                                
+                                <img image-lazy-src="{{baseUrl}}{{swiperItem.hotelItems[1].imageUrl}}" style="width:100%;height:100%"/>
                             </div>
-                            <!--<div class="col col-50" style="padding:0.5px;height:90px;width:90px;" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[1].itemId,swiperItem.hotelItems[1].itemTagId)">
-                                <div class="sq-cont-img-div" image-lazy-src="{{baseUrl}}{{swiperItem.hotelItems[1].imageUrl}}" image-lazy-background-image="true" style="background-size:cover; background-position:center" err-src="images/failed.png"></div>
-                            </div>-->
                         </div>
                         <div class="row" style="padding:1px;padding-top:0px;margin-top:0px;">
                             <div class="col col-50" style="padding:0.5px;height:90px;width:90px; overflow-y:hidden" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[2].itemId,swiperItem.hotelItems[2].itemTagId)">
-                                <img image-lazy-src="{{baseUrl}}{{swiperItem.hotelItems[2].imageUrl}}" style="width:100%;height:100%" err-src="images/default/home/longPic.jpg" />
+                                <img image-lazy-src="{{baseUrl}}{{swiperItem.hotelItems[2].imageUrl}}" style="width:100%;height:100%" />
                                 
                             </div>
                             <div class="col col-50" style="padding:0.5px;height:90px;width:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[3].itemId,swiperItem.hotelItems[3].itemTagId)">
-                                <img image-lazy-src="{{baseUrl}}{{swiperItem.hotelItems[3].imageUrl}}" style="width:100%;height:100%" err-src="images/default/home/longPic.jpg"/>
+                                <img image-lazy-src="{{baseUrl}}{{swiperItem.hotelItems[3].imageUrl}}" style="width:100%;height:100%" />
                                 
                             </div>
                         </div>
@@ -78,7 +73,7 @@
             <div class="zt-cont">
                 <div class="card">
                     <div class="item item-text-wrap">
-                        <div class="tit">
+                        <div class="tit" ng-if="footAdData">
                             <ul>
                                 <li class="fo-s18 ma-to-10 ma-b-5 colo-6">实时专题<i></i></li>
                                 <li class="fo-s12 colo-9 text-ce">不一样的专题，让你体验不一样的生活</li>
