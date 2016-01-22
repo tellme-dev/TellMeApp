@@ -20,12 +20,12 @@
 </style>
 <ion-view>
     <ion-slide-box class="tellme-slide-box">
-        <ion-slide class="tellme-slider-slide" ng-repeat="item in adDetail" style="background-color:#444444" ng-click="closeModal()">
+        <ion-slide class="tellme-slider-slide" ng-repeat="item in adDetail" show-pager="false" style="background-color:#444444" ng-click="closeModal()">
             <img class="tellme-slide-box-image" ng-click="" ng-src="{{baseUrl}}{{item.imageUrl}}"/>
             <div class="po-ab fx-opacity-cont">
                 <div class="bu-lf">
                     <span class="fo-s14 col-ff" style="font-family:'黑体';">{{adInfo.name}}</span>
-                    <p style="font-family:'黑体';font-size:12px;color:#fff; margin-bottom:0px;">
+                    <p style="font-family:'黑体';font-size:12px;color:#fff; margin-bottom:15px;">
                         {{item.text}}
                     </p>
                 </div>

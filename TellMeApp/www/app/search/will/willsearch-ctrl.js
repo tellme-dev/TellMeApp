@@ -3,7 +3,7 @@
         $scope.baseUrl = appConfig.server.getUrl();
         $scope.cancelBtnText = '取消';
         //是否进行搜索，进行页面的转换
-        
+        $scope.autoFocus = false;
         $scope.hasSearch = false;
         $scope.hasResult = false;
         $scope.hasResultOfHotel = false;
@@ -99,6 +99,9 @@
         $scope.goToBbsInfo = function (bbsId) {
             $state.go('bbs', { bbsId: bbsId });
         }
+        angular.element('#searchInput').ready(function () {
+            $scope.autoFocus = true;
+        });
     }])
     .filter('cut', function () {
         return function (value, wordwise, max, tail) {
