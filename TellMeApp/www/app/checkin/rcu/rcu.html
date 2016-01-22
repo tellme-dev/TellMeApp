@@ -42,6 +42,7 @@
                                 <div class="clear"></div>
                             </div>
                         </div>
+
                         <input type="button" value="ON" class="button-kg" style="height:60px;border-top:1px solid #ddd;" ng-click="powerOnOrOffAllLT()" />
                     </div>
                     <div ng-show="t.dtype=='AC'">
@@ -55,7 +56,12 @@
                                     <button class="col conditioner-button-on" ng-click="changeACTemplature(cfgItem,oper,-1)"></button>
                                     <button class="col conditioner-button-to" ng-click="changeACTemplature(cfgItem,oper,1)"></button>
                                 </div>
-                                <div class="range range-balanced" style="border-bottom:1px solid #ddd; height:65px;" ng-show="oper.mode==1&&oper.tag =='F'">
+                                <div class="row padding-0" style="margin-top:0px; padding-bottom:0px;" ng-show="oper.mode==2&&oper.tag =='T'">
+                                    <div class="col col-33" style="text-align:left;padding-left:15px;color:#666;font-size:16px; font-family:'黑体';">低</div>   
+                                    <div class="col col-33" style="text-align:center;font-size:16px;color:#666;font-family:'黑体';">中</div>
+                                    <div class="col col-33" style="text-align:right;font-size:16px;padding-right:15px; color:#666;font-family:'黑体';">高</div>
+                                </div>
+                                <div class="range range-balanced" style="border-bottom:1px solid #ddd;" ng-show="oper.mode==1&&oper.tag =='F'">
                                     <i class="icon fs-le"><img src="images/kontiao5.png" style="width:70%" /></i>
                                     <input type="range" name="volume" min="0" max="10" step="5" value="{{oper.windValue}}" class="input-ct">
                                     <i class="icon fs-ri"><img src="images/kontiao5.png" style="width:90%" /></i>
