@@ -1,13 +1,29 @@
 ﻿angular.module('tellme')
-    .controller('menuControll', ['$scope', '$state', 'popUpSer', 'checkinSer', function ($scope, $state, popUpSer, checkinSer) {
+    .controller('menuControll', ['$scope', '$state', 'popUpSer', 'checkinSer', 'customerSer', function ($scope, $state, popUpSer, checkinSer, customerSer) {
         $scope.home = function () {
             $state.go('menu.home');
+        }
+        var customerId = window.localStorage['userId'];
+        if (customerId == "" || customerId == undefined) {
+            customerId = 0;
         }
         $scope.customer = function () {
             if (typeof (window.localStorage['userTel']) == 'undefined' || window.localStorage['userTel'] == "") {//如果用户未登录跳转到登录页面
                 $state.go('login', { pageName: 'menu.customer' });
             } else {
-                $state.go('menu.customer');
+                var promise = customerSer.getCustomerAlways(customerId, 1, 5);
+                promise.then(
+                    function (data) {
+                        if (data.isSuccess) {
+                            $state.go('menu.customer');
+                        } else {
+                            console.log(data.msg);
+                            popUpSer.showAlert("查询信息异常");
+                        }
+                    }, function (data) {
+                        popUpSer.showAlert("查询信息异常");
+                    }
+                  );
             }
         }
         $scope.discovery = function () {

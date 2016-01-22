@@ -141,11 +141,16 @@
                 }
             }
             //下拉加载更多 根据标签获取酒店列表
+            var isFirstLoad = true;
             var vm = $scope.vm = {  
                 moredata: false,
                 pageNumber: 0,
                 pageSize: 10,
                 loadMore: function () {
+                    if (isFirstLoad == true) {
+                        isFirstLoad = false;
+                        return;
+                    }
                     if ($scope.selectedIndex == 1) { //常住酒店
                         LoadingSvr.show();
                         vm.pageNumber += 1;
@@ -161,12 +166,15 @@
                                     }
                                     LoadingSvr.hide();
                                     $scope.$broadcast('scroll.infiniteScrollComplete');
-                               }
+                                } else {
+                                    console.log(data.msg);
+                                    //popUpSer.showAlert("查询信息异常");
+                                }
                              }, function (data) {
                                 LoadingSvr.hide();
                                 vm.moredata = true;
                                 $scope.$broadcast('scroll.infiniteScrollComplete');
-                                console.log('其他');
+                                popUpSer.showAlert("查询信息异常");
                             }
                           );
                     }
