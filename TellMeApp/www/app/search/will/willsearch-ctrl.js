@@ -1,9 +1,11 @@
 ﻿angular.module('tellme')
-    .controller('willSearchControll', ['$scope', '$ionicHistory', '$state', 'LoadingSvr', 'searchSer', 'appConfig', 'popUpSer', function ($scope, $ionicHistory, $state, LoadingSvr, searchSer, appConfig, popUpSer) {
+    .controller('willSearchControll', ['$scope', '$ionicHistory', '$timeout', '$state', 'LoadingSvr', 'searchSer', 'appConfig', 'popUpSer', function ($scope, $ionicHistory,$timeout, $state, LoadingSvr, searchSer, appConfig, popUpSer) {
         $scope.baseUrl = appConfig.server.getUrl();
         $scope.cancelBtnText = '取消';
         //是否进行搜索，进行页面的转换
-        $scope.autoFocus = false;
+        $timeout(function () {
+            $scope.autoFocus = true;
+        }, 500);
         $scope.hasSearch = false;
         $scope.hasResult = false;
         $scope.hasResultOfHotel = false;
@@ -99,9 +101,6 @@
         $scope.goToBbsInfo = function (bbsId) {
             $state.go('bbs', { bbsId: bbsId });
         }
-        angular.element('#searchInput').ready(function () {
-            $scope.autoFocus = true;
-        });
     }])
     .filter('cut', function () {
         return function (value, wordwise, max, tail) {

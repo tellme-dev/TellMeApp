@@ -23,9 +23,9 @@
                 <button class="col ru-rede" ng-click="goToTraffic()"><img src="images/gn-3.png" /><div class="ru-rede-text">交通</div></button>
             </div>
             <div class="row" ng-if="checkinHotel">
-                <button class="col ru-rede" ng-click="goToESuperMarket()"><img src="images/gn-1.png" /><div class="ru-rede-text">E房超市</div></button>
-                <button class="col ru-rede" ng-click="goToTV()"><img src="images/gn-2.png" /><div class="ru-rede-text">互动电视</div></button>
-                <button class="col ru-rede" ng-click="goToRCU()"><img src="images/gn-3.png" /><div class="ru-rede-text">房控</div></button>
+                <button class="col ru-rede" ng-click="goToESuperMarket()"><img src="images/Ecss.png" /><div class="ru-rede-text">E房超市</div></button>
+                <button class="col ru-rede" ng-click="goToTV()"><img src="images/tvv.png" /><div class="ru-rede-text">互动电视</div></button>
+                <button class="col ru-rede" ng-click="goToRCU()"><img src="images/fkk.png" /><div class="ru-rede-text">房控</div></button>
             </div>
             <div class="fw-rz-cont" ng-if="checkinHotel">
                 <div class="fw-rz-ser" ng-repeat="hotelItem in checkinHotel.itemVMs" ng-if="hotelItem.isUsed" ng-click="goToItemInfo(hotelItem.id)" ng-hide="hotelItem.itemTags[0].name ==='介绍'||hotelItem.itemTags[0].name ==='周边'||hotelItem.itemTags[0].name ==='交通'||hotelItem.itemTags[0].name ==='E房超市'||hotelItem.itemTags[0].name ==='互动电视'||hotelItem.itemTags[0].name ==='房控'||hotelItem.itemTags[0].name ==='挑'">

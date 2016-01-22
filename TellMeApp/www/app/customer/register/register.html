@@ -2,36 +2,40 @@
             <div class="bar  bar-header">
                 <button class="button icon ion-chevron-left sqer-but" ng-click="goBack()"></button>
                 <h1 class="title">注册</h1>
-                <button class="button button-style" ng-click="goLogin()" style="">登录</button>
+                <button class="button button-style" ng-click="goLogin()" >登录</button>
             </div>
             <ion-content class="zt-conter">
                 <!--内容块-->
-
-                <div class="content has-header list-top">
-                    <div class="list list-padding">
-                        <label class="item item-input item-border">
-                            <span class="input-label input-color">手机号码：</span>
-                            <input type="tel"ng-blur="verifyTel()"  ng-maxlength="11" ng-model="registerData.mobile" class="input-color" required>                          
-                        </label>
-                        <label class="item item-input item-cont">
-                            <span class="input-label input-color">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
-                            <input type="password" ng-model="registerData.psd" class="input-color" required>
-                        </label>
-                        <label class="item item-input item-cont">
-                            <span class="input-label input-color">重复密码：</span>
-                            <input type="password" ng-model="registerData.rpsd" class="input-color" required>
-                        </label>
-                        <label class="item item-input item-cont">
-                            <span class="input-label input-color">验&nbsp;&nbsp;证&nbsp;&nbsp;码：</span>
-                            <input type="text"  ng-model="registerData.verifyCode" class="input-color" required>
-                        </label>
-                        <button class="butt-a butt-atop denglu-stylewe" style="background-color:{{sendMsgBackColor}};" ng-disabled="!verifyDisabled" ng-click="sendShortMessageCode()">{{verifyTips}}</button>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="paddinger">
-                        <button class="button button-block" ng-click="register()">立即注册</button>
+                <div style="position:relative">
+                    <img src=" images/beij.jpg" style="width:100%; height:100%" />
+                    
+                    <div class="content has-header" style="position:absolute; width:100%; padding-left:20px; padding-right:20px;">
+                        <div class="list list-padding">
+                            <label class="item item-input item-border" style="margin-top:2px;border-bottom:1px solid #fff;">
+                                <span class="input-label input-color" style=" font-family:'黑体'; color:#fff;">手机号码：</span>
+                                <input type="tel" ng-blur="verifyTel()" ng-maxlength="11" ng-model="registerData.mobile" class="input-color" required>
+                            </label>
+                            <label class="item item-input item-cont" style="margin-top:2px;border-bottom:1px solid #fff;">
+                                <span class="input-label input-color" style=" font-family:'黑体'; color:#fff;">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
+                                <input type="password" ng-model="registerData.psd" class="input-color" required>
+                            </label>
+                            <label class="item item-input item-cont" style="margin-top:2px;border-bottom:1px solid #fff;">
+                                <span class="input-label input-color" style=" font-family:'黑体'; color:#fff;">重复密码：</span>
+                                <input type="password" ng-model="registerData.rpsd" class="input-color" required>
+                            </label>
+                            <label class="item item-input item-cont" style="margin-top:2px;border-bottom:1px solid #fff;">
+                                <span class="input-label input-color" style=" font-family:'黑体'; color:#fff;">验&nbsp;&nbsp;证&nbsp;&nbsp;码：</span>
+                                <input type="text" ng-model="registerData.verifyCode" class="input-color" required>
+                            </label>
+                            <button class="butt-a butt-atop denglu-stylewe"  style="background-color:{{sendMsgBackColor}}; color:#666" ng-disabled="!verifyDisabled" ng-click="sendShortMessageCode()">{{verifyTips}}</button>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="paddinger">
+                            <button style=" border-radius:25px ; background:#d0d0d0; color:#fff; border:none;font-family:'黑体';width:100% ; height:30px;" ng-click="register()">立即注册</button>
+                        </div>
                     </div>
                 </div>
+
                 <!--内容块-->
             </ion-content>
 </ion-view>
