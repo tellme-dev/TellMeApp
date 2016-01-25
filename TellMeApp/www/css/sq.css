@@ -109,7 +109,7 @@ width:100%; position:fixed;bottom:50px; padding:10px 10px;
 
 /*登录注册*/
   .butt-a {
-        border:1px solid #8e8e8e; border-radius:3px; background:none;padding:2px 8px; float:right;  color:#8e8e8e; font-family:'微软雅黑';
+         border-radius:3px; background:#2577e3;padding:2px 8px; float:right;  color:#fff; border:none;
         }
         .list-padding {
          padding:0px 10px;
@@ -117,6 +117,9 @@ width:100%; position:fixed;bottom:50px; padding:10px 10px;
         .list-top {
         top:60px;
         }
+.list-top-40 {
+    top:40px;
+}
         .item-border {
         border-top:0px; border-right:0px; border-left:0px; border-bottom-color:#54525f; padding-left:0px;
         }
