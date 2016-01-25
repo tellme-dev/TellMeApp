@@ -30,11 +30,10 @@
                             var center = result.bounds.getCenter();
                             var lat = center.lat;
                             var lng = center.lng;
-                            var lnglatXY = [lng, lat]; //已知点坐标
-                            window.localStorage['currentcity'] = cityinfo;
+                            var lnglatXY = [lng, lat]; 
                             AMap.service('AMap.Geocoder', function () {
                                 var geocoder = new AMap.Geocoder({
-                                    radius: 1000,
+                                    radius: 1000,   
                                     extensions: "all"
                                 });
                                 geocoder.getAddress(lnglatXY, function (status, result) {

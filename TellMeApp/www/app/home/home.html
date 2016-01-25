@@ -29,20 +29,20 @@
 
                         <div class="row" style="padding:1px;padding-bottom:0px;">
                             <div class="col col-50" style="padding:0.5px;height:90px;width:90px;overflow:hidden;" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[0].itemId,swiperItem.hotelItems[0].itemTagId)">
-                                <img image-lazy-src="{{baseUrl}}{{swiperItem.hotelItems[0].imageUrl}}" style="width:100%; height:100%" />                              
+                                <img ng-src="{{baseUrl}}{{swiperItem.hotelItems[0].imageUrl}}" style="width:100%; height:100%" />                              
                             </div>
                             
                             <div class="col col-50" style="padding:0.5px;height:90px;width:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[1].itemId,swiperItem.hotelItems[1].itemTagId)">
-                                <img image-lazy-src="{{baseUrl}}{{swiperItem.hotelItems[1].imageUrl}}" style="width:100%;height:100%"/>
+                                <img ng-src="{{baseUrl}}{{swiperItem.hotelItems[1].imageUrl}}" style="width:100%;height:100%"/>
                             </div>
                         </div>
                         <div class="row" style="padding:1px;padding-top:0px;margin-top:0px;">
                             <div class="col col-50" style="padding:0.5px;height:90px;width:90px; overflow-y:hidden" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[2].itemId,swiperItem.hotelItems[2].itemTagId)">
-                                <img image-lazy-src="{{baseUrl}}{{swiperItem.hotelItems[2].imageUrl}}" style="width:100%;height:100%" />
+                                <img ng-src="{{baseUrl}}{{swiperItem.hotelItems[2].imageUrl}}" style="width:100%;height:100%" />
                                 
                             </div>
                             <div class="col col-50" style="padding:0.5px;height:90px;width:90px;overflow-y:hidden" ng-click="goToItemList(swiperItem.itemTagId,swiperItem.hotelItems[3].itemId,swiperItem.hotelItems[3].itemTagId)">
-                                <img image-lazy-src="{{baseUrl}}{{swiperItem.hotelItems[3].imageUrl}}" style="width:100%;height:100%" />
+                                <img ng-src="{{baseUrl}}{{swiperItem.hotelItems[3].imageUrl}}" style="width:100%;height:100%" />
                                 
                             </div>
                         </div>

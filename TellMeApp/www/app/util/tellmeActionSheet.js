@@ -8,9 +8,9 @@ angular.module('tellme')
 	        // Show the action sheet
 	        var hideSheet = $ionicActionSheet.show({
 	            buttons: [
-					{
-					    text: template("QQ分享","images/share/qq.png")
-					},
+					//{
+					//    text: template("QQ分享","images/share/qq.png")
+					//},
 					{
 					    text: template("QQ空间", "images/share/space.png")
 					},
@@ -29,17 +29,17 @@ angular.module('tellme')
 	            cancelText: "取消",
 	            buttonClicked: function (index, args) {
 	                switch (index) {
-	                    case 0://QQ分享
-	                        shareResult = QQSer.share(_args);
-	                        break;
-	                    case 1://QQ空间
+	                    //case 0://QQ分享
+	                    //    shareResult = QQSer.share(_args);
+	                    //    break;
+	                    case 0://QQ空间
 	                        shareResult = QQSer.shareToQZone(_args);
 	                        break;
-	                    case 2://微信好友
+	                    case 1://微信好友
 	                        var shareId = typeof (_args.imageUrl) === 'undefined' ? 'send-text' : 'send-photo-local';
 	                        shareResult = WechatShareSer.weChatShare(0, shareId, _args);
 	                        break;
-	                    case 3://朋友圈
+	                    case 2://朋友圈
 	                        var shareId = typeof (_args.imageUrl) === 'undefined' ? 'send-text' : 'send-photo-local';
 	                        shareResult = WechatShareSer.weChatShare(1, shareId, _args);
 	                        break;

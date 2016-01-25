@@ -77,9 +77,9 @@
                 }
             }
         }
-        $scope.goToItemInfo = function (hotelItemId) {
+        $scope.goToItemInfo = function (hotelItem) {
             //$state.go('hotelItem', { itemId: hotelItemId });
-            $state.go('hotel', { hotelId: $scope.checkinHotel.id, rootTagId: 1, itemId: hotelItemId });
+            $state.go('hotel', { hotelId: $scope.checkinHotel.id, rootTagId: hotelItem.itemTags[0].parentId, itemId: hotelItem.id });
         }
         $scope.goToESuperMarket = function () {
             for (var i = 0; i < $scope.checkinHotel.itemVMs.length; i++) {
