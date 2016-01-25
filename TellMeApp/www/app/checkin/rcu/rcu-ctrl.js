@@ -113,7 +113,7 @@
             var order = {
                 src: 'app',
                 dst: 'rcu',
-                sid: $scope.room.serialId,
+                sid: $scope.roomcfgs[$scope.roomIndex].serialId,
                 uid: window.localStorage['userId'],
             };
             var valueOn = 0;
