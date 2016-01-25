@@ -19,7 +19,7 @@
 }
 </style>
 <ion-view>
-    <ion-slide-box class="tellme-slide-box">
+    <ion-slide-box class="tellme-slide-box" show-pager="true" active-slide="activeSlide">
         <ion-slide class="tellme-slider-slide" ng-repeat="image in images" style="background-color:#444444" ng-click="closeModal()">
             <img class="tellme-slide-box-image" ng-src="{{baseUrl}}{{image.attachUrl}}" />
         </ion-slide>
