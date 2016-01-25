@@ -44,26 +44,26 @@
                             <div ng-if="detail.title">#{{detail.title}}#</div>{{detail.text}}
                         </div>
                         <!-- 一张图片 -->
-                        <div ng-click="showImages(1,detail.id)" class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length == 1">
+                        <div ng-click="showImages(0,detail.id)" class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length == 1">
                            
                              <div class="sq-cont-img-div" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" image-lazy-background-image="true"  style="background-size:cover; background-position:center"></div>
                         </div>
                         <!-- 两张图片 -->
-                        <div ng-click="showImages(1,detail.id)" class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length == 2">
-                            <div class="sq-cont-img-div ma-r-5" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" image-lazy-background-image="true"  style="background-size:cover; background-position:center"></div>
-                            <div class="sq-cont-img-div" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}}" image-lazy-background-image="true" style="background-size:cover; background-position:center"></div>
+                        <div class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length == 2">
+                            <div ng-click="showImages(0,detail.id)" class="sq-cont-img-div ma-r-5" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" image-lazy-background-image="true"  style="background-size:cover; background-position:center"></div>
+                            <div ng-click="showImages(1,detail.id)" class="sq-cont-img-div" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}}" image-lazy-background-image="true" style="background-size:cover; background-position:center"></div>
                         </div>
                         <!-- 三张或三张以上图片 第一排 -->
-                        <div ng-click="showImages(1,detail.id)" class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length >= 3">
-                            <div class="sq-cont-img-div ma-r-5" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" image-lazy-background-image="true" style="background-size:cover; background-position:center"></div>
-                            <div class="sq-cont-img-div ma-r-5" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}}" image-lazy-background-image="true" style="background-size:cover; background-position:center"></div>
-                            <div class="sq-cont-img-div" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[2].attachUrl}}" image-lazy-background-image="true" style="background-size:cover; background-position:center"></div>
+                        <div class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length >= 3">
+                            <div ng-click="showImages(0,detail.id)" class="sq-cont-img-div ma-r-5" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[0].attachUrl}}" image-lazy-background-image="true" style="background-size:cover; background-position:center"></div>
+                            <div ng-click="showImages(1,detail.id)" class="sq-cont-img-div ma-r-5" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[1].attachUrl}}" image-lazy-background-image="true" style="background-size:cover; background-position:center"></div>
+                            <div ng-click="showImages(2,detail.id)" class="sq-cont-img-div" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[2].attachUrl}}" image-lazy-background-image="true" style="background-size:cover; background-position:center"></div>
                         </div>
                         <!-- 四张以上图片 第二排 -->
-                        <div ng-click="showImages(1,detail.id)" class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length > 3">
-                            <div class="sq-cont-img-div ma-r-5" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[3].attachUrl}}" image-lazy-background-image="true" style="background-size:cover; background-position:center"></div>
-                            <div class="sq-cont-img-div ma-r-5" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[4].attachUrl}}" image-lazy-background-image="true" style="background-size:cover; background-position:center"></div>
-                            <div class="sq-cont-img-div" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[5].attachUrl}}" image-lazy-background-image="true" style="background-size:cover; background-position:center"></div>
+                        <div class="sq-cont-img1 ma-b-10" ng-if="detail.bbsAttachUrls.length > 3">
+                            <div ng-click="showImages(3,detail.id)" class="sq-cont-img-div ma-r-5" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[3].attachUrl}}" image-lazy-background-image="true" style="background-size:cover; background-position:center"></div>
+                            <div ng-click="showImages(4,detail.id)" class="sq-cont-img-div ma-r-5" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[4].attachUrl}}" image-lazy-background-image="true" style="background-size:cover; background-position:center"></div>
+                            <div ng-click="showImages(5,detail.id)" class="sq-cont-img-div" image-lazy-src="{{baseUrl}}{{detail.bbsAttachUrls[5].attachUrl}}" image-lazy-background-image="true" style="background-size:cover; background-position:center"></div>
                         </div>
                     </div>
                 </div>

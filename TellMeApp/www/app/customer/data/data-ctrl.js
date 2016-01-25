@@ -92,9 +92,9 @@
             /*调用相机：type=0 ，相册中选择：type=1*/
             $scope.takePhoto = function (type) {
                 if (type == 0) {
-                    cameraSvr.takePhoto(20, cSuccess, cFail);
+                    cameraSvr.takePhoto(15, cSuccess, cFail);
                 } else {
-                    cameraSvr.getPhoto(20, cSuccess, cFail);
+                    cameraSvr.getPhoto(15, cSuccess, cFail);
                 }
                 function cSuccess(imgURI) {
                     LoadingSvr.load();
