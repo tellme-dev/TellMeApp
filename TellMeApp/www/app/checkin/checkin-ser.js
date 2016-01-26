@@ -65,6 +65,8 @@
                 });
             return deferred.promise;
         }
+        //设置消息返回对象
+        var deferred = null;
         //发送操作设别的指令
         this.sendOrder = function (order) {
             //var url = baseUrl + 'app/rcu/sendACOrder.do';
@@ -83,13 +85,22 @@
             //        deferred.reject(data);
             //    });
             //return deferred.promise;
-            var deferred = $q.defer();
-            linkSocket(JSON.stringify(order), deferred);
-            deferred.promise;
+            if (deferred == null) {
+                deferred = $q.defer();
+            }
+            sendMsg(JSON.stringify(order));
+            return deferred.promise;
+        }
+        //消息返回回调
+        function onWsResponse(data) {
+            //alert(data);
+            if (deferred != null) {
+                deferred.resolve(data);
+            }
         }
 
         //创建web socket
-        function linkSocket(msg, deferred) {
+        function linkSocket(onlineMsg) {
             if ('WebSocket' in window) {
                 var customerId = 0;
                 if (typeof (window.localStorage['userTel']) != 'undefined') {
@@ -99,18 +110,21 @@
                     $state.go('login', {});
                     return;
                 }
-                websocket = new WebSocket("ws://112.74.209.133:8080/hotel/appWs/"+customerId);
+                websocket = new WebSocket("ws://112.74.209.133:8080/tellme/appWs/"+customerId);
                 websocket.onerror = function (e) {
                     console.log(e);
                 };
                 websocket.onopen = function (event) {
-                    websocket.send(msg);
+                    if (typeof (onlineMsg) != "undefined") {
+                        websocket.send(onlineMsg);
+                    }
                 }
 
                 websocket.onmessage = function (event) {
+                    console.log(event);
                     var msg = event.data;
                     if (msg != null) {
-                        deferred.resolve(msg);
+                        onWsResponse(msg);
                     }
                 }
 
@@ -128,6 +142,9 @@
                 }
             }
         }
+        //var onlineMsg = "{\"src\": \"app\",\"dst\": \"rcu\",\"type\": \"ctst\",\"serialId\": \"123\",\"sid\": \"sc+cd+hlt+zj\",\"usid\": 11,\"a9\": 100,\"a10\": 100,\"a11\": 100,\"a12\": 100,\"a13\": 100,\"a22\": 100,\"a23\": 100}";
+        //初始化WS
+        linkSocket();
         //socket消息发送
         function sendMsg(msg) {
             if (websocket != null) {
