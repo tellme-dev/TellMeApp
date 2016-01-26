@@ -28,7 +28,7 @@
                 <button class="col ru-rede" ng-click="goToRCU()"><img src="images/fkk.png" /><div class="ru-rede-text">房控</div></button>
             </div>
             <div class="fw-rz-cont" ng-if="checkinHotel">
-                <div class="fw-rz-ser" ng-repeat="hotelItem in checkinHotel.itemVMs" ng-if="hotelItem.isUsed" ng-click="goToItemInfo(hotelItem.id)" ng-hide="hotelItem.itemTags[0].name ==='介绍'||hotelItem.itemTags[0].name ==='周边'||hotelItem.itemTags[0].name ==='交通'||hotelItem.itemTags[0].name ==='E房超市'||hotelItem.itemTags[0].name ==='互动电视'||hotelItem.itemTags[0].name ==='房控'||hotelItem.itemTags[0].name ==='挑'">
+                <div class="fw-rz-ser" ng-repeat="hotelItem in checkinHotel.itemVMs" ng-if="hotelItem.isUsed" ng-click="goToItemInfo(hotelItem)" ng-hide="hotelItem.itemTags[0].name ==='介绍'||hotelItem.itemTags[0].name ==='周边'||hotelItem.itemTags[0].name ==='交通'||hotelItem.itemTags[0].name ==='E房超市'||hotelItem.itemTags[0].name ==='互动电视'||hotelItem.itemTags[0].name ==='房控'||hotelItem.itemTags[0].name ==='挑'">
                     <img image-lazy-src="{{baseUrl}}{{hotelItem.itemDetails[0].imageUrl}}" style="width:100%;height:100%;" />
                     <div class="fw-po fw-po-l">{{hotelItem.name}}</div>
                 </div>
