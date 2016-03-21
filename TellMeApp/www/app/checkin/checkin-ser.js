@@ -1,5 +1,5 @@
 ﻿angular.module('tellme')
-    .service('checkinSer', ['$http', '$q', 'appConfig', function ($http, $q, appConfig) {
+    .service('checkinSer', ['$http', '$q', '$state', 'appConfig', function ($http, $q,$state, appConfig) {
         var baseUrl = appConfig.server.getUrl();
         var websocket = null;
         //根据酒店id获取酒店的广告
@@ -146,7 +146,7 @@
         //初始化WS
         linkSocket();
         //socket消息发送
-        function sendMsg(msg) {
+        this.sendMsg =function(msg) {
             if (websocket != null) {
                 websocket.send(msg);
             }

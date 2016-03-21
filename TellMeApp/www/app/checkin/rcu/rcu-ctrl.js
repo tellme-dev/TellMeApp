@@ -110,111 +110,153 @@
         }
 
         $scope.changeLampColorMode = function (cfgItem, oper, labe) {
-            var order = {
-                src: 'app',
-                dst: 'rcu',
-                sid: $scope.roomcfgs[$scope.roomIndex].serialId,
-                uid: window.localStorage['userId'],
-            };
-            var valueOn = 0;
-            var valueOff = 1;
-            if (cfgItem.isOn == '关') {
-                for (var i = 0; i < cfgItem.opers.length; i++) {
-                    if (cfgItem.opers[i].tag == 'S') {
-                        for (var j = 0; j < cfgItem.opers[i].labels.length; j++) {
-                            if (cfgItem.opers[i].labels[j].label == '开') {
-                                valueOn = cfgItem.opers[i].labels[j].value;
-                            } else {
-                                valueOff = cfgItem.opers[i].labels[j].value;
-                            }
-                        }
+            var msg = '';
+            switch (cfgItem.name) {
+                case '客厅灯':
+                    switch (labe.label) {
+                        case '明亮模式':
+                            msg = '{"src": "app","dst": "svr","type": "ctst","serialId": "123","sid": "sc+cd+hlt+zj","usid": 11,"a9": 100,"a10": 100,"a11": 100,"a12": 100,"a13": 100,"a22": 100,"a23": 100}@#';
+                            break;
+                        case '浪漫模式':
+                            msg = '{"src": "app","dst": "svr","type": "ctst","serialId": "123","sid": "sc+cd+hlt+zj","usid": 11,"a9": 0,"a10": 0,"a11": 0,"a12": 0,"a13": 0,"a22": 20,"a23": 30}@#';
+                            break;
+                        case '睡眠模式':
+                            msg = '{"src": "app","dst": "svr","type": "ctst","serialId": "123","sid": "sc+cd+hlt+zj","usid": 11,"a9": 0,"a10": 0,"a11": 0,"a12": 0,"a13": 0,"a22": 0,"a23": 0}@#';
+                            break;
                     }
-                }
-                order[cfgItem.name] = {
-                    S: valueOn,
-                    C: labe.value
-                };
-            } else if (cfgItem.isOn == labe.label) {
-                order[cfgItem.name] = {
-                    S: valueOff
-                };
-            } else {
-                order[cfgItem.name] = {
-                    S: valueOn,
-                    C: labe.value
-                };
+                    break;
+                case '卫生间灯':
+                    switch (labe.label) {
+                        case '泡浴模式':
+                            msg = '{"src": "app","dst": "svr","type": "ctst","serialId": "123","sid": "sc+cd+hlt+zj","usid": 11,"a6": 100,"a7": 0,"a8": 100}@#';
+                            break;
+                        case '洗手模式':
+                            msg = '{"src": "app","dst": "svr","type": "ctst","serialId": "123","sid": "sc+cd+hlt+zj","usid": 11,"a6": 100,"a7": 100,"a8": 0}@#';
+                            break;
+                    }
+                    break;
+                case '床头灯灯':
+                    switch (labe.label) {
+                        case '明亮模式':
+                            msg = '{"src": "app","dst": "svr","type": "ctst","serialId": "123","sid": "sc+cd+hlt+zj","usid": 11,"a14": 100,"a15": 100,"a16": 100,"a17": 100,"a18": 100,"a19": 100,"a20": 100,"a21": 100}@#';
+                            break;
+                        case '浪漫模式':
+                            msg = '{"src": "app","dst": "svr","type": "ctst","serialId": "123","sid": "sc+cd+hlt+zj","usid": 11,"a14": 0,"a15": 100,"a16": 0,"a17": 0,"a18": 100,"a19": 10,"a20": 20,"a21": 30}@#';
+                            break;
+                        case '睡眠模式':
+                            msg = '{"src": "app","dst": "svr","type": "ctst","serialId": "123","sid": "sc+cd+hlt+zj","usid": 11,"a14": 0,"a15": 0,"a16": 0,"a17": 0,"a18": 0,"a19": 0,"a20": 0,"a21": 0}@#';
+                            break;
+                    }
+                    break;
             }
-            //调用rcu服务改变灯的模式
-            var promise = checkinSer.sendOrder(order);
-            promise.then(
-                function (data) {
-                    if (data.isSuccess) {
-                        if (cfgItem.isOn == '关') {
-                            cfgItem.isOn == labe.label;
-                            labe.color = '#6dcda5';
-                        } else if (cfgItem.isOn == labe.label) {
-                            cfgItem.isOn == '关';
-                            labe.color = '#6d6d6d';
-                        } else {
-                            cfgItem.isOn == labe.label;
-                            for (var c = 0; c < oper.labels.length; c++) {
-                                oper.labels[c].color = '#6d6d6d';
-                            }
-                            labe.color = '#6dcda5';
-                        }
-                    } else {
-                        popUpSer.showAlert(data.msg);
-                    }
-                }, function (data) {
-                    popUpSer.showAlert(data.msg);
-                });
+            checkinSer.sendMsg(msg);
+            //var order = {
+            //    src: 'app',
+            //    dst: 'rcu',
+            //    sid: $scope.roomcfgs[$scope.roomIndex].serialId,
+            //    uid: window.localStorage['userId'],
+            //};
+            //var valueOn = 0;
+            //var valueOff = 1;
+            //if (cfgItem.isOn == '关') {
+            //    for (var i = 0; i < cfgItem.opers.length; i++) {
+            //        if (cfgItem.opers[i].tag == 'S') {
+            //            for (var j = 0; j < cfgItem.opers[i].labels.length; j++) {
+            //                if (cfgItem.opers[i].labels[j].label == '开') {
+            //                    valueOn = cfgItem.opers[i].labels[j].value;
+            //                } else {
+            //                    valueOff = cfgItem.opers[i].labels[j].value;
+            //                }
+            //            }
+            //        }
+            //    }
+            //    order[cfgItem.name] = {
+            //        S: valueOn,
+            //        C: labe.value
+            //    };
+            //} else if (cfgItem.isOn == labe.label) {
+            //    order[cfgItem.name] = {
+            //        S: valueOff
+            //    };
+            //} else {
+            //    order[cfgItem.name] = {
+            //        S: valueOn,
+            //        C: labe.value
+            //    };
+            //}
+            ////调用rcu服务改变灯的模式
+            //var promise = checkinSer.sendOrder(order);
+            //promise.then(
+            //    function (data) {
+            //        if (data.isSuccess) {
+            //            if (cfgItem.isOn == '关') {
+            //                cfgItem.isOn == labe.label;
+            //                labe.color = '#6dcda5';
+            //            } else if (cfgItem.isOn == labe.label) {
+            //                cfgItem.isOn == '关';
+            //                labe.color = '#6d6d6d';
+            //            } else {
+            //                cfgItem.isOn == labe.label;
+            //                for (var c = 0; c < oper.labels.length; c++) {
+            //                    oper.labels[c].color = '#6d6d6d';
+            //                }
+            //                labe.color = '#6dcda5';
+            //            }
+            //        } else {
+            //            popUpSer.showAlert(data.msg);
+            //        }
+            //    }, function (data) {
+            //        popUpSer.showAlert(data.msg);
+            //    });
         }
 
         $scope.powerOnOrOffAllLT = function () {
-            var order = {
-                src: 'app',
-                dst: 'rcu',
-                sid: $scope.room.serialId,
-                uid: window.localStorage['userId'],
-            };
-            var valueOff = 0;
-            for (var i = 0; i < cfgItem.opers.length; i++) {
-                if (cfgItem.opers[i].tag == 'S') {
-                    for (var j = 0; j < cfgItem.opers[i].labels.length; j++) {
-                        if (cfgItem.opers[i].labels[j].label == '开') {
-                        } else {
-                            valueOff = cfgItem.opers[i].labels[j].value;
-                        }
-                    }
-                }
-            }
-            order[cfgItem.name] = {
-                S: valueOff
-            };
-            //调用rcu服务改变灯的模式
-            var promise = checkinSer.sendOrder(order);
-            promise.then(
-                function (data) {
-                    if (data.isSuccess) {
-                        for (var i = 0; i < room.rcuCfgItems.length; i++) {
-                            if (room.rcuCfgItems[i].dtype == 'LT') {
-                                room.rcuCfgItems[i].isOn = '关';
-                                for (var j = 0; j < room.rcuCfgItems[i].opers.length; j++) {
-                                    if (room.rcuCfgItems[i].opers[j].tag == 'C') {
-                                        for (var c = 0; room.rcuCfgItems[i].opers[j].labels.length; c++) {
-                                            oom.rcuCfgItems[i].opers[j].labels[c].color = '#6d6d6d';
-                                        }
-                                    }
-                                }
-                            }
-                        }
+            var msg = '{"src": "app","dst": "svr","type": "ctst","serialId": "123","sid": "sc+cd+hlt+zj","usid": 11,"a6": 0,"a7": 0,"a8": 0}@#';
+            checkinSer.sendMsg(msg);
+            //var order = {
+            //    src: 'app',
+            //    dst: 'rcu',
+            //    sid: $scope.room.serialId,
+            //    uid: window.localStorage['userId'],
+            //};
+            //var valueOff = 0;
+            //for (var i = 0; i < cfgItem.opers.length; i++) {
+            //    if (cfgItem.opers[i].tag == 'S') {
+            //        for (var j = 0; j < cfgItem.opers[i].labels.length; j++) {
+            //            if (cfgItem.opers[i].labels[j].label == '开') {
+            //            } else {
+            //                valueOff = cfgItem.opers[i].labels[j].value;
+            //            }
+            //        }
+            //    }
+            //}
+            //order[cfgItem.name] = {
+            //    S: valueOff
+            //};
+            ////调用rcu服务改变灯的模式
+            //var promise = checkinSer.sendOrder(order);
+            //promise.then(
+            //    function (data) {
+            //        if (data.isSuccess) {
+            //            for (var i = 0; i < room.rcuCfgItems.length; i++) {
+            //                if (room.rcuCfgItems[i].dtype == 'LT') {
+            //                    room.rcuCfgItems[i].isOn = '关';
+            //                    for (var j = 0; j < room.rcuCfgItems[i].opers.length; j++) {
+            //                        if (room.rcuCfgItems[i].opers[j].tag == 'C') {
+            //                            for (var c = 0; room.rcuCfgItems[i].opers[j].labels.length; c++) {
+            //                                oom.rcuCfgItems[i].opers[j].labels[c].color = '#6d6d6d';
+            //                            }
+            //                        }
+            //                    }
+            //                }
+            //            }
 
-                    } else {
-                        popUpSer.showAlert(data.msg);
-                    }
-                }, function (data) {
-                    popUpSer.showAlert(data.msg);
-                });
+            //        } else {
+            //            popUpSer.showAlert(data.msg);
+            //        }
+            //    }, function (data) {
+            //        popUpSer.showAlert(data.msg);
+            //    });
 
         }
         //改变空调温度
